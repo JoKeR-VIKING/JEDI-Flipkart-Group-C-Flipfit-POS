@@ -2,11 +2,9 @@ package com.flipkart.bean;
 
 public class FlipfitCentre {
     private String centreId;
-    private String city;
     private String centreName;
     private FlipfitUser gymOwner;
     private Boolean verified;
-
 
     public String getCentreId() {
         return centreId;
@@ -14,14 +12,6 @@ public class FlipfitCentre {
 
     public void setCentreId(String centreId) {
         this.centreId = centreId;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public String getCentreName() {
