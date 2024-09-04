@@ -11,7 +11,7 @@ public class FlipFitGymOwnerClientMenu {
         System.out.println("Enter preferred choices:\n1. Add Gym\n2. Remove Gym\n3. View all my registered Gyms \n4. View all Available Slots \n5. Add Slots \n6. Remove Slots \n7. Log Out");
     }
 
-    private void addGym(int gymOwnerId) {
+    private void addGym() {
         System.out.println("Enter your gym details ");
 
         System.out.print("Enter Gym Name: \n");
@@ -27,7 +27,7 @@ public class FlipFitGymOwnerClientMenu {
     }
 
     //help
-    public void viewRegisteredGymCenters(int userId) {
+    public void viewRegisteredGymCenters() {
         System.out.println("You are in view Registered Gym centers function\n");
     }
 
@@ -70,52 +70,41 @@ public class FlipFitGymOwnerClientMenu {
         System.out.println("Logged out\n");
     }
 
-    public static void login(int id){
-        FlipFitGymOwnerClientMenu menu = new FlipFitGymOwnerClientMenu();
+    public void login(int id) {
         Scanner in = new Scanner(System.in);
-
-        menu.displayGymOwnerMenu();
-
+        
         int choice = 0;
 
-        while (choice != 8) {
+        while (choice != 7) {
             choice = in.nextInt();
+            displayGymOwnerMenu();
 
             switch (choice) {
                 case 1:
-                    menu.addGym(id);
+                    addGym();
                     break;
                 case 2:
-                    menu.removeGym();
+                    removeGym();
                     break;
                 case 3:
-                    menu.viewRegisteredGymCenters(id);
+                    viewRegisteredGymCenters();
                     break;
                 case 4:
-                    menu.viewAvailableSlots();
+                    viewAvailableSlots();
                     break;
                 case 5:
-                    menu.addSlot();
+                    addSlot();
                     break;
                 case 6:
-                    menu.removeSlot();
+                    removeSlot();
                     break;
                 case 7:
-                    menu.userLogout();
+                    userLogout();
                     in.close();
-                    return;
+                    break;
                 default:
                     System.out.println("Invalid choice");
             }
-
-            System.out.println("Press 1 to go back to 'Gym Owner Menu Page' OR any other key to 'Log Out'");
-
-            int newChoice = in.nextInt();
-
-            if (newChoice == 1)
-                menu.displayGymOwnerMenu();
-            else
-                break;
         }
 
         in.close();
