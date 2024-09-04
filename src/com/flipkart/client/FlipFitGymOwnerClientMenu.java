@@ -6,7 +6,7 @@ import java.util.*;
 public class FlipFitGymOwnerClientMenu {
     Scanner scanner = new Scanner(System.in);
 
-    private void displayGymOwnerMenu() {
+    public static void displayGymOwnerMenu() {
         System.out.println("Welcome to FlipFit Owner Menu Page");
         System.out.println("Enter preferred choices:\n1. Add Gym\n2. Remove Gym\n3. View all my registered Gyms \n4. View all Available Slots \n5. Add Slots \n6. Remove Slots \n7. Log Out");
     }
@@ -76,9 +76,8 @@ public class FlipFitGymOwnerClientMenu {
         int choice = 0;
 
         while (choice != 7) {
-            choice = in.nextInt();
             displayGymOwnerMenu();
-
+            choice = in.nextInt();
             switch (choice) {
                 case 1:
                     addGym();
