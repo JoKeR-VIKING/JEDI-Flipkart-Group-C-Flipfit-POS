@@ -2,7 +2,7 @@ package com.flipkart.bean;
 
 public class FlipfitCentre {
     private String centreId;
-    private FlipfitCity city;
+    private String city;
     private String centreName;
     private FlipfitUser gymOwner;
     private Boolean verified;
@@ -16,11 +16,11 @@ public class FlipfitCentre {
         this.centreId = centreId;
     }
 
-    public FlipfitCity getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(FlipfitCity city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
