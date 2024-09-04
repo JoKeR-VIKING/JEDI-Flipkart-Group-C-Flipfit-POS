@@ -27,7 +27,7 @@ public class FlipfitCustomerClientMenu {
                     "\n3. back"
             );
 
-            int choice = getChoice(3);
+            int choice = FlipfitClientUtils.getChoice(3);
             switch(choice) {
                 case 1:
                     viewBookedSlots(id, customerService);
@@ -57,7 +57,7 @@ public class FlipfitCustomerClientMenu {
 
         while(true) {
             System.out.println("Choose slot to delete, or 0 to go back");
-            int choice = getChoice(bookedSlots.length);
+            int choice = FlipfitClientUtils.getChoice(bookedSlots.length);
             if (choice == 0) return;
 
             customerService.cancelSlot(choice);
@@ -85,20 +85,6 @@ public class FlipfitCustomerClientMenu {
         System.out.println("Logged out\n");
     }
 
-    private int getChoice(int size) {
-        Scanner in = new Scanner(System.in);
-        int choice;
-        try {
-            choice = in.nextInt();
-            if (choice < 0 || choice > size)
-                throw new Exception();
-        } catch (Exception e) {
-            System.out.println("incorrect input, try again: ");
-            return getChoice(size);
-        }
-        return choice;
-    }
-
     public void flipfitCustomerPage(int customerId){
         Scanner in = new Scanner(System.in);
 
@@ -114,7 +100,7 @@ public class FlipfitCustomerClientMenu {
                     "\n4. Log out"
             );
 
-            int choice = getChoice(4);
+            int choice = FlipfitClientUtils.getChoice(4);
             switch(choice) {
                 case 1:
                     viewProfile(customerId, customerService);
