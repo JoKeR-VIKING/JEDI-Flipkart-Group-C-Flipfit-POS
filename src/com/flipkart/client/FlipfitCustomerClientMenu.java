@@ -7,7 +7,7 @@ import com.flipkart.business.FlipFitCustomerService;
 import java.util.Scanner;
 
 public class FlipfitCustomerClientMenu {
-    public void viewProfile(int id, FlipFitCustomerService customerService)
+    private void viewProfile(int id, FlipFitCustomerService customerService)
     {
         FlipfitCustomer customer = customerService.getProfile(id);
         System.out.println("Age: " + customer.getAge());
@@ -18,7 +18,7 @@ public class FlipfitCustomerClientMenu {
         System.out.println("Address: " + customer.getAddress());
     }
 
-    public void handleCustomerBookings(int id, FlipFitCustomerService customerService)
+    private void handleCustomerBookings(int id, FlipFitCustomerService customerService)
     {
         while(true) {
             System.out.println(
@@ -41,14 +41,14 @@ public class FlipfitCustomerClientMenu {
         }
     }
 
-    public void viewBookedSlots(int id, FlipFitCustomerService customerService) {
+    private void viewBookedSlots(int id, FlipFitCustomerService customerService) {
         FlipfitCenterSlot[] bookedSlots = customerService.getBookedSlots(id);
         for (FlipfitCenterSlot bookedSlot : bookedSlots) {
             System.out.println(bookedSlot.getId());
         }
     }
 
-    public void cancelCustomerBooking(int id, FlipFitCustomerService customerService)
+    private void cancelCustomerBooking(int id, FlipFitCustomerService customerService)
     {
         FlipfitCenterSlot[] bookedSlots = customerService.getBookedSlots(id);
         for (FlipfitCenterSlot bookedSlot : bookedSlots) {
@@ -65,7 +65,7 @@ public class FlipfitCustomerClientMenu {
         }
     }
 
-    public void newSlotBooking(int id, FlipFitCustomerService customerService) {
+    private void newSlotBooking(int id, FlipFitCustomerService customerService) {
         Scanner in = new Scanner(System.in);
 
         System.out.println("Select city: ");
@@ -80,12 +80,12 @@ public class FlipfitCustomerClientMenu {
         System.out.println("Slot booked!");
     }
 
-    public void logoutUser()
+    private void logoutUser()
     {
         System.out.println("Logged out\n");
     }
 
-    public int getChoice(int size) {
+    private int getChoice(int size) {
         Scanner in = new Scanner(System.in);
         int choice;
         try {
@@ -96,7 +96,6 @@ public class FlipfitCustomerClientMenu {
             System.out.println("incorrect input, try again: ");
             return getChoice(size);
         }
-        in.close();
         return choice;
     }
 
