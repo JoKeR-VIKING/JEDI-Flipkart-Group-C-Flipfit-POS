@@ -8,7 +8,7 @@ import java.util.Date;
 public class FlipfitSlotBooking {
     private int id;
     private String user;
-    private CenterSlot centerSlot;
+    private FlipfitCenterSlot centerSlot;
     private LocalDate slotDate;
     private Date bookingDate;
     private SlotBookingStatusEnum status;
@@ -29,11 +29,11 @@ public class FlipfitSlotBooking {
         this.user = user;
     }
 
-    public CenterSlot getCenterSlot() {
+    public FlipfitCenterSlot getCenterSlot() {
         return centerSlot;
     }
 
-    public void setCenterSlot(CenterSlot centerSlot) {
+    public void setCenterSlot(FlipfitCenterSlot centerSlot) {
         this.centerSlot = centerSlot;
     }
 
