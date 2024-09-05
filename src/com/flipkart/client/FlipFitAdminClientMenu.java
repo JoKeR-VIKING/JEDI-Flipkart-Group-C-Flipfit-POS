@@ -5,7 +5,9 @@ import com.flipkart.utils.FlipfitClientUtils;
 
 import java.util.Scanner;
 
-public class FlipfitAdminClientMenu {
+import static com.flipkart.utils.Helper.*;
+
+public class FlipFitAdminClientMenu {
 
     private static final int OPTIONS_SIZE = 11;
 
@@ -13,61 +15,63 @@ public class FlipfitAdminClientMenu {
     FlipFitAdminService adminService = new FlipFitAdminService();
 
     public void displayOptions() {
-        System.out.println("1. View all Pending Gym Centre requests");
-        System.out.println("2. View all Pending Gym Owner requests");
-        System.out.println("3. Approve Gym Centre request");
-        System.out.println("4. Approve Gym Owner request");
-        System.out.println("5. Reject Gym Centre request");
-        System.out.println("6. Reject Gym Owner request");
-        System.out.println("7. View all Gym Owners");
-        System.out.println("8. View all Gym Centres");
-        System.out.println("9. Remove Gym Centre");
-        System.out.println("10. Remove Gym Owner");
-        System.out.println("11. Log Out");
+        System.out.println();
+
+        yellowOutputLn("1. View all Pending Gym Centre requests");
+        yellowOutputLn("2. View all Pending Gym Owner requests");
+        yellowOutputLn("3. Approve Gym Centre request");
+        yellowOutputLn("4. Approve Gym Owner request");
+        yellowOutputLn("5. Reject Gym Centre request");
+        yellowOutputLn("6. Reject Gym Owner request");
+        yellowOutputLn("7. View all Gym Owners");
+        yellowOutputLn("8. View all Gym Centres");
+        yellowOutputLn("9. Remove Gym Centre");
+        yellowOutputLn("10. Remove Gym Owner");
+        redOutputLn("11. Log Out");
     }
 
     public void viewPendingCentre() {
-        adminService.viewPendingCenter();
+        //adminService.viewPendingCenter();
     }
 
     public void viewPendingOwner() {
-        adminService.viewPendingOwner();
+        //adminService.viewPendingOwner();
     }
 
     public void approveCentre(int gymId) {
-        adminService.approveGymRequests(gymId);
+        //adminService.approveGymRequests(gymId);
     }
 
     public void approveOwner(int ownerId) {
-        adminService.approveGymOwnerRequests(ownerId);
+        //adminService.approveGymOwnerRequests(ownerId);
     }
 
     public void rejectCentre(int gymId) {
-        adminService.rejectGymRequests(gymId);
+        //adminService.rejectGymRequests(gymId);
     }
 
     public void rejectOwner(int ownerId) {
-        adminService.rejectGymOwnerRequests(ownerId);
+        //adminService.rejectGymOwnerRequests(ownerId);
     }
 
     public void removeCentre(int GymId) {
-        adminService.removeGym(GymId);
+        //adminService.removeGym(GymId);
     }
 
     public void removeOwner(int ownerId) {
-        adminService.removeGymOwner(ownerId);
+        //adminService.removeGymOwner(ownerId);
     }
 
     public void viewAllGymOwners() {
-        adminService.viewAllGymOwners();
+        //adminService.viewAllGymOwners();
     }
 
     public void viewGymDetails() {
-        adminService.viewGymDetails();
+        //adminService.viewGymDetails();
     }
 
     public void userLogout() {
-        System.out.println("Logged out");
+        redOutputLn("Logged out");
     }
 
     public int takeGymIdInput() {
@@ -86,8 +90,8 @@ public class FlipfitAdminClientMenu {
         return userId;
     }
 
-    public void login(int userId) {
-        System.out.println("\n-------- Welcome to FlipFit Admin Menu Page --------");
+    public void login(String userId) {
+        boldOutputLn("\n-------- Welcome to FlipFit Admin Menu Page --------");
 
         while (true) {
             displayOptions();

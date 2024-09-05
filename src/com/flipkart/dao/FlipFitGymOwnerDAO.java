@@ -5,18 +5,35 @@ import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.bean.FlipFitCentre;
 
 import java.time.LocalTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class FlipFitGymOwnerDAO {
-    public static List<FlipFitGymOwner> GymOwners = new ArrayList<>();
+    public static List<FlipFitGymOwner> GymOwners = Collections.emptyList();
+
     public static List<FlipFitCentre> Gyms = new ArrayList<>();
 
     public static List<FlipFitCenterSlot> slots = new ArrayList<>();
 
+    static {
+        refreshGymOwners();
+    }
+
+    public static void refreshGymOwners() {
+        GymOwners = FlipFitUserDAO.USERS.stream()
+                .filter(user -> (user instanceof FlipFitGymOwner))
+                .map(user -> (FlipFitGymOwner) user)
+                .toList();
+    }
+
+    public static void add(FlipFitGymOwner gymOwner) {
+        FlipFitUserDAO.add(gymOwner);
+        refreshGymOwners();
+    }
+
     public static void createProfile(FlipFitGymOwner gymOwner) {
-        GymOwners.add(gymOwner);
+        add(gymOwner);
     }
 
     public static void editProfile(String gymOwnerId, String address, String gstNumber, String panCardNumber) {
