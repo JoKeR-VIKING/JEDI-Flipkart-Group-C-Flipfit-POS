@@ -1,7 +1,7 @@
 package com.flipkart.client;
 
-import com.flipkart.bean.FlipfitCenterSlot;
-import com.flipkart.bean.FlipfitCustomer;
+import com.flipkart.bean.FlipFitCenterSlot;
+import com.flipkart.bean.FlipFitCustomer;
 import com.flipkart.business.FlipFitCustomerService;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class FlipfitCustomerClientMenu {
     private void viewProfile(int id, FlipFitCustomerService customerService)
     {
-        FlipfitCustomer customer = customerService.getProfile(id);
+        FlipFitCustomer customer = customerService.getProfile(id);
         System.out.println("Age: " + customer.getAge());
         System.out.println("weight: " + customer.getWeight());
         System.out.println("DOB: " + customer.getDob());
@@ -43,16 +43,17 @@ public class FlipfitCustomerClientMenu {
     }
 
     private void viewBookedSlots(int id, FlipFitCustomerService customerService) {
-        List<FlipfitCenterSlot> bookedSlots = customerService.getBookedSlots(id);
-        for (FlipfitCenterSlot bookedSlot : bookedSlots) {
+        List<FlipFitCenterSlot> bookedSlots = customerService.getBookedSlots(id);
+        for (FlipFitCenterSlot bookedSlot : bookedSlots) {
+
             System.out.println(bookedSlot.getId());
         }
     }
 
     private void cancelCustomerBooking(int id, FlipFitCustomerService customerService)
     {
-        List<FlipfitCenterSlot> bookedSlots = customerService.getBookedSlots(id);
-        for (FlipfitCenterSlot bookedSlot : bookedSlots) {
+        List<FlipFitCenterSlot> bookedSlots = customerService.getBookedSlots(id);
+        for (FlipFitCenterSlot bookedSlot : bookedSlots) {
             System.out.println(bookedSlot.getId());
         }
 

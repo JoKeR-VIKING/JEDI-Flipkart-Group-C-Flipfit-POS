@@ -1,20 +1,19 @@
 package com.flipkart.business;
 
-import com.flipkart.bean.FlipfitCenterSlot;
-import com.flipkart.bean.FlipfitCentre;
-import com.flipkart.bean.FlipfitCustomer;
+import com.flipkart.bean.FlipFitCenterSlot;
+import com.flipkart.bean.FlipFitCentre;
+import com.flipkart.bean.FlipFitCustomer;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.*;
 
 public class FlipFitCustomerService {
 
-    List<FlipfitCustomer> customers = new ArrayList<FlipfitCustomer>();
+    List<FlipFitCustomer> customers = new ArrayList<FlipFitCustomer>();
 
     public String getName(int customerId) {
         // select name from customer where id = customerid
-        for(FlipfitCustomer customer:customers) {
+        for(FlipFitCustomer customer:customers) {
             if (customer.getId().equals(Integer.toString(customerId))) {
                 return customer.getName();
             }
@@ -22,9 +21,9 @@ public class FlipFitCustomerService {
         return "error";
     }
 
-    public FlipfitCustomer getProfile(int customerId) {
+    public FlipFitCustomer getProfile(int customerId) {
         // select * from customer where id = customerid;
-        for(FlipfitCustomer customer:customers) {
+        for(FlipFitCustomer customer:customers) {
             if (customer.getId().equals(Integer.toString(customerId))) {
                 return customer;
             }
@@ -32,9 +31,10 @@ public class FlipFitCustomerService {
         return null;
     }
 
-    public List<FlipfitCenterSlot> getBookedSlots(int customerId) {
-        // TODO
-        return null;
+    public List<FlipFitCenterSlot> getBookedSlots(int customerId) {
+        List<FlipFitCenterSlot> bookedSlots = new ArrayList<>();
+        // use join query to get booked slots - https://stackoverflow.com/a/17371729
+        return bookedSlots;
     }
 
     public void bookSlot() {
@@ -55,8 +55,9 @@ public class FlipFitCustomerService {
 
     public void createProfile(String name, String phone, int age, String gender, Double weight, String address, String email, String password, LocalDate dob) {
         Random random = new Random();
-        customers.add(new FlipfitCustomer(
+        customers.add(new FlipFitCustomer(
                 Integer.toString(random.nextInt(10000)),
+                email,
                 password,
                 name,
                 phone,
@@ -70,7 +71,7 @@ public class FlipFitCustomerService {
     }
 
     public void editProfile(int customerId, String newPassword) {
-        for(FlipfitCustomer customer:customers) {
+        for(FlipFitCustomer customer:customers) {
             if (customer.getId().equals(Integer.toString(customerId))) {
                 customer.setPassword(newPassword);
                 return;
@@ -79,7 +80,7 @@ public class FlipFitCustomerService {
         System.out.println("Customer id incorrect");
     }
 
-    public List<FlipfitCentre> viewGyms() {
+    public List<FlipFitCentre> viewGyms() {
         return null;
     }
 }

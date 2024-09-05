@@ -2,11 +2,10 @@ package com.flipkart.bean;
 
 import java.time.LocalTime;
 
-public class FlipfitCenterSlot {
+public class FlipFitCenterSlot {
     private String id;
-    private FlipfitCentre centre;
+    private String centreId;
     private LocalTime startTime;
-    private LocalTime endTime;
     private int seatLimit;
 
     public FlipfitCenterSlot(String _id, FlipfitCentre _centre, LocalTime _startTime, LocalTime _endTime, int _seatLimit) {
@@ -25,28 +24,12 @@ public class FlipfitCenterSlot {
         this.id = id;
     }
 
-    public FlipfitCentre getCentre() {
-        return centre;
-    }
-
-    public void setCentre(FlipfitCentre centre) {
-        this.centre = centre;
-    }
-
     public LocalTime getStartTime() {
         return startTime;
     }
 
     public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
-    }
-
-    public LocalTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalTime endTime) {
-        this.endTime = endTime;
     }
 
     public int getSeatLimit() {

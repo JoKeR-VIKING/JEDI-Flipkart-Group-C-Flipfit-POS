@@ -22,17 +22,12 @@ public class FlipFitGymOwnerClientMenu {
 
         System.out.println("Enter Gym Address: ");
         String gymAddress = scanner.nextLine();
-
-        flipFitGymOwnerService.addGym(gymName,gymAddress);
     }
 
     private void removeGym() {
         System.out.print("Enter ID of Gym to remove: \n");
         int gymId = scanner.nextInt();
-
-        flipFitGymOwnerService.removeGym(gymId);
     }
-
 
     public void viewRegisteredGymCenters() {
         System.out.println("You are in view Registered Gym centers function\n");

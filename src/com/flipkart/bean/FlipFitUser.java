@@ -2,13 +2,22 @@ package com.flipkart.bean;
 
 import com.flipkart.enums.RoleEnum;
 
-public abstract class FlipfitUser {
+public abstract class FlipFitUser {
     private String id;
     private String username;
     private String password;
     private String name;
     private String address;
     private String phoneNumber;
+
+    public FlipFitUser(String id, String username, String password, String name, String address, String phoneNumber) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+    }
 
     public String getAddress() {
         return address;

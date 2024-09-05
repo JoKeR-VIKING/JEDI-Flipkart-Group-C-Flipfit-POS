@@ -14,7 +14,7 @@ public class FlipFitApplicationMainClient {
 
     public static void login() {
         Scanner in = new Scanner(System.in);
-        System.out.println("------- Login ------ ");
+        System.out.println("Login Page:");
         System.out.println("Enter your Email: ");
         String email = in.next();
         System.out.println("Enter your Password: ");
@@ -132,7 +132,8 @@ public class FlipFitApplicationMainClient {
 
     public static void main(String[] args){
 
-        System.out.println("--------Welcome to FlipFit Application--------");
+        System.out.println("Flipfit Application");
+        System.out.println("--------------------");
         LocalDate localDate=LocalDate.now();
         LocalTime localTime=LocalTime.now();
         System.out.println("-----------------------------------------------");

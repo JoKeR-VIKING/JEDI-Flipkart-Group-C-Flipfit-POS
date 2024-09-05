@@ -4,22 +4,18 @@ import com.flipkart.enums.RoleEnum;
 
 import java.time.LocalDate;
 
-public class FlipfitCustomer extends FlipfitUser{
+public class FlipFitCustomer extends FlipFitUser {
     private Double weight;
     private Integer age;
     private String gender;
     private LocalDate dob;
 
-    public FlipfitCustomer(String id, String password, String name, String phoneno, String address, Double weight, Integer age, String gender, LocalDate dob) {
-        this.setId(id);
-        this.setPassword(password);
-        this.setName(name);
-        this.setPhoneNumber(phoneno);
-        this.setAddress(address);
-        this.setWeight(weight);
-        this.setAge(age);
-        this.setGender(gender);
-        this.setDob(dob);
+    public FlipFitCustomer(String id, String username, String password, String name, String address, String phoneNumber, Double weight, Integer age, String gender, LocalDate dob) {
+        super(id, username, password, name, address, phoneNumber);
+        this.weight = weight;
+        this.age = age;
+        this.gender = gender;
+        this.dob = dob;
     }
 
     public String getGender() {
