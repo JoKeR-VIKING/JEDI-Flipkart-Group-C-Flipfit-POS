@@ -4,10 +4,17 @@ import java.time.LocalTime;
 
 public class FlipFitCenterSlot {
     private String id;
-    private FlipFitCentre centre;
+    private String centreId;
     private LocalTime startTime;
-    private LocalTime endTime;
     private int seatLimit;
+
+    public FlipfitCenterSlot(String _id, FlipfitCentre _centre, LocalTime _startTime, LocalTime _endTime, int _seatLimit) {
+        id = _id;
+        centre = _centre;
+        startTime = _startTime;
+        endTime = _endTime;
+        seatLimit = _seatLimit;
+    }
 
     public String getId() {
         return id;
@@ -17,28 +24,12 @@ public class FlipFitCenterSlot {
         this.id = id;
     }
 
-    public FlipFitCentre getCentre() {
-        return centre;
-    }
-
-    public void setCentre(FlipFitCentre centre) {
-        this.centre = centre;
-    }
-
     public LocalTime getStartTime() {
         return startTime;
     }
 
     public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
-    }
-
-    public LocalTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalTime endTime) {
-        this.endTime = endTime;
     }
 
     public int getSeatLimit() {

@@ -1,8 +1,6 @@
 package com.flipkart.business;
 
-import com.flipkart.bean.FlipfitCenterSlot;
-import com.flipkart.bean.FlipfitCentre;
-import com.flipkart.bean.FlipfitCustomer;
+import com.flipkart.bean.FlipFitCentre;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,5 +16,5 @@ public interface FlipFitCustomerInterface {
     //add exception if usser is not found
 
 
-    List<FlipfitCentre> viewCenter();
+    List<FlipFitCentre> viewCenter();
 }

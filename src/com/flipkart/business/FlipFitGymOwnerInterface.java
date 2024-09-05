@@ -1,9 +1,8 @@
 package com.flipkart.business;
 
 public interface FlipFitGymOwnerInterface {
-
-    public void addGym(String gymName,String gymAddress);
-    public void removeGym(Integer gymId);
+    public void addGym(String centreId, String centreName, String centreAddress, String id);
+    public void removeGym(String centreId);
     public void viewRegisteredGymCenters();
     public void viewSlots();
     public void addSlot(Integer gymId,String date, String startTime, String endTime,Integer noOfSeats);

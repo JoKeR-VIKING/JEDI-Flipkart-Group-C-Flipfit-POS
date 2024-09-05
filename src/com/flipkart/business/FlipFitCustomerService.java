@@ -1,42 +1,86 @@
 package com.flipkart.business;
 
-import com.flipkart.bean.FlipfitCenterSlot;
-import com.flipkart.bean.FlipfitCentre;
-import com.flipkart.bean.FlipfitCustomer;
+import com.flipkart.bean.FlipFitCenterSlot;
+import com.flipkart.bean.FlipFitCentre;
+import com.flipkart.bean.FlipFitCustomer;
 
-import java.util.HashMap;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 
 public class FlipFitCustomerService {
+
+    List<FlipFitCustomer> customers = new ArrayList<FlipFitCustomer>();
+
     public String getName(int customerId) {
-        return "customer name";
+        // select name from customer where id = customerid
+        for(FlipFitCustomer customer:customers) {
+            if (customer.getId().equals(Integer.toString(customerId))) {
+                return customer.getName();
+            }
+        }
+        return "error";
     }
 
-    public FlipfitCustomer getProfile(int customerId) {
-        FlipfitCustomer customer = new FlipfitCustomer();
-        return customer;
+    public FlipFitCustomer getProfile(int customerId) {
+        // select * from customer where id = customerid;
+        for(FlipFitCustomer customer:customers) {
+            if (customer.getId().equals(Integer.toString(customerId))) {
+                return customer;
+            }
+        }
+        return null;
     }
 
-    public FlipfitCenterSlot[] getBookedSlots(int customerId) {
-        FlipfitCenterSlot[] bookedSlots = {};
+    public List<FlipFitCenterSlot> getBookedSlots(int customerId) {
+        List<FlipFitCenterSlot> bookedSlots = new ArrayList<>();
         // use join query to get booked slots - https://stackoverflow.com/a/17371729
         return bookedSlots;
     }
 
-    public void createProfile(int userId, String name, String phoneNumber, String address) {
-        System.out.println("Profile Details are added!");
-    }
-
-    public void editProfile(int userId, String name, String phoneNumber, String address){
-        //add exception if user is not found
-        System.out.println("Customer details are updated!");
-    }
-
-    public HashMap<String, Integer> viewSlots(int centerId, String date) {
+    public void bookSlot() {
 
     }
 
-    public List<FlipfitCentre> viewGyms() {
-//        return
+    public void cancelSlot(int slotId) {
+
+    }
+
+    public void viewCityList() {
+
+    }
+
+    public void viewCentreListByCityAndDate(String city, LocalDate date) {
+
+    }
+
+    public void createProfile(String name, String phone, int age, String gender, Double weight, String address, String email, String password, LocalDate dob) {
+        Random random = new Random();
+        customers.add(new FlipFitCustomer(
+                Integer.toString(random.nextInt(10000)),
+                email,
+                password,
+                name,
+                phone,
+                address,
+                weight,
+                age,
+                gender,
+                dob
+                )
+        );
+    }
+
+    public void editProfile(int customerId, String newPassword) {
+        for(FlipFitCustomer customer:customers) {
+            if (customer.getId().equals(Integer.toString(customerId))) {
+                customer.setPassword(newPassword);
+                return;
+            }
+        }
+        System.out.println("Customer id incorrect");
+    }
+
+    public List<FlipFitCentre> viewGyms() {
+        return null;
     }
 }
