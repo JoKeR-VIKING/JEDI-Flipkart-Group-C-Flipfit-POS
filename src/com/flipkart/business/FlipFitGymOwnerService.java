@@ -38,17 +38,18 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
 
     @Override
     public void addSlot(String slotId, String centreId, LocalTime startTime, Integer noOfSeats) {
-
+        FlipFitCenterSlot slot = new FlipFitCenterSlot(Helper.generateId(), centreId, startTime, noOfSeats);
+        FlipFitGymOwnerDAO.addSlot(slot);
     }
 
     @Override
     public void removeSlot(String slotId) {
-
+        FlipFitGymOwnerDAO.deleteSlot(slotId);
     }
 
     @Override
     public void updateSlot(String slotId, LocalTime startTime, Integer noOfSeats) {
-
+        FlipFitGymOwnerDAO.updateSlot(slotId, startTime, noOfSeats);
     }
 
     @Override

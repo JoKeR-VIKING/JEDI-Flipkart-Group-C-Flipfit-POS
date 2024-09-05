@@ -2,6 +2,8 @@ package com.flipkart.client;
 
 import com.flipkart.business.FlipFitGymOwnerService;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 import static com.flipkart.utils.FlipfitClientUtils.getChoice;
@@ -32,8 +34,8 @@ public class FlipFitGymOwnerClientMenu {
     private void addGym(int userId) {
         System.out.println("Enter your gym details");
 
-        System.out.print("Enter Gym ID: ");
-        String gymId = scanner.nextLine();
+//        System.out.print("Enter Gym ID: ");
+//        String gymId = scanner.nextLine();
 
         System.out.print("Enter Gym Name: ");
         String gymName = scanner.nextLine();
@@ -41,7 +43,7 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter Gym Address: ");
         String gymAddress = scanner.nextLine();
 
-        flipFitGymOwnerService.addGym(gymId, gymName, gymAddress, String.valueOf(userId));
+        flipFitGymOwnerService.addGym(gymName, gymAddress, String.valueOf(userId));
     }
 
     private void modifyGym() {
@@ -103,14 +105,14 @@ public class FlipFitGymOwnerClientMenu {
     }
 
     public void editSlot() {
-        System.out.print("Enter Gym ID: ");
-        int gymId = scanner.nextInt();
+        System.out.print("Enter slot ID: ");
+        String slotId = scanner.next();
         System.out.print("Enter Slot ID: ");
-        int slotId = scanner.nextInt();
-        System.out.println("Enter Details for updation");
-        String details = scanner.nextLine();
+        LocalTime startTime = LocalTime.parse(scanner.next());
+        System.out.println("Enter no of slots: ");
+        int noOfSlots = scanner.nextInt();
 
-        flipFitGymOwnerService.updateSlot(gymId, slotId, details);
+        flipFitGymOwnerService.updateSlot(slotId, startTime, noOfSlots);
     }
 
     public void viewAllSlots() {
