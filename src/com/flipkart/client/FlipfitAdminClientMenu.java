@@ -1,11 +1,12 @@
 package com.flipkart.client;
 
 import com.flipkart.business.FlipFitAdminService;
+import com.flipkart.utils.FlipfitClientUtils;
 
 import java.util.List;
 import java.util.Scanner;
 
-import static com.flipkart.client.FlipfitClientUtils.getOptionsWithId;
+import static com.flipkart.utils.FlipfitClientUtils.getOptionsWithId;
 
 public class FlipfitAdminClientMenu {
 
@@ -85,8 +86,8 @@ public class FlipfitAdminClientMenu {
         return in.nextInt();
     }
 
-    public void handle(int userId) {
-        System.out.println("Welcome to FlipFit Admin Menu Page");
+    public void login(int userId) {
+        System.out.println("-------- Welcome to FlipFit Admin Menu Page --------");
 
         Scanner in = new Scanner(System.in);
 
