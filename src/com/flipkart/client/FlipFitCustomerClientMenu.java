@@ -1,44 +1,38 @@
 package com.flipkart.client;
 
-import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.bean.FlipFitCentre;
+import com.flipkart.bean.FlipFitSlotBooking;
+import com.flipkart.business.FlipFitAdminService;
 import com.flipkart.business.FlipFitCustomerService;
 import com.flipkart.business.FlipFitSlotBookingService;
-import com.flipkart.utils.FlipfitClientUtils;
 
 import java.util.List;
 import java.util.Scanner;
 
 import static com.flipkart.utils.FlipfitClientUtils.getChoice;
+import static com.flipkart.utils.Helper.*;
 
-public class FlipfitCustomerClientMenu {
+public class FlipFitCustomerClientMenu {
     static int OPTIONS_SIZE = 7;
 
     Scanner in = new Scanner(System.in);
     FlipFitCustomerService customerService = new FlipFitCustomerService();
     FlipFitSlotBookingService bookingService = new FlipFitSlotBookingService();
+    FlipFitAdminService adminService = new FlipFitAdminService();
 
     private static void displayOptions() {
-        System.out.println("1. Edit your Profile");
-        System.out.println("2. View all Gyms");
-        System.out.println("3. View available Slots");
-        System.out.println("4. Book your slot");
-        System.out.println("5. View your bookings");
-        System.out.println("6. Cancel your bookings");
-        System.out.println("7. Exit");
-public class FlipFitCustomerClientMenu {
-    private void viewProfile(int id, FlipFitCustomerService customerService)
-    {
-        FlipFitCustomer customer = customerService.getProfile(id);
-        System.out.println("Age: " + customer.getAge());
-        System.out.println("weight: " + customer.getWeight());
-        System.out.println("DOB: " + customer.getDob());
-        System.out.println("Gender: " + customer.getGender());
-        System.out.println("Phone no: " + customer.getPhoneNumber());
-        System.out.println("Address: " + customer.getAddress());
+        System.out.println();
+
+        yellowOutputLn("1. Edit your Profile");
+        yellowOutputLn("2. View all Gyms");
+        yellowOutputLn("3. View available Slots");
+        yellowOutputLn("4. Book your slot");
+        yellowOutputLn("5. View your bookings");
+        yellowOutputLn("6. Cancel your bookings");
+        redOutputLn("7. Exit");
     }
 
-    private void editProfile(int userId) {
+    private void editProfile(String userId) {
         System.out.print("Enter your name: ");
         String name = in.nextLine();
 
@@ -48,32 +42,48 @@ public class FlipFitCustomerClientMenu {
         System.out.print("Enter your address: ");
         String address = in.nextLine();
 
-        customerService.editProfile(String.valueOf(userId), name, phoneNumber, address);
+        System.out.print("Enter your Age: ");
+        int age = in.nextInt();
+        in.nextLine();
+
+        System.out.print("Enter your Gender: ");
+        String gender = in.nextLine();
+
+        System.out.print("Enter your Weight: ");
+        Double weight = in.nextDouble(); in.nextLine();
+
+        System.out.print("Enter your DOB: ");
+        String dob = in.nextLine();
+
+        customerService.editProfile(userId, address, name, phoneNumber, weight, age, gender, parseDate(dob));
     }
 
     private void viewAllGyms() {
-        List<FlipFitCentre> gyms = customerService.viewGyms();
+        List<FlipFitCentre> gyms = adminService.displayAllCentres();
         for (FlipFitCentre gym : gyms) {
             System.out.println("Gym Id: " + gym.getCentreId());
             System.out.println("Gym: " + gym.getCentreName());
             // TODO
-//            System.out.println("Location: " + gym.get());
+            // System.out.println("Location: " + gym.getLocation());
         }
-        System.out.println("All gyms viewed");
+
+        greenOutputLn("All gyms viewed");
     }
 
-    private void viewBookedSlots(int id, FlipFitCustomerService customerService) {
-        List<FlipFitCenterSlot> bookedSlots = customerService.getBookedSlots(id);
-        for (FlipFitCenterSlot bookedSlot : bookedSlots) {
+    private void viewBookedSlots(String id, FlipFitCustomerService customerService) {
+        List<FlipFitSlotBooking> bookedSlots = bookingService.listBookings(id);
 
-//            System.out.println(bookedSlot.getId());
+        for (FlipFitSlotBooking bookedSlot : bookedSlots) {
+            System.out.println("Booking ID: " + bookedSlot.getBookingId());
+            System.out.println("Center ID: " + bookedSlot.getCenterSlot().getCentreId());
+            System.out.println("Center Slot Time: " + bookedSlot.getCenterSlot().getStartTime());
         }
     }
 
+    // TODO? no service method
     private void viewAvailableSlots() {
         System.out.print("Enter the id of the gym for which you want to view the available slots: ");
-        int gymId = in.nextInt();
-        in.nextLine();
+        String gymId = in.nextLine();
 
         System.out.print("Enter the date of the slot: ");
         String date = in.nextLine();
@@ -84,81 +94,64 @@ public class FlipFitCustomerClientMenu {
 //            System.out.println("Slot Time: " + entry.getKey() + ", Available Slots: " + entry.getValue());
 //        }
 
-        System.out.println("All slots are viewed");
+        greenOutputLn("All slots are viewed");
     }
 
-    private void bookSlot() {
+    private void bookSlot(String userId) {
         System.out.print("Enter Gym ID: ");
-        int gymId = in.nextInt();
-        in.nextLine();
+        String gymId = in.nextLine();
 
         System.out.print("Enter Booking Date: ");
         String bookingDate = in.nextLine();
 
         System.out.print("Enter Booking Time Slot: ");
         String bookingTimeSlot = in.nextLine();
+
+        // TODO
+        // bookingService.bookSlot(userId, gymId, parseDate(bookingDate), bookingTimeSlot);
     }
 
-    private void viewBookings() {
-//        List<FlipfitSlotBooking> bookings = bookingService.viewBookings(userId);
-//
-//        if (bookings.isEmpty()) {
-//            System.out.println("No bookings found for userId: " + userId);
-//        } else {
-//            System.out.println("Bookings for userId: " + userId);
-//            for (Booking booking : bookings) {
-//                System.out.println("Booking ID: " + booking.getBookingId());
-//                System.out.println("Customer ID: " + booking.getCustomerId());
-//                System.out.println("Gym ID: " + booking.getGymId());
-//                System.out.println("Transaction ID: " + booking.getTransactionId());
-//                System.out.println("Booking Date: " + booking.getBookingDate());
-//                System.out.println("Booking TimeSlot: " + booking.getBookingTimeSlot());
-//                System.out.println("Booking Type: " + booking.getBookingType());
-//                System.out.println("Booking Amount: " + booking.getBookingAmount());
-//                System.out.println("=================================");
-//            }
-//        }
+    private void viewBookings(String userId) {
+        List<FlipFitSlotBooking> bookings = bookingService.listBookings(userId);
+
+        if (bookings.isEmpty()) {
+            redOutputLn("No bookings found for userId: " + userId);
+        } else {
+            System.out.println("Bookings for userId: " + userId);
+            for (FlipFitSlotBooking booking : bookings) {
+                System.out.println("Booking ID: " + booking.getBookingId());
+                System.out.println("Customer ID: " + booking.getUser());
+                System.out.println("Gym ID: " + booking.getCenterSlot().getCentreId());
+                System.out.println("Booking Date: " + booking.getBookingDate());
+                System.out.println("Booking TimeSlot: " + booking.getSlotDate());
+                System.out.println("=================================");
+            }
+        }
     }
 
-    private void cancelCustomerBooking(int id) {
-        List<FlipFitCenterSlot> bookedSlots = customerService.getBookedSlots(id);
+    private void cancelCustomerBooking(String userId) {
+        List<FlipFitSlotBooking> bookedSlots = bookingService.listBookings(userId);
 
-        for (FlipFitCenterSlot bookedSlot : bookedSlots) {
-//            System.out.println(bookedSlot.getId());
+        for (FlipFitSlotBooking bookedSlot : bookedSlots) {
+            System.out.println(bookedSlot.getBookingId());
         }
 
         while (true) {
             System.out.print("Choose slot to delete, or 0 to go back: ");
-            int choice = FlipfitClientUtils.getChoice(bookedSlots.size());
-            if (choice == 0) return;
+            String bookingId = in.nextLine();
+            if (bookingId.equals("0")) return;
 
-            customerService.cancelSlot(choice);
-            System.out.println("Slot" + choice + "deleted!");
+            bookingService.cancelBooking(bookingId);
+            greenOutputLn("Booking with ID: " + bookingId + " cancelled!");
         }
     }
 
-    private void newSlotBooking(int id, FlipFitCustomerService customerService) {
-        Scanner in = new Scanner(System.in);
-
-        System.out.print("Select City: ");
-        int cityIndex = in.nextInt();
-
-        System.out.print("Select Date: ");
-        int dateIndex = in.nextInt();
-
-        System.out.print("Select Slot: ");
-        int slotIndex = in.nextInt();
-        in.nextLine();
-
-        System.out.println("Slot booked!");
-    }
-
     private void logoutUser() {
-        System.out.println("Logged out\n");
+        redOutputLn("Logged out\n");
     }
 
-    public void login(int customerId) {
-        System.out.println("\nWelcome to FlipFit Customer Menu Page");
+    public void login(String customerId) {
+        blueOutput("\nWelcome to FlipFit Customer Menu Page");
 
         while (true) {
             displayOptions();
@@ -168,10 +161,13 @@ public class FlipFitCustomerClientMenu {
                 case 1 -> editProfile(customerId);
                 case 2 -> viewAllGyms();
                 case 3 -> viewAvailableSlots();
-                case 4 -> bookSlot();
-                case 5 -> viewBookings();
+                case 4 -> bookSlot(customerId);
+                case 5 -> viewBookings(customerId);
                 case 6 -> cancelCustomerBooking(customerId);
-                case 7 -> logoutUser();
+                case 7 -> {
+                    logoutUser();
+                    return;
+                }
             }
         }
     }

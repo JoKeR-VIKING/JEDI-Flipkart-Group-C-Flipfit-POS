@@ -1,5 +1,7 @@
 package com.flipkart.client;
 
+import com.flipkart.bean.FlipFitCenterSlot;
+import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.business.FlipFitGymOwnerService;
 
 import java.time.LocalDate;
@@ -7,35 +9,35 @@ import java.time.LocalTime;
 import java.util.*;
 
 import static com.flipkart.utils.FlipfitClientUtils.getChoice;
+import static com.flipkart.utils.Helper.*;
 
 public class FlipFitGymOwnerClientMenu {
     public static int TOTAL_OPTIONS = 12;
 
     Scanner scanner = new Scanner(System.in);
-    FlipFitGymOwnerService flipFitGymOwnerService = new FlipFitGymOwnerService();
+    FlipFitGymOwnerService ownerService = new FlipFitGymOwnerService();
 
     public static void displayOptions() {
-        System.out.println("1. Add Gym");
-        System.out.println("2. Edit Gym");
-        System.out.println("3. Remove Gym");
-        System.out.println("4. View Gyms");
+        System.out.println();
 
-        System.out.println("5. Add new Slot");
-        System.out.println("6. Remove Slot");
-        System.out.println("7. Edit Slot");
-        System.out.println("8. View All Slots");
-        System.out.println("9. View All Available Slots");
-        System.out.println("10. View all Bookings");
+        yellowOutputLn("1. Add Gym");
+        yellowOutputLn("2. Edit Gym");
+        yellowOutputLn("3. Remove Gym");
+        yellowOutputLn("4. View Gyms");
 
-        System.out.println("11. Edit Profile");
-        System.out.println("12. Log Out");
+        yellowOutputLn("5. Add new Slot");
+        yellowOutputLn("6. Remove Slot");
+        yellowOutputLn("7. Edit Slot");
+        yellowOutputLn("8. View All Slots");
+        yellowOutputLn("9. View All Available Slots");
+        yellowOutputLn("10. View all Bookings");
+
+        yellowOutputLn("11. Edit Profile");
+        redOutputLn("12. Log Out");
     }
 
-    private void addGym(int userId) {
-        System.out.println("Enter your gym details");
-
-//        System.out.print("Enter Gym ID: ");
-//        String gymId = scanner.nextLine();
+    private void addGym(String userId) {
+        blueOutputLn("Enter your gym details");
 
         System.out.print("Enter Gym Name: ");
         String gymName = scanner.nextLine();
@@ -43,13 +45,12 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter Gym Address: ");
         String gymAddress = scanner.nextLine();
 
-        flipFitGymOwnerService.addGym(gymName, gymAddress, String.valueOf(userId));
+        ownerService.addGym(gymName, gymAddress, userId);
     }
 
     private void modifyGym() {
         System.out.print("Enter ID of Gym to modify: ");
-        int gymId = scanner.nextInt();
-        scanner.nextLine();
+        String gymId = scanner.nextLine();
 
         System.out.print("Enter Gym Name: ");
         String gymName = scanner.nextLine();
@@ -58,110 +59,119 @@ public class FlipFitGymOwnerClientMenu {
         String gymAddress = scanner.nextLine();
 
         // TODO
-        // flipFitGymOwnerService.removeGym(gymId, gymName, gymAddress);
+        // ownerService.modifyGym(gymId, gymName, gymAddress);
     }
 
     private void removeGym() {
         System.out.print("Enter ID of Gym to remove: ");
-        int gymId = scanner.nextInt();
-        scanner.nextLine();
+        String gymId = scanner.nextLine();
+
+        ownerService.removeGym(gymId);
     }
 
     public void viewGyms() {
-        System.out.println("You are in view Registered Gym centers function\n");
-
-        flipFitGymOwnerService.viewRegisteredGymCenters();
+        List<FlipFitCentre> centres = ownerService.viewRegisteredGymCenters();
+        for (FlipFitCentre centre : centres) {
+            System.out.println("Gym ID: " + centre.getCentreId());
+            System.out.println("Gym Name: " + centre.getCentreName());
+            System.out.println("Gym Address: " + centre.getCentreAddress());
+        }
     }
 
     public void addSlot() {
-        System.out.println("Enter below details to add a new slot in the Gym:");
-        System.out.print("Enter Gym ID: ");
-        int gymId = scanner.nextInt();
-        scanner.nextLine(); // consume newline
+        boldOutputLn("Enter below details to add a new slot in the Gym");
 
-        System.out.print("Enter Date (DD/MM/YYYY): ");
+        System.out.print("Enter Gym ID: ");
+        String gymId = scanner.nextLine();
+
+        System.out.print("Enter Date (DD-MM-YYYY): ");
         String date = scanner.nextLine();
 
         System.out.print("Enter Start Time (HH:MM): ");
         String startTime = scanner.nextLine();
 
-        System.out.print("Enter End Time (HH:MM): ");
-        String endTime = scanner.nextLine();
-
         System.out.print("Enter Number of Seats: ");
         int noOfSeats = scanner.nextInt();
+        scanner.nextLine();
 
-        flipFitGymOwnerService.addSlot(gymId, date, startTime, endTime, noOfSeats);
+        ownerService.addSlot(gymId, date, parseHourMinute(startTime), noOfSeats);
     }
 
     public void removeSlot() {
-        System.out.println("Enter below details to remove slot from the Gym:");
-        System.out.print("Enter Gym ID: ");
-        int gymId = scanner.nextInt();
-        System.out.print("Enter Slot ID: ");
-        int slotId = scanner.nextInt();
+        boldOutputLn("Enter below details to remove slot from the Gym");
 
-        flipFitGymOwnerService.removeSlot(gymId, slotId);
+        System.out.print("Enter Slot ID: ");
+        String slotId = scanner.nextLine();
+
+        ownerService.removeSlot(slotId);
     }
 
     public void editSlot() {
-        System.out.print("Enter slot ID: ");
-        String slotId = scanner.next();
         System.out.print("Enter Slot ID: ");
-        LocalTime startTime = LocalTime.parse(scanner.next());
-        System.out.println("Enter no of slots: ");
-        int noOfSlots = scanner.nextInt();
+        String slotId = scanner.nextLine();
 
-        flipFitGymOwnerService.updateSlot(slotId, startTime, noOfSlots);
+        System.out.println("Enter Details for updation");
+        String details = scanner.nextLine();
+
+        // TODO
+        // ownerService.updateSlot(gymId, slotId, details);
     }
 
     public void viewAllSlots() {
         System.out.print("Enter Gym ID: ");
-        int gymId = scanner.nextInt();
-        scanner.nextLine();
+        String gymId = scanner.nextLine();
 
         System.out.println("Gym Slots:");
 
         // TODO
-        flipFitGymOwnerService.viewSlots();
+        // List<FlipFitCenterSlot> slots = ownerService.viewAllSlots(gymId);
     }
 
     public void viewAvailableSlots() {
         System.out.print("Enter Gym ID: ");
-        int gymId = scanner.nextInt();
-        scanner.nextLine();
+        String gymId = scanner.nextLine();
 
         System.out.print("Enter Date: ");
         String date = scanner.nextLine();
 
-        System.out.println("Slots available are as follows:");
+        greenOutputLn("Slots available are as follows:");
 
-        flipFitGymOwnerService.viewSlots();
+        // TODO
+        // ownerService.viewAllAvailableSlots(gymId, date);
     }
 
     public void viewAllBookings() {
         System.out.print("Enter Gym ID: ");
-        int gymId = scanner.nextInt();
-        scanner.nextLine();
+        String gymId = scanner.nextLine();
 
         System.out.print("Enter Date: ");
         String date = scanner.nextLine();
 
-        System.out.println("Slots available are as follows:");
+        greenOutputLn("Slots available are as follows:");
 
-        flipFitGymOwnerService.viewSlots();
+        // TODO
+        // ownerService.viewAllBookedSlots();
     }
 
-    public void editProfile() {
-        // TODO
+    public void editProfile(String userId) {
+        System.out.print("Enter Address: ");
+        String address = scanner.nextLine();
+
+        System.out.print("Enter GST: ");
+        String gst = scanner.nextLine();
+
+        System.out.print("Enter PAN: ");
+        String pan = scanner.nextLine();
+
+        ownerService.editProfile(userId, address, gst, pan);
     }
 
     public void userLogout() {
-        System.out.println("Logged out");
+        redOutputLn("Logged out");
     }
 
-    public void login(int userId) {
-        System.out.println("\nWelcome to FlipFit Owner Menu Page");
+    public void login(String userId) {
+        boldOutputLn("\nWelcome to FlipFit Owner Menu Page");
 
         while (true) {
             displayOptions();
@@ -180,7 +190,7 @@ public class FlipFitGymOwnerClientMenu {
                 case 9 -> viewAvailableSlots();
                 case 10 -> viewAllBookings();
 
-                case 11 -> editProfile();
+                case 11 -> editProfile(userId);
                 case 12 -> {
                     userLogout();
                     return;

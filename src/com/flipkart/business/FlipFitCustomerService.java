@@ -14,7 +14,7 @@ public class FlipFitCustomerService implements FlipFitCustomerInterface {
     }
 
     @Override
-    public void editProfile(String customerId, String address, Double weight, Integer age, String gender, LocalDate dob) {
-        FlipFitCustomerDAO.editProfile(customerId, address, weight, age, gender, dob);
+    public void editProfile(String customerId, String name, String phone, String address, Double weight, Integer age, String gender, LocalDate dob) {
+        FlipFitCustomerDAO.editProfile(customerId, name, phone, address, weight, age, gender, dob);
     }
 }
