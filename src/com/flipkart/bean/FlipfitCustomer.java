@@ -10,6 +10,18 @@ public class FlipfitCustomer extends FlipfitUser{
     private String gender;
     private LocalDate dob;
 
+    public FlipfitCustomer(String id, String password, String name, String phoneno, String address, Double weight, Integer age, String gender, LocalDate dob) {
+        this.setId(id);
+        this.setPassword(password);
+        this.setName(name);
+        this.setPhoneNumber(phoneno);
+        this.setAddress(address);
+        this.setWeight(weight);
+        this.setAge(age);
+        this.setGender(gender);
+        this.setDob(dob);
+    }
+
     public String getGender() {
         return gender;
     }

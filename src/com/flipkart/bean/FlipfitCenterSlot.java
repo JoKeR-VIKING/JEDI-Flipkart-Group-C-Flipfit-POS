@@ -9,6 +9,14 @@ public class FlipfitCenterSlot {
     private LocalTime endTime;
     private int seatLimit;
 
+    public FlipfitCenterSlot(String _id, FlipfitCentre _centre, LocalTime _startTime, LocalTime _endTime, int _seatLimit) {
+        id = _id;
+        centre = _centre;
+        startTime = _startTime;
+        endTime = _endTime;
+        seatLimit = _seatLimit;
+    }
+
     public String getId() {
         return id;
     }
