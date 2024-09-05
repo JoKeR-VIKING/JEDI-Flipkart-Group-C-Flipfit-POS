@@ -19,7 +19,7 @@ public class FlipFitCenterSlot {
         return slotId;
     }
 
-    public void getSlotId(String id) {
+    public void setSlotId(String slotId) {
         this.slotId = slotId;
     }
 
