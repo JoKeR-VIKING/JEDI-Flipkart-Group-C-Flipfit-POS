@@ -45,10 +45,6 @@ public class FlipFitCustomerService {
 
     }
 
-    public HashMap<String, Integer> viewSlots(int centerId, String date) {
-        return null;
-    }
-
     public void viewCityList() {
 
     }
