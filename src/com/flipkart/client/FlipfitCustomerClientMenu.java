@@ -4,6 +4,7 @@ import com.flipkart.bean.FlipfitCenterSlot;
 import com.flipkart.bean.FlipfitCustomer;
 import com.flipkart.business.FlipFitCustomerService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class FlipfitCustomerClientMenu {
@@ -30,7 +31,7 @@ public class FlipfitCustomerClientMenu {
             int choice = FlipfitClientUtils.getChoice(3);
             switch(choice) {
                 case 1:
-                    viewBookedSlots(id, customerService);
+                        viewBookedSlots(id, customerService);
                     break;
                 case 2:
                     cancelCustomerBooking(id, customerService);
@@ -42,7 +43,7 @@ public class FlipfitCustomerClientMenu {
     }
 
     private void viewBookedSlots(int id, FlipFitCustomerService customerService) {
-        FlipfitCenterSlot[] bookedSlots = customerService.getBookedSlots(id);
+        List<FlipfitCenterSlot> bookedSlots = customerService.getBookedSlots(id);
         for (FlipfitCenterSlot bookedSlot : bookedSlots) {
             System.out.println(bookedSlot.getId());
         }
@@ -50,14 +51,14 @@ public class FlipfitCustomerClientMenu {
 
     private void cancelCustomerBooking(int id, FlipFitCustomerService customerService)
     {
-        FlipfitCenterSlot[] bookedSlots = customerService.getBookedSlots(id);
+        List<FlipfitCenterSlot> bookedSlots = customerService.getBookedSlots(id);
         for (FlipfitCenterSlot bookedSlot : bookedSlots) {
             System.out.println(bookedSlot.getId());
         }
 
         while(true) {
             System.out.println("Choose slot to delete, or 0 to go back");
-            int choice = FlipfitClientUtils.getChoice(bookedSlots.length);
+            int choice = FlipfitClientUtils.getChoice(bookedSlots.size());
             if (choice == 0) return;
 
             customerService.cancelSlot(choice);

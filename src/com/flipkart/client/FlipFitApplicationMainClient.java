@@ -8,6 +8,10 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 public class FlipFitApplicationMainClient {
+    static FlipFitGymOwnerService ownerService = new FlipFitGymOwnerService();
+    static FlipFitCustomerService customerService =new FlipFitCustomerService();
+
+
     public static void login() {
         Scanner in = new Scanner(System.in);
         System.out.println("------- Login ------ ");
@@ -39,8 +43,6 @@ public class FlipFitApplicationMainClient {
     }
 
     public static void registerUser() {
-        FlipFitGymOwnerService ownerService = new FlipFitGymOwnerService();
-        FlipFitCustomerService customerService =new FlipFitCustomerService();
 
         Scanner in = new Scanner(System.in);
         System.out.println("Welcome to the FlipFit. Please Register yourself Here");
@@ -85,9 +87,14 @@ public class FlipFitApplicationMainClient {
             System.out.println("Enter your Gender: ");
             String gender = in.next();
             System.out.println("Enter your Weight: ");
-            int weight = Integer.parseInt(in.next());
+            Double weight = Double.parseDouble(in.next());
             System.out.println("Enter your address: ");
             String customerAddress = in.next();
+            System.out.println("Enter your dob: ");
+            LocalDate dob = LocalDate.parse(in.next());
+
+            customerService.createProfile(customerName, customerPhone, age, gender, weight, customerAddress, email, password, dob);
+
             login();
         }
     }
@@ -112,7 +119,10 @@ public class FlipFitApplicationMainClient {
             System.out.println("Confirm new password: ");
             String confirmNewPassword = in.next();
             if (newPassword.equals(confirmNewPassword)) {
-                System.out.println("Password matched!");
+                // System.out.println("Password matched!");
+                if (role == 2) {
+                    customerService.editProfile(userId, newPassword);
+                }
                 flag = false;
             } else {
                 System.out.println("The Passwords did not match. Please check again");
