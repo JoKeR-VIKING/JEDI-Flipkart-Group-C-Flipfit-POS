@@ -7,7 +7,6 @@ public abstract class FlipfitUser {
     private String username;
     private String password;
     private String name;
-    private Boolean verfied;
     private String address;
     private String phoneNumber;
 
@@ -19,13 +18,6 @@ public abstract class FlipfitUser {
         this.address = address;
     }
 
-    public Boolean getVerfied() {
-        return verfied;
-    }
-
-    public void setVerfied(Boolean verfied) {
-        this.verfied = verfied;
-    }
 
     public String getName() {
         return name;
