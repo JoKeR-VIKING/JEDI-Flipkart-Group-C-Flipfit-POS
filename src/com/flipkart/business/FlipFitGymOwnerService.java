@@ -1,15 +1,41 @@
 package com.flipkart.business;
 
-public class FlipFitGymOwnerService {
-    public void approveGymOwner() {
+public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface{
+
+    @Override
+    public void addGym(String gymName, String gymAddress) {
 
     }
 
-    public void rejectGymOwner() {
+    @Override
+    public void removeGym(Integer gymId) {
 
     }
 
-    public void viewUnVerifiedGymOwners() {
+    @Override
+    public void viewRegisteredGymCenters() {
 
     }
+
+    @Override
+    public void viewSlots() {
+
+    }
+
+    @Override
+    public void addSlot(Integer gymId, String date, String startTime, String endTime, Integer noOfSeats) {
+
+    }
+
+    @Override
+    public void removeSlot(Integer gymId, Integer slotId) {
+
+    }
+
+    @Override
+    public void updateSlot(Integer gymId, Integer slotId, String details) {
+
+    }
+
+
 }
