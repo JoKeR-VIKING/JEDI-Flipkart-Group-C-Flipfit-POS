@@ -4,6 +4,7 @@ import com.flipkart.business.FlipFitCustomerService;
 import com.flipkart.business.FlipFitGymOwnerService;
 import com.flipkart.business.FlipFitUserService;
 import com.flipkart.enums.RoleEnum;
+import com.flipkart.utils.FlipFitDAOUtils;
 
 import java.util.Scanner;
 
@@ -179,6 +180,8 @@ public class FlipFitApplicationMainClient {
     }
 
     public static void main(String[] args) {
+        FlipFitDAOUtils.initMockData();
+
         boldOutputLn("\n-------- Welcome to FlipFit Application --------");
 
         while (true) {

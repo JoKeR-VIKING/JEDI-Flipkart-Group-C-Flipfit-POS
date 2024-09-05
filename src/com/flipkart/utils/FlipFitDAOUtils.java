@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class FlipFitDAOUtils {
-    public void mockData() {
+    public static void initMockData() {
         // FlipFitCustomerDAO
         FlipFitCustomer customer1 = new FlipFitCustomer(Helper.generateId(), "user1", "password1", "John Doe", "123 Main St", "1234567890", 75.0, 30, "Male", LocalDate.of(1994, 1, 1));
         FlipFitCustomer customer2 = new FlipFitCustomer(Helper.generateId(), "user2", "password2", "Jane Smith", "456 Elm St", "9876543210", 60.0, 25, "Female", LocalDate.of(1999, 5, 15));
