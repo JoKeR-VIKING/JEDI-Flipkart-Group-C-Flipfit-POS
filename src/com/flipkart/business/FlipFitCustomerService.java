@@ -10,6 +10,12 @@ import java.util.*;
 public class FlipFitCustomerService {
 
     List<FlipFitCustomer> customers = new ArrayList<FlipFitCustomer>();
+    List<FlipFitCenterSlot> allSlots = new ArrayList<FlipFitCenterSlot>();
+    Map<String, ArrayList<String>> customerSlotsMap = new HashMap<String, ArrayList<String>>();
+
+    public void createDummyData() {
+
+    }
 
     public String getName(int customerId) {
         // select name from customer where id = customerid
@@ -32,21 +38,36 @@ public class FlipFitCustomerService {
     }
 
     public List<FlipFitCenterSlot> getBookedSlots(int customerId) {
-        List<FlipFitCenterSlot> bookedSlots = new ArrayList<>();
-        // use join query to get booked slots - https://stackoverflow.com/a/17371729
-        return bookedSlots;
+        List<FlipFitCenterSlot> mySlots = new ArrayList<FlipFitCenterSlot>();
+
+        for(String slotId: customerSlotsMap.get(Integer.toString(customerId))) {
+            for(FlipFitCenterSlot slot: allSlots) {
+                if (slot.getId().equals(slotId)) {
+                    mySlots.add(slot);
+                }
+            }
+        }
+        return mySlots;
     }
 
-    public void bookSlot() {
-
+    public void bookSlot(FlipFitCenterSlot slot) {
+        allSlots.add(slot);
     }
 
     public void cancelSlot(int slotId) {
-
+        int slotIndex = -1;
+        for(int i=0; i<allSlots.size(); i++) {
+            if (allSlots.get(i).getId().equals(Integer.toString(slotId))) {
+                slotIndex = i;
+                break;
+            }
+        }
+        if (slotIndex == -1) return;
+        allSlots.remove(slotIndex);
     }
 
     public void viewCityList() {
-
+        System.out.println("\n1. Delhi \n2. Bangalore \n3. Hydrabad");
     }
 
     public void viewCentreListByCityAndDate(String city, LocalDate date) {
