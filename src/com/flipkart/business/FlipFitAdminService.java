@@ -1,53 +1,54 @@
 package com.flipkart.business;
 
+import com.flipkart.bean.FlipFitCentre;
+import com.flipkart.bean.FlipFitGymOwner;
+import com.flipkart.dao.FlipFitAdminDAO;
+
+import java.util.List;
+
 public class FlipFitAdminService implements FlipFitAdminInterface {
     @Override
-    public void viewPendingCenter() {
-        System.out.println("viewPendingCenter");
+    public void approveOwner(String gymOwnerId) {
+        FlipFitAdminDAO.approveOwner(gymOwnerId);
     }
 
     @Override
-    public void viewPendingOwner() {
-        System.out.println("viewPendingOwner");
+    public void rejectOwner(String gymOwnerId) {
+        FlipFitAdminDAO.rejectOwner(gymOwnerId);
     }
 
     @Override
-    public void approveGymRequests(int gymId) {
-        System.out.println("approveGymRequests: " + gymId);
+    public List<FlipFitGymOwner> displayPendingOwners() {
+        return FlipFitAdminDAO.getPendingOwners();
     }
 
     @Override
-    public void approveGymOwnerRequests(int ownerId) {
-        System.out.println("approveGymOwnerRequests: " + ownerId);
+    public List<FlipFitGymOwner> displayAllOwners() {
+        return FlipFitAdminDAO.getAllOwners();
     }
 
     @Override
-    public void rejectGymRequests(int gymId) {
-        System.out.println("rejectGymRequests: " + gymId);
+    public void approveGym(String centreId) {
+        FlipFitAdminDAO.approveGym(centreId);
     }
 
     @Override
-    public void rejectGymOwnerRequests(int ownerId) {
-        System.out.println("rejectGymOwnerRequests: " + ownerId);
+    public void rejectGym(String centreId) {
+        FlipFitAdminDAO.rejectGym(centreId);
     }
 
     @Override
-    public void removeGym(int gymId) {
-        System.out.println("removeGym: " + gymId);
+    public void removeGym(String centreId) {
+        FlipFitAdminDAO.removeGym(centreId);
     }
 
     @Override
-    public void removeGymOwner(int ownerId) {
-        System.out.println("removeGymOwner: " + ownerId);
+    public List<FlipFitCentre> displayPendingCentres() {
+        return FlipFitAdminDAO.getPendingCentres();
     }
 
     @Override
-    public void viewAllGymOwners() {
-        System.out.println("viewAllGymOwners");
-    }
-
-    @Override
-    public void viewGymDetails() {
-        System.out.println("viewGymDetails");
+    public List<FlipFitCentre> displayAllCentres() {
+        return FlipFitAdminDAO.getAllCentres();
     }
 }

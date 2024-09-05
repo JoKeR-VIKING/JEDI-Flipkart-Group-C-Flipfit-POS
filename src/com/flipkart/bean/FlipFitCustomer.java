@@ -1,7 +1,5 @@
 package com.flipkart.bean;
 
-import com.flipkart.enums.RoleEnum;
-
 import java.time.LocalDate;
 
 public class FlipFitCustomer extends FlipFitUser {
@@ -49,9 +47,4 @@ public class FlipFitCustomer extends FlipFitUser {
     public void setDob(LocalDate dob) {
         this.dob = dob;
     }
-
-    public RoleEnum getRole() {
-        return RoleEnum.CUSTOMER;
-    }
-
 }

@@ -7,7 +7,7 @@ import com.flipkart.business.FlipFitCustomerService;
 import java.util.List;
 import java.util.Scanner;
 
-public class FlipfitCustomerClientMenu {
+public class FlipFitCustomerClientMenu {
     private void viewProfile(int id, FlipFitCustomerService customerService)
     {
         FlipFitCustomer customer = customerService.getProfile(id);
@@ -46,7 +46,7 @@ public class FlipfitCustomerClientMenu {
         List<FlipFitCenterSlot> bookedSlots = customerService.getBookedSlots(id);
         for (FlipFitCenterSlot bookedSlot : bookedSlots) {
 
-            System.out.println(bookedSlot.getId());
+//            System.out.println(bookedSlot.getId());
         }
     }
 
@@ -54,7 +54,7 @@ public class FlipfitCustomerClientMenu {
     {
         List<FlipFitCenterSlot> bookedSlots = customerService.getBookedSlots(id);
         for (FlipFitCenterSlot bookedSlot : bookedSlots) {
-            System.out.println(bookedSlot.getId());
+//            System.out.println(bookedSlot.getId());
         }
 
         while(true) {

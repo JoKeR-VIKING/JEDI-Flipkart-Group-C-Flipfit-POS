@@ -3,15 +3,15 @@ package com.flipkart.bean;
 import com.flipkart.enums.RoleEnum;
 
 public abstract class FlipFitUser {
-    private String id;
+    private String userId;
     private String username;
     private String password;
     private String name;
     private String address;
     private String phoneNumber;
 
-    public FlipFitUser(String id, String username, String password, String name, String address, String phoneNumber) {
-        this.id = id;
+    public FlipFitUser(String userId, String username, String password, String name, String address, String phoneNumber) {
+        this.userId = userId;
         this.username = username;
         this.password = password;
         this.name = name;
@@ -19,29 +19,12 @@ public abstract class FlipFitUser {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddress() {
-        return address;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -52,12 +35,28 @@ public abstract class FlipFitUser {
         this.username = username;
     }
 
-    public String getId() {
-        return id;
+    public String getPassword() {
+        return password;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPhoneNumber() {
@@ -67,7 +66,4 @@ public abstract class FlipFitUser {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-    abstract public RoleEnum getRole();
-
 }

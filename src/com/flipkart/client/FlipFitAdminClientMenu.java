@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import static com.flipkart.client.FlipfitClientUtils.getOptionsWithId;
 
-public class FlipfitAdminClientMenu {
+public class FlipFitAdminClientMenu {
 
     private static final List<String> OPTION_LIST = List.of(
             "View all Pending Gym Centre requests",
