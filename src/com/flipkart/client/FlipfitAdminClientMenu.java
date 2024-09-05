@@ -86,7 +86,7 @@ public class FlipfitAdminClientMenu {
     }
 
     public void handle(int userId) {
-        System.out.println("-------- Welcome to FlipFit Admin Menu Page --------");
+        System.out.println("Welcome to FlipFit Admin Menu Page");
 
         Scanner in = new Scanner(System.in);
 

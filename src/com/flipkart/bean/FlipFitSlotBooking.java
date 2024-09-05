@@ -5,10 +5,10 @@ import com.flipkart.enums.SlotBookingStatusEnum;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class FlipfitSlotBooking {
+public class FlipFitSlotBooking {
     private int id;
     private String user;
-    private FlipfitCenterSlot centerSlot;
+    private FlipFitCenterSlot centerSlot;
     private LocalDate slotDate;
     private Date bookingDate;
     private SlotBookingStatusEnum status;
@@ -29,11 +29,11 @@ public class FlipfitSlotBooking {
         this.user = user;
     }
 
-    public FlipfitCenterSlot getCenterSlot() {
+    public FlipFitCenterSlot getCenterSlot() {
         return centerSlot;
     }
 
-    public void setCenterSlot(FlipfitCenterSlot centerSlot) {
+    public void setCenterSlot(FlipFitCenterSlot centerSlot) {
         this.centerSlot = centerSlot;
     }
 
