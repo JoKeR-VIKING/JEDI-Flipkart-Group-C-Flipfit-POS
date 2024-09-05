@@ -83,4 +83,8 @@ public class FlipFitCustomerService {
     public List<FlipFitCentre> viewGyms() {
         return null;
     }
+
+    public void editProfile(String userId, String name, String phoneNumber, String address) {
+
+    }
 }
