@@ -1,7 +1,11 @@
 package com.flipkart.business;
 
 import com.flipkart.bean.FlipfitCenterSlot;
+import com.flipkart.bean.FlipfitCentre;
 import com.flipkart.bean.FlipfitCustomer;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class FlipFitCustomerService {
     public String getName(int customerId) {
@@ -19,23 +23,20 @@ public class FlipFitCustomerService {
         return bookedSlots;
     }
 
-    public void bookSlot() {
+    public void createProfile(int userId, String name, String phoneNumber, String address) {
+        System.out.println("Profile Details are added!");
+    }
+
+    public void editProfile(int userId, String name, String phoneNumber, String address){
+        //add exception if user is not found
+        System.out.println("Customer details are updated!");
+    }
+
+    public HashMap<String, Integer> viewSlots(int centerId, String date) {
 
     }
 
-    public void cancelSlot(int slotId) {
-
-    }
-
-    public void viewSlots() {
-
-    }
-
-    public void viewCityList() {
-
-    }
-
-    public void viewCentreListByCityAndDate() {
-
+    public List<FlipfitCentre> viewGyms() {
+//        return
     }
 }

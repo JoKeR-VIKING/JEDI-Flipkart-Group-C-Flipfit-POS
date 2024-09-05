@@ -46,5 +46,4 @@ public class FlipfitCustomer extends FlipfitUser{
         return RoleEnum.CUSTOMER;
     }
 
-
 }
