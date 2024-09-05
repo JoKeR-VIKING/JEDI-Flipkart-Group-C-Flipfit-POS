@@ -12,7 +12,7 @@ import static com.flipkart.utils.FlipfitClientUtils.getChoice;
 import static com.flipkart.utils.Helper.*;
 
 public class FlipFitApplicationMainClient {
-    public static int TOTAL_OPTIONS = 5;
+    public static int TOTAL_OPTIONS = 4;
 
     static FlipFitCustomerClientMenu flipFitCustomerClientMenu = new FlipFitCustomerClientMenu();
     static FlipFitGymOwnerClientMenu flipFitGymOwnerClientMenu = new FlipFitGymOwnerClientMenu();
