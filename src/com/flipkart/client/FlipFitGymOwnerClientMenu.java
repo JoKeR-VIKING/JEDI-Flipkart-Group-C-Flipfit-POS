@@ -47,6 +47,7 @@ public class FlipFitGymOwnerClientMenu {
     private void modifyGym() {
         System.out.print("Enter ID of Gym to modify: ");
         int gymId = scanner.nextInt();
+        scanner.nextLine();
 
         System.out.print("Enter Gym Name: ");
         String gymName = scanner.nextLine();
@@ -61,6 +62,7 @@ public class FlipFitGymOwnerClientMenu {
     private void removeGym() {
         System.out.print("Enter ID of Gym to remove: ");
         int gymId = scanner.nextInt();
+        scanner.nextLine();
     }
 
     public void viewGyms() {
@@ -74,12 +76,16 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter Gym ID: ");
         int gymId = scanner.nextInt();
         scanner.nextLine(); // consume newline
+
         System.out.print("Enter Date (DD/MM/YYYY): ");
         String date = scanner.nextLine();
+
         System.out.print("Enter Start Time (HH:MM): ");
         String startTime = scanner.nextLine();
+
         System.out.print("Enter End Time (HH:MM): ");
         String endTime = scanner.nextLine();
+
         System.out.print("Enter Number of Seats: ");
         int noOfSeats = scanner.nextInt();
 
@@ -153,7 +159,7 @@ public class FlipFitGymOwnerClientMenu {
     }
 
     public void login(int userId) {
-        System.out.println("Welcome to FlipFit Owner Menu Page");
+        System.out.println("\nWelcome to FlipFit Owner Menu Page");
 
         while (true) {
             displayOptions();

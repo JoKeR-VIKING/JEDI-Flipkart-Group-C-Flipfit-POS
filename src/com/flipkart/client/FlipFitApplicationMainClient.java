@@ -20,20 +20,19 @@ public class FlipFitApplicationMainClient {
     public static void displayOptions() {
         System.out.println("1. Login");
         System.out.println("2. Register");
-        System.out.println("3. Register as Customer");
-        System.out.println("4. Register as Gym Owner");
-        System.out.println("5. Exit");
+        System.out.println("3. Change Password");
+        System.out.println("4. Exit");
     }
 
     public static void login() {
         Scanner in = new Scanner(System.in);
-        System.out.println("------- LOGIN ------");
+        System.out.println("\n------- LOGIN ------");
 
         System.out.print("Enter your Username: ");
-        String email = in.next();
+        String email = in.nextLine();
 
-        System.out.println("Enter your Password: ");
-        String password = in.next();
+        System.out.print("Enter your Password: ");
+        String password = in.nextLine();
 
         System.out.println("1. Gym Owner");
         System.out.println("2. Customer");
@@ -42,8 +41,9 @@ public class FlipFitApplicationMainClient {
         System.out.print("Logging as: ");
         int role = in.nextInt();
 
-        System.out.println("Enter your ID: ");
+        System.out.print("Enter your ID: ");
         int userId = in.nextInt();
+        in.nextLine();
 
         switch (role) {
             case 1 -> flipFitGymOwnerClientMenu.login(userId);
@@ -56,63 +56,67 @@ public class FlipFitApplicationMainClient {
     public static void registerUser() {
         Scanner in = new Scanner(System.in);
 
-        System.out.println("Welcome to the FlipFit. Please Register yourself Here");
+        System.out.println("\nWelcome to the FlipFit. Please Register yourself Here");
         System.out.print("Enter your Username: ");
-        String username = in.next();
+        String username = in.nextLine();
 
         String password;
         boolean flag = true;
         do {
             System.out.print("Enter your password: ");
-            password = in.next();
+            password = in.nextLine();
 
             System.out.print("Enter your confirm password: ");
-            String confirmUserPassword = in.next();
+            String confirmUserPassword = in.nextLine();
 
             if (password.equals(confirmUserPassword)) {
-                System.out.print("Password matched!");
+                System.out.println("Password matched!");
                 flag = false;
             } else {
                 System.out.println("The Passwords did not match. Please check again");
             }
         } while (flag);
 
-        System.out.println("Enter your Name: ");
-        String name = in.next();
+        System.out.print("Enter your Name: ");
+        String name = in.nextLine();
 
-        System.out.println("Enter your Phone Number: ");
-        String phoneNumber = in.next();
+        System.out.print("Enter your Phone Number: ");
+        String phoneNumber = in.nextLine();
 
-        System.out.println("Enter your Address: ");
-        String address = in.next();
+        System.out.print("Enter your Address: ");
+        String address = in.nextLine();
 
         System.out.println("1. Register as Gym Owner");
         System.out.println("2. Register as Customer");
         System.out.println("3. Register as Admin");
 
         int role = in.nextInt();
+        in.nextLine();
         RoleEnum roleEnum = RoleEnum.values()[role-1];
 
         switch (roleEnum) {
             case GYM_OWNER -> {
-                System.out.println("Enter your GST Number: ");
+                System.out.print("Enter your GST Number: ");
                 String ownerGstNum = in.nextLine();
-                System.out.println("Enter your PAN Number: ");
+
+                System.out.print("Enter your PAN Number: ");
                 String ownerPanNum = in.nextLine();
 
                 login();
             }
             case CUSTOMER -> {
-                System.out.println("Enter your Age: ");
+                System.out.print("Enter your Age: ");
                 int age = in.nextInt();
+                in.nextLine();
 
-                System.out.println("Enter your Gender: ");
+                System.out.print("Enter your Gender: ");
                 String gender = in.nextLine();
 
-                System.out.println("Enter your Weight: ");
+                System.out.print("Enter your Weight: ");
                 int weight = in.nextInt();
+                in.nextLine();
 
-                System.out.println("Enter your address: ");
+                System.out.print("Enter your address: ");
                 String customerAddress = in.nextLine();
 
                 login();
@@ -125,21 +129,23 @@ public class FlipFitApplicationMainClient {
         Scanner in = new Scanner(System.in);
 
         System.out.print("Enter your Username: ");
-        String email = in.next();
+        String email = in.nextLine();
 
         System.out.print("Enter your old password: ");
-        String oldPassword = in.next();
+        String oldPassword = in.nextLine();
 
         System.out.print("Enter your id: ");
         int userId = in.nextInt();
+        in.nextLine();
 
         boolean flag = true;
-        System.out.println("Enter new password: ");
-        String newPassword = in.next();
+        System.out.print("Enter new password: ");
+        String newPassword = in.nextLine();
 
         do {
-            System.out.println("Confirm new password: ");
-            String confirmNewPassword = in.next();
+            System.out.print("Confirm new password: ");
+            String confirmNewPassword = in.nextLine();
+
             if (newPassword.equals(confirmNewPassword)) {
                 System.out.println("Password matched!");
                 flag = false;
@@ -152,10 +158,11 @@ public class FlipFitApplicationMainClient {
     }
 
     public static void main(String[] args) {
-        System.out.println("-------- Welcome to FlipFit Application --------");
-        displayOptions();
+        System.out.println("\n-------- Welcome to FlipFit Application --------");
 
         while (true) {
+            displayOptions();
+
             switch (getChoice(TOTAL_OPTIONS)) {
                 case 1 -> login();
                 case 2 -> registerUser();

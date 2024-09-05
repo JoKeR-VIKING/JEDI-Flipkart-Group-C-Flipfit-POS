@@ -8,7 +8,7 @@ public class FlipFitGymOwner extends FlipFitUser {
     private Boolean verified;
 
     public FlipFitGymOwner(String id, String username, String password, String name, Boolean verfied, String address, String phoneNumber, String gstNumber, String panCardNumber) {
-        super(id, username, password, name, verfied, address, phoneNumber);
+        super(id, username, password, name, address, phoneNumber);
         this.gstNumber = gstNumber;
         this.panCardNumber = panCardNumber;
         this.verified = false;
