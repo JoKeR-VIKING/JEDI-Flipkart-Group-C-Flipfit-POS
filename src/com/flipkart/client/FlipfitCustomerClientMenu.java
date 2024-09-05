@@ -6,14 +6,14 @@ import com.flipkart.business.FlipFitCustomerService;
 import com.flipkart.business.FlipFitSlotBookingService;
 import com.flipkart.utils.FlipfitClientUtils;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 import static com.flipkart.utils.FlipfitClientUtils.getChoice;
 
 public class FlipfitCustomerClientMenu {
+    static int OPTIONS_SIZE = 7;
+
     Scanner in = new Scanner(System.in);
     FlipFitCustomerService customerService = new FlipFitCustomerService();
     FlipFitSlotBookingService bookingService = new FlipFitSlotBookingService();
@@ -29,15 +29,13 @@ public class FlipfitCustomerClientMenu {
     }
 
     private void editProfile(int userId) {
-        String temp = in.nextLine();
         System.out.print("Enter your name: ");
-
         String name = in.nextLine();
+
         System.out.print("Enter your phone number: ");
-
         String phoneNumber = in.nextLine();
-        System.out.print("Enter your address: ");
 
+        System.out.print("Enter your address: ");
         String address = in.nextLine();
 
         customerService.editProfile(String.valueOf(userId), name, phoneNumber, address);
@@ -63,30 +61,31 @@ public class FlipfitCustomerClientMenu {
     }
 
     private void viewAvailableSlots() {
-        System.out.println("Enter the id of the gym for which you want to view the available slots");
+        System.out.print("Enter the id of the gym for which you want to view the available slots: ");
         int gymId = in.nextInt();
         in.nextLine();
-        System.out.println("Enter the date of the slot");
+
+        System.out.print("Enter the date of the slot: ");
         String date = in.nextLine();
 
-        HashMap<String, Integer> AvailableSlots = customerService.viewAvailableSlots(gymId, date);
-        // Print the available slots
-        for (Map.Entry<String, Integer> entry : AvailableSlots.entrySet()) {
-            System.out.println("Slot Time: " + entry.getKey() + ", Available Slots: " + entry.getValue());
-        }
+//        HashMap<String, Integer> AvailableSlots = customerService.viewAvailableSlots(gymId, date);
+//        // Print the available slots
+//        for (Map.Entry<String, Integer> entry : AvailableSlots.entrySet()) {
+//            System.out.println("Slot Time: " + entry.getKey() + ", Available Slots: " + entry.getValue());
+//        }
 
         System.out.println("All slots are viewed");
     }
 
     private void bookSlot() {
-        System.out.println("Enter gym id");
-        int gymBookingId = in.nextInt();
+        System.out.print("Enter Gym ID: ");
+        int gymId = in.nextInt();
         in.nextLine();
 
-        System.out.println("Enter booking date");
+        System.out.print("Enter Booking Date: ");
         String bookingDate = in.nextLine();
 
-        System.out.println("Enter booking time slot");
+        System.out.print("Enter Booking Time Slot: ");
         String bookingTimeSlot = in.nextLine();
     }
 
@@ -119,7 +118,7 @@ public class FlipfitCustomerClientMenu {
         }
 
         while (true) {
-            System.out.println("Choose slot to delete, or 0 to go back");
+            System.out.print("Choose slot to delete, or 0 to go back: ");
             int choice = FlipfitClientUtils.getChoice(bookedSlots.size());
             if (choice == 0) return;
 
@@ -131,14 +130,15 @@ public class FlipfitCustomerClientMenu {
     private void newSlotBooking(int id, FlipFitCustomerService customerService) {
         Scanner in = new Scanner(System.in);
 
-        System.out.println("Select city: ");
+        System.out.print("Select City: ");
         int cityIndex = in.nextInt();
 
-        System.out.println("Select date: ");
+        System.out.print("Select Date: ");
         int dateIndex = in.nextInt();
 
-        System.out.println("Select slot: ");
+        System.out.print("Select Slot: ");
         int slotIndex = in.nextInt();
+        in.nextLine();
 
         System.out.println("Slot booked!");
     }
@@ -148,11 +148,11 @@ public class FlipfitCustomerClientMenu {
     }
 
     public void login(int customerId) {
-        System.out.println("Welcome to FlipFit Customer Menu Page");
+        System.out.println("\nWelcome to FlipFit Customer Menu Page");
 
         while (true) {
             displayOptions();
-            int choice = getChoice(4);
+            int choice = getChoice(OPTIONS_SIZE);
 
             switch (choice) {
                 case 1 -> editProfile(customerId);
