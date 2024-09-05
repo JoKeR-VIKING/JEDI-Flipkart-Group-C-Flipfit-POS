@@ -8,12 +8,18 @@ public class FlipFitCenterSlot {
     private LocalTime startTime;
     private int seatLimit;
 
-    public FlipfitCenterSlot(String _id, FlipfitCentre _centre, LocalTime _startTime, LocalTime _endTime, int _seatLimit) {
+    public FlipFitCenterSlot(String _id, String _centre, LocalTime _startTime, int _seatLimit) {
         id = _id;
-        centre = _centre;
+        centreId = _centre;
         startTime = _startTime;
-        endTime = _endTime;
         seatLimit = _seatLimit;
+    }
+    public String getCentreId() {
+        return centreId;
+    }
+
+    public void setCentreId(String centreId) {
+        this.centreId = centreId;
     }
 
     public String getId() {
