@@ -15,6 +15,11 @@ public class FlipFitCentre {
         this.verified = "PENDING";
     }
 
+    public FlipFitCentre(String centreId, String centreName, String centreAddress, String gymOwnerId, String verified) {
+        this(centreId, centreName, centreAddress, gymOwnerId);
+        this.verified = verified;
+    }
+
     public String getCentreId() {
         return centreId;
     }

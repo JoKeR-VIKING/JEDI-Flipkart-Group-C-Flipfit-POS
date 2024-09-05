@@ -75,6 +75,7 @@ public class FlipFitGymOwnerClientMenu {
             System.out.println("Gym ID: " + centre.getCentreId());
             System.out.println("Gym Name: " + centre.getCentreName());
             System.out.println("Gym Address: " + centre.getCentreAddress());
+            System.out.println();
         }
     }
 
