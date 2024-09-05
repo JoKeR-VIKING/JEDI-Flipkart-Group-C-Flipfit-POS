@@ -1,20 +1,9 @@
 package com.flipkart.business;
 
-import com.flipkart.bean.FlipFitCentre;
-
-import java.util.HashMap;
-import java.util.List;
+import java.time.LocalDate;
 
 public interface FlipFitCustomerInterface {
+    void createProfile(String username, String password, String name, String address, String phoneNumber, Double weight, Integer age, String gender, LocalDate dob);
 
-
-    HashMap<String, Integer> viewSlots(int centerId, String date);
-
-    void createProfile(int userId, String name, String phoneNumber, String address);
-
-    void editProfile(int userId, String name, String phoneNumber, String address);
-    //add exception if usser is not found
-
-
-    List<FlipFitCentre> viewCenter();
+    void editProfile(String customerId, String address, Double weight, Integer age, String gender, LocalDate dob);
 }

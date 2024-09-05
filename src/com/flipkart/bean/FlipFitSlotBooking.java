@@ -6,19 +6,19 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class FlipFitSlotBooking {
-    private int id;
+    private int bookingId;
     private String user;
     private FlipFitCenterSlot centerSlot;
     private LocalDate slotDate;
     private Date bookingDate;
     private SlotBookingStatusEnum status;
 
-    public int getId() {
-        return id;
+    public int getBookingId() {
+        return bookingId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBookingId(int id) {
+        this.bookingId = id;
     }
 
     public String getUser() {

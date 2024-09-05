@@ -1,11 +1,29 @@
 package com.flipkart.business;
 
+import com.flipkart.bean.FlipFitCentre;
+import com.flipkart.bean.FlipFitSlotBooking;
+
+import java.util.List;
+import java.time.LocalTime;
+
 public interface FlipFitGymOwnerInterface {
-    public void addGym(String centreId, String centreName, String centreAddress, String id);
+    public void createProfile(String username, String password, String name, String address, String phoneNumber, String gstNumber, String panCardNumber);
+
+    public void editProfile(String gymOwnerId, String address, String gstNumber, String panCardNumber);
+
+    public void addGym(String centreName, String centreAddress, String gymOwnerId);
+
     public void removeGym(String centreId);
-    public void viewRegisteredGymCenters();
-    public void viewSlots();
-    public void addSlot(Integer gymId,String date, String startTime, String endTime,Integer noOfSeats);
-    public void removeSlot(Integer gymId,Integer slotId);
-    public void updateSlot(Integer gymId,Integer slotId, String details);
+
+    public List<FlipFitCentre> viewRegisteredGymCenters();
+
+    public void addSlot(String slotId, String centreId, LocalTime startTime, Integer noOfSeats);
+
+    public void removeSlot(String slotId);
+
+    public void updateSlot(String centreId, LocalTime startTime, Integer noOfSeats);
+
+    public List<FlipFitSlotBooking> viewAllSlots(String centreId);
+
+    public List<FlipFitSlotBooking> viewAllAvailableSlots(String centreId);
 }

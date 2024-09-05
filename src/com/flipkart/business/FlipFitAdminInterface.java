@@ -1,23 +1,26 @@
 package com.flipkart.business;
 
+import com.flipkart.bean.FlipFitCentre;
+import com.flipkart.bean.FlipFitGymOwner;
+
+import java.util.List;
+
 public interface FlipFitAdminInterface {
-    public abstract void viewPendingCenter();
+    public abstract void approveOwner(String gymOwnerId);
 
-    public abstract void viewPendingOwner();
+    public abstract void rejectOwner(String gymOwnerId);
 
-    public abstract void approveGymRequests(int gymId);
+    public abstract List<FlipFitGymOwner> displayPendingOwners();
 
-    public abstract void approveGymOwnerRequests(int ownerId);
+    public abstract List<FlipFitGymOwner> displayAllOwners();
 
-    public abstract void rejectGymRequests(int gymId);
+    public abstract void approveGym(String centreId);
 
-    public abstract void rejectGymOwnerRequests(int ownerId);
+    public abstract void rejectGym(String centreId);
 
-    public abstract void removeGym(int gymId);
+    public abstract void removeGym(String centreId);
 
-    public abstract void removeGymOwner(int ownerId);
+    public abstract List<FlipFitCentre> displayPendingCentres();
 
-    public abstract void viewAllGymOwners();
-
-    public abstract void viewGymDetails();
+    public abstract List<FlipFitCentre> displayAllCentres();
 }

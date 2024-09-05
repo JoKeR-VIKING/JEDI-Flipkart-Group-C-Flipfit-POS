@@ -1,50 +1,63 @@
 package com.flipkart.business;
 
-import com.flipkart.bean.FlipFitCenterSlot;
-import com.flipkart.bean.FlipFitCentre;
+import com.flipkart.bean.*;
+import com.flipkart.dao.FlipFitGymOwnerDAO;
+import com.flipkart.utils.Helper;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.ArrayList;
 
 public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
-    public List<FlipFitCentre> gymCentres = new ArrayList<>();
-    public List<FlipFitCenterSlot> slots = new ArrayList<>();
+    @Override
+    public void createProfile(String username, String password, String name, String address, String phoneNumber, String gstNumber, String panCardNumber) {
+        FlipFitGymOwner gymOwner = new FlipFitGymOwner(Helper.generateId(), username, password, name, address, phoneNumber, gstNumber, panCardNumber);
+        FlipFitGymOwnerDAO.createProfile(gymOwner);
+    }
 
     @Override
-    public void addGym(String centreId, String centreName, String centreAddress, String id) {
-        FlipFitCentre flipFitCentre = new FlipFitCentre(centreId, centreName, centreAddress, id);
-        gymCentres.add(flipFitCentre);
+    public void editProfile(String gymOwnerId, String address, String gstNumber, String panCardNumber) {
+        FlipFitGymOwnerDAO.editProfile(gymOwnerId, address, gstNumber, panCardNumber);
+    }
+
+    @Override
+    public void addGym(String centreName, String centreAddress, String gymOwnerId) {
+        FlipFitCentre centre = new FlipFitCentre(Helper.generateId(), centreName, centreAddress, gymOwnerId);
+        FlipFitGymOwnerDAO.addGym(centre);
     }
 
     @Override
     public void removeGym(String centreId) {
-        gymCentres.removeIf(centre -> centre.getCentreId().equals(centreId));
+        FlipFitGymOwnerDAO.removeGym(centreId);
     }
 
     @Override
-    public void viewRegisteredGymCenters() {
-        for (FlipFitCentre centre : gymCentres) {
-            System.out.printf("Centre Id: %s\nCentre Name: %s\nCentre Address: %s\nVerified: %b\n", centre.getCentreId(), centre.getCentreName(), centre.getCentreAddress(), centre.getVerified());
-        }
+    public List<FlipFitCentre> viewRegisteredGymCenters() {
+        return FlipFitGymOwnerDAO.getRegisteredGymCentres();
     }
 
     @Override
-    public void addSlot(Integer gymId, String date, String startTime, String endTime, Integer noOfSeats) {
-
-    }
-
-    @Override
-    public void removeSlot(Integer gymId, Integer slotId) {
+    public void addSlot(String slotId, String centreId, LocalTime startTime, Integer noOfSeats) {
 
     }
 
     @Override
-    public void updateSlot(Integer gymId, Integer slotId, String details) {
+    public void removeSlot(String slotId) {
 
     }
 
     @Override
-    public void viewSlots() {
+    public void updateSlot(String slotId, LocalTime startTime, Integer noOfSeats) {
 
+    }
+
+    @Override
+    public List<FlipFitSlotBooking> viewAllSlots(String centreId) {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public List<FlipFitSlotBooking> viewAllAvailableSlots(String centreId) {
+        return new ArrayList<>();
     }
 }

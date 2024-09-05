@@ -5,13 +5,13 @@ import com.flipkart.enums.RoleEnum;
 public class FlipFitGymOwner extends FlipFitUser {
     private String gstNumber;
     private String panCardNumber;
-    private Boolean verified;
+    private String verified;
 
-    public FlipFitGymOwner(String id, String username, String password, String name, Boolean verfied, String address, String phoneNumber, String gstNumber, String panCardNumber) {
+    public FlipFitGymOwner(String id, String username, String password, String name, String address, String phoneNumber, String gstNumber, String panCardNumber) {
         super(id, username, password, name, address, phoneNumber);
         this.gstNumber = gstNumber;
         this.panCardNumber = panCardNumber;
-        this.verified = false;
+        this.verified = "PENDING";
     }
 
     public String getGstNumber() {
@@ -30,15 +30,11 @@ public class FlipFitGymOwner extends FlipFitUser {
         this.panCardNumber = panCardNumber;
     }
 
-    public Boolean getVerified() {
+    public String getVerified() {
         return verified;
     }
 
-    public void setVerified(Boolean verified) {
+    public void setVerified(String verified) {
         this.verified = verified;
-    }
-
-    public RoleEnum getRole() {
-        return RoleEnum.GYM_OWNER;
     }
 }

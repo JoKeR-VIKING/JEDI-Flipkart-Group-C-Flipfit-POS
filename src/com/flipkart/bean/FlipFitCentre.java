@@ -5,14 +5,14 @@ public class FlipFitCentre {
     private String centreName;
     private String centreAddress;
     private String gymOwnerId;
-    private Boolean verified;
+    private String verified;
 
     public FlipFitCentre(String centreId, String centreName, String centreAddress, String gymOwnerId) {
         this.centreId = centreId;
         this.centreName = centreName;
         this.centreAddress = centreAddress;
         this.gymOwnerId = gymOwnerId;
-        this.verified = false;
+        this.verified = "PENDING";
     }
 
     public String getCentreId() {
@@ -55,11 +55,11 @@ public class FlipFitCentre {
         this.gymOwnerId = gymOwnerId;
     }
 
-    public Boolean getVerified() {
+    public String getVerified() {
         return verified;
     }
 
-    public void setVerified(Boolean verified) {
+    public void setVerified(String verified) {
         this.verified = verified;
     }
 }

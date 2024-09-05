@@ -1,5 +1,6 @@
 package com.flipkart.client;
 
+import com.flipkart.business.FlipFitAdminService;
 import com.flipkart.business.FlipFitCustomerService;
 import com.flipkart.business.FlipFitGymOwnerService;
 import com.flipkart.enums.RoleEnum;
@@ -16,6 +17,9 @@ public class FlipFitApplicationMainClient {
     static FlipfitAdminClientMenu flipFitAdminClientMenu = new FlipfitAdminClientMenu();
     static FlipFitGymOwnerService ownerService = new FlipFitGymOwnerService();
     static FlipFitCustomerService customerService =new FlipFitCustomerService();
+    static FlipFitCustomerService customerService = new FlipFitCustomerService();
+    static FlipFitGymOwnerService ownerService = new FlipFitGymOwnerService();
+    static FlipFitAdminService adminService = new FlipFitAdminService();
 
     public static void displayOptions() {
         System.out.println("1. Login");
@@ -25,6 +29,7 @@ public class FlipFitApplicationMainClient {
     }
 
     public static void login() {
+    public static void loginMenu() {
         Scanner in = new Scanner(System.in);
         System.out.println("\n------- LOGIN ------");
 
@@ -50,10 +55,19 @@ public class FlipFitApplicationMainClient {
             case 2 -> flipFitCustomerClientMenu.login(userId);
             case 3 -> flipFitAdminClientMenu.login(userId);
             default -> System.out.println("Invalid role choice");
+            FlipFitCustomerClientMenu flipFitCustomerClientMenu =new FlipFitCustomerClientMenu();
+            flipFitCustomerClientMenu.flipfitCustomerPage(userId);
+
+        } else if(role == 3) {
+            FlipFitAdminClientMenu flipFitAdminClientMenu= new FlipFitAdminClientMenu();
+            flipFitAdminClientMenu.handle(userId);
+        }  else {
+            System.out.println("Invalid role choice");
         }
     }
 
     public static void registerUser() {
+    public static void registerMenu() {
         Scanner in = new Scanner(System.in);
 
         System.out.println("\nWelcome to the FlipFit. Please Register yourself Here");
@@ -111,6 +125,33 @@ public class FlipFitApplicationMainClient {
 
                 System.out.print("Enter your Gender: ");
                 String gender = in.nextLine();
+        if(role == 1){
+            System.out.println("Enter your Name: ");
+            String ownerName = in.next();
+            System.out.println("Enter your Phone Number: ");
+            String ownerPhone = in.next();
+            System.out.println("Enter your Address: ");
+            String ownerAddress = in.next();
+            System.out.println("Enter your GST Number: ");
+            String ownerGstNum = in.next();
+            System.out.println("Enter your PAN Number: ");
+            String ownerPanNum = in.next();
+            loginMenu();
+        } else if(role == 2) {
+            System.out.println("Enter your Name: ");
+            String customerName = in.next();
+            System.out.println("Enter your Phone Number: ");
+            String customerPhone = in.next();
+            System.out.println("Enter your Age: ");
+            int age = Integer.parseInt(in.next());
+            System.out.println("Enter your Gender: ");
+            String gender = in.next();
+            System.out.println("Enter your Weight: ");
+            Double weight = Double.parseDouble(in.next());
+            System.out.println("Enter your address: ");
+            String customerAddress = in.next();
+            System.out.println("Enter your dob: ");
+            LocalDate dob = LocalDate.parse(in.next());
 
                 System.out.print("Enter your Weight: ");
                 int weight = in.nextInt();
@@ -122,10 +163,13 @@ public class FlipFitApplicationMainClient {
                 login();
             }
             case ADMIN -> login();
+            loginMenu();
         }
     }
 
     public static void changePassword() {
+
+    public static void changePasswordMenu() {
         Scanner in = new Scanner(System.in);
 
         System.out.print("Enter your Username: ");
@@ -176,6 +220,27 @@ public class FlipFitApplicationMainClient {
                     return;
                 }
             }
+    public static void main(String[] args) {
+        System.out.println("--------------------Flipfit Application--------------------");
+        LocalDate localDate = LocalDate.now();
+        LocalTime localTime = LocalTime.now();
+        System.out.println("-----------------------------------------------");
+        System.out.println("Date: " + localDate);
+        System.out.println("Time: " + localTime);
+        System.out.println("-----------------------------------------------");
+        System.out.println("Enter preferred choices: \n1. Login\n2. Register \n3. Change Password\n4. Exit");
+
+        Scanner in = new Scanner(System.in);
+        int choice = in.nextInt();
+
+        switch(choice) {
+            case 1 -> loginMenu();
+            case 2 -> registerMenu();
+            case 3 -> changePasswordMenu();
+            case 4 -> System.out.println("Thank you for using FlipFit App");
+            default -> System.out.println("Invalid choice");
         }
+
+        in.close();
     }
 }

@@ -26,6 +26,16 @@ public class FlipfitCustomerClientMenu {
         System.out.println("5. View your bookings");
         System.out.println("6. Cancel your bookings");
         System.out.println("7. Exit");
+public class FlipFitCustomerClientMenu {
+    private void viewProfile(int id, FlipFitCustomerService customerService)
+    {
+        FlipFitCustomer customer = customerService.getProfile(id);
+        System.out.println("Age: " + customer.getAge());
+        System.out.println("weight: " + customer.getWeight());
+        System.out.println("DOB: " + customer.getDob());
+        System.out.println("Gender: " + customer.getGender());
+        System.out.println("Phone no: " + customer.getPhoneNumber());
+        System.out.println("Address: " + customer.getAddress());
     }
 
     private void editProfile(int userId) {
@@ -56,7 +66,7 @@ public class FlipfitCustomerClientMenu {
         List<FlipFitCenterSlot> bookedSlots = customerService.getBookedSlots(id);
         for (FlipFitCenterSlot bookedSlot : bookedSlots) {
 
-            System.out.println(bookedSlot.getId());
+//            System.out.println(bookedSlot.getId());
         }
     }
 
@@ -114,7 +124,7 @@ public class FlipfitCustomerClientMenu {
         List<FlipFitCenterSlot> bookedSlots = customerService.getBookedSlots(id);
 
         for (FlipFitCenterSlot bookedSlot : bookedSlots) {
-            System.out.println(bookedSlot.getId());
+//            System.out.println(bookedSlot.getId());
         }
 
         while (true) {

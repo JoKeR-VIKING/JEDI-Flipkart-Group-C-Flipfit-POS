@@ -1,15 +1,25 @@
 package com.flipkart.business;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
+import com.flipkart.bean.FlipFitCenterSlot;
+import com.flipkart.bean.FlipFitSlotBooking;
 
-public class FlipFitSlotBookingService {
-    public void viewAllSlots() {
+import java.util.List;
+import java.util.ArrayList;
+import java.time.LocalDate;
+
+public class FlipFitSlotBookingService implements  FlipFitSlotBookingInterface {
+    @Override
+    public void bookSlot(String userId, String centerId, LocalDate bookingDate, FlipFitCenterSlot slot) {
 
     }
 
-    public List<LocalTime> viewAvailableSlots(String gymId, LocalDate date) {
-        return null;
+    @Override
+    public void cancelBooking(String bookingId) {
+
+    }
+
+    @Override
+    public List<FlipFitSlotBooking> listBookings(String userId) {
+        return new ArrayList<>();
     }
 }
