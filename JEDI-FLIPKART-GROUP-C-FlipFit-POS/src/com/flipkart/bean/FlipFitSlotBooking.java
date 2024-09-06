@@ -28,7 +28,7 @@ public class FlipFitSlotBooking {
         return bookingId;
     }
 
-    public void setBookingId(int id) {
+    public void setBookingId(String id) {
         this.bookingId = id;
     }
 

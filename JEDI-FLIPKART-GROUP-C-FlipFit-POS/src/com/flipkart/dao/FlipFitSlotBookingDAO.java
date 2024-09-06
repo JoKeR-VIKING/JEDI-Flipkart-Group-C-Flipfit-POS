@@ -8,9 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class FlipFitSlotBookingDAO {
-
-    public static List<FlipFitSlotBooking> bookings = Collections.emptyList();
-    public static List<FlipFitPayments> payments = Collections.emptyList();
+    public static List<FlipFitSlotBooking> bookings = new ArrayList<FlipFitSlotBooking>();
+    public static List<FlipFitPayments> payments = new ArrayList<FlipFitPayments>();
 
     public static void addBooking(FlipFitSlotBooking booking) {
         bookings.add(booking);
