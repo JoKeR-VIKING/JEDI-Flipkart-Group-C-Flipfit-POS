@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="646390c8-65f8-43cc-839c-78cd3852006c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/JEDI-FLIPKART-GROUP-C-FlipFit-POS.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/bean/FlipFitAdmin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/bean/FlipFitCenterSlot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/bean/FlipFitCentre.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/bean/FlipFitCustomer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/bean/FlipFitGymOwner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/bean/FlipFitSlotBooking.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/bean/FlipFitUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitAdminInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitAdminService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitCustomerInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitCustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitGymOwnerInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitGymOwnerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitSlotBookingInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitSlotBookingService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitUserInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/client/FlipFitAdminClientMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/client/FlipFitApplicationMainClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/client/FlipFitCustomerClientMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/client/FlipFitGymOwnerClientMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/constants/ConsoleConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/dao/FlipFitAdminDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/dao/FlipFitCustomerDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/dao/FlipFitGymOwnerDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/dao/FlipFitSlotBookingDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/dao/FlipFitUserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/enums/DocumentTypeEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/enums/RoleEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/enums/SlotBookingStatusEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/utils/FlipFitDAOUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/utils/FlipfitClientUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/utils/Helper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/bean/FlipFitAdmin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/bean/FlipFitCenterSlot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/bean/FlipFitCentre.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/bean/FlipFitCustomer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/bean/FlipFitGymOwner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/bean/FlipFitSlotBooking.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/bean/FlipFitUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/business/FlipFitAdminInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/business/FlipFitAdminService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/business/FlipFitCustomerInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/business/FlipFitCustomerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/business/FlipFitGymOwnerInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/business/FlipFitGymOwnerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/business/FlipFitSlotBookingInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/business/FlipFitSlotBookingService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/business/FlipFitUserInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/business/FlipFitUserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/client/FlipFitAdminClientMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/client/FlipFitApplicationMainClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/client/FlipFitCustomerClientMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/client/FlipFitGymOwnerClientMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/constants/ConsoleConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/dao/FlipFitAdminDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/dao/FlipFitCustomerDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/dao/FlipFitGymOwnerDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/dao/FlipFitSlotBookingDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/dao/FlipFitUserDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/enums/DocumentTypeEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/enums/RoleEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/enums/SlotBookingStatusEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/utils/FlipFitDAOUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/utils/FlipfitClientUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/flipkart/utils/Helper.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2lbJLUJXmgwW0wPqfYnbQhaEAgU" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.FlipFitApplicationMainClient.executor&quot;: &quot;Run&quot;,
+    &quot;Application.FlipfitAdminClientMenu.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/luckshya.verma/IdeaProjects/JEDI-Flipkart-Flipfit-Repo&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.FlipFitApplicationMainClient">
+    <configuration name="FlipFitApplicationMainClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.flipkart.client.FlipFitApplicationMainClient" />
+      <module name="JEDI-FLIPKART-GROUP-C-FlipFit-POS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.flipkart.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FlipfitAdminClientMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.flipkart.client.FlipfitAdminClientMenu" />
+      <module name="JEDI-FLIPKART-GROUP-C-FlipFit-POS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.flipkart.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.FlipFitApplicationMainClient" />
+        <item itemvalue="Application.FlipfitAdminClientMenu" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="646390c8-65f8-43cc-839c-78cd3852006c" name="Changes" comment="" />
+      <created>1725442786298</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1725442786298</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
