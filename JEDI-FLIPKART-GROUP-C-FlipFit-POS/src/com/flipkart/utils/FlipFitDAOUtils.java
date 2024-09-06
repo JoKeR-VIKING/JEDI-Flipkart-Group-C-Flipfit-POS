@@ -41,7 +41,7 @@ public class FlipFitDAOUtils {
         FlipFitCentre centre2 = new FlipFitCentre("2", "FlipFit Centre 2", "456 Elm St", "2", "PENDING");
         FlipFitCentre centre3 = new FlipFitCentre("3", "FlipFit Centre 3", "789 Oak St", "3", "APPROVED");
         FlipFitCentre centre4 = new FlipFitCentre("4", "FlipFit Centre 4", "101 Pine St", "4", "APPROVED");
-        FlipFitCentre centre5 = new FlipFitCentre("5", "FlipFit Centre 5", "202 Maple St", "5", "REJECETD");
+        FlipFitCentre centre5 = new FlipFitCentre("5", "FlipFit Centre 5", "202 Maple St", "5", "REJECTED");
 
         FlipFitGymOwnerDAO.addGym(centre1);
         FlipFitGymOwnerDAO.addGym(centre2);
