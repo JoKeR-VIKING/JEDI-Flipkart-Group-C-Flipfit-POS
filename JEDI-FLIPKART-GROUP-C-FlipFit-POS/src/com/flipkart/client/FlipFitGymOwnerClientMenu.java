@@ -3,9 +3,8 @@ package com.flipkart.client;
 import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.business.FlipFitGymOwnerService;
+import com.flipkart.utils.FlipFitTableUtil;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.*;
 
 import static com.flipkart.utils.FlipfitClientUtils.getChoice;
@@ -71,12 +70,17 @@ public class FlipFitGymOwnerClientMenu {
 
     public void viewGyms(String userId) {
         List<FlipFitCentre> centres = ownerService.viewRegisteredGymCenters(userId);
-        for (FlipFitCentre centre : centres) {
-            System.out.println("Gym ID: " + centre.getCentreId());
-            System.out.println("Gym Name: " + centre.getCentreName());
-            System.out.println("Gym Address: " + centre.getCentreAddress());
-            System.out.println();
-        }
+
+        System.out.println();
+
+        FlipFitTableUtil.printTabular(
+                List.of("Gym ID", "Gym Name", "Gym Address"),
+                centres.stream()
+                        .map(centre -> List.of(centre.getGymOwnerId(),
+                                centre.getCentreName(),
+                                centre.getCentreAddress()))
+                        .toList()
+        );
     }
 
     public void addSlot() {
@@ -124,15 +128,17 @@ public class FlipFitGymOwnerClientMenu {
 
         System.out.println("Gym Slots:");
 
-         List<FlipFitCenterSlot> slots = ownerService.viewAllSlots(gymId);
+        List<FlipFitCenterSlot> slots = ownerService.viewAllSlots(gymId);
 
-        for (FlipFitCenterSlot slot : slots) {
-            System.out.println();
-            System.out.println("Slot ID: " + slot.getSlotId());
-            System.out.println("Slot Center ID: " + slot.getCentreId());
-            System.out.println("Slot Start Time: " + slot.getStartTime());
-            System.out.println("Slot Seat Limit: " + slot.getSeatLimit());
-        }
+        FlipFitTableUtil.printTabular(
+                List.of("Slot ID", "Slot Center ID", "Slot Start Time", "Slot Seat Limit"),
+                slots.stream()
+                        .map(slot -> List.of(slot.getSlotId(),
+                                slot.getCentreId(),
+                                slot.getStartTime().toString(),
+                                String.valueOf(slot.getSeatLimit())))
+                        .toList()
+        );
     }
 
     public void viewAvailableSlots() {

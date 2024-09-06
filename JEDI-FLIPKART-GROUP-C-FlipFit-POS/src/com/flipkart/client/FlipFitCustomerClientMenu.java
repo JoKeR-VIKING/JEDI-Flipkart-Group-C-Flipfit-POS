@@ -7,6 +7,8 @@ import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.business.*;
 import com.flipkart.dao.FlipFitGymOwnerDAO;
 import com.flipkart.utils.Helper;
+import com.flipkart.utils.FlipFitDAOUtils;
+import com.flipkart.utils.FlipFitTableUtil;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -65,11 +67,16 @@ public class FlipFitCustomerClientMenu {
 
     private void viewAllGyms() {
         List<FlipFitCentre> gyms = adminService.displayAllCentres();
-        for (FlipFitCentre gym : gyms) {
-            System.out.println("Gym Id: " + gym.getCentreId());
-            System.out.println("Gym: " + gym.getCentreName());
-            System.out.println("Location: " + gym.getCentreAddress());
-        }
+
+        FlipFitTableUtil.printTabular(
+                List.of("Gym ID", "Gym Name", "Gym Address"),
+                gyms.stream()
+                        .map(gym -> List.of(gym.getCentreId(),
+                                gym.getCentreName(),
+                                gym.getCentreAddress())
+                        )
+                        .toList()
+        );
 
         greenOutputLn("All gyms viewed");
     }
