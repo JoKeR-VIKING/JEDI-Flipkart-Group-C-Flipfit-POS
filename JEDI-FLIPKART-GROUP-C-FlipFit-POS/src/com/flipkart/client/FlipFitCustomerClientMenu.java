@@ -1,10 +1,12 @@
 package com.flipkart.client;
 
+import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.business.FlipFitAdminService;
 import com.flipkart.business.FlipFitCustomerService;
 import com.flipkart.business.FlipFitSlotBookingService;
+import com.flipkart.dao.FlipFitGymOwnerDAO;
 
 import java.util.List;
 import java.util.Scanner;
@@ -93,6 +95,15 @@ public class FlipFitCustomerClientMenu {
 //        for (Map.Entry<String, Integer> entry : AvailableSlots.entrySet()) {
 //            System.out.println("Slot Time: " + entry.getKey() + ", Available Slots: " + entry.getValue());
 //        }
+
+        List<FlipFitCenterSlot> slots = FlipFitGymOwnerDAO.getSlotsByGymId(gymId);
+        for (FlipFitCenterSlot slot : slots) {
+            System.out.println();
+            System.out.println("Slot ID: " + slot.getSlotId());
+            System.out.println("Slot Center ID: " + slot.getCentreId());
+            System.out.println("Slot Start Time: " + slot.getStartTime());
+            System.out.println("Slot Seat Limit: " + slot.getSeatLimit());
+        }
 
         greenOutputLn("All slots are viewed");
     }
