@@ -53,8 +53,8 @@ public class FlipFitGymOwnerDAO {
         Gyms.add(centre);
     }
 
-    public void removeGym(String centreId) {
-        Gyms.removeIf(centre -> centre.getCentreId().equals(centreId));
+    public void removeGym(String ownerId, String centreId) {
+        Gyms.removeIf(centre -> centre.getCentreId().equals(centreId) && centre.getGymOwnerId().equals(ownerId));
     }
 
     public List<FlipFitCentre> getRegisteredGymCentres(String userId) {
@@ -91,5 +91,16 @@ public class FlipFitGymOwnerDAO {
 
     public void deleteSlot(String slotId) {
         slots.removeIf(slot -> slot.getSlotId().equals(slotId));
+    }
+
+    public boolean modifyGym(String ownerId, String gymId, String gymName, String gymAddress) {
+        for(int i=0; i<Gyms.size(); i++) {
+            if (Gyms.get(i).getCentreId().equals(gymId) && Gyms.get(i).getGymOwnerId().equals(ownerId)) {
+                Gyms.get(i).setCentreName(gymName);
+                Gyms.get(i).setCentreAddress(gymAddress);
+                return true;
+            }
+        }
+        return false;
     }
 }
