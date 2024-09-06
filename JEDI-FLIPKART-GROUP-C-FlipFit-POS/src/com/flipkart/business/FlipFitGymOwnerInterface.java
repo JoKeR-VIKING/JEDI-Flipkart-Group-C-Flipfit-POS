@@ -26,5 +26,4 @@ public interface FlipFitGymOwnerInterface {
 
     public List<FlipFitCenterSlot> viewAllSlots(String centreId);
 
-    public List<FlipFitSlotBooking> viewAllAvailableSlots(String centreId);
 }

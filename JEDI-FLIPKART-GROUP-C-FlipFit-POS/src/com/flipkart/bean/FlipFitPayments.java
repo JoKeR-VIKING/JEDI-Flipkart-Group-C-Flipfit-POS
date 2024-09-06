@@ -14,6 +14,7 @@ public class FlipFitPayments {
         this.customerId = customerId;
         this.amount = amount;
         this.date = date;
+        this.status = status;
     }
 
     public String getPaymentId() {

@@ -4,11 +4,11 @@ import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitPayments;
 import com.flipkart.bean.FlipFitSlotBooking;
-import com.flipkart.business.FlipFitAdminService;
-import com.flipkart.business.FlipFitCustomerService;
-import com.flipkart.business.FlipFitSlotBookingService;
+import com.flipkart.business.*;
 import com.flipkart.dao.FlipFitGymOwnerDAO;
+import com.flipkart.utils.Helper;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,6 +22,8 @@ public class FlipFitCustomerClientMenu {
     FlipFitCustomerService customerService = new FlipFitCustomerService();
     FlipFitSlotBookingService bookingService = new FlipFitSlotBookingService();
     FlipFitAdminService adminService = new FlipFitAdminService();
+    FlipFitGymOwnerService ownerService = new FlipFitGymOwnerService();
+    FlipFitPaymentsService paymentService = new FlipFitPaymentsService();
 
     private static void displayOptions() {
         System.out.println();
@@ -66,8 +68,7 @@ public class FlipFitCustomerClientMenu {
         for (FlipFitCentre gym : gyms) {
             System.out.println("Gym Id: " + gym.getCentreId());
             System.out.println("Gym: " + gym.getCentreName());
-            // TODO
-            // System.out.println("Location: " + gym.getLocation());
+            System.out.println("Location: " + gym.getCentreAddress());
         }
 
         greenOutputLn("All gyms viewed");
@@ -94,17 +95,14 @@ public class FlipFitCustomerClientMenu {
     }
 
     private void bookSlot(String userId) {
-        System.out.print("Enter Gym ID: ");
-        String gymId = in.nextLine();
-
         System.out.print("Enter Booking Date (dd-mm-yyyy): ");
         String bookingDate = in.nextLine();
 
-        System.out.print("Enter Booking Time Slot: ");
-        String bookingTimeSlot = in.nextLine();
+        System.out.print("Enter slot ID: ");
+        String slotId = in.nextLine();
 
-        // implement getSlot()
-        FlipFitCenterSlot slot = getSlot(gymId, bookingDate, bookingTimeSlot);
+        // get slot if exists
+        FlipFitCenterSlot slot = ownerService.getSlot(slotId);
 
         if(slot == null) {
             System.out.println("slot is full/doesn't exist");
@@ -112,9 +110,10 @@ public class FlipFitCustomerClientMenu {
         }
 
         // make payment
-        // TODO: get payment details from input
-        FlipFitPayments payment = new FlipFitPayments();
-        bookingService.makePayment(payment);
+        System.out.print("Make payment of Rs.500: ");
+        Double paymentAmount = in.nextDouble();
+
+        FlipFitPayments payment = paymentService.makePayment(Helper.generateId(), userId, 500.00, paymentAmount, LocalDate.now());
 
         bookingService.bookSlot(userId, parseDate(bookingDate), slot, payment.getPaymentId());
         System.out.println("Payment successful, slot booked!");

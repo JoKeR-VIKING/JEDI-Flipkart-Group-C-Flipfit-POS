@@ -52,13 +52,12 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
         FlipFitGymOwnerDAO.updateSlot(slotId, startTime, noOfSeats);
     }
 
-    @Override
-    public List<FlipFitCenterSlot> viewAllSlots(String centreId) {
-        return FlipFitGymOwnerDAO.getSlotsByGymId(centreId);
+    public FlipFitCenterSlot getSlot(String slotId) {
+        return FlipFitGymOwnerDAO.getSlotById(slotId);
     }
 
     @Override
-    public List<FlipFitSlotBooking> viewAllAvailableSlots(String centreId) {
-        return new ArrayList<>();
+    public List<FlipFitCenterSlot> viewAllSlots(String centreId) {
+        return FlipFitGymOwnerDAO.getSlotsByGymId(centreId);
     }
 }

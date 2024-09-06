@@ -29,8 +29,4 @@ public class FlipFitSlotBookingService implements  FlipFitSlotBookingInterface {
     public List<FlipFitSlotBooking> listBookings(String userId) {
         return FlipFitSlotBookingDAO.listBookings(userId);
     }
-
-    public void makePayment(FlipFitPayments payment) {
-        FlipFitSlotBookingDAO.addPayment(payment);
-    }
 }
