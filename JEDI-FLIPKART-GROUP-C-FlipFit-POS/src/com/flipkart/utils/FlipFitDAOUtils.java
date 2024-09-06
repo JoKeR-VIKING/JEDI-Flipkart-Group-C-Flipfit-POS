@@ -2,9 +2,11 @@ package com.flipkart.utils;
 
 import com.flipkart.bean.*;
 import com.flipkart.dao.*;
+import com.flipkart.enums.SlotBookingStatusEnum;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 
 public class FlipFitDAOUtils {
     public static void initMockData() {
@@ -34,9 +36,6 @@ public class FlipFitDAOUtils {
         FlipFitGymOwnerDAO.createProfile(owner4);
         FlipFitGymOwnerDAO.createProfile(owner5);
 
-        FlipFitAdmin admin1 = new FlipFitAdmin("admin1", "admin1", "password1", "Admin User", "Admin Address", "9999999999");
-        FlipFitAdminDAO.add(admin1);
-
         FlipFitCentre centre1 = new FlipFitCentre("1", "FlipFit Centre 1", "123 Main St", "1", "APPROVED");
         FlipFitCentre centre2 = new FlipFitCentre("2", "FlipFit Centre 2", "456 Elm St", "2", "PENDING");
         FlipFitCentre centre3 = new FlipFitCentre("3", "FlipFit Centre 3", "789 Oak St", "3", "APPROVED");
@@ -60,5 +59,34 @@ public class FlipFitDAOUtils {
         FlipFitGymOwnerDAO.addSlot(slot3);
         FlipFitGymOwnerDAO.addSlot(slot4);
         FlipFitGymOwnerDAO.addSlot(slot5);
+
+        // FlipFitSlotBookingDAO
+        FlipFitAdmin admin1 = new FlipFitAdmin("admin1", "admin1", "password1", "Admin User", "Admin Address", "9999999999");
+        FlipFitAdminDAO.add(admin1);
+
+        // FlipFitSlotBookingDAO
+        FlipFitPayments payment1 = new FlipFitPayments("1", "1", 100.0, LocalDate.now(), "Success");
+        FlipFitPayments payment2 = new FlipFitPayments("2", "2", 80.0, LocalDate.now(), "Success");
+        FlipFitPayments payment3 = new FlipFitPayments("3", "3", 90.0, LocalDate.now(), "Success");
+        FlipFitPayments payment4 = new FlipFitPayments("4", "4", 75.0, LocalDate.now(), "Success");
+        FlipFitPayments payment5 = new FlipFitPayments("5", "5", 120.0, LocalDate.now(), "Success");
+
+        FlipFitSlotBookingDAO.addPayment(payment1);
+        FlipFitSlotBookingDAO.addPayment(payment2);
+        FlipFitSlotBookingDAO.addPayment(payment3);
+        FlipFitSlotBookingDAO.addPayment(payment4);
+        FlipFitSlotBookingDAO.addPayment(payment5);
+
+        FlipFitSlotBooking booking1 = new FlipFitSlotBooking("1", "1", slot1.getSlotId(), LocalDate.now(), new Date(), SlotBookingStatusEnum.CONFIRMED, payment1.getPaymentId());
+        FlipFitSlotBooking booking2 = new FlipFitSlotBooking("2", "2", slot2.getSlotId(), LocalDate.now(), new Date(), SlotBookingStatusEnum.CONFIRMED, payment2.getPaymentId());
+        FlipFitSlotBooking booking3 = new FlipFitSlotBooking("3", "3", slot3.getSlotId(), LocalDate.now(), new Date(), SlotBookingStatusEnum.CONFIRMED, payment3.getPaymentId());
+        FlipFitSlotBooking booking4 = new FlipFitSlotBooking("4", "4", slot4.getSlotId(), LocalDate.now(), new Date(), SlotBookingStatusEnum.CONFIRMED, payment4.getPaymentId());
+        FlipFitSlotBooking booking5 = new FlipFitSlotBooking("5", "5", slot5.getSlotId(), LocalDate.now(), new Date(), SlotBookingStatusEnum.CONFIRMED, payment5.getPaymentId());
+
+        FlipFitSlotBookingDAO.addBooking(booking1);
+        FlipFitSlotBookingDAO.addBooking(booking2);
+        FlipFitSlotBookingDAO.addBooking(booking3);
+        FlipFitSlotBookingDAO.addBooking(booking4);
+        FlipFitSlotBookingDAO.addBooking(booking5);
     }
 }

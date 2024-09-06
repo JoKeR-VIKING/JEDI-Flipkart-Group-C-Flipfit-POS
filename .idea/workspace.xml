@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="646390c8-65f8-43cc-839c-78cd3852006c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/bean/FlipFitSlotBooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/bean/FlipFitSlotBooking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitCustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/dao/FlipFitAdminDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/dao/FlipFitAdminDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitSlotBookingInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitSlotBookingInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitSlotBookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitSlotBookingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/client/FlipFitCustomerClientMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/client/FlipFitCustomerClientMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/dao/FlipFitSlotBookingDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/dao/FlipFitSlotBookingDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/utils/FlipFitDAOUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/utils/FlipFitDAOUtils.java" afterDir="false" />
     </list>
@@ -30,6 +32,9 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2lbJLUJXmgwW0wPqfYnbQhaEAgU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
