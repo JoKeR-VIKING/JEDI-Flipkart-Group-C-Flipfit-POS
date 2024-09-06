@@ -8,13 +8,21 @@ import java.util.Date;
 public class FlipFitSlotBooking {
     private String bookingId;
     private String userId;
-    private FlipFitCenterSlot centerSlot;
+    private String centerSlotId;
     private LocalDate slotDate;
     private Date bookingDate;
     private SlotBookingStatusEnum status;
-
-
     private String paymentId;
+
+    public FlipFitSlotBooking(String bookingId, String userId, String centerSlotId, LocalDate slotDate, Date bookingDate, SlotBookingStatusEnum status, String paymentId) {
+        this.bookingId = bookingId;
+        this.userId = userId;
+        this.centerSlotId = centerSlotId;
+        this.slotDate = slotDate;
+        this.bookingDate = bookingDate;
+        this.status = status;
+        this.paymentId = paymentId;
+    }
 
     public String getBookingId() {
         return bookingId;
@@ -32,12 +40,12 @@ public class FlipFitSlotBooking {
         this.userId = userId;
     }
 
-    public FlipFitCenterSlot getCenterSlot() {
-        return centerSlot;
+    public String getCenterSlot() {
+        return centerSlotId;
     }
 
-    public void setCenterSlot(FlipFitCenterSlot centerSlot) {
-        this.centerSlot = centerSlot;
+    public void setCenterSlot(String centerSlot) {
+        this.centerSlotId = centerSlot;
     }
 
     public LocalDate getSlotDate() {
@@ -67,12 +75,4 @@ public class FlipFitSlotBooking {
     public String getPaymentId() { return paymentId; }
 
     public void setPaymentId(String paymentId) { this.paymentId = paymentId; }
-
-    public void bookSlot() {
-        // interact with DAO to let customers block slots
-    }
-
-    public void cancelSlot() {
-        // interact with DAO to let customers cancel their slot booking
-    }
 }

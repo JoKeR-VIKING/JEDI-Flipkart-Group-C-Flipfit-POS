@@ -3,6 +3,7 @@ package com.flipkart.dao;
 import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.bean.FlipFitCentre;
+import com.flipkart.bean.FlipFitSlotBooking;
 
 import java.time.LocalTime;
 import java.util.Collections;
@@ -80,6 +81,12 @@ public class FlipFitGymOwnerDAO {
         return slots.stream()
                 .filter(slot -> slot.getCentreId().equals(gymId))
                 .toList();
+    }
+
+    public static FlipFitCenterSlot getSlotById(String slotId) {
+        return slots.stream()
+                .filter(slot -> slot.getSlotId().equals(slotId))
+                .toList().get(0);
     }
 
     public static void deleteSlot(String slotId) {

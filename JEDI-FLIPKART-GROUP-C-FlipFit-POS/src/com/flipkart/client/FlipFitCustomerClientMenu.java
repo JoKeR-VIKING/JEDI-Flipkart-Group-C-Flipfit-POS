@@ -2,14 +2,15 @@ package com.flipkart.client;
 
 import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.bean.FlipFitCentre;
+import com.flipkart.bean.FlipFitPayments;
 import com.flipkart.bean.FlipFitSlotBooking;
-import com.flipkart.business.FlipFitAdminService;
-import com.flipkart.business.FlipFitCustomerService;
-import com.flipkart.business.FlipFitSlotBookingService;
+import com.flipkart.business.*;
 import com.flipkart.dao.FlipFitGymOwnerDAO;
+import com.flipkart.utils.Helper;
 import com.flipkart.utils.FlipFitDAOUtils;
 import com.flipkart.utils.FlipFitTableUtil;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,6 +24,8 @@ public class FlipFitCustomerClientMenu {
     FlipFitCustomerService customerService = new FlipFitCustomerService();
     FlipFitSlotBookingService bookingService = new FlipFitSlotBookingService();
     FlipFitAdminService adminService = new FlipFitAdminService();
+    FlipFitGymOwnerService ownerService = new FlipFitGymOwnerService();
+    FlipFitPaymentsService paymentService = new FlipFitPaymentsService();
 
     private static void displayOptions() {
         System.out.println();
@@ -78,16 +81,6 @@ public class FlipFitCustomerClientMenu {
         greenOutputLn("All gyms viewed");
     }
 
-    private void viewBookedSlots(String id, FlipFitCustomerService customerService) {
-        List<FlipFitSlotBooking> bookedSlots = bookingService.listBookings(id);
-
-        for (FlipFitSlotBooking bookedSlot : bookedSlots) {
-            System.out.println("Booking ID: " + bookedSlot.getBookingId());
-            System.out.println("Center ID: " + bookedSlot.getCenterSlot().getCentreId());
-            System.out.println("Center Slot Time: " + bookedSlot.getCenterSlot().getStartTime());
-        }
-    }
-
     // TODO? no service method
     private void viewAvailableSlots() {
         System.out.print("Enter the id of the gym for which you want to view the available slots: ");
@@ -95,12 +88,6 @@ public class FlipFitCustomerClientMenu {
 
         System.out.print("Enter the date of the slot: ");
         String date = in.nextLine();
-
-//        HashMap<String, Integer> AvailableSlots = customerService.viewAvailableSlots(gymId, date);
-//        // Print the available slots
-//        for (Map.Entry<String, Integer> entry : AvailableSlots.entrySet()) {
-//            System.out.println("Slot Time: " + entry.getKey() + ", Available Slots: " + entry.getValue());
-//        }
 
         List<FlipFitCenterSlot> slots = FlipFitGymOwnerDAO.getSlotsByGymId(gymId);
         for (FlipFitCenterSlot slot : slots) {
@@ -115,17 +102,28 @@ public class FlipFitCustomerClientMenu {
     }
 
     private void bookSlot(String userId) {
-        System.out.print("Enter Gym ID: ");
-        String gymId = in.nextLine();
-
-        System.out.print("Enter Booking Date: ");
+        System.out.print("Enter Booking Date (dd-mm-yyyy): ");
         String bookingDate = in.nextLine();
 
-        System.out.print("Enter Booking Time Slot: ");
-        String bookingTimeSlot = in.nextLine();
+        System.out.print("Enter slot ID: ");
+        String slotId = in.nextLine();
 
-        // TODO
-        // bookingService.bookSlot(userId, gymId, parseDate(bookingDate), bookingTimeSlot);
+        // get slot if exists
+        FlipFitCenterSlot slot = ownerService.getSlot(slotId);
+
+        if(slot == null) {
+            System.out.println("slot is full/doesn't exist");
+            return;
+        }
+
+        // make payment
+        System.out.print("Make payment of Rs.500: ");
+        Double paymentAmount = in.nextDouble();
+
+        FlipFitPayments payment = paymentService.makePayment(Helper.generateId(), userId, 500.00, paymentAmount, LocalDate.now());
+
+        bookingService.bookSlot(userId, parseDate(bookingDate), slot, payment.getPaymentId());
+        System.out.println("Payment successful, slot booked!");
     }
 
     private void viewBookings(String userId) {
@@ -138,7 +136,7 @@ public class FlipFitCustomerClientMenu {
             for (FlipFitSlotBooking booking : bookings) {
                 System.out.println("Booking ID: " + booking.getBookingId());
                 System.out.println("Customer ID: " + booking.getUserId());
-                System.out.println("Gym ID: " + booking.getCenterSlot().getCentreId());
+                System.out.println("Gym ID: " + booking.getCenterSlot());
                 System.out.println("Booking Date: " + booking.getBookingDate());
                 System.out.println("Booking TimeSlot: " + booking.getSlotDate());
                 System.out.println("=================================");
