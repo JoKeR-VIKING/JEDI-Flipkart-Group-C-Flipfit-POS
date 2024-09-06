@@ -52,7 +52,7 @@ public class FlipFitCustomerClientMenu {
         System.out.print("Enter your Weight: ");
         Double weight = in.nextDouble(); in.nextLine();
 
-        System.out.print("Enter your DOB: ");
+        System.out.print("Enter your DOB (dd-mm-yyyy): ");
         String dob = in.nextLine();
 
         customerService.editProfile(userId, address, name, phoneNumber, weight, age, gender, parseDate(dob));
