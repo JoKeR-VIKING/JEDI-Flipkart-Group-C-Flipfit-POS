@@ -20,7 +20,7 @@ public class FlipFitAdminService implements FlipFitAdminInterface {
     }
 
     public void viewGymDetails() {
-        for (FlipFitCentre centre: FlipFitGymOwnerDAOInst.Gyms) {
+        for (FlipFitCentre centre : FlipFitGymOwnerDAOInst.Gyms) {
             System.out.println("Centre ID: " + centre.getCentreId());
             System.out.println("Centre Name: " + centre.getCentreName());
             System.out.println("Centre Address: " + centre.getCentreAddress());

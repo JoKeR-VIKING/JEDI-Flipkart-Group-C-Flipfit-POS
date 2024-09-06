@@ -1,7 +1,5 @@
 package com.flipkart.bean;
 
-import com.flipkart.enums.RoleEnum;
-
 public abstract class FlipFitUser {
     private String userId;
     private String username;

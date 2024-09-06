@@ -2,8 +2,8 @@ package com.flipkart.dao;
 
 import com.flipkart.bean.FlipFitUser;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FlipFitUserDAOImpl implements FlipFitUserDAOInterface {
     public static FlipFitUserDAOImpl FlipFitUserDAOInst = new FlipFitUserDAOImpl();

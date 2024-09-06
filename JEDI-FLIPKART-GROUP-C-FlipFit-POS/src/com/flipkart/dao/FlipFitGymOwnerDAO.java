@@ -1,25 +1,26 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.FlipFitCenterSlot;
-import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.bean.FlipFitCentre;
+import com.flipkart.bean.FlipFitGymOwner;
+
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.ArrayList;
 
 import static com.flipkart.dao.FlipFitUserDAOImpl.FlipFitUserDAOInst;
 
 public class FlipFitGymOwnerDAO {
     public static FlipFitGymOwnerDAO FlipFitGymOwnerDAOInst = new FlipFitGymOwnerDAO();
 
-    public List<FlipFitGymOwner> GymOwners = Collections.emptyList();
-    public List<FlipFitCentre> Gyms = new ArrayList<>();
-    public List<FlipFitCenterSlot> slots = new ArrayList<>();
-
     static {
         refreshGymOwners();
     }
+
+    public List<FlipFitGymOwner> GymOwners = Collections.emptyList();
+    public List<FlipFitCentre> Gyms = new ArrayList<>();
+    public List<FlipFitCenterSlot> slots = new ArrayList<>();
 
     public static void refreshGymOwners() {
         FlipFitGymOwnerDAOInst.GymOwners = FlipFitUserDAOInst.USERS.stream()
@@ -59,9 +60,9 @@ public class FlipFitGymOwnerDAO {
 
     public List<FlipFitCentre> getRegisteredGymCentres(String userId) {
         return Gyms.stream()
-            .filter(centre -> centre.getVerified().equals("APPROVED"))
-            .filter(center -> center.getGymOwnerId().equals(userId))
-            .toList();
+                .filter(centre -> centre.getVerified().equals("APPROVED"))
+                .filter(center -> center.getGymOwnerId().equals(userId))
+                .toList();
     }
 
     public void addSlot(FlipFitCenterSlot slot) {
@@ -69,7 +70,7 @@ public class FlipFitGymOwnerDAO {
     }
 
     public void updateSlot(String slotId, LocalTime startTime, Integer noOfSeats) {
-        for(int i=0; i<slots.size(); i++) {
+        for (int i = 0; i < slots.size(); i++) {
             if (slots.get(i).getSlotId().equals(slotId)) {
                 slots.get(i).setStartTime(startTime);
                 slots.get(i).setSeatLimit(noOfSeats);
@@ -94,7 +95,7 @@ public class FlipFitGymOwnerDAO {
     }
 
     public boolean modifyGym(String ownerId, String gymId, String gymName, String gymAddress) {
-        for(int i=0; i<Gyms.size(); i++) {
+        for (int i = 0; i < Gyms.size(); i++) {
             if (Gyms.get(i).getCentreId().equals(gymId) && Gyms.get(i).getGymOwnerId().equals(ownerId)) {
                 Gyms.get(i).setCentreName(gymName);
                 Gyms.get(i).setCentreAddress(gymAddress);

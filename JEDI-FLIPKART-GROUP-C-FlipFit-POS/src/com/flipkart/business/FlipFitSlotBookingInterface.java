@@ -7,9 +7,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface FlipFitSlotBookingInterface {
-    public abstract void bookSlot(String userId, LocalDate bookingDate, FlipFitCenterSlot slot, String paymentId);
+    void bookSlot(String userId, LocalDate bookingDate, FlipFitCenterSlot slot, String paymentId);
 
-    public abstract List<FlipFitSlotBooking> listBookings(String userId);
+    List<FlipFitSlotBooking> listBookings(String userId);
 
-    public abstract void cancelBooking(String bookingId);
+    void cancelBooking(String bookingId);
 }

@@ -18,7 +18,7 @@ public class FlipFitApplicationMainClient {
     static FlipFitGymOwnerClientMenu flipFitGymOwnerClientMenu = new FlipFitGymOwnerClientMenu();
     static FlipFitAdminClientMenu flipFitAdminClientMenu = new FlipFitAdminClientMenu();
     static FlipFitGymOwnerService ownerService = new FlipFitGymOwnerService();
-    static FlipFitCustomerService customerService =new FlipFitCustomerService();
+    static FlipFitCustomerService customerService = new FlipFitCustomerService();
     static FlipFitUserService userService = new FlipFitUserService();
 
     public static void displayOptions() {
@@ -32,10 +32,10 @@ public class FlipFitApplicationMainClient {
 
     public static String authenticateUser(String username, String password) {
         String userId = userService.authenticate(username, password);
-        if(userId.equals("-1")) {
+        if (userId.equals("-1")) {
             redOutputLn("Invalid username");
             return null;
-        } else if(userId.equals("-2")) {
+        } else if (userId.equals("-2")) {
             redOutputLn("Invalid password");
             return null;
         }
@@ -62,7 +62,7 @@ public class FlipFitApplicationMainClient {
         int role = getChoice(3);
 
         String userId = authenticateUser(username, password);
-        if(userId == null) return;
+        if (userId == null) return;
 
         switch (role) {
             case 1 -> flipFitGymOwnerClientMenu.login(userId);
@@ -111,7 +111,7 @@ public class FlipFitApplicationMainClient {
         yellowOutputLn("2. Register as Customer");
 
         int role = getChoice(2);
-        RoleEnum roleEnum = RoleEnum.values()[role-1];
+        RoleEnum roleEnum = RoleEnum.values()[role - 1];
 
         switch (roleEnum) {
             case GYM_OWNER -> {
@@ -134,7 +134,8 @@ public class FlipFitApplicationMainClient {
                 String gender = in.nextLine();
 
                 System.out.print("Enter your Weight: ");
-                Double weight = in.nextDouble(); in.nextLine();
+                Double weight = in.nextDouble();
+                in.nextLine();
 
                 System.out.print("Enter your DOB: ");
                 String dob = in.nextLine();
@@ -157,7 +158,7 @@ public class FlipFitApplicationMainClient {
         String oldPassword = in.nextLine();
 
         String userId = authenticateUser(username, oldPassword);
-        if(userId == null) return;
+        if (userId == null) return;
 
         boolean flag = true;
         System.out.print("Enter new password: ");

@@ -1,6 +1,7 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.FlipFitCustomer;
+
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
@@ -9,11 +10,12 @@ import static com.flipkart.dao.FlipFitUserDAOImpl.FlipFitUserDAOInst;
 
 public class FlipFitCustomerDAO {
     public static FlipFitCustomerDAO FlipFitCustomerDAOInst = new FlipFitCustomerDAO();
-    public List<FlipFitCustomer> customers = Collections.emptyList();
 
     static {
         refreshCustomers();
     }
+
+    public List<FlipFitCustomer> customers = Collections.emptyList();
 
     public static void refreshCustomers() {
         FlipFitCustomerDAOInst.customers = FlipFitUserDAOInst.USERS.stream()

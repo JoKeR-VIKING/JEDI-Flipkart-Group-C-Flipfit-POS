@@ -13,11 +13,12 @@ import static com.flipkart.dao.FlipFitUserDAOImpl.FlipFitUserDAOInst;
 
 public class FlipFitAdminDAO {
     public static FlipFitAdminDAO FlipFitAdminDAOInst = new FlipFitAdminDAO();
-    public List<FlipFitAdmin> admins = Collections.emptyList();
 
     static {
         refreshAdmins();
     }
+
+    public List<FlipFitAdmin> admins = Collections.emptyList();
 
     public static void refreshAdmins() {
         FlipFitAdminDAOInst.admins = FlipFitUserDAOInst.USERS.stream()
