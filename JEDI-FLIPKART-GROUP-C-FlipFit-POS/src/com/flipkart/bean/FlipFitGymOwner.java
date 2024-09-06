@@ -1,7 +1,5 @@
 package com.flipkart.bean;
 
-import com.flipkart.enums.RoleEnum;
-
 public class FlipFitGymOwner extends FlipFitUser {
     private String gstNumber;
     private String panCardNumber;

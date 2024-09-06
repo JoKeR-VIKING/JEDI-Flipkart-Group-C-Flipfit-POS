@@ -1,6 +1,8 @@
 package com.flipkart.business;
 
-import com.flipkart.bean.*;
+import com.flipkart.bean.FlipFitCenterSlot;
+import com.flipkart.bean.FlipFitCentre;
+import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.utils.Helper;
 
 import java.time.LocalDate;

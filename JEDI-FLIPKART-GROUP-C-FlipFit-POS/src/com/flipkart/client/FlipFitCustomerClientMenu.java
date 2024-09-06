@@ -5,12 +5,13 @@ import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitPayments;
 import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.business.*;
-import com.flipkart.utils.Helper;
 import com.flipkart.utils.FlipFitTableUtil;
+import com.flipkart.utils.Helper;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
-import static com.flipkart.dao.FlipFitGymOwnerDAO.FlipFitGymOwnerDAOInst;
+
 import static com.flipkart.utils.FlipfitClientUtils.getChoice;
 import static com.flipkart.utils.Helper.*;
 
@@ -54,7 +55,8 @@ public class FlipFitCustomerClientMenu {
         String gender = in.nextLine();
 
         System.out.print("Enter your Weight: ");
-        Double weight = in.nextDouble(); in.nextLine();
+        Double weight = in.nextDouble();
+        in.nextLine();
 
         System.out.print("Enter your DOB (dd-mm-yyyy): ");
         String dob = in.nextLine();
@@ -107,7 +109,7 @@ public class FlipFitCustomerClientMenu {
         // get slot if exists
         FlipFitCenterSlot slot = ownerService.getSlot(slotId);
 
-        if(slot == null) {
+        if (slot == null) {
             System.out.println("slot is full/doesn't exist");
             return;
         }

@@ -2,9 +2,11 @@ package com.flipkart.utils;
 
 import com.flipkart.bean.*;
 import com.flipkart.enums.SlotBookingStatusEnum;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
+
 import static com.flipkart.dao.FlipFitAdminDAO.FlipFitAdminDAOInst;
 import static com.flipkart.dao.FlipFitCustomerDAO.FlipFitCustomerDAOInst;
 import static com.flipkart.dao.FlipFitGymOwnerDAO.FlipFitGymOwnerDAOInst;

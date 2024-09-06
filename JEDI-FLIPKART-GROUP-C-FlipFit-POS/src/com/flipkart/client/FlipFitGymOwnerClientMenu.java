@@ -5,7 +5,8 @@ import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.business.FlipFitGymOwnerService;
 import com.flipkart.utils.FlipFitTableUtil;
 
-import java.util.*;
+import java.util.List;
+import java.util.Scanner;
 
 import static com.flipkart.utils.FlipfitClientUtils.getChoice;
 import static com.flipkart.utils.Helper.*;
@@ -60,8 +61,7 @@ public class FlipFitGymOwnerClientMenu {
         boolean isSuccessful = ownerService.modifyGym(userId, gymId, gymName, gymAddress);
         if (isSuccessful) {
             System.out.println("Gym data modified successfully.");
-        }
-        else {
+        } else {
             System.out.println("Gym not found, enter correct gym id.");
         }
     }

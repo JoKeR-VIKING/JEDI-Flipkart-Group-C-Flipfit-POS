@@ -19,7 +19,7 @@ public class Helper {
         String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         StringBuilder sb = new StringBuilder(6);
 
-        for (int i=0;i<6;i++) {
+        for (int i = 0; i < 6; i++) {
             int randomIndex = RANDOM.nextInt(ALPHABET.length());
             sb.append(ALPHABET.charAt(randomIndex));
         }
