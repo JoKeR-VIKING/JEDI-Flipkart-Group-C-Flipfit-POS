@@ -15,7 +15,7 @@ public interface FlipFitGymOwnerInterface {
 
     public void removeGym(String centreId);
 
-    public List<FlipFitCentre> viewRegisteredGymCenters();
+    public List<FlipFitCentre> viewRegisteredGymCenters(String userId);
 
     public void addSlot(String slotId, String centreId, LocalTime startTime, Integer noOfSeats);
 

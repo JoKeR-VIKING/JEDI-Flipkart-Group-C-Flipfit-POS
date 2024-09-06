@@ -56,9 +56,10 @@ public class FlipFitGymOwnerDAO {
         Gyms.removeIf(centre -> centre.getCentreId().equals(centreId));
     }
 
-    public static List<FlipFitCentre> getRegisteredGymCentres() {
+    public static List<FlipFitCentre> getRegisteredGymCentres(String userId) {
         return Gyms.stream()
             .filter(centre -> centre.getVerified().equals("APPROVED"))
+            .filter(center -> center.getGymOwnerId().equals(userId))
             .toList();
     }
 

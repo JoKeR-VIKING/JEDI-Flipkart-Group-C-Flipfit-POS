@@ -32,8 +32,8 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     }
 
     @Override
-    public List<FlipFitCentre> viewRegisteredGymCenters() {
-        return FlipFitGymOwnerDAO.getRegisteredGymCentres();
+    public List<FlipFitCentre> viewRegisteredGymCenters(String userId) {
+        return FlipFitGymOwnerDAO.getRegisteredGymCentres(userId);
     }
 
     @Override
