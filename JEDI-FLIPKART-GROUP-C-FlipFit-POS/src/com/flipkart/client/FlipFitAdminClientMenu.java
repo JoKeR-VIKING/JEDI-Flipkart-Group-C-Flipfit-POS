@@ -3,6 +3,7 @@ package com.flipkart.client;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.business.FlipFitAdminService;
+import com.flipkart.dao.FlipFitGymOwnerDAO;
 import com.flipkart.utils.FlipfitClientUtils;
 
 import java.util.List;
@@ -80,11 +81,19 @@ public class FlipFitAdminClientMenu {
     }
 
     public void viewAllGymOwners() {
-        adminService.displayAllOwners();
+
+        List<FlipFitGymOwner> allOwners = adminService.displayAllOwners();
+        for(FlipFitGymOwner owner : allOwners) {
+            System.out.println("Owner ID: " + owner.getUserId());
+            System.out.println("Owner Name: " + owner.getName());
+            System.out.println("Owner Address: " + owner.getAddress());
+            System.out.println("Owner GST: " + owner.getGstNumber());
+            System.out.println("Owner verification status: " + owner.getVerified());
+        }
     }
 
     public void viewGymDetails() {
-//        adminService.viewGymDetails();
+        adminService.viewGymDetails();
     }
 
     public void userLogout() {
