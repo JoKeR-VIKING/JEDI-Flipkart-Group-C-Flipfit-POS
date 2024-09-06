@@ -2,6 +2,8 @@ package com.flipkart.business;
 
 import com.flipkart.bean.*;
 import com.flipkart.utils.Helper;
+
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -64,7 +66,8 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
         return FlipFitGymOwnerDAOInst.modifyGym(ownerId, gymId, gymName, gymAddress);
     }
 
-    public List<FlipFitCenterSlot> viewAvailableSlots(String gymId) {
+    public List<FlipFitCenterSlot> viewAvailableSlots(String gymId, LocalDate date) {
+        // TODO: what to do with date?
         return FlipFitGymOwnerDAOInst.getSlotsByGymId(gymId);
     }
 }

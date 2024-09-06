@@ -158,8 +158,7 @@ public class FlipFitGymOwnerClientMenu {
 
         greenOutputLn("Slots available are as follows:");
 
-        // TODO
-        // ownerService.viewAllAvailableSlots(gymId, date);
+        ownerService.viewAvailableSlots(gymId, parseDate(date));
     }
 
     public void viewAllBookings() {

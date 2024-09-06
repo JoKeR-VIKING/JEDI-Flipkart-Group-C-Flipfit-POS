@@ -85,7 +85,7 @@ public class FlipFitCustomerClientMenu {
         System.out.print("Enter the date of the slot: ");
         String date = in.nextLine();
 
-        List<FlipFitCenterSlot> slots = ownerService.viewAvailableSlots(gymId);
+        List<FlipFitCenterSlot> slots = ownerService.viewAvailableSlots(gymId, parseDate(date));
         for (FlipFitCenterSlot slot : slots) {
             System.out.println();
             System.out.println("Slot ID: " + slot.getSlotId());
