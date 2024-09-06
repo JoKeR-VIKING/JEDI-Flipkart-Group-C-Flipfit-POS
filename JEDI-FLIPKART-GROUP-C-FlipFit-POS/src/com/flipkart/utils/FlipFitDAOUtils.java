@@ -1,9 +1,6 @@
 package com.flipkart.utils;
 
-import com.flipkart.bean.FlipFitCenterSlot;
-import com.flipkart.bean.FlipFitCentre;
-import com.flipkart.bean.FlipFitCustomer;
-import com.flipkart.bean.FlipFitGymOwner;
+import com.flipkart.bean.*;
 import com.flipkart.dao.*;
 
 import java.time.LocalDate;
@@ -36,6 +33,9 @@ public class FlipFitDAOUtils {
         FlipFitGymOwnerDAO.createProfile(owner3);
         FlipFitGymOwnerDAO.createProfile(owner4);
         FlipFitGymOwnerDAO.createProfile(owner5);
+
+        FlipFitAdmin admin1 = new FlipFitAdmin("admin1", "admin1", "password1", "Admin User", "Admin Address", "9999999999");
+        FlipFitAdminDAO.add(admin1);
 
         FlipFitCentre centre1 = new FlipFitCentre("1", "FlipFit Centre 1", "123 Main St", "1", "APPROVED");
         FlipFitCentre centre2 = new FlipFitCentre("2", "FlipFit Centre 2", "456 Elm St", "2", "PENDING");

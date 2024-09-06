@@ -1,12 +1,32 @@
 package com.flipkart.dao;
 
+import com.flipkart.bean.FlipFitAdmin;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitGymOwner;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class FlipFitAdminDAO {
+    public static List<FlipFitAdmin> admins = Collections.emptyList();
+
+    static {
+        refreshAdmins();
+    }
+
+    public static void refreshAdmins() {
+        admins = FlipFitUserDAO.USERS.stream()
+                .filter(user -> (user instanceof FlipFitAdmin))
+                .map(user -> (FlipFitAdmin) user)
+                .toList();
+    }
+
+    public static void add(FlipFitAdmin admin) {
+        FlipFitUserDAO.add(admin);
+        refreshAdmins();
+    }
+
     public static void approveOwner(String gymOwnerId) {
         for (FlipFitGymOwner owner : FlipFitGymOwnerDAO.GymOwners) {
             if (!owner.getUserId().equals(gymOwnerId))

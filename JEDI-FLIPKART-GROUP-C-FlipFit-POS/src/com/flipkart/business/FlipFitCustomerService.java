@@ -18,3 +18,4 @@ public class FlipFitCustomerService implements FlipFitCustomerInterface {
         FlipFitCustomerDAO.editProfile(customerId, name, phone, address, weight, age, gender, dob);
     }
 }
+
