@@ -13,6 +13,9 @@ public class FlipFitSlotBooking {
     private Date bookingDate;
     private SlotBookingStatusEnum status;
 
+
+    private String paymentId;
+
     public int getBookingId() {
         return bookingId;
     }
@@ -60,6 +63,10 @@ public class FlipFitSlotBooking {
     public void setStatus(SlotBookingStatusEnum status) {
         this.status = status;
     }
+
+    public String getPaymentId() { return paymentId; }
+
+    public void setPaymentId(String paymentId) { this.paymentId = paymentId; }
 
     public void bookSlot() {
         // interact with DAO to let customers block slots
