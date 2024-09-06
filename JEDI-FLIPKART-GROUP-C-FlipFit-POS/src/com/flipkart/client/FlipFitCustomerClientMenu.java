@@ -131,7 +131,7 @@ public class FlipFitCustomerClientMenu {
             System.out.println("Bookings for userId: " + userId);
             for (FlipFitSlotBooking booking : bookings) {
                 System.out.println("Booking ID: " + booking.getBookingId());
-                System.out.println("Customer ID: " + booking.getUser());
+                System.out.println("Customer ID: " + booking.getUserId());
                 System.out.println("Gym ID: " + booking.getCenterSlot().getCentreId());
                 System.out.println("Booking Date: " + booking.getBookingDate());
                 System.out.println("Booking TimeSlot: " + booking.getSlotDate());
