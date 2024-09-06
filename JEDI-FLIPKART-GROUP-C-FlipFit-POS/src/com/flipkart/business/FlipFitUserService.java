@@ -1,17 +1,19 @@
 package com.flipkart.business;
 
 import com.flipkart.bean.FlipFitUser;
+import com.flipkart.enums.RoleEnum;
+import com.flipkart.exception.InvalidPasswordException;
 
 import static com.flipkart.dao.FlipFitUserDAOImpl.FlipFitUserDAOInst;
 
 public class FlipFitUserService {
-    public String authenticate(String username, String password) {
+    public FlipFitUser authenticate(String username, String password) throws InvalidPasswordException {
         FlipFitUser user = FlipFitUserDAOInst.findByUsername(username);
 
-        if (user == null) return "-1";
-        if (!user.getPassword().equals(password)) return "-2";
+        if (user == null) return null;
+        if (!user.getPassword().equals(password)) throw new InvalidPasswordException();
 
-        return user.getUserId();
+        return user;
     }
 
     public void changePassword(String userId, String pasword) {

@@ -5,6 +5,7 @@ CREATE TABLE `FlipFitUser` (
                                `name` varchar(90) NOT NULL,
                                `address` varchar(90) NOT NULL,
                                `phoneNumber` varchar(10) NOT NULL,
+                               `role` int NOT NULL,
                                PRIMARY KEY (`userId`),
                                UNIQUE (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -19,7 +20,7 @@ CREATE TABLE `FlipFitCustomer` (
                                    CONSTRAINT `customerId` FOREIGN KEY (`customerId`) REFERENCES `FlipFitUser` (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `FlipFItGymOwner` (
+CREATE TABLE `FlipFitGymOwner` (
                                    `ownerId` varchar(50) NOT NULL,
                                    `gstNumber` varchar(90) NOT NULL,
                                    `panCardNumber` varchar(45) NOT NULL,

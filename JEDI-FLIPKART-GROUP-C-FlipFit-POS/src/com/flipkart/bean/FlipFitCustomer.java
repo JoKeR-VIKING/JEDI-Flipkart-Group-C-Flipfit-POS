@@ -1,5 +1,7 @@
 package com.flipkart.bean;
 
+import com.flipkart.enums.RoleEnum;
+
 import java.time.LocalDate;
 
 public class FlipFitCustomer extends FlipFitUser {
@@ -9,7 +11,7 @@ public class FlipFitCustomer extends FlipFitUser {
     private LocalDate dob;
 
     public FlipFitCustomer(String id, String username, String password, String name, String address, String phoneNumber, Double weight, Integer age, String gender, LocalDate dob) {
-        super(id, username, password, name, address, phoneNumber);
+        super(id, username, password, name, address, phoneNumber, RoleEnum.CUSTOMER);
         this.weight = weight;
         this.age = age;
         this.gender = gender;

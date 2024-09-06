@@ -1,12 +1,14 @@
 package com.flipkart.bean;
 
+import com.flipkart.enums.RoleEnum;
+
 public class FlipFitGymOwner extends FlipFitUser {
     private String gstNumber;
     private String panCardNumber;
     private String verified;
 
     public FlipFitGymOwner(String id, String username, String password, String name, String address, String phoneNumber, String gstNumber, String panCardNumber) {
-        super(id, username, password, name, address, phoneNumber);
+        super(id, username, password, name, address, phoneNumber, RoleEnum.GYM_OWNER);
         this.gstNumber = gstNumber;
         this.panCardNumber = panCardNumber;
         this.verified = "PENDING";

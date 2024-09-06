@@ -4,15 +4,6 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="646390c8-65f8-43cc-839c-78cd3852006c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/bean/FlipFitSlotBooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/bean/FlipFitSlotBooking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitSlotBookingInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitSlotBookingInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitSlotBookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/business/FlipFitSlotBookingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/client/FlipFitCustomerClientMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/client/FlipFitCustomerClientMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/dao/FlipFitSlotBookingDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/dao/FlipFitSlotBookingDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/utils/FlipFitDAOUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/utils/FlipFitDAOUtils.java" afterDir="false" />
-    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

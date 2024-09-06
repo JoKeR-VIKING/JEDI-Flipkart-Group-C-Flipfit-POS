@@ -1,11 +1,14 @@
 package com.flipkart.client;
 
+import com.flipkart.bean.FlipFitUser;
 import com.flipkart.business.FlipFitCustomerService;
 import com.flipkart.business.FlipFitGymOwnerService;
 import com.flipkart.business.FlipFitUserService;
 import com.flipkart.enums.RoleEnum;
+import com.flipkart.exception.InvalidPasswordException;
 import com.flipkart.utils.FlipFitDAOUtils;
 
+import javax.management.relation.Role;
 import java.util.Scanner;
 
 import static com.flipkart.utils.FlipfitClientUtils.getChoice;
@@ -30,17 +33,20 @@ public class FlipFitApplicationMainClient {
         redOutputLn("4. Exit");
     }
 
-    public static String authenticateUser(String username, String password) {
-        String userId = userService.authenticate(username, password);
-        if (userId.equals("-1")) {
-            redOutputLn("Invalid username");
-            return null;
-        } else if (userId.equals("-2")) {
+    public static FlipFitUser authenticateUser(String username, String password) {
+        try {
+            FlipFitUser user = userService.authenticate(username, password);
+
+            if(user == null) {
+                redOutputLn("Invalid username");
+                return null;
+            }
+
+            return user;
+        } catch (InvalidPasswordException e) {
             redOutputLn("Invalid password");
             return null;
         }
-
-        return userId;
     }
 
     public static void login() {
@@ -53,21 +59,13 @@ public class FlipFitApplicationMainClient {
         System.out.print("Enter your Password: ");
         String password = in.nextLine();
 
-        System.out.println();
+        FlipFitUser user = authenticateUser(username, password);
+        if (user == null) return;
 
-        yellowOutputLn("1. Gym Owner");
-        yellowOutputLn("2. Customer");
-        yellowOutputLn("3. Admin");
-
-        int role = getChoice(3);
-
-        String userId = authenticateUser(username, password);
-        if (userId == null) return;
-
-        switch (role) {
-            case 1 -> flipFitGymOwnerClientMenu.login(userId);
-            case 2 -> flipFitCustomerClientMenu.login(userId);
-            case 3 -> flipFitAdminClientMenu.login(userId);
+        switch (user.getRole()) {
+            case GYM_OWNER -> flipFitGymOwnerClientMenu.login(user.getUserId());
+            case CUSTOMER -> flipFitCustomerClientMenu.login(user.getUserId());
+            case ADMIN -> flipFitAdminClientMenu.login(user.getUserId());
             default -> redOutputLn("Invalid choice");
         }
     }
@@ -157,8 +155,8 @@ public class FlipFitApplicationMainClient {
         System.out.print("Enter your old password: ");
         String oldPassword = in.nextLine();
 
-        String userId = authenticateUser(username, oldPassword);
-        if (userId == null) return;
+        FlipFitUser user = authenticateUser(username, oldPassword);
+        if (user == null) return;
 
         boolean flag = true;
         System.out.print("Enter new password: ");
@@ -176,12 +174,13 @@ public class FlipFitApplicationMainClient {
             }
         } while (flag);
 
-        userService.changePassword(userId, newPassword);
+        userService.changePassword(user.getUserId(), newPassword);
         greenOutputLn("Password changed!");
     }
 
     public static void main(String[] args) {
-        FlipFitDAOUtils.initMockData();
+        // TODO: remove
+//        FlipFitDAOUtils.initMockData();
 
         boldOutputLn("\n-------- Welcome to FlipFit Application --------");
 
