@@ -14,7 +14,7 @@ public interface FlipFitGymOwnerInterface {
 
     public void addGym(String centreName, String centreAddress, String gymOwnerId);
 
-    public void removeGym(String centreId);
+    public void removeGym(String removeGym, String centreId);
 
     public List<FlipFitCentre> viewRegisteredGymCenters(String userId);
 

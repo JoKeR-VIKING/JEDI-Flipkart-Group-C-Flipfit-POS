@@ -47,7 +47,7 @@ public class FlipFitGymOwnerClientMenu {
         ownerService.addGym(gymName, gymAddress, userId);
     }
 
-    private void modifyGym() {
+    private void modifyGym(String userId) {
         System.out.print("Enter ID of Gym to modify: ");
         String gymId = scanner.nextLine();
 
@@ -57,15 +57,20 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter Gym Address: ");
         String gymAddress = scanner.nextLine();
 
-        // TODO
-        // ownerService.modifyGym(gymId, gymName, gymAddress);
+        boolean isSuccessful = ownerService.modifyGym(userId, gymId, gymName, gymAddress);
+        if (isSuccessful) {
+            System.out.println("Gym data modified successfully.");
+        }
+        else {
+            System.out.println("Gym not found, enter correct gym id.");
+        }
     }
 
-    private void removeGym() {
+    private void removeGym(String ownerId) {
         System.out.print("Enter ID of Gym to remove: ");
         String gymId = scanner.nextLine();
 
-        ownerService.removeGym(gymId);
+        ownerService.removeGym(ownerId, gymId);
     }
 
     public void viewGyms(String userId) {
@@ -193,8 +198,8 @@ public class FlipFitGymOwnerClientMenu {
             int choice = getChoice(TOTAL_OPTIONS);
             switch (choice) {
                 case 1 -> addGym(userId);
-                case 2 -> modifyGym();
-                case 3 -> removeGym();
+                case 2 -> modifyGym(userId);
+                case 3 -> removeGym(userId);
                 case 4 -> viewGyms(userId);
 
                 case 5 -> addSlot();

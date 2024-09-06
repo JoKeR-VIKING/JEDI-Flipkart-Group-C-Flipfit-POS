@@ -26,8 +26,8 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     }
 
     @Override
-    public void removeGym(String centreId) {
-        FlipFitGymOwnerDAOInst.removeGym(centreId);
+    public void removeGym(String ownerId, String centreId) {
+        FlipFitGymOwnerDAOInst.removeGym(ownerId, centreId);
     }
 
     @Override
@@ -58,5 +58,13 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     @Override
     public List<FlipFitCenterSlot> viewAllSlots(String centreId) {
         return FlipFitGymOwnerDAOInst.getSlotsByGymId(centreId);
+    }
+
+    public boolean modifyGym(String ownerId, String gymId, String gymName, String gymAddress) {
+        return FlipFitGymOwnerDAOInst.modifyGym(ownerId, gymId, gymName, gymAddress);
+    }
+
+    public List<FlipFitCenterSlot> viewAvailableSlots(String gymId) {
+        return FlipFitGymOwnerDAOInst.getSlotsByGymId(gymId);
     }
 }
