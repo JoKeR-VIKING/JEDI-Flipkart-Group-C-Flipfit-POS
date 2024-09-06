@@ -120,11 +120,14 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter Slot ID: ");
         String slotId = scanner.nextLine();
 
-        System.out.println("Enter Details for updation");
-        String details = scanner.nextLine();
+        System.out.println("Enter start time: ");
+        String startTime = scanner.nextLine();
 
-        // TODO
-        // ownerService.updateSlot(gymId, slotId, details);
+        System.out.println("Enter no of seats: ");
+        int noOfSeats = scanner.nextInt();
+
+        ownerService.updateSlot(slotId, parseHourMinute(startTime), noOfSeats);
+        System.out.println("Slot details updated!");
     }
 
     public void viewAllSlots() {

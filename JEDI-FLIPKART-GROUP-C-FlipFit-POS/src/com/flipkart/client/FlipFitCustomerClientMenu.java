@@ -78,7 +78,6 @@ public class FlipFitCustomerClientMenu {
         greenOutputLn("All gyms viewed");
     }
 
-    // TODO? no service method
     private void viewAvailableSlots() {
         System.out.print("Enter the id of the gym for which you want to view the available slots: ");
         String gymId = in.nextLine();
