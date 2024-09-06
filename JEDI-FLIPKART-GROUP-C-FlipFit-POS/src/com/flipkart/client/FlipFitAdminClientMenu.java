@@ -1,8 +1,11 @@
 package com.flipkart.client;
 
+import com.flipkart.bean.FlipFitCentre;
+import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.business.FlipFitAdminService;
 import com.flipkart.utils.FlipfitClientUtils;
 
+import java.util.List;
 import java.util.Scanner;
 
 import static com.flipkart.utils.Helper.*;
@@ -31,63 +34,71 @@ public class FlipFitAdminClientMenu {
     }
 
     public void viewPendingCentre() {
-        //adminService.viewPendingCenter();
+        List<FlipFitCentre> centres = adminService.displayPendingCentres();
+
+        for (FlipFitCentre centre : centres) {
+            System.out.println("Centre ID: " + centre.getCentreId());
+            System.out.println("Centre Name: " + centre.getCentreName());
+            System.out.println("Centre Address: " + centre.getCentreAddress());
+            System.out.println("Centre Owner: " + centre.getGymOwner());
+        }
     }
 
     public void viewPendingOwner() {
-        //adminService.viewPendingOwner();
+        List<FlipFitGymOwner> owners = adminService.displayPendingOwners();
+
+        for (FlipFitGymOwner owner : owners) {
+            System.out.println("Owner ID: " + owner.getUserId());
+            System.out.println("Owner Name: " + owner.getName());
+            System.out.println("Owner Address: " + owner.getAddress());
+            System.out.println("Owner GST: " + owner.getGstNumber());
+        }
     }
 
-    public void approveCentre(int gymId) {
-        //adminService.approveGymRequests(gymId);
+    public void approveCentre(String gymId) {
+        adminService.approveGym(gymId);
     }
 
-    public void approveOwner(int ownerId) {
-        //adminService.approveGymOwnerRequests(ownerId);
+    public void approveOwner(String ownerId) {
+        adminService.approveOwner(ownerId);
     }
 
-    public void rejectCentre(int gymId) {
-        //adminService.rejectGymRequests(gymId);
+    public void rejectCentre(String gymId) {
+        adminService.rejectGym(gymId);
     }
 
-    public void rejectOwner(int ownerId) {
-        //adminService.rejectGymOwnerRequests(ownerId);
+    public void rejectOwner(String ownerId) {
+        adminService.rejectOwner(ownerId);
     }
 
-    public void removeCentre(int GymId) {
-        //adminService.removeGym(GymId);
+    public void removeCentre(String GymId) {
+        adminService.removeGym(GymId);
     }
 
-    public void removeOwner(int ownerId) {
-        //adminService.removeGymOwner(ownerId);
+    public void removeOwner(String ownerId) {
+        adminService.rejectOwner(ownerId);
     }
 
     public void viewAllGymOwners() {
-        //adminService.viewAllGymOwners();
+        adminService.displayAllOwners();
     }
 
     public void viewGymDetails() {
-        //adminService.viewGymDetails();
+//        adminService.viewGymDetails();
     }
 
     public void userLogout() {
         redOutputLn("Logged out");
     }
 
-    public int takeGymIdInput() {
+    public String takeGymIdInput() {
         System.out.print("Select Gym Id: ");
-        int gymId = in.nextInt();
-        in.nextLine();
-
-        return gymId;
+        return in.nextLine();
     }
 
-    public int takeGymOwnerId() {
+    public String takeGymOwnerId() {
         System.out.print("Select Gym Owner Id: ");
-        int userId = in.nextInt();
-        in.nextLine();
-
-        return userId;
+        return in.nextLine();
     }
 
     public void login(String userId) {

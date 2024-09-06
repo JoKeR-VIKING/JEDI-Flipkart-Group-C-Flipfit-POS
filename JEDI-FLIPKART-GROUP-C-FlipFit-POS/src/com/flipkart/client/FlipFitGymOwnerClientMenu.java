@@ -69,8 +69,8 @@ public class FlipFitGymOwnerClientMenu {
         ownerService.removeGym(gymId);
     }
 
-    public void viewGyms() {
-        List<FlipFitCentre> centres = ownerService.viewRegisteredGymCenters();
+    public void viewGyms(String userId) {
+        List<FlipFitCentre> centres = ownerService.viewRegisteredGymCenters(userId);
         for (FlipFitCentre centre : centres) {
             System.out.println("Gym ID: " + centre.getCentreId());
             System.out.println("Gym Name: " + centre.getCentreName());
@@ -124,8 +124,15 @@ public class FlipFitGymOwnerClientMenu {
 
         System.out.println("Gym Slots:");
 
-        // TODO
-        // List<FlipFitCenterSlot> slots = ownerService.viewAllSlots(gymId);
+         List<FlipFitCenterSlot> slots = ownerService.viewAllSlots(gymId);
+
+        for (FlipFitCenterSlot slot : slots) {
+            System.out.println();
+            System.out.println("Slot ID: " + slot.getSlotId());
+            System.out.println("Slot Center ID: " + slot.getCentreId());
+            System.out.println("Slot Start Time: " + slot.getStartTime());
+            System.out.println("Slot Seat Limit: " + slot.getSeatLimit());
+        }
     }
 
     public void viewAvailableSlots() {
@@ -182,7 +189,7 @@ public class FlipFitGymOwnerClientMenu {
                 case 1 -> addGym(userId);
                 case 2 -> modifyGym();
                 case 3 -> removeGym();
-                case 4 -> viewGyms();
+                case 4 -> viewGyms(userId);
 
                 case 5 -> addSlot();
                 case 6 -> removeSlot();

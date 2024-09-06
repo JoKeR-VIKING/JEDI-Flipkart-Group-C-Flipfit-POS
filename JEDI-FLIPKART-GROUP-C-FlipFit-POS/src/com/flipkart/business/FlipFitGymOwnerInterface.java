@@ -1,5 +1,6 @@
 package com.flipkart.business;
 
+import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitSlotBooking;
 
@@ -15,7 +16,7 @@ public interface FlipFitGymOwnerInterface {
 
     public void removeGym(String centreId);
 
-    public List<FlipFitCentre> viewRegisteredGymCenters();
+    public List<FlipFitCentre> viewRegisteredGymCenters(String userId);
 
     public void addSlot(String slotId, String centreId, LocalTime startTime, Integer noOfSeats);
 
@@ -23,7 +24,7 @@ public interface FlipFitGymOwnerInterface {
 
     public void updateSlot(String centreId, LocalTime startTime, Integer noOfSeats);
 
-    public List<FlipFitSlotBooking> viewAllSlots(String centreId);
+    public List<FlipFitCenterSlot> viewAllSlots(String centreId);
 
     public List<FlipFitSlotBooking> viewAllAvailableSlots(String centreId);
 }

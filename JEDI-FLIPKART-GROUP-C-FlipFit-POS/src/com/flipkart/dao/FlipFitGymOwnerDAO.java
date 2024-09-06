@@ -56,9 +56,10 @@ public class FlipFitGymOwnerDAO {
         Gyms.removeIf(centre -> centre.getCentreId().equals(centreId));
     }
 
-    public static List<FlipFitCentre> getRegisteredGymCentres() {
+    public static List<FlipFitCentre> getRegisteredGymCentres(String userId) {
         return Gyms.stream()
             .filter(centre -> centre.getVerified().equals("APPROVED"))
+            .filter(center -> center.getGymOwnerId().equals(userId))
             .toList();
     }
 
@@ -73,6 +74,12 @@ public class FlipFitGymOwnerDAO {
                 slots.get(i).setSeatLimit(noOfSeats);
             }
         }
+    }
+
+    public static List<FlipFitCenterSlot> getSlotsByGymId(String gymId) {
+        return slots.stream()
+                .filter(slot -> slot.getCentreId().equals(gymId))
+                .toList();
     }
 
     public static void deleteSlot(String slotId) {
