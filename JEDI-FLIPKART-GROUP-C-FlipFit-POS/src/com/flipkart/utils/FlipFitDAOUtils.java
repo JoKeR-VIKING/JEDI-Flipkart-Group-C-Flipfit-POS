@@ -1,12 +1,14 @@
 package com.flipkart.utils;
 
 import com.flipkart.bean.*;
-import com.flipkart.dao.*;
 import com.flipkart.enums.SlotBookingStatusEnum;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
+import static com.flipkart.dao.FlipFitAdminDAO.FlipFitAdminDAOInst;
+import static com.flipkart.dao.FlipFitCustomerDAO.FlipFitCustomerDAOInst;
+import static com.flipkart.dao.FlipFitGymOwnerDAO.FlipFitGymOwnerDAOInst;
+import static com.flipkart.dao.FlipFitSlotBookingDAO.FlipFitSlotBookingDAOInst;
 
 public class FlipFitDAOUtils {
     public static void initMockData() {
@@ -17,11 +19,11 @@ public class FlipFitDAOUtils {
         FlipFitCustomer customer4 = new FlipFitCustomer(Helper.generateId(), "user4", "password4", "Emily Brown", "101 Pine St", "4444444444", 70.0, 28, "Female", LocalDate.of(1996, 3, 5));
         FlipFitCustomer customer5 = new FlipFitCustomer(Helper.generateId(), "user5", "password5", "Alex Johnson", "202 Maple St", "3333333333", 72.0, 32, "Male", LocalDate.of(1992, 7, 18));
 
-        FlipFitCustomerDAO.createProfile(customer1);
-        FlipFitCustomerDAO.createProfile(customer2);
-        FlipFitCustomerDAO.createProfile(customer3);
-        FlipFitCustomerDAO.createProfile(customer4);
-        FlipFitCustomerDAO.createProfile(customer5);
+        FlipFitCustomerDAOInst.createProfile(customer1);
+        FlipFitCustomerDAOInst.createProfile(customer2);
+        FlipFitCustomerDAOInst.createProfile(customer3);
+        FlipFitCustomerDAOInst.createProfile(customer4);
+        FlipFitCustomerDAOInst.createProfile(customer5);
 
         // FlipFitGymOwnerDAO
         FlipFitGymOwner owner1 = new FlipFitGymOwner("1", "owner1", "password1", "John Smith", "123 Main St", "1234567890", "GST123456789", "PAN123456789");
@@ -30,11 +32,11 @@ public class FlipFitDAOUtils {
         FlipFitGymOwner owner4 = new FlipFitGymOwner("4", "owner4", "password4", "Emily Brown", "101 Pine St", "4444444444", "GST456789012", "PAN456789012");
         FlipFitGymOwner owner5 = new FlipFitGymOwner("5", "owner5", "password5", "Alex Johnson", "202 Maple St", "3333333333", "GST567890123", "PAN567890123");
 
-        FlipFitGymOwnerDAO.createProfile(owner1);
-        FlipFitGymOwnerDAO.createProfile(owner2);
-        FlipFitGymOwnerDAO.createProfile(owner3);
-        FlipFitGymOwnerDAO.createProfile(owner4);
-        FlipFitGymOwnerDAO.createProfile(owner5);
+        FlipFitGymOwnerDAOInst.createProfile(owner1);
+        FlipFitGymOwnerDAOInst.createProfile(owner2);
+        FlipFitGymOwnerDAOInst.createProfile(owner3);
+        FlipFitGymOwnerDAOInst.createProfile(owner4);
+        FlipFitGymOwnerDAOInst.createProfile(owner5);
 
         FlipFitCentre centre1 = new FlipFitCentre("1", "FlipFit Centre 1", "123 Main St", "1", "APPROVED");
         FlipFitCentre centre2 = new FlipFitCentre("2", "FlipFit Centre 2", "456 Elm St", "2", "PENDING");
@@ -42,11 +44,11 @@ public class FlipFitDAOUtils {
         FlipFitCentre centre4 = new FlipFitCentre("4", "FlipFit Centre 4", "101 Pine St", "4", "APPROVED");
         FlipFitCentre centre5 = new FlipFitCentre("5", "FlipFit Centre 5", "202 Maple St", "5", "REJECTED");
 
-        FlipFitGymOwnerDAO.addGym(centre1);
-        FlipFitGymOwnerDAO.addGym(centre2);
-        FlipFitGymOwnerDAO.addGym(centre3);
-        FlipFitGymOwnerDAO.addGym(centre4);
-        FlipFitGymOwnerDAO.addGym(centre5);
+        FlipFitGymOwnerDAOInst.addGym(centre1);
+        FlipFitGymOwnerDAOInst.addGym(centre2);
+        FlipFitGymOwnerDAOInst.addGym(centre3);
+        FlipFitGymOwnerDAOInst.addGym(centre4);
+        FlipFitGymOwnerDAOInst.addGym(centre5);
 
         FlipFitCenterSlot slot1 = new FlipFitCenterSlot("1", "1", LocalTime.of(9, 0), 10);
         FlipFitCenterSlot slot2 = new FlipFitCenterSlot("2", "1", LocalTime.of(10, 0), 15);
@@ -54,15 +56,15 @@ public class FlipFitDAOUtils {
         FlipFitCenterSlot slot4 = new FlipFitCenterSlot("4", "2", LocalTime.of(12, 0), 12);
         FlipFitCenterSlot slot5 = new FlipFitCenterSlot("5", "3", LocalTime.of(13, 0), 10);
 
-        FlipFitGymOwnerDAO.addSlot(slot1);
-        FlipFitGymOwnerDAO.addSlot(slot2);
-        FlipFitGymOwnerDAO.addSlot(slot3);
-        FlipFitGymOwnerDAO.addSlot(slot4);
-        FlipFitGymOwnerDAO.addSlot(slot5);
+        FlipFitGymOwnerDAOInst.addSlot(slot1);
+        FlipFitGymOwnerDAOInst.addSlot(slot2);
+        FlipFitGymOwnerDAOInst.addSlot(slot3);
+        FlipFitGymOwnerDAOInst.addSlot(slot4);
+        FlipFitGymOwnerDAOInst.addSlot(slot5);
 
         // FlipFitSlotBookingDAO
         FlipFitAdmin admin1 = new FlipFitAdmin("admin1", "admin1", "password1", "Admin User", "Admin Address", "9999999999");
-        FlipFitAdminDAO.add(admin1);
+        FlipFitAdminDAOInst.add(admin1);
 
         // FlipFitSlotBookingDAO
         FlipFitPayments payment1 = new FlipFitPayments("1", "1", 100.0, LocalDate.now(), "Success");
@@ -71,11 +73,11 @@ public class FlipFitDAOUtils {
         FlipFitPayments payment4 = new FlipFitPayments("4", "4", 75.0, LocalDate.now(), "Success");
         FlipFitPayments payment5 = new FlipFitPayments("5", "5", 120.0, LocalDate.now(), "Success");
 
-        FlipFitSlotBookingDAO.addPayment(payment1);
-        FlipFitSlotBookingDAO.addPayment(payment2);
-        FlipFitSlotBookingDAO.addPayment(payment3);
-        FlipFitSlotBookingDAO.addPayment(payment4);
-        FlipFitSlotBookingDAO.addPayment(payment5);
+        FlipFitSlotBookingDAOInst.addPayment(payment1);
+        FlipFitSlotBookingDAOInst.addPayment(payment2);
+        FlipFitSlotBookingDAOInst.addPayment(payment3);
+        FlipFitSlotBookingDAOInst.addPayment(payment4);
+        FlipFitSlotBookingDAOInst.addPayment(payment5);
 
         FlipFitSlotBooking booking1 = new FlipFitSlotBooking("1", "1", slot1.getSlotId(), LocalDate.now(), new Date(), SlotBookingStatusEnum.CONFIRMED, payment1.getPaymentId());
         FlipFitSlotBooking booking2 = new FlipFitSlotBooking("2", "2", slot2.getSlotId(), LocalDate.now(), new Date(), SlotBookingStatusEnum.CONFIRMED, payment2.getPaymentId());
@@ -83,10 +85,10 @@ public class FlipFitDAOUtils {
         FlipFitSlotBooking booking4 = new FlipFitSlotBooking("4", "4", slot4.getSlotId(), LocalDate.now(), new Date(), SlotBookingStatusEnum.CONFIRMED, payment4.getPaymentId());
         FlipFitSlotBooking booking5 = new FlipFitSlotBooking("5", "5", slot5.getSlotId(), LocalDate.now(), new Date(), SlotBookingStatusEnum.CONFIRMED, payment5.getPaymentId());
 
-        FlipFitSlotBookingDAO.addBooking(booking1);
-        FlipFitSlotBookingDAO.addBooking(booking2);
-        FlipFitSlotBookingDAO.addBooking(booking3);
-        FlipFitSlotBookingDAO.addBooking(booking4);
-        FlipFitSlotBookingDAO.addBooking(booking5);
+        FlipFitSlotBookingDAOInst.addBooking(booking1);
+        FlipFitSlotBookingDAOInst.addBooking(booking2);
+        FlipFitSlotBookingDAOInst.addBooking(booking3);
+        FlipFitSlotBookingDAOInst.addBooking(booking4);
+        FlipFitSlotBookingDAOInst.addBooking(booking5);
     }
 }
