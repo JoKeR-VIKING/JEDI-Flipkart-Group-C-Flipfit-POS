@@ -5,15 +5,12 @@ import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitPayments;
 import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.business.*;
-import com.flipkart.dao.FlipFitGymOwnerDAO;
 import com.flipkart.utils.Helper;
-import com.flipkart.utils.FlipFitDAOUtils;
 import com.flipkart.utils.FlipFitTableUtil;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
-
+import static com.flipkart.dao.FlipFitGymOwnerDAO.FlipFitGymOwnerDAOInst;
 import static com.flipkart.utils.FlipfitClientUtils.getChoice;
 import static com.flipkart.utils.Helper.*;
 
@@ -89,7 +86,7 @@ public class FlipFitCustomerClientMenu {
         System.out.print("Enter the date of the slot: ");
         String date = in.nextLine();
 
-        List<FlipFitCenterSlot> slots = FlipFitGymOwnerDAO.getSlotsByGymId(gymId);
+        List<FlipFitCenterSlot> slots = FlipFitGymOwnerDAOInst.getSlotsByGymId(gymId);
         for (FlipFitCenterSlot slot : slots) {
             System.out.println();
             System.out.println("Slot ID: " + slot.getSlotId());

@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class FlipFitUserDAOImpl implements FlipFitUserDAOInterface {
-    public static List<FlipFitUser> USERS = new ArrayList<>();
+    public static FlipFitUserDAOImpl FlipFitUserDAOInst = new FlipFitUserDAOImpl();
+
+    public List<FlipFitUser> USERS = new ArrayList<>();
 
     public FlipFitUser findByUsername(String username) {
         return USERS.stream()
