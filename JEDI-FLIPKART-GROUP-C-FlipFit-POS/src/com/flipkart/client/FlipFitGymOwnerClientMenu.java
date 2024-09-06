@@ -69,8 +69,8 @@ public class FlipFitGymOwnerClientMenu {
         ownerService.removeGym(gymId);
     }
 
-    public void viewGyms() {
-        List<FlipFitCentre> centres = ownerService.viewRegisteredGymCenters();
+    public void viewGyms(String userId) {
+        List<FlipFitCentre> centres = ownerService.viewRegisteredGymCenters(userId);
         for (FlipFitCentre centre : centres) {
             System.out.println("Gym ID: " + centre.getCentreId());
             System.out.println("Gym Name: " + centre.getCentreName());
@@ -189,7 +189,7 @@ public class FlipFitGymOwnerClientMenu {
                 case 1 -> addGym(userId);
                 case 2 -> modifyGym();
                 case 3 -> removeGym();
-                case 4 -> viewGyms();
+                case 4 -> viewGyms(userId);
 
                 case 5 -> addSlot();
                 case 6 -> removeSlot();
