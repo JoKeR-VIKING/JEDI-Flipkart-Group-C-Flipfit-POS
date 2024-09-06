@@ -124,8 +124,15 @@ public class FlipFitGymOwnerClientMenu {
 
         System.out.println("Gym Slots:");
 
-        // TODO
-        // List<FlipFitCenterSlot> slots = ownerService.viewAllSlots(gymId);
+         List<FlipFitCenterSlot> slots = ownerService.viewAllSlots(gymId);
+
+        for (FlipFitCenterSlot slot : slots) {
+            System.out.println();
+            System.out.println("Slot ID: " + slot.getSlotId());
+            System.out.println("Slot Center ID: " + slot.getCentreId());
+            System.out.println("Slot Start Time: " + slot.getStartTime());
+            System.out.println("Slot Seat Limit: " + slot.getSeatLimit());
+        }
     }
 
     public void viewAvailableSlots() {

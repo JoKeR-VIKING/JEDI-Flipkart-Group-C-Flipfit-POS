@@ -75,6 +75,12 @@ public class FlipFitGymOwnerDAO {
         }
     }
 
+    public static List<FlipFitCenterSlot> getSlotsByGymId(String gymId) {
+        return slots.stream()
+                .filter(slot -> slot.getCentreId().equals(gymId))
+                .toList();
+    }
+
     public static void deleteSlot(String slotId) {
         slots.removeIf(slot -> slot.getSlotId().equals(slotId));
     }

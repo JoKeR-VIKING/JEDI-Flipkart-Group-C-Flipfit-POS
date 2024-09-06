@@ -53,8 +53,8 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     }
 
     @Override
-    public List<FlipFitSlotBooking> viewAllSlots(String centreId) {
-        return new ArrayList<>();
+    public List<FlipFitCenterSlot> viewAllSlots(String centreId) {
+        return FlipFitGymOwnerDAO.getSlotsByGymId(centreId);
     }
 
     @Override
