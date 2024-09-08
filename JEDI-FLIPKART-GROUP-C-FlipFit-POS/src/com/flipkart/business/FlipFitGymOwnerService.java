@@ -11,6 +11,8 @@ import java.util.List;
 
 import static com.flipkart.dao.FlipFitCenterSlotDAOImpl.FlipFitCenterSlotDAOInst;
 import static com.flipkart.dao.FlipFitGymOwnerDAOImpl.FlipFitGymOwnerDAOInst;
+import static com.flipkart.dao.FlipFitCentreDAOImpl.FlipFitCentreDAOInst;
+import static com.flipkart.dao.FlipFitCentreSlotDAOImpl.FlipFitCentreSlotInst;
 
 public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     @Override
@@ -27,17 +29,17 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     @Override
     public void addGym(String centreName, String centreAddress, String gymOwnerId) {
         FlipFitCentre centre = new FlipFitCentre(Helper.generateId(), centreName, centreAddress, gymOwnerId);
-        FlipFitGymOwnerDAOInst.addGym(centre);
+        FlipFitCentreDAOInst.addGym(centre);
     }
 
     @Override
-    public void removeGym(String ownerId, String centreId) {
-        FlipFitGymOwnerDAOInst.removeGym(ownerId, centreId);
+    public void removeGym(String gymOwnerId, String centreId) {
+        FlipFitCentreDAOInst.removeGym(gymOwnerId, centreId);
     }
 
     @Override
     public List<FlipFitCentre> viewRegisteredGymCenters(String userId) {
-        return FlipFitGymOwnerDAOInst.getRegisteredGymCentres(userId);
+        return FlipFitCentreDAOInst.getRegisteredGymCentres(userId);
     }
 
     @Override
@@ -53,7 +55,9 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
 
     @Override
     public void updateSlot(String slotId, LocalTime startTime, Integer noOfSeats) {
-        FlipFitCenterSlotDAOInst.updateSlot(slotId, startTime, noOfSeats);
+    }
+
+    public FlipFitCenterSlot getSlot(String slotId) {
     }
 
     public FlipFitCenterSlot getSlot(String slotId) {
@@ -65,12 +69,13 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
         return FlipFitCenterSlotDAOInst.getSlotsByGymId(centreId);
     }
 
+    @Override
     public boolean modifyGym(String ownerId, String gymId, String gymName, String gymAddress) {
-        return FlipFitGymOwnerDAOInst.modifyGym(ownerId, gymId, gymName, gymAddress);
+        return FlipFitCentreDAOInst.modifyGym(ownerId, gymId, gymName, gymAddress);
     }
 
+    @Override
     public List<FlipFitCenterSlot> viewAvailableSlots(String gymId, LocalDate date) {
-        // TODO: what to do with date?
         return FlipFitCenterSlotDAOInst.getSlotsByGymId(gymId);
     }
 }

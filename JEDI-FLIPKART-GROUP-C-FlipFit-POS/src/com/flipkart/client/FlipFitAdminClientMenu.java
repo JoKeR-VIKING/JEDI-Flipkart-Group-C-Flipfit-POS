@@ -3,6 +3,7 @@ package com.flipkart.client;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.business.FlipFitAdminService;
+import com.flipkart.utils.FlipFitTableUtil;
 import com.flipkart.utils.FlipfitClientUtils;
 
 import java.util.List;
@@ -80,8 +81,8 @@ public class FlipFitAdminClientMenu {
     }
 
     public void viewAllGymOwners() {
-
         List<FlipFitGymOwner> allOwners = adminService.displayAllOwners();
+
         for (FlipFitGymOwner owner : allOwners) {
             System.out.println("Owner ID: " + owner.getUserId());
             System.out.println("Owner Name: " + owner.getName());
@@ -91,8 +92,20 @@ public class FlipFitAdminClientMenu {
         }
     }
 
-    public void viewGymDetails() {
-        adminService.viewGymDetails();
+    private void viewAllGyms() {
+        List<FlipFitCentre> gyms = adminService.displayAllCentres();
+
+        FlipFitTableUtil.printTabular(
+                List.of("Gym ID", "Gym Name", "Gym Address"),
+                gyms.stream()
+                        .map(gym -> List.of(gym.getCentreId(),
+                                gym.getCentreName(),
+                                gym.getCentreAddress())
+                        )
+                        .toList()
+        );
+
+        greenOutputLn("All gyms viewed");
     }
 
     public void userLogout() {
@@ -125,7 +138,7 @@ public class FlipFitAdminClientMenu {
                 case 5 -> rejectCentre(takeGymIdInput());
                 case 6 -> rejectOwner(takeGymOwnerId());
                 case 7 -> viewAllGymOwners();
-                case 8 -> viewGymDetails();
+                case 8 -> viewAllGyms();
                 case 9 -> removeCentre(takeGymIdInput());
                 case 10 -> removeOwner(takeGymOwnerId());
                 case 11 -> {
