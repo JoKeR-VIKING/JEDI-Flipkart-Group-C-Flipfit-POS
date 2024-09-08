@@ -3,18 +3,17 @@ package com.flipkart.bean;
 import com.flipkart.enums.SlotBookingStatusEnum;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class FlipFitSlotBooking {
     private String bookingId;
     private String userId;
     private String centerSlotId;
     private LocalDate slotDate;
-    private Date bookingDate;
+    private LocalDate bookingDate;
     private SlotBookingStatusEnum status;
     private String paymentId;
 
-    public FlipFitSlotBooking(String bookingId, String userId, String centerSlotId, LocalDate slotDate, Date bookingDate, SlotBookingStatusEnum status, String paymentId) {
+    public FlipFitSlotBooking(String bookingId, String userId, String centerSlotId, LocalDate slotDate, LocalDate bookingDate, SlotBookingStatusEnum status, String paymentId) {
         this.bookingId = bookingId;
         this.userId = userId;
         this.centerSlotId = centerSlotId;
@@ -56,11 +55,11 @@ public class FlipFitSlotBooking {
         this.slotDate = slotDate;
     }
 
-    public Date getBookingDate() {
+    public LocalDate getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(Date bookingDate) {
+    public void setBookingDate(LocalDate bookingDate) {
         this.bookingDate = bookingDate;
     }
 

@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import static com.flipkart.dao.FlipFitCenterSlotDAOImpl.FlipFitCenterSlotDAOInst;
 import static com.flipkart.dao.FlipFitGymOwnerDAOImpl.FlipFitGymOwnerDAOInst;
 import static com.flipkart.dao.FlipFitCentreDAOImpl.FlipFitCentreDAOInst;
 import static com.flipkart.dao.FlipFitCentreSlotDAOImpl.FlipFitCentreSlotInst;
@@ -44,26 +45,28 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     @Override
     public void addSlot(String slotId, String centreId, LocalTime startTime, Integer noOfSeats) {
         FlipFitCenterSlot slot = new FlipFitCenterSlot(Helper.generateId(), centreId, startTime, noOfSeats);
-        FlipFitCentreSlotInst.addSlot(slot);
+        FlipFitCenterSlotDAOInst.addSlot(slot);
     }
 
     @Override
     public void removeSlot(String slotId) {
-        FlipFitCentreSlotInst.deleteSlot(slotId);
+        FlipFitCenterSlotDAOInst.deleteSlot(slotId);
     }
 
     @Override
     public void updateSlot(String slotId, LocalTime startTime, Integer noOfSeats) {
-        FlipFitCentreSlotInst.updateSlot(slotId, startTime, noOfSeats);
     }
 
     public FlipFitCenterSlot getSlot(String slotId) {
-        return FlipFitCentreSlotInst.getSlotById(slotId);
+    }
+
+    public FlipFitCenterSlot getSlot(String slotId) {
+        return FlipFitCenterSlotDAOInst.getSlotById(slotId);
     }
 
     @Override
     public List<FlipFitCenterSlot> viewAllSlots(String centreId) {
-        return FlipFitCentreSlotInst.getSlotsByGymId(centreId);
+        return FlipFitCenterSlotDAOInst.getSlotsByGymId(centreId);
     }
 
     @Override
@@ -73,7 +76,6 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
 
     @Override
     public List<FlipFitCenterSlot> viewAvailableSlots(String gymId, LocalDate date) {
-        // TODO: what to do with date?
-        return FlipFitCentreSlotInst.getSlotsByGymId(gymId);
+        return FlipFitCenterSlotDAOInst.getSlotsByGymId(gymId);
     }
 }

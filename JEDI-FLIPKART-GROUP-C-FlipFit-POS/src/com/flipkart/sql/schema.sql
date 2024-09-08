@@ -48,7 +48,7 @@ CREATE TABLE `FlipFitCentre` (
 CREATE TABLE `FlipFitCenterSlot` (
                                      `slotId` varchar(50) NOT NULL,
                                      `centreId` varchar(50) NOT NULL,
-                                     `startTime` datetime NOT NULL,
+                                     `startTime` time NOT NULL,
                                      `seatLimit` int NOT NULL,
                                      PRIMARY KEY (`slotId`),
                                      FOREIGN KEY (`centreId`) REFERENCES `FlipFitCentre` (`centreId`)

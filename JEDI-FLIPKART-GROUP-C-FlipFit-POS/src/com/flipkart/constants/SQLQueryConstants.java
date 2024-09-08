@@ -19,8 +19,21 @@ public class SQLQueryConstants {
 
     public static final String INSERT_GYM_OWNER = "INSERT INTO FlipFitGymOwner VALUES (?, ?, ?, ?)";
     public static final String UPDATE_GYM_OWNER = "UPDATE FlipFitGymOwner SET gstNumber = ?, panCardNumber = ? WHERE ownerId = ?";
+
     public static final String INSERT_GYM = "INSERT INTO FlipFitCentre VALUES (?, ?, ?, ?, ?)";
     public static final String UPDATE_GYM = "UPDATE FlipFitCentre SET centreName = ? AND centreAddress = ? WHERE ownerId = ? AND centreId = ?";
     public static final String DELETE_GYM_WITH_OWNER = "DELETE FROM FlipFitCentre WHERE centreId = ? AND ownerId = ?";
     public static final String SELECT_REGISTERED_GYMS = "SELECT * FROM FlipFitCentre WHERE ownerId = ? AND verified = 'APPROVED'";
+
+    public static final String INSERT_GYM_SLOT = "INSERT INTO FlipFitCenterSlot VALUES(?, ?, ?, ?)";
+    public static final String UPDATE_GYM_SLOT = "UPDATE FlipFitCenterSlot SET slotId = ?, startTime = ?, seatLimit = ?";
+    public static final String GET_GYM_SLOTS_BY_GYM_ID = "SELECT * FROM FlipFitCenterSlot WHERE centreId = ?";
+    public static final String GET_GYM_SLOT_BY_ID = "SELECT * FROM FlipFitCenterSlot WHERE slotId = ?";
+    public static final String DELETE_GYM_SLOT = "DELETE FROM FlipFitCenterSlot WHERE slotId = ?";
+
+    public static final String INSERT_SLOT_BOOKING = "INSERT INTO FlipFitSlotBooking VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public static final String DELETE_SLOT_BOOKING = "DELETE FROM FlipFitSlotBooking WHERE bookingId = ?";
+    public static final String SELECT_SLOT_BOOKING_BY_USER_ID = "SELECT * FROM FlipFitSlotBooking WHERE userId = ?";
+
+    public static final String INSERT_PAYMENT = "INSERT INTO FlipFitPayments VALUES (?, ?, ?, ?, ?)";
 }

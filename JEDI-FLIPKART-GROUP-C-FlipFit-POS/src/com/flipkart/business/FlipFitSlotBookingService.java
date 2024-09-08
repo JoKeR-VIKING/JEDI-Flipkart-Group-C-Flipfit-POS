@@ -5,17 +5,15 @@ import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.enums.SlotBookingStatusEnum;
 import com.flipkart.utils.Helper;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
-import static com.flipkart.dao.FlipFitSlotBookingDAO.FlipFitSlotBookingDAOInst;
+import static com.flipkart.dao.FlipFitSlotBookingDAOImpl.FlipFitSlotBookingDAOInst;
 
 public class FlipFitSlotBookingService implements FlipFitSlotBookingInterface {
     @Override
     public void bookSlot(String userId, LocalDate bookingDate, FlipFitCenterSlot slot, String paymentId) {
-        FlipFitSlotBooking booking = new FlipFitSlotBooking(Helper.generateId(), userId, slot.getSlotId(), bookingDate, Date.from(Instant.now()), SlotBookingStatusEnum.CONFIRMED, paymentId);
+        FlipFitSlotBooking booking = new FlipFitSlotBooking(Helper.generateId(), userId, slot.getSlotId(), bookingDate, LocalDate.now(), SlotBookingStatusEnum.CONFIRMED, paymentId);
         FlipFitSlotBookingDAOInst.addBooking(booking);
     }
 
@@ -26,6 +24,6 @@ public class FlipFitSlotBookingService implements FlipFitSlotBookingInterface {
 
     @Override
     public List<FlipFitSlotBooking> listBookings(String userId) {
-        return FlipFitSlotBookingDAOInst.listBookings(userId);
+        return FlipFitSlotBookingDAOInst.listBookingsByUserId(userId);
     }
 }
