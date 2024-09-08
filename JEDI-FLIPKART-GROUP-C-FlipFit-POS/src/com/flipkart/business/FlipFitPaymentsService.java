@@ -5,7 +5,7 @@ import com.flipkart.bean.FlipFitPayments;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import static com.flipkart.dao.FlipFitSlotBookingDAO.FlipFitSlotBookingDAOInst;
+import static com.flipkart.dao.FlipFitSlotBookingDAOImpl.FlipFitSlotBookingDAOInst;
 
 public class FlipFitPaymentsService implements FlipFitPaymentsInterface {
     @Override

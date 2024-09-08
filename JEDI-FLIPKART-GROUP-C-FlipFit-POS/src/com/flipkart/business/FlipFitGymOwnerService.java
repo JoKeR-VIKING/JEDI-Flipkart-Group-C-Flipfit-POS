@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import static com.flipkart.dao.FlipFitCenterSlotDAOImpl.FlipFitCenterSlotDAOInst;
 import static com.flipkart.dao.FlipFitGymOwnerDAOImpl.FlipFitGymOwnerDAOInst;
 
 public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
@@ -42,26 +43,26 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     @Override
     public void addSlot(String slotId, String centreId, LocalTime startTime, Integer noOfSeats) {
         FlipFitCenterSlot slot = new FlipFitCenterSlot(Helper.generateId(), centreId, startTime, noOfSeats);
-        FlipFitGymOwnerDAOInst.addSlot(slot);
+        FlipFitCenterSlotDAOInst.addSlot(slot);
     }
 
     @Override
     public void removeSlot(String slotId) {
-        FlipFitGymOwnerDAOInst.deleteSlot(slotId);
+        FlipFitCenterSlotDAOInst.deleteSlot(slotId);
     }
 
     @Override
     public void updateSlot(String slotId, LocalTime startTime, Integer noOfSeats) {
-        FlipFitGymOwnerDAOInst.updateSlot(slotId, startTime, noOfSeats);
+        FlipFitCenterSlotDAOInst.updateSlot(slotId, startTime, noOfSeats);
     }
 
     public FlipFitCenterSlot getSlot(String slotId) {
-        return FlipFitGymOwnerDAOInst.getSlotById(slotId);
+        return FlipFitCenterSlotDAOInst.getSlotById(slotId);
     }
 
     @Override
     public List<FlipFitCenterSlot> viewAllSlots(String centreId) {
-        return FlipFitGymOwnerDAOInst.getSlotsByGymId(centreId);
+        return FlipFitCenterSlotDAOInst.getSlotsByGymId(centreId);
     }
 
     public boolean modifyGym(String ownerId, String gymId, String gymName, String gymAddress) {
@@ -70,6 +71,6 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
 
     public List<FlipFitCenterSlot> viewAvailableSlots(String gymId, LocalDate date) {
         // TODO: what to do with date?
-        return FlipFitGymOwnerDAOInst.getSlotsByGymId(gymId);
+        return FlipFitCenterSlotDAOInst.getSlotsByGymId(gymId);
     }
 }

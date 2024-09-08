@@ -9,9 +9,9 @@ import java.util.List;
 public interface FlipFitSlotBookingDAOInterface {
     void addBooking(FlipFitSlotBooking booking);
 
-    void addPayment(FlipFitPayments payment) ;
+    boolean addPayment(FlipFitPayments payment) ;
 
     void removeBooking(String bookingId);
 
-    List<FlipFitSlotBooking> listBookings(String userId) ;
+    List<FlipFitSlotBooking> listBookingsByUserId(String userId) ;
 }
