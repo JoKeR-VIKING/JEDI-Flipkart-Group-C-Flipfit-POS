@@ -14,7 +14,7 @@ import static com.flipkart.dao.FlipFitUserDAOImpl.FlipFitUserDAOInst;
 import static com.flipkart.utils.FlipFitMySQL.flipFitSchema;
 
 public class FlipFitAdminDAOImpl implements FlipFitAdminDAOInterface {
-    public static FlipFitAdminDAOImpl FlipFitAdminDAOInst = new FlipFitAdminDAOImpl();
+    public static FlipFitAdminDAOInterface FlipFitAdminDAOInst = new FlipFitAdminDAOImpl();
 
     @Override
     public void add(FlipFitAdmin admin) {

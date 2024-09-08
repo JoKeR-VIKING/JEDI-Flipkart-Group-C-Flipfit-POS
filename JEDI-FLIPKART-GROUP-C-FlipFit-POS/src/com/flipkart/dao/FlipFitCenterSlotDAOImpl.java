@@ -2,9 +2,11 @@ package com.flipkart.dao;
 
 import com.flipkart.bean.FlipFitCenterSlot;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +35,10 @@ public class FlipFitCenterSlotDAOImpl implements FlipFitCenterSlotDAOInterface {
     public void updateSlot(String slotId, LocalTime startTime, Integer noOfSeats) {
         flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(UPDATE_GYM_SLOT);
-            stmt.setString(1, slotId);
-            stmt.setObject(2, startTime);
+            stmt.setObject(1, startTime);
             stmt.setInt(2, noOfSeats);
+            stmt.setString(3, slotId);
+
 
             return stmt.executeUpdate();
         });
@@ -92,6 +95,29 @@ public class FlipFitCenterSlotDAOImpl implements FlipFitCenterSlotDAOInterface {
             PreparedStatement stmt = conn.prepareStatement(DELETE_GYM_SLOT);
             stmt.setString(1, slotId);
             return stmt.executeUpdate();
+        });
+    }
+
+    @Override
+    public List<FlipFitCenterSlot> getAvailableSlots(String gymId, LocalDate date) {
+        return flipFitSchema.execute(conn -> {
+            PreparedStatement stmt = conn.prepareStatement(SELECT_AVAILABLE_GYM_SLOTS);
+            stmt.setString(1, gymId);
+            stmt.setDate(2, Date.valueOf(date));
+
+            ResultSet rs = stmt.executeQuery();
+            List<FlipFitCenterSlot> slots = new ArrayList<>();
+
+            while(rs.next()) {
+                slots.add(new FlipFitCenterSlot(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getTime(3).toLocalTime(),
+                        rs.getInt(4)
+                ));
+            }
+
+            return slots;
         });
     }
 }

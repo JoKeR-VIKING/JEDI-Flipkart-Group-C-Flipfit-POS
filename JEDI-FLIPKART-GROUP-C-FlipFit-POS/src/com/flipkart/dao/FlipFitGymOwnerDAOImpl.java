@@ -9,7 +9,7 @@ import static com.flipkart.dao.FlipFitUserDAOImpl.FlipFitUserDAOInst;
 import static com.flipkart.utils.FlipFitMySQL.flipFitSchema;
 
 public class FlipFitGymOwnerDAOImpl implements FlipFitGymOwnerDAOInterface {
-    public static FlipFitGymOwnerDAOImpl FlipFitGymOwnerDAOInst = new FlipFitGymOwnerDAOImpl();
+    public static FlipFitGymOwnerDAOInterface FlipFitGymOwnerDAOInst = new FlipFitGymOwnerDAOImpl();
 
     @Override
     public void createProfile(FlipFitGymOwner gymOwner) {

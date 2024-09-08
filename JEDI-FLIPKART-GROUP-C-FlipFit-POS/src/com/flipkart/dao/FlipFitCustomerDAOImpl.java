@@ -11,7 +11,7 @@ import static com.flipkart.dao.FlipFitUserDAOImpl.FlipFitUserDAOInst;
 import static com.flipkart.utils.FlipFitMySQL.flipFitSchema;
 
 public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAOInterface {
-    public static FlipFitCustomerDAOImpl FlipFitCustomerDAOInst = new FlipFitCustomerDAOImpl();
+    public static FlipFitCustomerDAOInterface FlipFitCustomerDAOInst = new FlipFitCustomerDAOImpl();
 
     @Override
     public void createProfile(FlipFitCustomer customer) {

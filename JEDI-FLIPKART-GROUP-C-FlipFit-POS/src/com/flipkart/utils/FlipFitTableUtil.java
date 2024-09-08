@@ -19,7 +19,7 @@ public class FlipFitTableUtil {
 
             columnWidths.add(
                     Math.max(
-                            Collections.max(rowsColumn.stream()
+                            rowsColumn.isEmpty() ? 0: Collections.max(rowsColumn.stream()
                                     .map(rowColumn -> rowColumn.length() + 4)
                                     .toList()),
                             columns.get(i).length()

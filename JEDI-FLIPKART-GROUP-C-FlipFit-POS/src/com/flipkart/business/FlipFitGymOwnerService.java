@@ -3,6 +3,7 @@ package com.flipkart.business;
 import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitGymOwner;
+import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.utils.Helper;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import java.util.List;
 import static com.flipkart.dao.FlipFitCenterSlotDAOImpl.FlipFitCenterSlotDAOInst;
 import static com.flipkart.dao.FlipFitGymOwnerDAOImpl.FlipFitGymOwnerDAOInst;
 import static com.flipkart.dao.FlipFitCentreDAOImpl.FlipFitCentreDAOInst;
+import static com.flipkart.dao.FlipFitSlotBookingDAOImpl.FlipFitSlotBookingDAOInst;
 
 public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     @Override
@@ -42,7 +44,7 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     }
 
     @Override
-    public void addSlot(String slotId, String centreId, LocalTime startTime, Integer noOfSeats) {
+    public void addSlot(String centreId, LocalTime startTime, Integer noOfSeats) {
         FlipFitCenterSlot slot = new FlipFitCenterSlot(Helper.generateId(), centreId, startTime, noOfSeats);
         FlipFitCenterSlotDAOInst.addSlot(slot);
     }
@@ -54,6 +56,7 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
 
     @Override
     public void updateSlot(String slotId, LocalTime startTime, Integer noOfSeats) {
+        FlipFitCenterSlotDAOInst.updateSlot(slotId, startTime, noOfSeats);
     }
 
     public FlipFitCenterSlot getSlot(String slotId) {
@@ -72,6 +75,11 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
 
     @Override
     public List<FlipFitCenterSlot> viewAvailableSlots(String gymId, LocalDate date) {
-        return FlipFitCenterSlotDAOInst.getSlotsByGymId(gymId);
+        return FlipFitCenterSlotDAOInst.getAvailableSlots(gymId, date);
+    }
+
+    @Override
+    public List<FlipFitSlotBooking> viewAllBookingsByGymIdAndDate(String gymId, LocalDate date) {
+        return FlipFitSlotBookingDAOInst.getAllBookingsByGymIdAndDate(gymId, date);
     }
 }

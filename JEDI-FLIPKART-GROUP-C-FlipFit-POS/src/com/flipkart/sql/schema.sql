@@ -74,7 +74,7 @@ CREATE TABLE `FlipFitSlotBooking` (
                                       `paymentId` varchar(50) NOT NULL,
                                       PRIMARY KEY (`bookingId`),
                                       FOREIGN KEY (`userId`) REFERENCES `FlipFitUser` (`userId`),
-                                      FOREIGN KEY (`centreSlotId`) REFERENCES `FlipFitCentre` (`centreId`),
+                                      FOREIGN KEY (`centreSlotId`) REFERENCES `FlipFitCenterSlot` (`slotId`),
                                       FOREIGN KEY (`paymentId`) REFERENCES `FlipFitPayments` (`paymentId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

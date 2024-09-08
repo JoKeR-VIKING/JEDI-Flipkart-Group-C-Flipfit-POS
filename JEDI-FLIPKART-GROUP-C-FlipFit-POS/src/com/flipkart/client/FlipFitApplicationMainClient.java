@@ -5,12 +5,12 @@ import com.flipkart.business.FlipFitCustomerService;
 import com.flipkart.business.FlipFitGymOwnerService;
 import com.flipkart.business.FlipFitUserService;
 import com.flipkart.enums.RoleEnum;
-import com.flipkart.exception.ExisistingUserException;
+import com.flipkart.exception.ExistingUserException;
 import com.flipkart.exception.InvalidPasswordException;
 
 import java.util.Scanner;
 
-import static com.flipkart.utils.FlipfitClientUtils.getChoice;
+import static com.flipkart.utils.FlipFitClientUtils.getChoice;
 import static com.flipkart.utils.Helper.*;
 
 public class FlipFitApplicationMainClient {
@@ -120,7 +120,7 @@ public class FlipFitApplicationMainClient {
 
                 try {
                     ownerService.createProfile(username, password, name, address, phoneNumber, ownerGstNum, ownerPanNum);
-                } catch (ExisistingUserException e) {
+                } catch (ExistingUserException e) {
                     redOutputLn("User already exists!");
                 }
 
@@ -143,7 +143,7 @@ public class FlipFitApplicationMainClient {
 
                 try {
                     customerService.createProfile(username, password, name, address, phoneNumber, weight, age, gender, parseDate(dob));
-                } catch (ExisistingUserException e) {
+                } catch (ExistingUserException e) {
                     redOutputLn("User already exists!");
                 }
 

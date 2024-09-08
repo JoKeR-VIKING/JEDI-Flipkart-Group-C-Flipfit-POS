@@ -2,7 +2,7 @@ package com.flipkart.dao;
 
 import com.flipkart.bean.FlipFitUser;
 import com.flipkart.enums.RoleEnum;
-import com.flipkart.exception.ExisistingUserException;
+import com.flipkart.exception.ExistingUserException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +11,7 @@ import static com.flipkart.constants.SQLQueryConstants.*;
 import static com.flipkart.utils.FlipFitMySQL.flipFitSchema;
 
 public class FlipFitUserDAOImpl implements FlipFitUserDAOInterface {
-    public static FlipFitUserDAOImpl FlipFitUserDAOInst = new FlipFitUserDAOImpl();
+    public static FlipFitUserDAOInterface FlipFitUserDAOInst = new FlipFitUserDAOImpl();
 
     @Override
     public FlipFitUser findByUsername(String username) {
@@ -58,9 +58,9 @@ public class FlipFitUserDAOImpl implements FlipFitUserDAOInterface {
     }
 
     @Override
-    public void add(FlipFitUser user) throws ExisistingUserException {
+    public void add(FlipFitUser user) throws ExistingUserException {
         if (findByUsername(user.getUsername()) != null)
-            throw new ExisistingUserException();
+            throw new ExistingUserException();
 
         flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(INSERT_USER);

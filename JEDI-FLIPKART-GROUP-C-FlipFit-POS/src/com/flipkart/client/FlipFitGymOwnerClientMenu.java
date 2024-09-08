@@ -2,13 +2,14 @@ package com.flipkart.client;
 
 import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.bean.FlipFitCentre;
+import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.business.FlipFitGymOwnerService;
 import com.flipkart.utils.FlipFitTableUtil;
 
 import java.util.List;
 import java.util.Scanner;
 
-import static com.flipkart.utils.FlipfitClientUtils.getChoice;
+import static com.flipkart.utils.FlipFitClientUtils.getChoice;
 import static com.flipkart.utils.Helper.*;
 
 public class FlipFitGymOwnerClientMenu {
@@ -79,13 +80,14 @@ public class FlipFitGymOwnerClientMenu {
         System.out.println();
 
         FlipFitTableUtil.printTabular(
-                List.of("Gym ID", "Gym Name", "Gym Address", "Gym Owner ID"),
+                List.of("Gym ID", "Gym Name", "Gym Address", "Gym Owner ID", "Verification Status"),
                 centres.stream()
                         .map(centre -> List.of(
                                 centre.getCentreId(),
                                 centre.getCentreName(),
                                 centre.getCentreAddress(),
-                                centre.getGymOwnerId())
+                                centre.getGymOwnerId(),
+                                centre.getVerified())
                         )
                         .toList()
         );
@@ -97,9 +99,6 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter Gym ID: ");
         String gymId = scanner.nextLine();
 
-        System.out.print("Enter Date (DD-MM-YYYY): ");
-        String date = scanner.nextLine();
-
         System.out.print("Enter Start Time (HH:MM): ");
         String startTime = scanner.nextLine();
 
@@ -107,7 +106,7 @@ public class FlipFitGymOwnerClientMenu {
         int noOfSeats = scanner.nextInt();
         scanner.nextLine();
 
-        ownerService.addSlot(gymId, date, parseHourMinute(startTime), noOfSeats);
+        ownerService.addSlot(gymId, parseHourMinute(startTime), noOfSeats);
     }
 
     public void removeSlot() {
@@ -123,11 +122,12 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter Slot ID: ");
         String slotId = scanner.nextLine();
 
-        System.out.println("Enter start time: ");
+        System.out.print("Enter start time: ");
         String startTime = scanner.nextLine();
 
-        System.out.println("Enter no of seats: ");
+        System.out.print("Enter no of seats: ");
         int noOfSeats = scanner.nextInt();
+        scanner.nextLine();
 
         ownerService.updateSlot(slotId, parseHourMinute(startTime), noOfSeats);
         System.out.println("Slot details updated!");
@@ -137,7 +137,7 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter Gym ID: ");
         String gymId = scanner.nextLine();
 
-        System.out.println("Gym Slots:");
+        System.out.println("Gym Slots: ");
 
         List<FlipFitCenterSlot> slots = ownerService.viewAllSlots(gymId);
 
@@ -186,16 +186,24 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter Date: ");
         String date = scanner.nextLine();
 
-        greenOutputLn("Slots available are as follows:");
+        greenOutputLn("Slot Bookings are as follows:");
 
-        List<FlipFitCenterSlot> slots = ownerService.viewAvailableSlots(gymId, parseDate(date));
-        for (FlipFitCenterSlot slot : slots) {
-            System.out.println();
-            System.out.println("Slot ID: " + slot.getSlotId());
-            System.out.println("Slot Center ID: " + slot.getCentreId());
-            System.out.println("Slot Start Time: " + slot.getStartTime());
-            System.out.println("Slot Seat Limit: " + slot.getSeatLimit());
-        }
+        List<FlipFitSlotBooking> bookings = ownerService.viewAllBookingsByGymIdAndDate(gymId, parseDate(date));
+
+        FlipFitTableUtil.printTabular(
+                List.of("Booking ID", "User ID", "Center Slot ID", "Slot Date", "Booked on", "Payment ID", "Status"),
+                bookings.stream()
+                        .map(booking -> List.of(
+                                booking.getBookingId(),
+                                booking.getUserId(),
+                                booking.getCenterSlot(),
+                                booking.getSlotDate().toString(),
+                                booking.getBookingDate().toString(),
+                                booking.getPaymentId(),
+                                booking.getStatus().name())
+                        )
+                        .toList()
+        );
     }
 
     public void editProfile(String userId) {

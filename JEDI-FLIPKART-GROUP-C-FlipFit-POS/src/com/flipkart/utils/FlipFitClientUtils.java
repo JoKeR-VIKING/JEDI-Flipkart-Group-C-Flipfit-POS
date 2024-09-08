@@ -5,7 +5,7 @@ import java.util.Scanner;
 import static com.flipkart.utils.Helper.blueOutput;
 import static com.flipkart.utils.Helper.redOutputLn;
 
-public class FlipfitClientUtils {
+public class FlipFitClientUtils {
     public static int getChoice(int size) {
         Scanner in = new Scanner(System.in);
         int choice;

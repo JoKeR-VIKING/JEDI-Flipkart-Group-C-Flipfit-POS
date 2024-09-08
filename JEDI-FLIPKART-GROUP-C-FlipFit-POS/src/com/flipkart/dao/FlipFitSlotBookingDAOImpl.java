@@ -7,6 +7,7 @@ import com.flipkart.enums.SlotBookingStatusEnum;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import static com.flipkart.constants.SQLQueryConstants.*;
 import static com.flipkart.utils.FlipFitMySQL.flipFitSchema;
 
 public class FlipFitSlotBookingDAOImpl implements FlipFitSlotBookingDAOInterface {
-    public static FlipFitSlotBookingDAOImpl FlipFitSlotBookingDAOInst = new FlipFitSlotBookingDAOImpl();
+    public static FlipFitSlotBookingDAOInterface FlipFitSlotBookingDAOInst = new FlipFitSlotBookingDAOImpl();
 
     @Override
     public void addBooking(FlipFitSlotBooking booking) {
@@ -81,6 +82,32 @@ public class FlipFitSlotBookingDAOImpl implements FlipFitSlotBookingDAOInterface
                                 rs.getString(7)
                         )
                 );
+            }
+
+            return bookings;
+        });
+    }
+
+    @Override
+    public List<FlipFitSlotBooking> getAllBookingsByGymIdAndDate(String gymId, LocalDate date) {
+        return flipFitSchema.execute(conn -> {
+            PreparedStatement stmt = conn.prepareStatement(SELECT_SLOT_BOOKINGS_BY_GYM_ID_AND_DATE);
+            stmt.setString(1, gymId);
+            stmt.setDate(2, Date.valueOf(date));
+
+            ResultSet rs = stmt.executeQuery();
+            List<FlipFitSlotBooking> bookings = new ArrayList<>();
+
+            while(rs.next()) {
+                bookings.add(new FlipFitSlotBooking(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getDate(4).toLocalDate(),
+                        rs.getDate(5).toLocalDate(),
+                        SlotBookingStatusEnum.fromName(rs.getString(6)),
+                        rs.getString(7)
+                ));
             }
 
             return bookings;

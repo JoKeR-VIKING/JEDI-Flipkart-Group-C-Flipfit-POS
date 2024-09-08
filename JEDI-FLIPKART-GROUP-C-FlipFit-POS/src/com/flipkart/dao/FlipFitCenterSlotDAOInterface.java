@@ -2,6 +2,7 @@ package com.flipkart.dao;
 
 import com.flipkart.bean.FlipFitCenterSlot;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface FlipFitCenterSlotDAOInterface {
     FlipFitCenterSlot getSlotById(String slotId);
 
     void deleteSlot(String slotId) ;
+
+    List<FlipFitCenterSlot> getAvailableSlots(String gymId, LocalDate date);
 }

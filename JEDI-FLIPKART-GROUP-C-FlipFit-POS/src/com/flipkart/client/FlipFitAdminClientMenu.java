@@ -4,7 +4,7 @@ import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.business.FlipFitAdminService;
 import com.flipkart.utils.FlipFitTableUtil;
-import com.flipkart.utils.FlipfitClientUtils;
+import com.flipkart.utils.FlipFitClientUtils;
 
 import java.util.List;
 import java.util.Scanner;
@@ -132,7 +132,7 @@ public class FlipFitAdminClientMenu {
         while (true) {
             displayOptions();
 
-            int choice = FlipfitClientUtils.getChoice(OPTIONS_SIZE);
+            int choice = FlipFitClientUtils.getChoice(OPTIONS_SIZE);
 
             switch (choice) {
                 case 1 -> viewPendingCentre();

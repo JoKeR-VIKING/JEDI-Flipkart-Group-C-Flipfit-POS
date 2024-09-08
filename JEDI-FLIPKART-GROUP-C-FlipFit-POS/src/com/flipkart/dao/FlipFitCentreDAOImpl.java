@@ -11,7 +11,7 @@ import static com.flipkart.constants.SQLQueryConstants.*;
 import static com.flipkart.utils.FlipFitMySQL.flipFitSchema;
 
 public class FlipFitCentreDAOImpl implements FlipFitCentreDAOInterface {
-    public static FlipFitCentreDAOImpl FlipFitCentreDAOInst = new FlipFitCentreDAOImpl();
+    public static FlipFitCentreDAOInterface FlipFitCentreDAOInst = new FlipFitCentreDAOImpl();
 
     @Override
     public void addGym(FlipFitCentre centre) {

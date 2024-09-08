@@ -1,7 +1,11 @@
 package com.flipkart.business;
 
-public interface FlipFitUserInterface {
-    void login(String username, String password);
+import com.flipkart.bean.FlipFitUser;
+import com.flipkart.exception.InvalidPasswordException;
 
-    void register(String username, String password);
+public interface FlipFitUserInterface {
+
+    FlipFitUser authenticate(String username, String password) throws InvalidPasswordException;
+
+    void changePassword(String userId, String password);
 }

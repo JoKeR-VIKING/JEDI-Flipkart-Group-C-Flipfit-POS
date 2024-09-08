@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static com.flipkart.client.FlipFitApplicationMainClient.flipFitGymOwnerClientMenu;
-import static com.flipkart.utils.FlipfitClientUtils.getChoice;
+import static com.flipkart.utils.FlipFitClientUtils.getChoice;
 import static com.flipkart.utils.Helper.*;
 
 public class FlipFitCustomerClientMenu {
@@ -102,6 +102,7 @@ public class FlipFitCustomerClientMenu {
         // make payment
         System.out.print("Make payment of Rs.500: ");
         Double paymentAmount = in.nextDouble();
+        in.nextLine();
 
         FlipFitPayments payment = paymentService.makePayment(Helper.generateId(), userId, 500.00, paymentAmount, LocalDate.now());
 
