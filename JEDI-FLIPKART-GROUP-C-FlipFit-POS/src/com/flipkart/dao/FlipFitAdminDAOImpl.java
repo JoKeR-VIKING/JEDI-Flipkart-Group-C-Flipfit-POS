@@ -3,17 +3,14 @@ package com.flipkart.dao;
 import com.flipkart.bean.FlipFitAdmin;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitGymOwner;
-import com.flipkart.bean.FlipFitUser;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.flipkart.constants.SQLQueryConstants.*;
 import static com.flipkart.dao.FlipFitUserDAOImpl.FlipFitUserDAOInst;
-import static com.flipkart.dao.FlipFitGymOwnerDAOImpl.FlipFitGymOwnerDAOInst;
 import static com.flipkart.utils.FlipFitMySQL.flipFitSchema;
 
 public class FlipFitAdminDAOImpl implements FlipFitAdminDAOInterface {
@@ -131,8 +128,6 @@ public class FlipFitAdminDAOImpl implements FlipFitAdminDAOInterface {
 
             return stmt.executeUpdate();
         });
-
-        FlipFitGymOwnerDAOInst.Gyms.removeIf(centre -> centre.getCentreId().equals(centreId));
     }
 
     @Override

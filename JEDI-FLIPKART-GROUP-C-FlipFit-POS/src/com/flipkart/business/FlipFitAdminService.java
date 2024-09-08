@@ -6,7 +6,6 @@ import com.flipkart.bean.FlipFitGymOwner;
 import java.util.List;
 
 import static com.flipkart.dao.FlipFitAdminDAOImpl.FlipFitAdminDAOInst;
-import static com.flipkart.dao.FlipFitGymOwnerDAOImpl.FlipFitGymOwnerDAOInst;
 
 public class FlipFitAdminService implements FlipFitAdminInterface {
     @Override
@@ -17,15 +16,6 @@ public class FlipFitAdminService implements FlipFitAdminInterface {
     @Override
     public void rejectOwner(String gymOwnerId) {
         FlipFitAdminDAOInst.rejectOwner(gymOwnerId);
-    }
-
-    public void viewGymDetails() {
-        for (FlipFitCentre centre : FlipFitGymOwnerDAOInst.Gyms) {
-            System.out.println("Centre ID: " + centre.getCentreId());
-            System.out.println("Centre Name: " + centre.getCentreName());
-            System.out.println("Centre Address: " + centre.getCentreAddress());
-            System.out.println("Centre Owner: " + centre.getGymOwner());
-        }
     }
 
     @Override

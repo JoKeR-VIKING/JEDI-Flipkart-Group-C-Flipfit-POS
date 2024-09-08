@@ -3,6 +3,7 @@ package com.flipkart.business;
 import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.bean.FlipFitCentre;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -13,7 +14,9 @@ public interface FlipFitGymOwnerInterface {
 
     void addGym(String centreName, String centreAddress, String gymOwnerId);
 
-    void removeGym(String removeGym, String centreId);
+    void removeGym(String gymOwnerId, String centreId);
+
+    boolean modifyGym(String gymOwnerId, String centreId, String gymName, String gymAddress);
 
     List<FlipFitCentre> viewRegisteredGymCenters(String userId);
 
@@ -25,4 +28,5 @@ public interface FlipFitGymOwnerInterface {
 
     List<FlipFitCenterSlot> viewAllSlots(String centreId);
 
+    List<FlipFitCenterSlot> viewAvailableSlots(String gymId, LocalDate date);
 }

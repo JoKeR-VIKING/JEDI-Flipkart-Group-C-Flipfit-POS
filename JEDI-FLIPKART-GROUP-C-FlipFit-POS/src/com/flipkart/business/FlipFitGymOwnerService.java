@@ -10,6 +10,8 @@ import java.time.LocalTime;
 import java.util.List;
 
 import static com.flipkart.dao.FlipFitGymOwnerDAOImpl.FlipFitGymOwnerDAOInst;
+import static com.flipkart.dao.FlipFitCentreDAOImpl.FlipFitCentreDAOInst;
+import static com.flipkart.dao.FlipFitCentreSlotDAOImpl.FlipFitCentreSlotInst;
 
 public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     @Override
@@ -26,50 +28,52 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     @Override
     public void addGym(String centreName, String centreAddress, String gymOwnerId) {
         FlipFitCentre centre = new FlipFitCentre(Helper.generateId(), centreName, centreAddress, gymOwnerId);
-        FlipFitGymOwnerDAOInst.addGym(centre);
+        FlipFitCentreDAOInst.addGym(centre);
     }
 
     @Override
-    public void removeGym(String ownerId, String centreId) {
-        FlipFitGymOwnerDAOInst.removeGym(ownerId, centreId);
+    public void removeGym(String gymOwnerId, String centreId) {
+        FlipFitCentreDAOInst.removeGym(gymOwnerId, centreId);
     }
 
     @Override
     public List<FlipFitCentre> viewRegisteredGymCenters(String userId) {
-        return FlipFitGymOwnerDAOInst.getRegisteredGymCentres(userId);
+        return FlipFitCentreDAOInst.getRegisteredGymCentres(userId);
     }
 
     @Override
     public void addSlot(String slotId, String centreId, LocalTime startTime, Integer noOfSeats) {
         FlipFitCenterSlot slot = new FlipFitCenterSlot(Helper.generateId(), centreId, startTime, noOfSeats);
-        FlipFitGymOwnerDAOInst.addSlot(slot);
+        FlipFitCentreSlotInst.addSlot(slot);
     }
 
     @Override
     public void removeSlot(String slotId) {
-        FlipFitGymOwnerDAOInst.deleteSlot(slotId);
+        FlipFitCentreSlotInst.deleteSlot(slotId);
     }
 
     @Override
     public void updateSlot(String slotId, LocalTime startTime, Integer noOfSeats) {
-        FlipFitGymOwnerDAOInst.updateSlot(slotId, startTime, noOfSeats);
+        FlipFitCentreSlotInst.updateSlot(slotId, startTime, noOfSeats);
     }
 
     public FlipFitCenterSlot getSlot(String slotId) {
-        return FlipFitGymOwnerDAOInst.getSlotById(slotId);
+        return FlipFitCentreSlotInst.getSlotById(slotId);
     }
 
     @Override
     public List<FlipFitCenterSlot> viewAllSlots(String centreId) {
-        return FlipFitGymOwnerDAOInst.getSlotsByGymId(centreId);
+        return FlipFitCentreSlotInst.getSlotsByGymId(centreId);
     }
 
+    @Override
     public boolean modifyGym(String ownerId, String gymId, String gymName, String gymAddress) {
-        return FlipFitGymOwnerDAOInst.modifyGym(ownerId, gymId, gymName, gymAddress);
+        return FlipFitCentreDAOInst.modifyGym(ownerId, gymId, gymName, gymAddress);
     }
 
+    @Override
     public List<FlipFitCenterSlot> viewAvailableSlots(String gymId, LocalDate date) {
         // TODO: what to do with date?
-        return FlipFitGymOwnerDAOInst.getSlotsByGymId(gymId);
+        return FlipFitCentreSlotInst.getSlotsByGymId(gymId);
     }
 }
