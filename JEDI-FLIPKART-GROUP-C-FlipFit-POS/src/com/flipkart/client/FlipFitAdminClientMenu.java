@@ -9,6 +9,7 @@ import com.flipkart.utils.FlipfitClientUtils;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.flipkart.client.FlipFitApplicationMainClient.flipFitCustomerClientMenu;
 import static com.flipkart.utils.Helper.*;
 
 public class FlipFitAdminClientMenu {
@@ -37,23 +38,33 @@ public class FlipFitAdminClientMenu {
     public void viewPendingCentre() {
         List<FlipFitCentre> centres = adminService.displayPendingCentres();
 
-        for (FlipFitCentre centre : centres) {
-            System.out.println("Centre ID: " + centre.getCentreId());
-            System.out.println("Centre Name: " + centre.getCentreName());
-            System.out.println("Centre Address: " + centre.getCentreAddress());
-            System.out.println("Centre Owner: " + centre.getGymOwner());
-        }
+        FlipFitTableUtil.printTabular(
+                List.of("Centre ID", "Centre Name", "Centre Address", "Centre Owner ID"),
+                centres.stream()
+                        .map(center -> List.of(
+                                center.getCentreId(),
+                                center.getCentreName(),
+                                center.getCentreAddress(),
+                                center.getGymOwnerId())
+                        )
+                        .toList()
+        );
     }
 
     public void viewPendingOwner() {
         List<FlipFitGymOwner> owners = adminService.displayPendingOwners();
 
-        for (FlipFitGymOwner owner : owners) {
-            System.out.println("Owner ID: " + owner.getUserId());
-            System.out.println("Owner Name: " + owner.getName());
-            System.out.println("Owner Address: " + owner.getAddress());
-            System.out.println("Owner GST: " + owner.getGstNumber());
-        }
+        FlipFitTableUtil.printTabular(
+                List.of("Owner ID", "Owner Name", "Owner Address", "Owner GST"),
+                owners.stream()
+                        .map(owner -> List.of(
+                                owner.getUserId(),
+                                owner.getName(),
+                                owner.getAddress(),
+                                owner.getGstNumber())
+                        )
+                        .toList()
+        );
     }
 
     public void approveCentre(String gymId) {
@@ -83,29 +94,22 @@ public class FlipFitAdminClientMenu {
     public void viewAllGymOwners() {
         List<FlipFitGymOwner> allOwners = adminService.displayAllOwners();
 
-        for (FlipFitGymOwner owner : allOwners) {
-            System.out.println("Owner ID: " + owner.getUserId());
-            System.out.println("Owner Name: " + owner.getName());
-            System.out.println("Owner Address: " + owner.getAddress());
-            System.out.println("Owner GST: " + owner.getGstNumber());
-            System.out.println("Owner verification status: " + owner.getVerified());
-        }
-    }
-
-    private void viewAllGyms() {
-        List<FlipFitCentre> gyms = adminService.displayAllCentres();
-
         FlipFitTableUtil.printTabular(
-                List.of("Gym ID", "Gym Name", "Gym Address"),
-                gyms.stream()
-                        .map(gym -> List.of(gym.getCentreId(),
-                                gym.getCentreName(),
-                                gym.getCentreAddress())
+                List.of("Owner ID", "Owner Name", "Owner Address", "Owner GST", "Verification Status"),
+                allOwners.stream()
+                        .map(owner -> List.of(
+                                owner.getUserId(),
+                                owner.getName(),
+                                owner.getAddress(),
+                                owner.getGstNumber(),
+                                owner.getVerified())
                         )
                         .toList()
         );
+    }
 
-        greenOutputLn("All gyms viewed");
+    private void viewAllGyms() {
+        flipFitCustomerClientMenu.viewAllGyms();
     }
 
     public void userLogout() {

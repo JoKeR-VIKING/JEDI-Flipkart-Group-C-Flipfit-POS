@@ -6,9 +6,7 @@ import com.flipkart.business.FlipFitGymOwnerService;
 import com.flipkart.business.FlipFitUserService;
 import com.flipkart.enums.RoleEnum;
 import com.flipkart.exception.InvalidPasswordException;
-import com.flipkart.utils.FlipFitDAOUtils;
 
-import javax.management.relation.Role;
 import java.util.Scanner;
 
 import static com.flipkart.utils.FlipfitClientUtils.getChoice;

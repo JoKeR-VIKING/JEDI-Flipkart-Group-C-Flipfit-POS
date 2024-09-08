@@ -44,14 +44,6 @@ public class FlipFitCentre {
         this.centreAddress = centreAddress;
     }
 
-    public String getGymOwner() {
-        return gymOwnerId;
-    }
-
-    public void setGymOwner(String gymOwner) {
-        this.gymOwnerId = gymOwner;
-    }
-
     public String getGymOwnerId() {
         return gymOwnerId;
     }

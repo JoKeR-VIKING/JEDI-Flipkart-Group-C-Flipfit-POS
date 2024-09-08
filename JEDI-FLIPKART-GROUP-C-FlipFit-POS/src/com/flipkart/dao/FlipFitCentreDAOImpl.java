@@ -20,7 +20,7 @@ public class FlipFitCentreDAOImpl implements FlipFitCentreDAOInterface {
             stmt.setString(1, centre.getCentreId());
             stmt.setString(2, centre.getCentreName());
             stmt.setString(3, centre.getCentreAddress());
-            stmt.setString(4, centre.getGymOwner());
+            stmt.setString(4, centre.getGymOwnerId());
             stmt.setString(5, centre.getVerified());
 
             return stmt.executeUpdate();

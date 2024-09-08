@@ -12,7 +12,6 @@ import java.util.List;
 import static com.flipkart.dao.FlipFitCenterSlotDAOImpl.FlipFitCenterSlotDAOInst;
 import static com.flipkart.dao.FlipFitGymOwnerDAOImpl.FlipFitGymOwnerDAOInst;
 import static com.flipkart.dao.FlipFitCentreDAOImpl.FlipFitCentreDAOInst;
-import static com.flipkart.dao.FlipFitCentreSlotDAOImpl.FlipFitCentreSlotInst;
 
 public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     @Override
@@ -55,9 +54,6 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
 
     @Override
     public void updateSlot(String slotId, LocalTime startTime, Integer noOfSeats) {
-    }
-
-    public FlipFitCenterSlot getSlot(String slotId) {
     }
 
     public FlipFitCenterSlot getSlot(String slotId) {

@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.flipkart.client.FlipFitApplicationMainClient.flipFitGymOwnerClientMenu;
 import static com.flipkart.utils.FlipfitClientUtils.getChoice;
 import static com.flipkart.utils.Helper.*;
 
@@ -58,15 +59,18 @@ public class FlipFitCustomerClientMenu {
         customerService.editProfile(userId, address, weight, age, gender, parseDate(dob));
     }
 
-    private void viewAllGyms() {
+    public void viewAllGyms() {
         List<FlipFitCentre> gyms = adminService.displayAllCentres();
 
         FlipFitTableUtil.printTabular(
-                List.of("Gym ID", "Gym Name", "Gym Address"),
+                List.of("Gym ID", "Gym Name", "Gym Address", "Gym Owner ID", "Gym Verified Status"),
                 gyms.stream()
-                        .map(gym -> List.of(gym.getCentreId(),
+                        .map(gym -> List.of(
+                                gym.getCentreId(),
                                 gym.getCentreName(),
-                                gym.getCentreAddress())
+                                gym.getCentreAddress(),
+                                gym.getGymOwnerId(),
+                                gym.getVerified())
                         )
                         .toList()
         );
@@ -75,20 +79,7 @@ public class FlipFitCustomerClientMenu {
     }
 
     private void viewAvailableSlots() {
-        System.out.print("Enter the id of the gym for which you want to view the available slots: ");
-        String gymId = in.nextLine();
-
-        System.out.print("Enter the date of the slot: ");
-        String date = in.nextLine();
-
-        List<FlipFitCenterSlot> slots = ownerService.viewAvailableSlots(gymId, parseDate(date));
-        for (FlipFitCenterSlot slot : slots) {
-            System.out.println();
-            System.out.println("Slot ID: " + slot.getSlotId());
-            System.out.println("Slot Center ID: " + slot.getCentreId());
-            System.out.println("Slot Start Time: " + slot.getStartTime());
-            System.out.println("Slot Seat Limit: " + slot.getSeatLimit());
-        }
+        flipFitGymOwnerClientMenu.viewAvailableSlots();
 
         greenOutputLn("All slots are viewed");
     }
@@ -125,14 +116,20 @@ public class FlipFitCustomerClientMenu {
             redOutputLn("No bookings found for userId: " + userId);
         } else {
             System.out.println("Bookings for userId: " + userId);
-            for (FlipFitSlotBooking booking : bookings) {
-                System.out.println("Booking ID: " + booking.getBookingId());
-                System.out.println("Customer ID: " + booking.getUserId());
-                System.out.println("Gym ID: " + booking.getCenterSlot());
-                System.out.println("Booking Date: " + booking.getBookingDate());
-                System.out.println("Booking TimeSlot: " + booking.getSlotDate());
-                System.out.println("=================================");
-            }
+
+            FlipFitTableUtil.printTabular(
+                    List.of("Booking ID", "Customer ID", "Gym Slot ID", "Booking Date", "Booking TimeSlot", "Payment ID"),
+                    bookings.stream()
+                            .map(booking -> List.of(
+                                    booking.getBookingId(),
+                                    booking.getUserId(),
+                                    booking.getCenterSlot(),
+                                    booking.getBookingDate().toString(),
+                                    booking.getSlotDate().toString(),
+                                    booking.getPaymentId())
+                            )
+                            .toList()
+            );
         }
     }
 

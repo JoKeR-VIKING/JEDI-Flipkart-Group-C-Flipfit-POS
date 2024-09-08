@@ -79,11 +79,14 @@ public class FlipFitGymOwnerClientMenu {
         System.out.println();
 
         FlipFitTableUtil.printTabular(
-                List.of("Gym ID", "Gym Name", "Gym Address"),
+                List.of("Gym ID", "Gym Name", "Gym Address", "Gym Owner ID"),
                 centres.stream()
-                        .map(centre -> List.of(centre.getGymOwnerId(),
+                        .map(centre -> List.of(
+                                centre.getCentreId(),
                                 centre.getCentreName(),
-                                centre.getCentreAddress()))
+                                centre.getCentreAddress(),
+                                centre.getGymOwnerId())
+                        )
                         .toList()
         );
     }
@@ -141,10 +144,12 @@ public class FlipFitGymOwnerClientMenu {
         FlipFitTableUtil.printTabular(
                 List.of("Slot ID", "Slot Center ID", "Slot Start Time", "Slot Seat Limit"),
                 slots.stream()
-                        .map(slot -> List.of(slot.getSlotId(),
+                        .map(slot -> List.of(
+                                slot.getSlotId(),
                                 slot.getCentreId(),
                                 slot.getStartTime().toString(),
-                                String.valueOf(slot.getSeatLimit())))
+                                String.valueOf(slot.getSeatLimit()))
+                        )
                         .toList()
         );
     }
@@ -159,15 +164,21 @@ public class FlipFitGymOwnerClientMenu {
         greenOutputLn("Slots available are as follows:");
 
         List<FlipFitCenterSlot> slots = ownerService.viewAvailableSlots(gymId, parseDate(date));
-        for (FlipFitCenterSlot slot : slots) {
-            System.out.println();
-            System.out.println("Slot ID: " + slot.getSlotId());
-            System.out.println("Slot Center ID: " + slot.getCentreId());
-            System.out.println("Slot Start Time: " + slot.getStartTime());
-            System.out.println("Slot Seat Limit: " + slot.getSeatLimit());
-        }
+
+        FlipFitTableUtil.printTabular(
+                List.of("Slot ID", "Slot Center ID", "Slot Start Time", "Slot Seat Limit"),
+                slots.stream()
+                        .map(slot -> List.of(
+                                slot.getSlotId(),
+                                slot.getCentreId(),
+                                slot.getStartTime().toString(),
+                                String.valueOf(slot.getSeatLimit()))
+                        )
+                        .toList()
+        );
     }
 
+    //TODO: wrong?
     public void viewAllBookings() {
         System.out.print("Enter Gym ID: ");
         String gymId = scanner.nextLine();
