@@ -10,20 +10,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.flipkart.constants.SQLQueryConstants.INSERT_GYM_OWNER;
+import static com.flipkart.constants.SQLQueryConstants.*;
 import static com.flipkart.dao.FlipFitUserDAOImpl.FlipFitUserDAOInst;
 import static com.flipkart.utils.FlipFitMySQL.flipFitSchema;
 
-public class FlipFitGymOwnerDAO {
-    public static FlipFitGymOwnerDAO FlipFitGymOwnerDAOInst = new FlipFitGymOwnerDAO();
-
-    // TODO: remove after sql impl
-    static {
-        refreshGymOwners();
-    }
-
-    // TODO: remove after sql impl
-    public List<FlipFitGymOwner> GymOwners = Collections.emptyList();
+public class FlipFitGymOwnerDAOImpl implements FlipFitGymOwnerDAOInterface {
+    public static FlipFitGymOwnerDAOImpl FlipFitGymOwnerDAOInst = new FlipFitGymOwnerDAOImpl();
 
     // TODO: make FlipFitCentre dao and remove this
     public List<FlipFitCentre> Gyms = new ArrayList<>();
@@ -31,15 +23,8 @@ public class FlipFitGymOwnerDAO {
     // TODO: make FlipFitCenterSlot dao and remove this
     public List<FlipFitCenterSlot> slots = new ArrayList<>();
 
-    // TODO: remove after sql impl
-    public static void refreshGymOwners() {
-        FlipFitGymOwnerDAOInst.GymOwners = FlipFitUserDAOInst.USERS.stream()
-                .filter(user -> (user instanceof FlipFitGymOwner))
-                .map(user -> (FlipFitGymOwner) user)
-                .toList();
-    }
-
-    public void add(FlipFitGymOwner gymOwner) {
+    @Override
+    public void createProfile(FlipFitGymOwner gymOwner) {
         FlipFitUserDAOInst.add(gymOwner);
 
         flipFitSchema.execute(conn -> {
@@ -53,21 +38,18 @@ public class FlipFitGymOwnerDAO {
         });
     }
 
-    public void createProfile(FlipFitGymOwner gymOwner) {
-        add(gymOwner);
-    }
-
-    // TODO: sql
+    @Override
     public void editProfile(String gymOwnerId, String address, String gstNumber, String panCardNumber) {
-        for (FlipFitGymOwner gymOwner : GymOwners) {
-            if (!gymOwner.getUserId().equals(gymOwnerId))
-                continue;
+        FlipFitUserDAOInst.updateAddress(gymOwnerId, address);
 
-            gymOwner.setAddress(address);
-            gymOwner.setGstNumber(gstNumber);
-            gymOwner.setPanCardNumber(panCardNumber);
-            break;
-        }
+        flipFitSchema.execute(conn -> {
+            PreparedStatement stmt = conn.prepareStatement(UPDATE_GYM_OWNER);
+            stmt.setString(1, gstNumber);
+            stmt.setString(2, panCardNumber);
+            stmt.setString(3, gymOwnerId);
+
+            return stmt.executeUpdate();
+        });
     }
 
     // TODO: should be in FlipFitCentreDAO
@@ -131,6 +113,7 @@ public class FlipFitGymOwnerDAO {
                 return true;
             }
         }
+
         return false;
     }
 }

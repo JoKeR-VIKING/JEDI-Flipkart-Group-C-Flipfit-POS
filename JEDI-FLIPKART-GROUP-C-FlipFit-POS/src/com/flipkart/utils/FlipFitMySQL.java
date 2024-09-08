@@ -3,7 +3,6 @@ package com.flipkart.utils;
 import java.sql.*;
 
 public class FlipFitMySQL {
-
     public static final FlipFitMySQL flipFitSchema = new FlipFitMySQL();
 
     public static final String MYSQL_DRIVER = "com.mysql.cj.jdbc.Driver";

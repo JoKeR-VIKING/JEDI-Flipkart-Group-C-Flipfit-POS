@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import static com.flipkart.dao.FlipFitGymOwnerDAO.FlipFitGymOwnerDAOInst;
+import static com.flipkart.dao.FlipFitGymOwnerDAOImpl.FlipFitGymOwnerDAOInst;
 
 public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     @Override
