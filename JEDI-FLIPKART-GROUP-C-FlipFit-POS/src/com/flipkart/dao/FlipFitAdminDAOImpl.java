@@ -44,6 +44,16 @@ public class FlipFitAdminDAOImpl implements FlipFitAdminDAOInterface {
     }
 
     @Override
+    public void removeOwner(String ownerId) {
+        flipFitSchema.execute(conn -> {
+            PreparedStatement stmt = conn.prepareStatement(DELETE_GYM_OWNER);
+            stmt.setString(1, ownerId);
+
+            return stmt.executeUpdate();
+        });
+    }
+
+    @Override
     public List<FlipFitGymOwner> getPendingOwners() {
         return flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(SELECT_PENDING_OWNERS);

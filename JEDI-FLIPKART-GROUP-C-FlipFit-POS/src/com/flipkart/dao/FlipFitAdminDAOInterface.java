@@ -13,6 +13,8 @@ public interface FlipFitAdminDAOInterface {
 
     void rejectOwner(String gymOwnerId);
 
+    void removeOwner(String ownerId);
+
     List<FlipFitGymOwner> getPendingOwners();
 
     List<FlipFitGymOwner> getAllOwners();

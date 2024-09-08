@@ -17,7 +17,7 @@ CREATE TABLE `FlipFitCustomer` (
                                    `dob` datetime NOT NULL,
                                    `customerId` varchar(45) NOT NULL,
                                    PRIMARY KEY (`customerId`),
-                                   CONSTRAINT `customerId` FOREIGN KEY (`customerId`) REFERENCES `FlipFitUser` (`userId`)
+                                   FOREIGN KEY (`customerId`) REFERENCES `FlipFitUser` (`userId`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `FlipFitGymOwner` (
@@ -26,13 +26,13 @@ CREATE TABLE `FlipFitGymOwner` (
                                    `panCardNumber` varchar(45) NOT NULL,
                                    `verified` varchar(20) NOT NULL,
                                    PRIMARY KEY (`ownerId`),
-                                   CONSTRAINT `ownerId` FOREIGN KEY (`ownerId`) REFERENCES `FlipFitUser` (`userId`)
+                                   FOREIGN KEY (`ownerId`) REFERENCES `FlipFitUser` (`userId`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `FlipFitAdmin` (
                                 `userId` varchar(50) NOT NULL,
                                 PRIMARY KEY (`userId`),
-                                CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `FlipFitUser` (`userId`)
+                                FOREIGN KEY (`userId`) REFERENCES `FlipFitUser` (`userId`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `FlipFitCentre` (
@@ -42,7 +42,7 @@ CREATE TABLE `FlipFitCentre` (
                                  `gymOwnerId` varchar(50) NOT NULL,
                                  `verified` varchar(20) NOT NULL,
                                  PRIMARY KEY (`centreId`),
-                                 FOREIGN KEY (`gymOwnerId`) REFERENCES `FlipFItGymOwner` (`ownerId`)
+                                 FOREIGN KEY (`gymOwnerId`) REFERENCES `FlipFItGymOwner` (`ownerId`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `FlipFitCenterSlot` (
@@ -51,7 +51,7 @@ CREATE TABLE `FlipFitCenterSlot` (
                                      `startTime` time NOT NULL,
                                      `seatLimit` int NOT NULL,
                                      PRIMARY KEY (`slotId`),
-                                     FOREIGN KEY (`centreId`) REFERENCES `FlipFitCentre` (`centreId`)
+                                     FOREIGN KEY (`centreId`) REFERENCES `FlipFitCentre` (`centreId`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `FlipFitPayments` (
@@ -61,7 +61,7 @@ CREATE TABLE `FlipFitPayments` (
                                    `date` datetime NOT NULL,
                                    `status` varchar(45) NOT NULL,
                                    PRIMARY KEY (`paymentId`),
-                                   FOREIGN KEY (`customerId`) REFERENCES `FlipFitUser` (`userId`)
+                                   FOREIGN KEY (`customerId`) REFERENCES `FlipFitUser` (`userId`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `FlipFitSlotBooking` (
@@ -73,8 +73,8 @@ CREATE TABLE `FlipFitSlotBooking` (
                                       `status` varchar(20) NOT NULL,
                                       `paymentId` varchar(50) NOT NULL,
                                       PRIMARY KEY (`bookingId`),
-                                      FOREIGN KEY (`userId`) REFERENCES `FlipFitUser` (`userId`),
-                                      FOREIGN KEY (`centreSlotId`) REFERENCES `FlipFitCenterSlot` (`slotId`),
-                                      FOREIGN KEY (`paymentId`) REFERENCES `FlipFitPayments` (`paymentId`)
+                                      FOREIGN KEY (`userId`) REFERENCES `FlipFitUser` (`userId`) ON DELETE CASCADE,
+                                      FOREIGN KEY (`centreSlotId`) REFERENCES `FlipFitCenterSlot` (`slotId`) ON DELETE CASCADE,
+                                      FOREIGN KEY (`paymentId`) REFERENCES `FlipFitPayments` (`paymentId`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

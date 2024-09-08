@@ -19,6 +19,7 @@ public class SQLQueryConstants {
 
     public static final String INSERT_GYM_OWNER = "INSERT INTO FlipFitGymOwner VALUES (?, ?, ?, ?)";
     public static final String UPDATE_GYM_OWNER = "UPDATE FlipFitGymOwner SET gstNumber = ?, panCardNumber = ? WHERE ownerId = ?";
+    public static final String DELETE_GYM_OWNER = "DELETE FROM FlipFitGymOwner WHERE ownerId = ?";
 
     public static final String INSERT_GYM = "INSERT INTO FlipFitCentre VALUES (?, ?, ?, ?, ?)";
     public static final String UPDATE_GYM = "UPDATE FlipFitCentre SET centreName = ? AND centreAddress = ? WHERE gymOwnerId = ? AND centreId = ?";

@@ -44,6 +44,11 @@ public class FlipFitAdminService implements FlipFitAdminInterface {
     }
 
     @Override
+    public void removeOwner(String ownerId) {
+        FlipFitAdminDAOInst.removeOwner(ownerId);
+    }
+
+    @Override
     public List<FlipFitCentre> displayPendingCentres() {
         return FlipFitAdminDAOInst.getPendingCentres();
     }

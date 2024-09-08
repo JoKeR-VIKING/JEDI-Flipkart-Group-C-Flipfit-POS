@@ -88,7 +88,7 @@ public class FlipFitAdminClientMenu {
     }
 
     public void removeOwner(String ownerId) {
-        adminService.rejectOwner(ownerId);
+        adminService.removeOwner(ownerId);
     }
 
     public void viewAllGymOwners() {

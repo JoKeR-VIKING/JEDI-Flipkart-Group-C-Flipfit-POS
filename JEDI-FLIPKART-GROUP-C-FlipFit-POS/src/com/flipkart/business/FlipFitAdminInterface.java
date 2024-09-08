@@ -10,6 +10,8 @@ public interface FlipFitAdminInterface {
 
     void rejectOwner(String gymOwnerId);
 
+    void removeOwner(String ownerId);
+
     List<FlipFitGymOwner> displayPendingOwners();
 
     List<FlipFitGymOwner> displayAllOwners();
