@@ -38,12 +38,6 @@ public class FlipFitCustomerClientMenu {
     }
 
     private void editProfile(String userId) {
-        System.out.print("Enter your name: ");
-        String name = in.nextLine();
-
-        System.out.print("Enter your phone number: ");
-        String phoneNumber = in.nextLine();
-
         System.out.print("Enter your address: ");
         String address = in.nextLine();
 
@@ -61,7 +55,7 @@ public class FlipFitCustomerClientMenu {
         System.out.print("Enter your DOB (dd-mm-yyyy): ");
         String dob = in.nextLine();
 
-        customerService.editProfile(userId, address, name, phoneNumber, weight, age, gender, parseDate(dob));
+        customerService.editProfile(userId, address, weight, age, gender, parseDate(dob));
     }
 
     private void viewAllGyms() {

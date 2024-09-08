@@ -1,7 +1,6 @@
 package com.flipkart.business;
 
 import com.flipkart.bean.FlipFitUser;
-import com.flipkart.enums.RoleEnum;
 import com.flipkart.exception.InvalidPasswordException;
 
 import static com.flipkart.dao.FlipFitUserDAOImpl.FlipFitUserDAOInst;

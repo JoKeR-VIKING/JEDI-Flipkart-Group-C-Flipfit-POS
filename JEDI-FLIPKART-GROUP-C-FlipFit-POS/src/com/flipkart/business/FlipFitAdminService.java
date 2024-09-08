@@ -5,8 +5,8 @@ import com.flipkart.bean.FlipFitGymOwner;
 
 import java.util.List;
 
-import static com.flipkart.dao.FlipFitAdminDAO.FlipFitAdminDAOInst;
-import static com.flipkart.dao.FlipFitGymOwnerDAO.FlipFitGymOwnerDAOInst;
+import static com.flipkart.dao.FlipFitAdminDAOImpl.FlipFitAdminDAOInst;
+import static com.flipkart.dao.FlipFitGymOwnerDAOImpl.FlipFitGymOwnerDAOInst;
 
 public class FlipFitAdminService implements FlipFitAdminInterface {
     @Override

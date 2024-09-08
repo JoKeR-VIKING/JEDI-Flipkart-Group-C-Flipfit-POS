@@ -5,8 +5,6 @@ import com.flipkart.enums.RoleEnum;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.flipkart.constants.SQLQueryConstants.*;
 import static com.flipkart.utils.FlipFitMySQL.flipFitSchema;
@@ -14,9 +12,7 @@ import static com.flipkart.utils.FlipFitMySQL.flipFitSchema;
 public class FlipFitUserDAOImpl implements FlipFitUserDAOInterface {
     public static FlipFitUserDAOImpl FlipFitUserDAOInst = new FlipFitUserDAOImpl();
 
-    // TODO: remove this after completing gym owner and customer and admin
-    public List<FlipFitUser> USERS = new ArrayList<>();
-
+    @Override
     public FlipFitUser findByUsername(String username) {
         return flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(SELECT_USER_BY_USERNAME);
@@ -39,6 +35,7 @@ public class FlipFitUserDAOImpl implements FlipFitUserDAOInterface {
         });
     }
 
+    @Override
     public void updatePassword(String userId, String password) {
         flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(UPDATE_USER_PASSWORD_BY_USERID);
@@ -48,6 +45,18 @@ public class FlipFitUserDAOImpl implements FlipFitUserDAOInterface {
         });
     }
 
+    @Override
+    public void updateAddress(String gymOwnerId, String address) {
+        flipFitSchema.execute(conn -> {
+            PreparedStatement stmt = conn.prepareStatement(UPDATE_USER_ADDRESS);
+            stmt.setString(1, address);
+            stmt.setString(2, gymOwnerId);
+
+            return stmt.executeUpdate();
+        });
+    }
+
+    @Override
     public void add(FlipFitUser user) {
         flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(INSERT_USER);

@@ -14,6 +14,11 @@ public class FlipFitGymOwner extends FlipFitUser {
         this.verified = "PENDING";
     }
 
+    public FlipFitGymOwner(String id, String username, String password, String name, String address, String phoneNumber, String gstNumber, String panCardNumber, String verified) {
+        this(id, username, password, name, address, phoneNumber, gstNumber, panCardNumber);
+        this.verified = verified;
+    }
+
     public String getGstNumber() {
         return gstNumber;
     }
