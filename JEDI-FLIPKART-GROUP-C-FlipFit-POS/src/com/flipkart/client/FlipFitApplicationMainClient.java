@@ -5,6 +5,7 @@ import com.flipkart.business.FlipFitCustomerService;
 import com.flipkart.business.FlipFitGymOwnerService;
 import com.flipkart.business.FlipFitUserService;
 import com.flipkart.enums.RoleEnum;
+import com.flipkart.exception.ExisistingUserException;
 import com.flipkart.exception.InvalidPasswordException;
 
 import java.util.Scanner;
@@ -117,7 +118,11 @@ public class FlipFitApplicationMainClient {
                 System.out.print("Enter your PAN Number: ");
                 String ownerPanNum = in.nextLine();
 
-                ownerService.createProfile(username, password, name, address, phoneNumber, ownerGstNum, ownerPanNum);
+                try {
+                    ownerService.createProfile(username, password, name, address, phoneNumber, ownerGstNum, ownerPanNum);
+                } catch (ExisistingUserException e) {
+                    redOutputLn("User already exists!");
+                }
 
                 login();
             }
@@ -136,8 +141,11 @@ public class FlipFitApplicationMainClient {
                 System.out.print("Enter your DOB: ");
                 String dob = in.nextLine();
 
-                customerService.createProfile(
-                        username, password, name, address, phoneNumber, weight, age, gender, parseDate(dob));
+                try {
+                    customerService.createProfile(username, password, name, address, phoneNumber, weight, age, gender, parseDate(dob));
+                } catch (ExisistingUserException e) {
+                    redOutputLn("User already exists!");
+                }
 
                 login();
             }
