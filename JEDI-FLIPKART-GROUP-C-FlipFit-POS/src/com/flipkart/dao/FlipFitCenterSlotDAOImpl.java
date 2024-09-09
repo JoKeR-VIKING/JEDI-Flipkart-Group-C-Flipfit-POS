@@ -21,6 +21,27 @@ public class FlipFitCenterSlotDAOImpl implements FlipFitCenterSlotDAOInterface {
     public static final FlipFitCenterSlotDAOInterface FlipFitCenterSlotDAOInst = new FlipFitCenterSlotDAOImpl();
 
     @Override
+    public FlipFitCenterSlot findSlotBySlotId(String slotId) {
+        return flipFitSchema.execute(conn -> {
+            PreparedStatement stmt = conn.prepareStatement(SELECT_SLOT_BY_ID);
+            stmt.setString(1, slotId);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()) {
+                return new FlipFitCenterSlot(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getTime(3).toLocalTime(),
+                        rs.getInt(4)
+                );
+            }
+
+            return null;
+        });
+    }
+
+    @Override
     public FlipFitCenterSlot findSlotByCentreAndStartTime(String centreId, LocalTime startTime) {
         return flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(SELECT_SLOT_BY_CENTER_AND_START_TIME);

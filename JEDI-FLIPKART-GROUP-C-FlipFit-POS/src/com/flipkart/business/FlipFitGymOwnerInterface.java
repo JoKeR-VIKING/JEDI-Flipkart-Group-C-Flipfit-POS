@@ -3,10 +3,7 @@ package com.flipkart.business;
 import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitSlotBooking;
-import com.flipkart.exception.ExistingUserException;
-import com.flipkart.exception.GymSlotAlreadyExistsException;
-import com.flipkart.exception.InvalidSlotException;
-import com.flipkart.exception.UnauthorizedGymOwnerException;
+import com.flipkart.exception.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,7 +12,7 @@ import java.util.List;
 public interface FlipFitGymOwnerInterface {
     void createProfile(String username, String password, String name, String address, String phoneNumber, String gstNumber, String panCardNumber) throws ExistingUserException;
 
-    void editProfile(String gymOwnerId, String address, String gstNumber, String panCardNumber);
+    void editProfile(String gymOwnerId, String address, String gstNumber, String panCardNumber) throws InvalidUserException;
 
     void addGym(String centreName, String centreAddress, String gymOwnerId);
 

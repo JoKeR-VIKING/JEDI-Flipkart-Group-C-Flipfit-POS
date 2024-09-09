@@ -51,14 +51,18 @@ public class FlipFitUserDAOImpl implements FlipFitUserDAOInterface {
     }
 
     @Override
-    public void updateAddress(String gymOwnerId, String address) {
-        flipFitSchema.execute(conn -> {
+    public void updateAddress(String gymOwnerId, String address) throws InvalidUserException {
+        int rowsAffected = flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(UPDATE_USER_ADDRESS);
             stmt.setString(1, address);
             stmt.setString(2, gymOwnerId);
 
             return stmt.executeUpdate();
         });
+
+        if(rowsAffected == 0) {
+            throw new InvalidUserException();
+        }
     }
 
     @Override

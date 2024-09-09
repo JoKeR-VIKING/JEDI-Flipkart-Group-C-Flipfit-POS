@@ -1,8 +1,12 @@
 package com.flipkart.dao;
 
+import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.bean.FlipFitPayments;
 import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.enums.SlotBookingStatusEnum;
+import com.flipkart.exception.GymSlotSeatLimitReachedException;
+import com.flipkart.exception.InvalidBookingException;
+import com.flipkart.exception.InvalidSlotException;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -12,13 +16,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.flipkart.constants.SQLQueryConstants.*;
+import static com.flipkart.dao.FlipFitCenterSlotDAOImpl.FlipFitCenterSlotDAOInst;
 import static com.flipkart.utils.FlipFitMySQL.flipFitSchema;
 
 public class FlipFitSlotBookingDAOImpl implements FlipFitSlotBookingDAOInterface {
     public static FlipFitSlotBookingDAOInterface FlipFitSlotBookingDAOInst = new FlipFitSlotBookingDAOImpl();
 
     @Override
-    public void addBooking(FlipFitSlotBooking booking) {
+    public int getBookingCountBySlotId(String slotId) throws InvalidSlotException {
+        int bookings = flipFitSchema.execute(conn -> {
+            PreparedStatement stmt = conn.prepareStatement(SELECT_SLOT_BOOKINGS_COUNT_BY_SLOT_ID);
+            stmt.setString(1, slotId);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()) {
+                return rs.getInt(1);
+            }
+
+            return -1;
+        });
+
+        if(bookings == -1) {
+            throw new InvalidSlotException();
+        }
+
+        return bookings;
+    }
+
+    @Override
+    public void addBooking(FlipFitSlotBooking booking) throws InvalidSlotException, GymSlotSeatLimitReachedException {
+        int bookingCount = getBookingCountBySlotId(booking.getCenterSlot());
+
+        if(bookingCount >= FlipFitCenterSlotDAOInst.findSlotBySlotId(booking.getCenterSlot()).getSeatLimit()) {
+            throw new GymSlotSeatLimitReachedException();
+        }
+
         flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(INSERT_SLOT_BOOKING);
             stmt.setString(1, booking.getBookingId());
@@ -52,13 +85,17 @@ public class FlipFitSlotBookingDAOImpl implements FlipFitSlotBookingDAOInterface
     }
 
     @Override
-    public void removeBooking(String bookingId) {
-        flipFitSchema.execute(conn -> {
+    public void removeBooking(String bookingId) throws InvalidBookingException {
+        int rowsAffected = flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(DELETE_SLOT_BOOKING);
             stmt.setString(1, bookingId);
 
             return stmt.executeUpdate();
         });
+
+        if(rowsAffected == 0) {
+            throw new InvalidBookingException();
+        }
     }
 
     @Override

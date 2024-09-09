@@ -154,11 +154,10 @@ public class FlipFitApplicationMainClient {
 
                 try {
                     ownerService.createProfile(username, password, name, address, phoneNumber, ownerGstNum, ownerPanNum);
+                    login();
                 } catch (ExistingUserException e) {
                     redOutputLn("User already exists!");
                 }
-
-                login();
             }
             case CUSTOMER -> {
                 int age;
@@ -221,11 +220,10 @@ public class FlipFitApplicationMainClient {
 
                 try {
                     customerService.createProfile(username, password, name, address, phoneNumber, weight, age, gender, parseDate(dob));
+                    login();
                 } catch (ExistingUserException e) {
                     redOutputLn("User already exists!");
                 }
-
-                login();
             }
         }
     }
@@ -260,11 +258,10 @@ public class FlipFitApplicationMainClient {
 
         try {
             userService.changePassword(user.getUserId(), newPassword);
+            greenOutputLn("Password changed!");
         } catch(InvalidUserException e) {
             redOutputLn("Invalid user");
         }
-
-        greenOutputLn("Password changed!");
     }
 
     public static void main(String[] args) {

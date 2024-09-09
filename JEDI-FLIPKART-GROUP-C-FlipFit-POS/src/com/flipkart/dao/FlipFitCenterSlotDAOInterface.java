@@ -10,6 +10,8 @@ import java.util.List;
 
 public interface FlipFitCenterSlotDAOInterface {
 
+    FlipFitCenterSlot findSlotBySlotId(String slotId);
+
     FlipFitCenterSlot findSlotByCentreAndStartTime(String centreId, LocalTime startTime);
 
     void addSlot(FlipFitCenterSlot slot) throws GymSlotAlreadyExistsException;

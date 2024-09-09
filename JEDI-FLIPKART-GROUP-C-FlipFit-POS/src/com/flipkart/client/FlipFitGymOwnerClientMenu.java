@@ -6,6 +6,7 @@ import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.business.FlipFitGymOwnerService;
 import com.flipkart.exception.GymSlotAlreadyExistsException;
 import com.flipkart.exception.InvalidSlotException;
+import com.flipkart.exception.InvalidUserException;
 import com.flipkart.exception.UnauthorizedGymOwnerException;
 import com.flipkart.utils.FlipFitTableUtil;
 
@@ -239,7 +240,11 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter PAN: ");
         String pan = scanner.nextLine();
 
-        ownerService.editProfile(userId, address, gst, pan);
+        try {
+            ownerService.editProfile(userId, address, gst, pan);
+        } catch (InvalidUserException e) {
+            redOutputLn("Invalid user");
+        }
     }
 
     public void userLogout() {

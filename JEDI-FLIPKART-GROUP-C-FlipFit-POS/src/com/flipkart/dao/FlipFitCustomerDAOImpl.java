@@ -2,6 +2,7 @@ package com.flipkart.dao;
 
 import com.flipkart.bean.FlipFitCustomer;
 import com.flipkart.exception.ExistingUserException;
+import com.flipkart.exception.InvalidUserException;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -31,7 +32,7 @@ public class FlipFitCustomerDAOImpl implements FlipFitCustomerDAOInterface {
     }
 
     @Override
-    public void editProfile(String customerId, String address, Double weight, Integer age, String gender, LocalDate dob) {
+    public void editProfile(String customerId, String address, Double weight, Integer age, String gender, LocalDate dob) throws InvalidUserException {
         FlipFitUserDAOInst.updateAddress(customerId, address);
 
         flipFitSchema.execute(conn -> {
