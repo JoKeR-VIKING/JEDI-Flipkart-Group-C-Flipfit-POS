@@ -25,10 +25,11 @@ public class FlipFitSlotBookingDAOImpl implements FlipFitSlotBookingDAOInterface
     public static FlipFitSlotBookingDAOInterface FlipFitSlotBookingDAOInst = new FlipFitSlotBookingDAOImpl();
 
     @Override
-    public int getBookingCountBySlotId(String slotId) throws InvalidSlotException {
+    public int getBookingCountBySlotId(String slotId, LocalDate slotDate) throws InvalidSlotException {
         int bookings = flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(SELECT_SLOT_BOOKINGS_COUNT_BY_SLOT_ID);
             stmt.setString(1, slotId);
+            stmt.setDate(2, Date.valueOf(slotDate));
 
             ResultSet rs = stmt.executeQuery();
 
@@ -48,7 +49,7 @@ public class FlipFitSlotBookingDAOImpl implements FlipFitSlotBookingDAOInterface
 
     @Override
     public void addBooking(FlipFitSlotBooking booking) throws InvalidSlotException, GymSlotSeatLimitReachedException {
-        int bookingCount = getBookingCountBySlotId(booking.getCenterSlot());
+        int bookingCount = getBookingCountBySlotId(booking.getCenterSlot(), booking.getSlotDate());
 
         if (bookingCount >= FlipFitCenterSlotDAOInst.findSlotBySlotId(booking.getCenterSlot()).getSeatLimit()) {
             throw new GymSlotSeatLimitReachedException();

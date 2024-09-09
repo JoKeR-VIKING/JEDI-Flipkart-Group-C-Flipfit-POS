@@ -74,6 +74,14 @@ public interface FlipFitGymOwnerInterface {
     boolean modifyGym(String gymOwnerId, String centreId, String city, String gymName, String gymAddress) throws UnauthorizedGymOwnerException, InvalidGymException;
 
     /**
+     * Views all gym centers for a given user.
+     *
+     * @param userId          the ID of the user whose gym centers are to be viewed
+     * @return a list of registered gym centers
+     */
+    List<FlipFitCentre> viewAllGymCentres(String userId);
+
+    /**
      * Views all registered gym centers for a given user.
      *
      * @param userId          the ID of the user whose gym centers are to be viewed

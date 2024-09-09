@@ -23,7 +23,7 @@ public interface FlipFitSlotBookingDAOInterface {
      * @return The number of bookings for the specified slot.
      * @throws InvalidSlotException If the slot ID is invalid or not found.
      */
-    int getBookingCountBySlotId(String slotId) throws InvalidSlotException;
+    int getBookingCountBySlotId(String slotId, LocalDate slotDate) throws InvalidSlotException;
 
     /**
      * Adds a new booking to the system.

@@ -139,6 +139,32 @@ public class FlipFitCentreDAOImpl implements FlipFitCentreDAOInterface {
     }
 
     @Override
+    public List<FlipFitCentre> getAllGymCentres(String ownerId) {
+        return flipFitSchema.execute(conn -> {
+            PreparedStatement stmt = conn.prepareStatement(SELECT_ALL_GYMS_WITH_OWNER);
+            stmt.setString(1, ownerId);
+
+            ResultSet rs = stmt.executeQuery();
+            List<FlipFitCentre> centres = new ArrayList<>();
+
+            while (rs.next()) {
+                FlipFitCentre centre = new FlipFitCentre(
+                        rs.getString("centreId"),
+                        rs.getString("centreName"),
+                        rs.getString("centreAddress"),
+                        rs.getString("gymOwnerId"),
+                        rs.getString("verified"),
+                        rs.getString("city")
+                );
+
+                centres.add(centre);
+            }
+
+            return centres;
+        });
+    }
+
+    @Override
     public List<FlipFitCentre> getRegisteredGymCentres(String ownerId) {
         return flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(SELECT_REGISTERED_GYMS);

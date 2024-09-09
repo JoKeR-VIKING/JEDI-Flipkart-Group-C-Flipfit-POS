@@ -21,7 +21,7 @@ import static com.flipkart.utils.Helper.*;
  * Provides the menu and functionality for gym owners to manage gyms, slots, and profile information.
  */
 public class FlipFitGymOwnerClientMenu {
-    public static final int TOTAL_OPTIONS = 13;
+    public static final int TOTAL_OPTIONS = 14;
 
     private Scanner scanner = new Scanner(System.in);
     private FlipFitGymOwnerService ownerService = new FlipFitGymOwnerService();
@@ -36,17 +36,18 @@ public class FlipFitGymOwnerClientMenu {
         yellowOutputLn("2. Edit Gym");
         yellowOutputLn("3. Remove Gym");
         yellowOutputLn("4. View Gyms");
-        yellowOutputLn("5. View Gyms by City");
+        yellowOutputLn("5. View Registered Gyms");
+        yellowOutputLn("6. View Gyms by City");
 
-        yellowOutputLn("6. Add new Slot");
-        yellowOutputLn("7. Remove Slot");
-        yellowOutputLn("8. Edit Slot");
-        yellowOutputLn("9. View All Slots");
-        yellowOutputLn("10. View All Available Slots");
-        yellowOutputLn("11. View all Bookings");
+        yellowOutputLn("7. Add new Slot");
+        yellowOutputLn("8. Remove Slot");
+        yellowOutputLn("9. Edit Slot");
+        yellowOutputLn("10. View All Slots");
+        yellowOutputLn("11. View All Available Slots");
+        yellowOutputLn("12. View all Bookings");
 
-        yellowOutputLn("12. Edit Profile");
-        redOutputLn("13. Log Out");
+        yellowOutputLn("13. Edit Profile");
+        redOutputLn("14. Log Out");
     }
 
     /**
@@ -141,6 +142,31 @@ public class FlipFitGymOwnerClientMenu {
      * @param userId The ID of the gym owner.
      */
     public void viewGyms(String userId) {
+        List<FlipFitCentre> centres = ownerService.viewAllGymCentres(userId);
+
+        System.out.println();
+
+        FlipFitTableUtil.printTabular(
+                List.of("Gym ID", "Gym Name", "Gym City", "Gym Address", "Gym Owner ID", "Verification Status"),
+                centres.stream()
+                        .map(centre -> List.of(
+                                centre.getCentreId(),
+                                centre.getCentreName(),
+                                centre.getCity(),
+                                centre.getCentreAddress(),
+                                centre.getGymOwnerId(),
+                                centre.getVerified())
+                        )
+                        .toList()
+        );
+    }
+
+    /**
+     * Displays all gyms registered under the specified gym owner which are approved by admin.
+     *
+     * @param userId The ID of the gym owner.
+     */
+    public void viewRegisteredGyms(String userId) {
         List<FlipFitCentre> centres = ownerService.viewRegisteredGymCenters(userId);
 
         System.out.println();
@@ -273,7 +299,6 @@ public class FlipFitGymOwnerClientMenu {
         }
 
         int noOfSeats;
-        scanner.nextLine();
 
         while (true) {
             try {
@@ -475,17 +500,18 @@ public class FlipFitGymOwnerClientMenu {
                 case 2 -> modifyGym(userId);
                 case 3 -> removeGym(userId);
                 case 4 -> viewGyms(userId);
-                case 5 -> viewGymsByCity(userId);
+                case 5 -> viewRegisteredGyms(userId);
+                case 6 -> viewGymsByCity(userId);
 
-                case 6 -> addSlot();
-                case 7 -> removeSlot();
-                case 8 -> editSlot();
-                case 9 -> viewAllSlots();
-                case 10 -> viewAvailableSlots();
-                case 11 -> viewAllBookings();
+                case 7 -> addSlot();
+                case 8 -> removeSlot();
+                case 9 -> editSlot();
+                case 10 -> viewAllSlots();
+                case 11 -> viewAvailableSlots();
+                case 12 -> viewAllBookings();
 
-                case 12 -> editProfile(userId);
-                case 13 -> {
+                case 13 -> editProfile(userId);
+                case 14 -> {
                     userLogout();
                     return;
                 }

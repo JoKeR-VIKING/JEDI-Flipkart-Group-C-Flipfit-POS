@@ -69,6 +69,14 @@ public interface FlipFitCentreDAOInterface {
             throws UnauthorizedGymOwnerException, InvalidGymException;
 
     /**
+     * Retrieves a list of gym centres by a specific gym owner.
+     *
+     * @param ownerId The ID of the gym owner whose registered gym centres are to be retrieved.
+     * @return A list of {@link FlipFitCentre} objects representing the gym centres registered by the specified owner.
+     */
+    List<FlipFitCentre> getAllGymCentres(String ownerId);
+
+    /**
      * Retrieves a list of gym centres registered by a specific gym owner.
      *
      * @param ownerId The ID of the gym owner whose registered gym centres are to be retrieved.
