@@ -10,6 +10,7 @@ import com.flipkart.utils.FlipFitTableUtil;
 import com.flipkart.utils.Helper;
 import com.flipkart.validators.BookSlotInputValidator;
 import com.flipkart.validators.CustomerInputValidator;
+import com.flipkart.validators.PaymentInputValidator;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -175,11 +176,51 @@ public class FlipFitCustomerClientMenu {
         }
 
         // Make payment
-        System.out.print("Make payment of Rs.500: ");
-        Double paymentAmount = in.nextDouble();
-        in.nextLine();
+        System.out.print("Please proceed with payment of Rs.500: (y/n): ");
+        String acceptPayment = in.nextLine();
 
-        FlipFitPayments payment = paymentService.makePayment(Helper.generateId(), userId, 500.00, paymentAmount, LocalDate.now());
+        if(!acceptPayment.equals("y")) {
+            redOutputLn("Booking process cancelled");
+            return;
+        }
+
+        String cardNumber;
+        while(true) {
+            try {
+                System.out.print("Enter Card Number: ");
+                cardNumber = in.nextLine();
+                PaymentInputValidator.validateCardNumber(cardNumber);
+                break;
+            } catch (PaymentInputValidator e) {
+                redOutputLn(e.getMessage());
+            }
+        }
+
+        String cvv;
+        while(true) {
+            try {
+                System.out.print("Enter Card CVV: ");
+                cvv = in.nextLine();
+                PaymentInputValidator.validateCVV(cvv);
+                break;
+            } catch (PaymentInputValidator e) {
+                redOutputLn(e.getMessage());
+            }
+        }
+
+        String cardExpiry;
+        while(true) {
+            try {
+                System.out.print("Enter Card Number (MM/yy): ");
+                cardExpiry = in.nextLine();
+                PaymentInputValidator.isValidExpiryDate(cardExpiry);
+                break;
+            } catch (PaymentInputValidator e) {
+                redOutputLn(e.getMessage());
+            }
+        }
+
+        FlipFitPayments payment = paymentService.makePayment(userId, 500.00, cardNumber, cvv, parseYearMonth(cardExpiry), LocalDate.now());
 
         try {
             bookingService.bookSlot(userId, parseDate(bookingDate), slot, payment.getPaymentId());

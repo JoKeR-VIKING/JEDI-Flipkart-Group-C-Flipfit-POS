@@ -59,6 +59,9 @@ CREATE TABLE `FlipFitPayments` (
                                    `customerId` varchar(50) NOT NULL,
                                    `amount` double NOT NULL,
                                    `date` datetime NOT NULL,
+                                   `cardNumber` varchar(50) NOT NULL,
+                                   `cvv` varchar(50),
+                                   `cardExpiry` varchar(50),
                                    `status` varchar(45) NOT NULL,
                                    PRIMARY KEY (`paymentId`),
                                    FOREIGN KEY (`customerId`) REFERENCES `FlipFitUser` (`userId`) ON DELETE CASCADE

@@ -4,6 +4,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import static com.flipkart.utils.Helper.parseDate;
+
 /**
  * Custom exception class used for validating slot input details.
  * Extends {@link Exception} to provide specific error messages for validation issues.
@@ -31,6 +33,22 @@ public class SlotInputValidator extends Exception {
             LocalTime.parse(slotTime, formatter);
         } catch (DateTimeParseException e) {
             throw new SlotInputValidator("Invalid slot time format");
+        }
+    }
+
+    /**
+     * Validates the date format of a given date string.
+     *
+     * @param date the date string to validate
+     * @throws SlotInputValidator if the date format is incorrect
+     */
+    public static void validateDateFormat(String date) throws SlotInputValidator {
+        try {
+            // Attempt to parse the date using the defined format
+            parseDate(date);
+        } catch (DateTimeParseException e) {
+            // If parsing fails, the format is incorrect
+            throw new SlotInputValidator("Incorrect date format (correct format : dd-MM-yyyy)");
         }
     }
 

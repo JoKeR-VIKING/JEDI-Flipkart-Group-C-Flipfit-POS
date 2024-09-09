@@ -115,127 +115,128 @@ INSERT INTO `FlipFitCenterSlot` (`slotId`, `centreId`, `startTime`, `seatLimit`)
 ('slot29', 'centre10', '10:00:00', 3),
 ('slot30', 'centre10', '12:00:00', 5);
 
--- Insert Payments
-INSERT INTO `FlipFitPayments` (`paymentId`, `customerId`, `amount`, `date`, `status`) VALUES
+-- Insert Payments with card details
+INSERT INTO `FlipFitPayments` (`paymentId`, `customerId`, `amount`, `date`, `cardNumber`, `cvv`, `cardExpiry`, `status`) VALUES
 -- Payments for booking1 to booking5 (slot1 and slot2 at centre1)
-('payment1', 'cust1', 100.00, '2024-09-01 10:00:00', 'Completed'),
-('payment2', 'cust2', 100.00, '2024-09-02 11:00:00', 'Completed'),
-('payment3', 'cust3', 100.00, '2024-09-01 12:00:00', 'Completed'),
-('payment4', 'cust4', 100.00, '2024-09-02 13:00:00', 'Completed'),
-('payment5', 'cust5', 100.00, '2024-09-03 14:00:00', 'Completed'),
+('payment1', 'cust1', 100.00, '2024-09-01 10:00:00', '4111111111111111', '123', '12/25', 'Completed'),
+('payment2', 'cust2', 100.00, '2024-09-02 11:00:00', '4222222222222222', '456', '11/24', 'Completed'),
+('payment3', 'cust3', 100.00, '2024-09-01 12:00:00', '4333333333333333', '789', '10/23', 'Completed'),
+('payment4', 'cust4', 100.00, '2024-09-02 13:00:00', '4444444444444444', '012', '09/22', 'Completed'),
+('payment5', 'cust5', 100.00, '2024-09-03 14:00:00', '5555555555555555', '345', '08/21', 'Completed'),
 
 -- Payments for booking6 to booking8 (slot3 at centre1)
-('payment6', 'cust1', 100.00, '2024-09-01 16:00:00', 'Completed'),
-('payment7', 'cust2', 100.00, '2024-09-02 17:00:00', 'Completed'),
-('payment8', 'cust3', 100.00, '2024-09-03 18:00:00', 'Completed'),
+('payment6', 'cust1', 100.00, '2024-09-01 16:00:00', '4111111111111111', '123', '12/25', 'Completed'),
+('payment7', 'cust2', 100.00, '2024-09-02 17:00:00', '4222222222222222', '456', '11/24', 'Completed'),
+('payment8', 'cust3', 100.00, '2024-09-03 18:00:00', '4333333333333333', '789', '10/23', 'Completed'),
 
 -- Payments for booking9 to booking10 (slot4 at centre2)
-('payment9', 'cust4', 100.00, '2024-09-01 19:00:00', 'Completed'),
-('payment10', 'cust5', 100.00, '2024-09-02 20:00:00', 'Completed'),
+('payment9', 'cust4', 100.00, '2024-09-01 19:00:00', '4444444444444444', '012', '09/22', 'Completed'),
+('payment10', 'cust5', 100.00, '2024-09-02 20:00:00', '5555555555555555', '345', '08/21', 'Completed'),
 
 -- Payments for booking11 to booking12 (slot5 at centre2)
-('payment11', 'cust1', 100.00, '2024-09-01 21:00:00', 'Completed'),
-('payment12', 'cust2', 100.00, '2024-09-02 22:00:00', 'Completed'),
+('payment11', 'cust1', 100.00, '2024-09-01 21:00:00', '4111111111111111', '123', '12/25', 'Completed'),
+('payment12', 'cust2', 100.00, '2024-09-02 22:00:00', '4222222222222222', '456', '11/24', 'Completed'),
 
 -- Payments for booking13 to booking14 (slot6 at centre2)
-('payment13', 'cust3', 100.00, '2024-09-01 23:00:00', 'Completed'),
-('payment14', 'cust4', 100.00, '2024-09-02 01:00:00', 'Completed'),
+('payment13', 'cust3', 100.00, '2024-09-01 23:00:00', '4333333333333333', '789', '10/23', 'Completed'),
+('payment14', 'cust4', 100.00, '2024-09-02 01:00:00', '4444444444444444', '012', '09/22', 'Completed'),
 
 -- Payments for booking15 to booking16 (slot7 at centre3)
-('payment15', 'cust1', 100.00, '2024-09-01 22:00:00', 'Completed'),
-('payment16', 'cust2', 100.00, '2024-09-02 23:00:00', 'Completed'),
+('payment15', 'cust1', 100.00, '2024-09-01 22:00:00', '4111111111111111', '123', '12/25', 'Completed'),
+('payment16', 'cust2', 100.00, '2024-09-02 23:00:00', '4222222222222222', '456', '11/24', 'Completed'),
 
 -- Payments for booking17 to booking18 (slot8 at centre3)
-('payment17', 'cust3', 100.00, '2024-09-01 00:00:00', 'Completed'),
-('payment18', 'cust4', 100.00, '2024-09-02 01:00:00', 'Completed'),
+('payment17', 'cust3', 100.00, '2024-09-01 00:00:00', '4333333333333333', '789', '10/23', 'Completed'),
+('payment18', 'cust4', 100.00, '2024-09-02 01:00:00', '4444444444444444', '012', '09/22', 'Completed'),
 
 -- Payments for booking19 to booking20 (slot9 at centre3)
-('payment19', 'cust5', 100.00, '2024-09-01 02:00:00', 'Completed'),
-('payment20', 'cust1', 100.00, '2024-09-02 03:00:00', 'Completed'),
+('payment19', 'cust5', 100.00, '2024-09-01 02:00:00', '5555555555555555', '345', '08/21', 'Completed'),
+('payment20', 'cust1', 100.00, '2024-09-02 03:00:00', '4111111111111111', '123', '12/25', 'Completed'),
 
 -- Payments for booking21 to booking22 (slot10 at centre4)
-('payment21', 'cust2', 100.00, '2024-09-01 04:00:00', 'Completed'),
-('payment22', 'cust3', 100.00, '2024-09-02 05:00:00', 'Completed'),
+('payment21', 'cust2', 100.00, '2024-09-01 04:00:00', '4222222222222222', '456', '11/24', 'Completed'),
+('payment22', 'cust3', 100.00, '2024-09-02 05:00:00', '4333333333333333', '789', '10/23', 'Completed'),
 
 -- Payments for booking23 to booking24 (slot11 at centre4)
-('payment23', 'cust4', 100.00, '2024-09-01 06:00:00', 'Completed'),
-('payment24', 'cust5', 100.00, '2024-09-02 07:00:00', 'Completed'),
+('payment23', 'cust4', 100.00, '2024-09-01 06:00:00', '4444444444444444', '012', '09/22', 'Completed'),
+('payment24', 'cust5', 100.00, '2024-09-02 07:00:00', '5555555555555555', '345', '08/21', 'Completed'),
 
 -- Payments for booking25 to booking26 (slot12 at centre4)
-('payment25', 'cust1', 100.00, '2024-09-01 08:00:00', 'Completed'),
-('payment26', 'cust2', 100.00, '2024-09-02 09:00:00', 'Completed'),
+('payment25', 'cust1', 100.00, '2024-09-01 08:00:00', '4111111111111111', '123', '12/25', 'Completed'),
+('payment26', 'cust2', 100.00, '2024-09-02 09:00:00', '4222222222222222', '456', '11/24', 'Completed'),
 
 -- Payments for booking27 to booking28 (slot13 at centre5)
-('payment27', 'cust3', 100.00, '2024-09-01 10:00:00', 'Completed'),
-('payment28', 'cust4', 100.00, '2024-09-02 11:00:00', 'Completed'),
+('payment27', 'cust3', 100.00, '2024-09-01 10:00:00', '4333333333333333', '789', '10/23', 'Completed'),
+('payment28', 'cust4', 100.00, '2024-09-02 11:00:00', '4444444444444444', '012', '09/22', 'Completed'),
 
 -- Payments for booking29 to booking30 (slot14 at centre5)
-('payment29', 'cust5', 100.00, '2024-09-01 12:00:00', 'Completed'),
-('payment30', 'cust1', 100.00, '2024-09-02 13:00:00', 'Completed'),
+('payment29', 'cust5', 100.00, '2024-09-01 12:00:00', '5555555555555555', '345', '08/21', 'Completed'),
+('payment30', 'cust1', 100.00, '2024-09-02 13:00:00', '4111111111111111', '123', '12/25', 'Completed'),
 
 -- Payments for booking31 to booking32 (slot15 at centre5)
-('payment31', 'cust2', 100.00, '2024-09-01 14:00:00', 'Completed'),
-('payment32', 'cust3', 100.00, '2024-09-02 15:00:00', 'Completed'),
+('payment31', 'cust2', 100.00, '2024-09-01 14:00:00', '4222222222222222', '456', '11/24', 'Completed'),
+('payment32', 'cust3', 100.00, '2024-09-02 15:00:00', '4333333333333333', '789', '10/23', 'Completed'),
 
 -- Payments for booking33 to booking34 (slot16 at centre6)
-('payment33', 'cust4', 100.00, '2024-09-01 16:00:00', 'Completed'),
-('payment34', 'cust5', 100.00, '2024-09-02 17:00:00', 'Completed'),
+('payment33', 'cust4', 100.00, '2024-09-01 16:00:00', '4444444444444444', '012', '09/22', 'Completed'),
+('payment34', 'cust5', 100.00, '2024-09-02 17:00:00', '5555555555555555', '345', '08/21', 'Completed'),
 
 -- Payments for booking35 to booking36 (slot17 at centre6)
-('payment35', 'cust1', 100.00, '2024-09-01 18:00:00', 'Completed'),
-('payment36', 'cust2', 100.00, '2024-09-02 19:00:00', 'Completed'),
+('payment35', 'cust1', 100.00, '2024-09-01 18:00:00', '4111111111111111', '123', '12/25', 'Completed'),
+('payment36', 'cust2', 100.00, '2024-09-02 19:00:00', '4222222222222222', '456', '11/24', 'Completed'),
 
 -- Payments for booking37 to booking38 (slot18 at centre6)
-('payment37', 'cust3', 100.00, '2024-09-01 20:00:00', 'Completed'),
-('payment38', 'cust4', 100.00, '2024-09-02 21:00:00', 'Completed'),
+('payment37', 'cust3', 100.00, '2024-09-01 20:00:00', '4333333333333333', '789', '10/23', 'Completed'),
+('payment38', 'cust4', 100.00, '2024-09-02 21:00:00', '4444444444444444', '012', '09/22', 'Completed'),
 
 -- Payments for booking39 to booking40 (slot19 at centre7)
-('payment39', 'cust5', 100.00, '2024-09-01 22:00:00', 'Completed'),
-('payment40', 'cust1', 100.00, '2024-09-02 23:00:00', 'Completed'),
+('payment39', 'cust5', 100.00, '2024-09-01 22:00:00', '5555555555555555', '345', '08/21', 'Completed'),
+('payment40', 'cust1', 100.00, '2024-09-02 23:00:00', '4111111111111111', '123', '12/25', 'Completed'),
 
 -- Payments for booking41 to booking42 (slot20 at centre7)
-('payment41', 'cust2', 100.00, '2024-09-01 00:00:00', 'Completed'),
-('payment42', 'cust3', 100.00, '2024-09-02 01:00:00', 'Completed'),
+('payment41', 'cust2', 100.00, '2024-09-01 00:00:00', '4222222222222222', '456', '11/24', 'Completed'),
+('payment42', 'cust3', 100.00, '2024-09-02 01:00:00', '4333333333333333', '789', '10/23', 'Completed'),
 
 -- Payments for booking43 to booking44 (slot21 at centre7)
-('payment43', 'cust4', 100.00, '2024-09-01 02:00:00', 'Completed'),
-('payment44', 'cust5', 100.00, '2024-09-02 03:00:00', 'Completed'),
+('payment43', 'cust4', 100.00, '2024-09-01 02:00:00', '4444444444444444', '012', '09/22', 'Completed'),
+('payment44', 'cust5', 100.00, '2024-09-02 03:00:00', '5555555555555555', '345', '08/21', 'Completed'),
 
 -- Payments for booking45 to booking46 (slot22 at centre8)
-('payment45', 'cust1', 100.00, '2024-09-01 04:00:00', 'Completed'),
-('payment46', 'cust2', 100.00, '2024-09-02 05:00:00', 'Completed'),
+('payment45', 'cust1', 100.00, '2024-09-01 04:00:00', '4111111111111111', '123', '12/25', 'Completed'),
+('payment46', 'cust2', 100.00, '2024-09-02 05:00:00', '4222222222222222', '456', '11/24', 'Completed'),
 
 -- Payments for booking47 to booking48 (slot23 at centre8)
-('payment47', 'cust3', 100.00, '2024-09-01 06:00:00', 'Completed'),
-('payment48', 'cust4', 100.00, '2024-09-02 07:00:00', 'Completed'),
+('payment47', 'cust3', 100.00, '2024-09-01 06:00:00', '4333333333333333', '789', '10/23', 'Completed'),
+('payment48', 'cust4', 100.00, '2024-09-02 07:00:00', '4444444444444444', '012', '09/22', 'Completed'),
 
 -- Payments for booking49 to booking50 (slot24 at centre8)
-('payment49', 'cust5', 100.00, '2024-09-01 08:00:00', 'Completed'),
-('payment50', 'cust1', 100.00, '2024-09-02 09:00:00', 'Completed'),
+('payment49', 'cust5', 100.00, '2024-09-01 08:00:00', '5555555555555555', '345', '08/21', 'Completed'),
+('payment50', 'cust1', 100.00, '2024-09-02 09:00:00', '4111111111111111', '123', '12/25', 'Completed'),
 
 -- Payments for booking51 to booking52 (slot25 at centre9)
-('payment51', 'cust2', 100.00, '2024-09-01 10:00:00', 'Completed'),
-('payment52', 'cust3', 100.00, '2024-09-02 11:00:00', 'Completed'),
+('payment51', 'cust2', 100.00, '2024-09-01 10:00:00', '4222222222222222', '456', '11/24', 'Completed'),
+('payment52', 'cust3', 100.00, '2024-09-02 11:00:00', '4333333333333333', '789', '10/23', 'Completed'),
 
 -- Payments for booking53 to booking54 (slot26 at centre9)
-('payment53', 'cust4', 100.00, '2024-09-01 12:00:00', 'Completed'),
-('payment54', 'cust5', 100.00, '2024-09-02 13:00:00', 'Completed'),
+('payment53', 'cust4', 100.00, '2024-09-01 12:00:00', '4444444444444444', '012', '09/22', 'Completed'),
+('payment54', 'cust5', 100.00, '2024-09-02 13:00:00', '5555555555555555', '345', '08/21', 'Completed'),
 
 -- Payments for booking55 to booking56 (slot27 at centre9)
-('payment55', 'cust1', 100.00, '2024-09-01 14:00:00', 'Completed'),
-('payment56', 'cust2', 100.00, '2024-09-02 15:00:00', 'Completed'),
+('payment55', 'cust1', 100.00, '2024-09-01 14:00:00', '4111111111111111', '123', '12/25', 'Completed'),
+('payment56', 'cust2', 100.00, '2024-09-02 15:00:00', '4222222222222222', '456', '11/24', 'Completed'),
 
 -- Payments for booking57 to booking58 (slot28 at centre10)
-('payment57', 'cust3', 100.00, '2024-09-01 16:00:00', 'Completed'),
-('payment58', 'cust4', 100.00, '2024-09-02 17:00:00', 'Completed'),
+('payment57', 'cust3', 100.00, '2024-09-01 16:00:00', '4333333333333333', '789', '10/23', 'Completed'),
+('payment58', 'cust4', 100.00, '2024-09-02 17:00:00', '4444444444444444', '012', '09/22', 'Completed'),
 
 -- Payments for booking59 to booking60 (slot29 at centre10)
-('payment59', 'cust5', 100.00, '2024-09-01 18:00:00', 'Completed'),
-('payment60', 'cust1', 100.00, '2024-09-02 19:00:00', 'Completed'),
+('payment59', 'cust5', 100.00, '2024-09-01 18:00:00', '5555555555555555', '345', '08/21', 'Completed'),
+('payment60', 'cust1', 100.00, '2024-09-02 19:00:00', '4111111111111111', '123', '12/25', 'Completed'),
 
 -- Payments for booking61 to booking62 (slot30 at centre10)
-('payment61', 'cust2', 100.00, '2024-09-01 20:00:00', 'Completed'),
-('payment62', 'cust3', 100.00, '2024-09-02 21:00:00', 'Completed');
+('payment61', 'cust2', 100.00, '2024-09-01 20:00:00', '4222222222222222', '456', '11/24', 'Completed'),
+('payment62', 'cust3', 100.00, '2024-09-02 21:00:00', '4333333333333333', '789', '10/23', 'Completed');
+
 
 
 

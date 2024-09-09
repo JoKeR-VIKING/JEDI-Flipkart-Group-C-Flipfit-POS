@@ -4,6 +4,7 @@ import com.flipkart.constants.ConsoleConstants;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
@@ -15,6 +16,7 @@ import static com.flipkart.constants.ConsoleConstants.*;
  */
 public class Helper {
 
+    private static final DateTimeFormatter YEAR_MONTH_FORMATTER = DateTimeFormatter.ofPattern("MM/yy");
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private static final DateTimeFormatter HOUR_MIN_TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
@@ -45,6 +47,16 @@ public class Helper {
      */
     public static LocalDate parseDate(String date) {
         return LocalDate.parse(date, DATE_TIME_FORMATTER);
+    }
+
+    /**
+     * Parses a YearMonth from a string using the defined formatter.
+     *
+     * @param yearMonth the string to parse
+     * @return the parsed YearMonth
+     */
+    public static YearMonth parseYearMonth(String yearMonth) {
+        return YearMonth.parse(yearMonth, YEAR_MONTH_FORMATTER);
     }
 
     /**

@@ -29,9 +29,6 @@ public class BookSlotInputValidator extends Exception {
     public static void validateDateFormat(String dateString) throws BookSlotInputValidator {
         try {
             LocalDate.parse(dateString, formatter);
-    public static void validateDateFormat(String dateString) throws BookSlotInputValidator {
-        try {
-            LocalDate.parse(dateString);
         } catch (DateTimeParseException e) {
             throw new BookSlotInputValidator("Invalid date format");
         }

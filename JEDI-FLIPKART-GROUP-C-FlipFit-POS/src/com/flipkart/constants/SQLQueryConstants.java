@@ -168,7 +168,7 @@ public class SQLQueryConstants {
     /**
      * SQL query to count slot bookings by slotId.
      */
-    public static final String SELECT_SLOT_BOOKINGS_COUNT_BY_SLOT_ID = "SELECT COUNT(*) FROM FlipFitSlotBooking WHERE s.centreSlotId = ?";
+    public static final String SELECT_SLOT_BOOKINGS_COUNT_BY_SLOT_ID = "SELECT COUNT(*) FROM FlipFitSlotBooking WHERE centreSlotId = ?";
 
     /**
      * SQL query to count slot bookings by gymId and date.
@@ -178,5 +178,5 @@ public class SQLQueryConstants {
     /**
      * SQL query to insert a payment record into the FlipFitPayments table.
      */
-    public static final String INSERT_PAYMENT = "INSERT INTO FlipFitPayments VALUES (?, ?, ?, ?, ?)";
+    public static final String INSERT_PAYMENT = "INSERT INTO FlipFitPayments VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 }

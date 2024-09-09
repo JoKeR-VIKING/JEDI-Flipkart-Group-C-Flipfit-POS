@@ -1,56 +1,65 @@
 package com.flipkart.bean;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 
 /**
- * Represents a payment record in the FlipFit system.
- * This class contains details such as payment ID, customer ID, amount, date, and status.
+ * Represents a payment transaction in the FlipFit system.
  */
 public class FlipFitPayments {
 
-    private String PaymentId;
+    private String paymentId;
     private String customerId;
     private Double amount;
     private LocalDate date;
+    private String cardNumber;
+    private String cvv;
+    private YearMonth cardExpiry;
     private String status;
 
     /**
-     * Constructs a new FlipFitPayments instance with the specified details.
+     * Constructs a new FlipFitPayments instance.
      *
-     * @param paymentId  the unique identifier for the payment
-     * @param customerId the unique identifier for the customer making the payment
-     * @param amount     the amount of the payment
-     * @param date       the date the payment was made
-     * @param status     the status of the payment (e.g., "COMPLETED", "PENDING")
+     * @param paymentId     the unique identifier for the payment
+     * @param customerId    the identifier of the customer making the payment
+     * @param amount        the amount of the payment
+     * @param date          the date of the payment
+     * @param cardNumber    the card number used for the payment
+     * @param cvv           the CVV of the card used for the payment
+     * @param cardExpiry    the expiry date of the card used for the payment
+     * @param status        the status of the payment (e.g., "completed", "pending")
      */
-    public FlipFitPayments(String paymentId, String customerId, Double amount, LocalDate date, String status) {
-        this.PaymentId = paymentId;
+    public FlipFitPayments(String paymentId, String customerId, Double amount, LocalDate date, String cardNumber, String cvv, YearMonth cardExpiry, String status) {
+        this.paymentId = paymentId;
         this.customerId = customerId;
         this.amount = amount;
         this.date = date;
+        this.cardNumber = cardNumber;
+        this.cvv = cvv;
+        this.cardExpiry = cardExpiry;
         this.status = status;
     }
 
     /**
-     * Returns the unique identifier for the payment.
+     * Returns the payment ID.
      *
      * @return the payment ID
      */
     public String getPaymentId() {
-        return PaymentId;
+        return paymentId;
     }
 
     /**
-     * Sets the unique identifier for the payment.
+     * Sets the payment ID.
      *
-     * @param paymentId the new payment ID
+     * @param paymentId the payment ID to set
      */
     public void setPaymentId(String paymentId) {
-        this.PaymentId = paymentId;
+        this.paymentId = paymentId;
     }
 
     /**
-     * Returns the unique identifier for the customer associated with the payment.
+     * Returns the customer ID.
      *
      * @return the customer ID
      */
@@ -59,9 +68,9 @@ public class FlipFitPayments {
     }
 
     /**
-     * Sets the unique identifier for the customer associated with the payment.
+     * Sets the customer ID.
      *
-     * @param customerId the new customer ID
+     * @param customerId the customer ID to set
      */
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
@@ -70,7 +79,7 @@ public class FlipFitPayments {
     /**
      * Returns the amount of the payment.
      *
-     * @return the payment amount
+     * @return the amount of the payment
      */
     public Double getAmount() {
         return amount;
@@ -79,25 +88,25 @@ public class FlipFitPayments {
     /**
      * Sets the amount of the payment.
      *
-     * @param amount the new payment amount
+     * @param amount the amount to set
      */
     public void setAmount(Double amount) {
         this.amount = amount;
     }
 
     /**
-     * Returns the date the payment was made.
+     * Returns the date of the payment.
      *
-     * @return the payment date
+     * @return the date of the payment
      */
     public LocalDate getDate() {
         return date;
     }
 
     /**
-     * Sets the date the payment was made.
+     * Sets the date of the payment.
      *
-     * @param date the new payment date
+     * @param date the date to set
      */
     public void setDate(LocalDate date) {
         this.date = date;
@@ -105,9 +114,8 @@ public class FlipFitPayments {
 
     /**
      * Returns the status of the payment.
-     * The status could be "COMPLETED", "PENDING", or other relevant statuses.
      *
-     * @return the payment status
+     * @return the status of the payment
      */
     public String getStatus() {
         return status;
@@ -116,9 +124,64 @@ public class FlipFitPayments {
     /**
      * Sets the status of the payment.
      *
-     * @param status the new payment status
+     * @param status the status to set
      */
     public void setStatus(String status) {
         this.status = status;
     }
+
+    /**
+     * Returns the card number used for the payment.
+     *
+     * @return the card number
+     */
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    /**
+     * Sets the card number used for the payment.
+     *
+     * @param cardNumber the card number to set
+     */
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    /**
+     * Returns the CVV of the card used for the payment.
+     *
+     * @return the CVV of the card
+     */
+    public String getCvv() {
+        return cvv;
+    }
+
+    /**
+     * Sets the CVV of the card used for the payment.
+     *
+     * @param cvv the CVV to set
+     */
+    public void setCvv(String cvv) {
+        this.cvv = cvv;
+    }
+
+    /**
+     * Returns the expiry date of the card used for the payment.
+     *
+     * @return the card expiry date
+     */
+    public YearMonth getCardExpiry() {
+        return cardExpiry;
+    }
+
+    /**
+     * Sets the expiry date of the card used for the payment.
+     *
+     * @param cardExpiry the card expiry date to set
+     */
+    public void setCardExpiry(YearMonth cardExpiry) {
+        this.cardExpiry = cardExpiry;
+    }
+
 }

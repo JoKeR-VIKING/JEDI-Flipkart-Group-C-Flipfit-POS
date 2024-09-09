@@ -3,31 +3,24 @@ package com.flipkart.business;
 import com.flipkart.bean.FlipFitPayments;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 
 /**
- * Interface for handling payment-related operations within the FlipFit system.
- * Provides methods for making and verifying payments.
+ * Interface for managing payments in the FlipFit system.
+ * Provides methods to handle payment transactions.
  */
 public interface FlipFitPaymentsInterface {
 
     /**
      * Processes a payment and creates a payment record.
      *
-     * @param paymentId the unique identifier for the payment
-     * @param customerId the ID of the customer making the payment
-     * @param amountToBeVerified the amount that needs to be verified
-     * @param amountPaid the actual amount paid by the customer
-     * @param date the date of the payment
-     * @return a {@link FlipFitPayments} object representing the payment record
+     * @param customerId  the unique identifier of the customer making the payment
+     * @param amountPaid  the amount of money being paid
+     * @param cardNumber  the credit/debit card number used for the payment
+     * @param cvv         the CVV code of the card used for the payment
+     * @param cardExpiry  the expiry date of the card used for the payment
+     * @param date        the date on which the payment is made
+     * @return            a {@link FlipFitPayments} object representing the payment record
      */
-    FlipFitPayments makePayment(String paymentId, String customerId, Double amountToBeVerified, Double amountPaid, LocalDate date);
-
-    /**
-     * Verifies whether the payment amount is correct based on the amount to be verified.
-     *
-     * @param amountPaid the amount paid by the customer
-     * @param amountToBeVerified the amount that needs to be verified
-     * @return {@code true} if the amount paid matches the amount to be verified, {@code false} otherwise
-     */
-    Boolean verifyPayments(Double amountPaid, Double amountToBeVerified);
+    FlipFitPayments makePayment(String customerId, Double amountPaid, String cardNumber, String cvv, YearMonth cardExpiry, LocalDate date);
 }
