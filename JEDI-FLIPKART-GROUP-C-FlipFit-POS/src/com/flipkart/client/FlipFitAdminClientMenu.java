@@ -14,16 +14,23 @@ import java.util.Scanner;
 import static com.flipkart.client.FlipFitApplicationMainClient.flipFitCustomerClientMenu;
 import static com.flipkart.utils.Helper.*;
 
+/**
+ * Client-side menu for FlipFit Admin operations.
+ * This class handles user interactions for managing gym centres and gym owners,
+ * including viewing, approving, rejecting, and removing records.
+ */
 public class FlipFitAdminClientMenu {
 
     private static final int OPTIONS_SIZE = 11;
 
-    Scanner in = new Scanner(System.in);
-    FlipFitAdminService adminService = new FlipFitAdminService();
+    private final Scanner in = new Scanner(System.in);
+    private final FlipFitAdminService adminService = new FlipFitAdminService();
 
+    /**
+     * Displays the menu options for the FlipFit Admin client.
+     */
     public void displayOptions() {
         System.out.println();
-
         yellowOutputLn("1. View all Pending Gym Centre requests");
         yellowOutputLn("2. View all Pending Gym Owner requests");
         yellowOutputLn("3. Approve Gym Centre request");
@@ -37,6 +44,9 @@ public class FlipFitAdminClientMenu {
         redOutputLn("11. Log Out");
     }
 
+    /**
+     * Displays a list of pending gym centre requests.
+     */
     public void viewPendingCentre() {
         List<FlipFitCentre> centres = adminService.displayPendingCentres();
 
@@ -53,6 +63,9 @@ public class FlipFitAdminClientMenu {
         );
     }
 
+    /**
+     * Displays a list of pending gym owner requests.
+     */
     public void viewPendingOwner() {
         List<FlipFitGymOwner> owners = adminService.displayPendingOwners();
 
@@ -69,14 +82,24 @@ public class FlipFitAdminClientMenu {
         );
     }
 
+    /**
+     * Approves a gym centre request.
+     *
+     * @param gymId the ID of the gym centre to approve
+     */
     public void approveCentre(String gymId) {
         try {
             adminService.approveGym(gymId);
-        } catch(InvalidGymException e){
+        } catch (InvalidGymException e) {
             redOutputLn("Invalid Gym ID");
         }
     }
 
+    /**
+     * Approves a gym owner request.
+     *
+     * @param ownerId the ID of the gym owner to approve
+     */
     public void approveOwner(String ownerId) {
         try {
             adminService.approveOwner(ownerId);
@@ -85,14 +108,24 @@ public class FlipFitAdminClientMenu {
         }
     }
 
+    /**
+     * Rejects a gym centre request.
+     *
+     * @param gymId the ID of the gym centre to reject
+     */
     public void rejectCentre(String gymId) {
         try {
             adminService.rejectGym(gymId);
-        } catch (InvalidGymException e){
-            redOutputLn("Invalid Gym Owner Id");
+        } catch (InvalidGymException e) {
+            redOutputLn("Invalid Gym ID");
         }
     }
 
+    /**
+     * Rejects a gym owner request.
+     *
+     * @param ownerId the ID of the gym owner to reject
+     */
     public void rejectOwner(String ownerId) {
         try {
             adminService.rejectOwner(ownerId);
@@ -101,22 +134,35 @@ public class FlipFitAdminClientMenu {
         }
     }
 
-    public void removeCentre(String GymId) {
+    /**
+     * Removes a gym centre.
+     *
+     * @param gymId the ID of the gym centre to remove
+     */
+    public void removeCentre(String gymId) {
         try {
-            adminService.removeGym(GymId);
+            adminService.removeGym(gymId);
         } catch (InvalidGymException e) {
-            redOutputLn("Invalid Gym Owner Id");
+            redOutputLn("Invalid Gym ID");
         }
     }
 
+    /**
+     * Removes a gym owner.
+     *
+     * @param ownerId the ID of the gym owner to remove
+     */
     public void removeOwner(String ownerId) {
         try {
             adminService.removeOwner(ownerId);
-        } catch (InvalidGymOwnerException e){
-            redOutputLn("Invalid gym Owner ID");
+        } catch (InvalidGymOwnerException e) {
+            redOutputLn("Invalid Gym Owner ID");
         }
     }
 
+    /**
+     * Displays a list of all gym owners.
+     */
     public void viewAllGymOwners() {
         List<FlipFitGymOwner> allOwners = adminService.displayAllOwners();
 
@@ -134,24 +180,45 @@ public class FlipFitAdminClientMenu {
         );
     }
 
+    /**
+     * Displays a list of all gym centres.
+     */
     private void viewAllGyms() {
         flipFitCustomerClientMenu.viewAllGyms();
     }
 
+    /**
+     * Logs out the current user.
+     */
     public void userLogout() {
         redOutputLn("Logged out");
     }
 
+    /**
+     * Prompts the user to input a gym centre ID.
+     *
+     * @return the entered gym centre ID
+     */
     public String takeGymIdInput() {
         System.out.print("Select Gym Id: ");
         return in.nextLine();
     }
 
+    /**
+     * Prompts the user to input a gym owner ID.
+     *
+     * @return the entered gym owner ID
+     */
     public String takeGymOwnerId() {
         System.out.print("Select Gym Owner Id: ");
         return in.nextLine();
     }
 
+    /**
+     * Starts the admin menu and handles user interactions.
+     *
+     * @param userId the ID of the currently logged-in user
+     */
     public void login(String userId) {
         boldOutputLn("\n-------- Welcome to FlipFit Admin Menu Page --------");
 

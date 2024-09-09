@@ -17,8 +17,13 @@ import java.util.Scanner;
 import static com.flipkart.utils.FlipFitClientUtils.getChoice;
 import static com.flipkart.utils.Helper.*;
 
+/**
+ * Main client application for FlipFit.
+ * This class manages user interactions for logging in, registering, changing passwords,
+ * and navigating between different user roles (Customer, Gym Owner, Admin).
+ */
 public class FlipFitApplicationMainClient {
-    public static int TOTAL_OPTIONS = 4;
+    public static final int TOTAL_OPTIONS = 4;
 
     static FlipFitCustomerClientMenu flipFitCustomerClientMenu = new FlipFitCustomerClientMenu();
     static FlipFitGymOwnerClientMenu flipFitGymOwnerClientMenu = new FlipFitGymOwnerClientMenu();
@@ -27,28 +32,38 @@ public class FlipFitApplicationMainClient {
     static FlipFitCustomerService customerService = new FlipFitCustomerService();
     static FlipFitUserService userService = new FlipFitUserService();
 
+    /**
+     * Displays the main menu options for the FlipFit application.
+     */
     public static void displayOptions() {
         System.out.println();
-
         yellowOutputLn("1. Login");
         yellowOutputLn("2. Register");
         yellowOutputLn("3. Change Password");
         redOutputLn("4. Exit");
     }
 
+    /**
+     * Authenticates a user based on the provided username and password.
+     *
+     * @param username the username of the user
+     * @param password the password of the user
+     * @return the authenticated {@link FlipFitUser} object, or null if authentication fails
+     */
     public static FlipFitUser authenticateUser(String username, String password) {
         try {
-            FlipFitUser user = userService.authenticate(username, password);
-            return user;
+            return userService.authenticate(username, password);
         } catch (InvalidPasswordException e) {
             redOutputLn("Invalid password");
-            return null;
-        } catch (InvalidUserException e){
+        } catch (InvalidUserException e) {
             redOutputLn("Invalid username");
-            return null;
         }
+        return null;
     }
 
+    /**
+     * Handles user login process.
+     */
     public static void login() {
         Scanner in = new Scanner(System.in);
         boldOutputLn("\n------- LOGIN ------\n");
@@ -66,14 +81,17 @@ public class FlipFitApplicationMainClient {
             case GYM_OWNER -> flipFitGymOwnerClientMenu.login(user.getUserId());
             case CUSTOMER -> flipFitCustomerClientMenu.login(user.getUserId());
             case ADMIN -> flipFitAdminClientMenu.login(user.getUserId());
-            default -> redOutputLn("Invalid choice");
+            default -> redOutputLn("Invalid role");
         }
     }
 
+    /**
+     * Handles user registration process.
+     */
     public static void registerUser() {
         Scanner in = new Scanner(System.in);
 
-        boldOutputLn("\nWelcome to the FlipFit. Please Register yourself Here\n");
+        boldOutputLn("\nWelcome to FlipFit. Please Register yourself Here\n");
         System.out.print("Enter your Username: ");
         String username = in.nextLine();
 
@@ -84,13 +102,13 @@ public class FlipFitApplicationMainClient {
             password = in.nextLine();
 
             System.out.print("Enter your confirm password: ");
-            String confirmUserPassword = in.nextLine();
+            String confirmPassword = in.nextLine();
 
-            if (password.equals(confirmUserPassword)) {
+            if (password.equals(confirmPassword)) {
                 greenOutputLn("Password matched!");
                 flag = false;
             } else {
-                redOutputLn("The Passwords did not match. Please check again");
+                redOutputLn("The passwords did not match. Please check again");
             }
         } while (flag);
 
@@ -98,12 +116,10 @@ public class FlipFitApplicationMainClient {
         String name = in.nextLine();
 
         String phoneNumber;
-
         while (true) {
             try {
                 System.out.print("Enter your Phone Number: ");
                 phoneNumber = in.nextLine();
-
                 UserInputValidator.validatePhoneNumber(phoneNumber);
                 break;
             } catch (UserInputValidator e) {
@@ -115,7 +131,6 @@ public class FlipFitApplicationMainClient {
         String address = in.nextLine();
 
         System.out.println();
-
         yellowOutputLn("1. Register as Gym Owner");
         yellowOutputLn("2. Register as Customer");
 
@@ -125,12 +140,10 @@ public class FlipFitApplicationMainClient {
         switch (roleEnum) {
             case GYM_OWNER -> {
                 String ownerPanNum;
-
                 while (true) {
                     try {
                         System.out.print("Enter your PAN Number: ");
                         ownerPanNum = in.nextLine();
-
                         GymOwnerValidator.validatePanCardNumber(ownerPanNum);
                         break;
                     } catch (GymOwnerValidator e) {
@@ -139,12 +152,10 @@ public class FlipFitApplicationMainClient {
                 }
 
                 String ownerGstNum;
-
                 while (true) {
                     try {
                         System.out.print("Enter your GST Number: ");
                         ownerGstNum = in.nextLine();
-
                         GymOwnerValidator.validateGstNumber(ownerPanNum, ownerGstNum);
                         break;
                     } catch (GymOwnerValidator e) {
@@ -161,13 +172,11 @@ public class FlipFitApplicationMainClient {
             }
             case CUSTOMER -> {
                 int age;
-
                 while (true) {
                     try {
                         System.out.print("Enter your Age: ");
                         age = in.nextInt();
                         in.nextLine();
-
                         CustomerInputValidator.validateAge(age);
                         break;
                     } catch (CustomerInputValidator e) {
@@ -176,12 +185,10 @@ public class FlipFitApplicationMainClient {
                 }
 
                 String gender;
-
                 while (true) {
                     try {
                         System.out.print("Enter your Gender: ");
                         gender = in.nextLine();
-
                         CustomerInputValidator.validateGender(gender);
                         break;
                     } catch (CustomerInputValidator e) {
@@ -190,13 +197,11 @@ public class FlipFitApplicationMainClient {
                 }
 
                 double weight;
-
                 while (true) {
                     try {
                         System.out.print("Enter your Weight: ");
                         weight = in.nextDouble();
                         in.nextLine();
-
                         CustomerInputValidator.validateWeight(weight);
                         break;
                     } catch (CustomerInputValidator e) {
@@ -205,12 +210,10 @@ public class FlipFitApplicationMainClient {
                 }
 
                 String dob;
-
                 while (true) {
                     try {
                         System.out.print("Enter your DOB (dd-mm-yyyy): ");
                         dob = in.nextLine();
-
                         CustomerInputValidator.validateDob(dob, age);
                         break;
                     } catch (CustomerInputValidator e) {
@@ -228,6 +231,9 @@ public class FlipFitApplicationMainClient {
         }
     }
 
+    /**
+     * Handles the password change process.
+     */
     public static void changePassword() {
         Scanner in = new Scanner(System.in);
 
@@ -241,29 +247,37 @@ public class FlipFitApplicationMainClient {
         if (user == null) return;
 
         boolean flag = true;
-        System.out.print("Enter new password: ");
-        String newPassword = in.nextLine();
+        String newPassword;
+        while (true) {
+            System.out.print("Enter new password: ");
+            newPassword = in.nextLine();
 
-        do {
             System.out.print("Confirm new password: ");
             String confirmNewPassword = in.nextLine();
 
             if (newPassword.equals(confirmNewPassword)) {
                 greenOutputLn("Password matched!");
                 flag = false;
+                break;
             } else {
-                redOutputLn("The Passwords did not match. Please check again");
+                redOutputLn("The passwords did not match. Please check again");
             }
-        } while (flag);
+        }
 
         try {
             userService.changePassword(user.getUserId(), newPassword);
             greenOutputLn("Password changed!");
-        } catch(InvalidUserException e) {
+        } catch (InvalidUserException e) {
             redOutputLn("Invalid user");
         }
     }
 
+    /**
+     * Main method to run the FlipFit application.
+     * Displays the main menu and handles user choices.
+     *
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
         boldOutputLn("\n-------- Welcome to FlipFit Application --------");
 

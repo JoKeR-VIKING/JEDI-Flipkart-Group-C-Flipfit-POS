@@ -44,7 +44,6 @@ public class GymOwnerValidator extends Exception {
      * @throws GymOwnerValidator If the PAN card number does not match the expected format.
      */
     public static void validatePanCardNumber(String panCardNumber) throws GymOwnerValidator {
-        // Pattern to match PAN card number format
         Pattern pattern = Pattern.compile("^[A-Z]{5}\\d{4}[A-Z]$");
         Matcher matcher = pattern.matcher(panCardNumber);
 

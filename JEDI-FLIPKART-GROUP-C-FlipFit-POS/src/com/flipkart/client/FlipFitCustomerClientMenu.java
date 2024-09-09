@@ -19,19 +19,25 @@ import static com.flipkart.client.FlipFitApplicationMainClient.flipFitGymOwnerCl
 import static com.flipkart.utils.FlipFitClientUtils.getChoice;
 import static com.flipkart.utils.Helper.*;
 
+/**
+ * Provides the customer menu functionalities for the FlipFit application.
+ * This class allows customers to edit their profile, view gyms, book slots, view and cancel bookings.
+ */
 public class FlipFitCustomerClientMenu {
-    static int OPTIONS_SIZE = 7;
+    private static final int OPTIONS_SIZE = 7;
 
-    Scanner in = new Scanner(System.in);
-    FlipFitCustomerService customerService = new FlipFitCustomerService();
-    FlipFitSlotBookingService bookingService = new FlipFitSlotBookingService();
-    FlipFitAdminService adminService = new FlipFitAdminService();
-    FlipFitGymOwnerService ownerService = new FlipFitGymOwnerService();
-    FlipFitPaymentsService paymentService = new FlipFitPaymentsService();
+    private final Scanner in = new Scanner(System.in);
+    private final FlipFitCustomerService customerService = new FlipFitCustomerService();
+    private final FlipFitSlotBookingService bookingService = new FlipFitSlotBookingService();
+    private final FlipFitAdminService adminService = new FlipFitAdminService();
+    private final FlipFitGymOwnerService ownerService = new FlipFitGymOwnerService();
+    private final FlipFitPaymentsService paymentService = new FlipFitPaymentsService();
 
+    /**
+     * Displays the options available in the customer menu.
+     */
     private static void displayOptions() {
         System.out.println();
-
         yellowOutputLn("1. Edit your Profile");
         yellowOutputLn("2. View all Gyms");
         yellowOutputLn("3. View available Slots");
@@ -41,18 +47,21 @@ public class FlipFitCustomerClientMenu {
         redOutputLn("7. Exit");
     }
 
+    /**
+     * Allows the customer to edit their profile information.
+     *
+     * @param userId the ID of the customer whose profile is to be edited
+     */
     private void editProfile(String userId) {
         System.out.print("Enter your address: ");
         String address = in.nextLine();
 
         int age;
-
         while (true) {
             try {
                 System.out.print("Enter your Age: ");
                 age = in.nextInt();
                 in.nextLine();
-
                 CustomerInputValidator.validateAge(age);
                 break;
             } catch (CustomerInputValidator e) {
@@ -61,12 +70,10 @@ public class FlipFitCustomerClientMenu {
         }
 
         String gender;
-
         while (true) {
             try {
                 System.out.print("Enter your Gender: ");
                 gender = in.nextLine();
-
                 CustomerInputValidator.validateGender(gender);
                 break;
             } catch (CustomerInputValidator e) {
@@ -75,13 +82,11 @@ public class FlipFitCustomerClientMenu {
         }
 
         double weight;
-
         while (true) {
             try {
                 System.out.print("Enter your Weight: ");
                 weight = in.nextDouble();
                 in.nextLine();
-
                 CustomerInputValidator.validateWeight(weight);
                 break;
             } catch (CustomerInputValidator e) {
@@ -90,12 +95,10 @@ public class FlipFitCustomerClientMenu {
         }
 
         String dob;
-
         while (true) {
             try {
                 System.out.print("Enter your DOB (dd-mm-yyyy): ");
                 dob = in.nextLine();
-
                 CustomerInputValidator.validateDob(dob, age);
                 break;
             } catch (CustomerInputValidator e) {
@@ -110,6 +113,9 @@ public class FlipFitCustomerClientMenu {
         }
     }
 
+    /**
+     * Displays a list of all gyms available in the system.
+     */
     public void viewAllGyms() {
         List<FlipFitCentre> gyms = adminService.displayAllCentres();
 
@@ -129,12 +135,20 @@ public class FlipFitCustomerClientMenu {
         greenOutputLn("All gyms viewed");
     }
 
+    /**
+     * Displays available slots for gyms.
+     * This method calls the corresponding method from the `flipFitGymOwnerClientMenu`.
+     */
     private void viewAvailableSlots() {
         flipFitGymOwnerClientMenu.viewAvailableSlots();
-
         greenOutputLn("All slots are viewed");
     }
 
+    /**
+     * Allows the customer to book a gym slot.
+     *
+     * @param userId the ID of the customer making the booking
+     */
     private void bookSlot(String userId) {
         String bookingDate;
 
@@ -156,11 +170,11 @@ public class FlipFitCustomerClientMenu {
         FlipFitCenterSlot slot = ownerService.getSlot(slotId);
 
         if (slot == null) {
-            System.out.println("slot is full/doesn't exist");
+            System.out.println("Slot is full/doesn't exist");
             return;
         }
 
-        // make payment
+        // Make payment
         System.out.print("Make payment of Rs.500: ");
         Double paymentAmount = in.nextDouble();
         in.nextLine();
@@ -177,6 +191,11 @@ public class FlipFitCustomerClientMenu {
         }
     }
 
+    /**
+     * Displays a list of bookings made by the customer.
+     *
+     * @param userId the ID of the customer whose bookings are to be viewed
+     */
     private void viewBookings(String userId) {
         List<FlipFitSlotBooking> bookings = bookingService.listBookings(userId);
 
@@ -201,6 +220,11 @@ public class FlipFitCustomerClientMenu {
         }
     }
 
+    /**
+     * Allows the customer to cancel a booking.
+     *
+     * @param userId the ID of the customer whose booking is to be canceled
+     */
     private void cancelCustomerBooking(String userId) {
         List<FlipFitSlotBooking> bookedSlots = bookingService.listBookings(userId);
 
@@ -222,10 +246,18 @@ public class FlipFitCustomerClientMenu {
         }
     }
 
+    /**
+     * Logs out the customer from the application.
+     */
     private void logoutUser() {
         redOutputLn("Logged out\n");
     }
 
+    /**
+     * Displays the customer menu and processes user choices.
+     *
+     * @param customerId the ID of the customer using the menu
+     */
     public void login(String customerId) {
         blueOutput("\nWelcome to FlipFit Customer Menu Page");
 
@@ -244,6 +276,7 @@ public class FlipFitCustomerClientMenu {
                     logoutUser();
                     return;
                 }
+                default -> redOutputLn("Invalid choice");
             }
         }
     }
