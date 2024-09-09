@@ -3,6 +3,7 @@ package com.flipkart.client;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.business.FlipFitAdminService;
+import com.flipkart.exception.InvalidGymOwnerException;
 import com.flipkart.utils.FlipFitTableUtil;
 import com.flipkart.utils.FlipFitClientUtils;
 
@@ -72,7 +73,11 @@ public class FlipFitAdminClientMenu {
     }
 
     public void approveOwner(String ownerId) {
-        adminService.approveOwner(ownerId);
+        try {
+            adminService.approveOwner(ownerId);
+        } catch (InvalidGymOwnerException e) {
+            redOutputLn("Invalid Gym Owner ID");
+        }
     }
 
     public void rejectCentre(String gymId) {

@@ -2,11 +2,12 @@ package com.flipkart.business;
 
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitGymOwner;
+import com.flipkart.exception.InvalidGymOwnerException;
 
 import java.util.List;
 
 public interface FlipFitAdminInterface {
-    void approveOwner(String gymOwnerId);
+    void approveOwner(String gymOwnerId) throws InvalidGymOwnerException;
 
     void rejectOwner(String gymOwnerId);
 

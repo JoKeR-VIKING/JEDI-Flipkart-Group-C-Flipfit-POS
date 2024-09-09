@@ -3,6 +3,7 @@ package com.flipkart.dao;
 import com.flipkart.bean.FlipFitAdmin;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitGymOwner;
+import com.flipkart.exception.InvalidGymOwnerException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,14 +23,18 @@ public class FlipFitAdminDAOImpl implements FlipFitAdminDAOInterface {
     }
 
     @Override
-    public void approveOwner(String gymOwnerId) {
-        flipFitSchema.execute(conn -> {
+    public void approveOwner(String gymOwnerId) throws InvalidGymOwnerException {
+        int rowsAffected = flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(UPDATE_OWNER_VERIFICATION);
             stmt.setString(1, "APPROVED");
             stmt.setString(2, gymOwnerId);
 
             return stmt.executeUpdate();
         });
+
+        if(rowsAffected == 0) {
+            throw new InvalidGymOwnerException();
+        }
     }
 
     @Override

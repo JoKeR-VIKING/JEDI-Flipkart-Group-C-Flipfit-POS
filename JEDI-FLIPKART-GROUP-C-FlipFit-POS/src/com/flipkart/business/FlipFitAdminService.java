@@ -2,6 +2,7 @@ package com.flipkart.business;
 
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitGymOwner;
+import com.flipkart.exception.InvalidGymOwnerException;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import static com.flipkart.dao.FlipFitAdminDAOImpl.FlipFitAdminDAOInst;
 
 public class FlipFitAdminService implements FlipFitAdminInterface {
     @Override
-    public void approveOwner(String gymOwnerId) {
+    public void approveOwner(String gymOwnerId) throws InvalidGymOwnerException {
         FlipFitAdminDAOInst.approveOwner(gymOwnerId);
     }
 
