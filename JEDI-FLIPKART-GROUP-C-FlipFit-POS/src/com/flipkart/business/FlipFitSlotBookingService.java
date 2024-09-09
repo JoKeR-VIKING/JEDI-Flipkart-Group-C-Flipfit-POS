@@ -31,8 +31,7 @@ public class FlipFitSlotBookingService implements FlipFitSlotBookingInterface {
      * @throws InvalidSlotException if the provided slot is invalid
      */
     @Override
-    public void bookSlot(String userId, LocalDate bookingDate, FlipFitCenterSlot slot, String paymentId)
-            throws GymSlotSeatLimitReachedException, InvalidSlotException {
+    public void bookSlot(String userId, LocalDate bookingDate, FlipFitCenterSlot slot, String paymentId) throws GymSlotSeatLimitReachedException, InvalidSlotException {
         FlipFitSlotBooking booking = new FlipFitSlotBooking(
                 Helper.generateId(),
                 userId,
@@ -42,6 +41,8 @@ public class FlipFitSlotBookingService implements FlipFitSlotBookingInterface {
                 SlotBookingStatusEnum.CONFIRMED,
                 paymentId
         );
+
+        FlipFitSlotBookingDAOInst.removePreviousBooking(userId, booking.getSlotDate());
         FlipFitSlotBookingDAOInst.addBooking(booking);
     }
 

@@ -7,7 +7,6 @@ import com.flipkart.exception.InvalidBookingException;
 import com.flipkart.exception.InvalidSlotException;
 import com.flipkart.exception.InvalidUserException;
 import com.flipkart.utils.FlipFitTableUtil;
-import com.flipkart.utils.Helper;
 import com.flipkart.validators.BookSlotInputValidator;
 import com.flipkart.validators.CustomerInputValidator;
 import com.flipkart.validators.PaymentInputValidator;
@@ -224,7 +223,7 @@ public class FlipFitCustomerClientMenu {
 
         try {
             bookingService.bookSlot(userId, parseDate(bookingDate), slot, payment.getPaymentId());
-            System.out.println("Payment successful, slot booked!");
+            greenOutputLn("Payment successful, slot booked!");
         } catch (InvalidSlotException e) {
             redOutputLn("Invalid booking slot");
         } catch (GymSlotSeatLimitReachedException e) {

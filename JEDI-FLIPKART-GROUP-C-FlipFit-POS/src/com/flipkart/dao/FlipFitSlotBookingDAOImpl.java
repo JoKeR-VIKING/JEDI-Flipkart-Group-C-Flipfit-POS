@@ -18,25 +18,9 @@ import static com.flipkart.constants.SQLQueryConstants.*;
 import static com.flipkart.dao.FlipFitCenterSlotDAOImpl.FlipFitCenterSlotDAOInst;
 import static com.flipkart.utils.FlipFitMySQL.flipFitSchema;
 
-/**
- * Data Access Object Implementation for managing slot bookings in the FlipFit system.
- * Provides methods for adding, removing, and retrieving slot bookings and payments.
- * Implements the {@link FlipFitSlotBookingDAOInterface}.
- */
 public class FlipFitSlotBookingDAOImpl implements FlipFitSlotBookingDAOInterface {
-
-    /**
-     * Singleton instance of the {@link FlipFitSlotBookingDAOImpl} class.
-     */
     public static FlipFitSlotBookingDAOInterface FlipFitSlotBookingDAOInst = new FlipFitSlotBookingDAOImpl();
 
-    /**
-     * Retrieves the number of bookings for a specific slot.
-     *
-     * @param slotId the ID of the slot for which to retrieve the booking count.
-     * @return the number of bookings for the given slot.
-     * @throws InvalidSlotException if the slot ID is invalid or if no bookings are found.
-     */
     @Override
     public int getBookingCountBySlotId(String slotId) throws InvalidSlotException {
         int bookings = flipFitSchema.execute(conn -> {
@@ -59,13 +43,6 @@ public class FlipFitSlotBookingDAOImpl implements FlipFitSlotBookingDAOInterface
         return bookings;
     }
 
-    /**
-     * Adds a new slot booking.
-     *
-     * @param booking the {@link FlipFitSlotBooking} object containing the booking details.
-     * @throws InvalidSlotException if the slot ID in the booking is invalid.
-     * @throws GymSlotSeatLimitReachedException if the booking exceeds the seat limit for the slot.
-     */
     @Override
     public void addBooking(FlipFitSlotBooking booking) throws InvalidSlotException, GymSlotSeatLimitReachedException {
         int bookingCount = getBookingCountBySlotId(booking.getCenterSlot());
@@ -88,12 +65,6 @@ public class FlipFitSlotBookingDAOImpl implements FlipFitSlotBookingDAOInterface
         });
     }
 
-    /**
-     * Adds a new payment record.
-     *
-     * @param payment the {@link FlipFitPayments} object containing the payment details.
-     * @return true if the payment was successfully added, false if the payment status is not "Success".
-     */
     @Override
     public boolean addPayment(FlipFitPayments payment) {
         if (!"Success".equals(payment.getStatus())) return false;
@@ -115,12 +86,6 @@ public class FlipFitSlotBookingDAOImpl implements FlipFitSlotBookingDAOInterface
         return true;
     }
 
-    /**
-     * Removes a slot booking based on the booking ID.
-     *
-     * @param bookingId the ID of the booking to be removed.
-     * @throws InvalidBookingException if no booking with the specified ID is found.
-     */
     @Override
     public void removeBooking(String bookingId) throws InvalidBookingException {
         int rowsAffected = flipFitSchema.execute(conn -> {
@@ -135,12 +100,17 @@ public class FlipFitSlotBookingDAOImpl implements FlipFitSlotBookingDAOInterface
         }
     }
 
-    /**
-     * Lists all slot bookings for a specific user.
-     *
-     * @param userId the ID of the user whose bookings are to be listed.
-     * @return a list of {@link FlipFitSlotBooking} objects associated with the specified user.
-     */
+    @Override
+    public void removePreviousBooking(String userId, LocalDate slotDate) {
+        flipFitSchema.execute(conn -> {
+            PreparedStatement stmt = conn.prepareStatement(DELETE_PREVIOUS_SLOT_BOOKING);
+            stmt.setString(1, userId);
+            stmt.setDate(2, Date.valueOf(slotDate));
+
+            return stmt.executeUpdate();
+        });
+    }
+
     @Override
     public List<FlipFitSlotBooking> listBookingsByUserId(String userId) {
         return flipFitSchema.execute(conn -> {
@@ -168,13 +138,6 @@ public class FlipFitSlotBookingDAOImpl implements FlipFitSlotBookingDAOInterface
         });
     }
 
-    /**
-     * Retrieves all bookings for a specific gym on a given date.
-     *
-     * @param gymId the ID of the gym for which to retrieve bookings.
-     * @param date the date for which to retrieve bookings.
-     * @return a list of {@link FlipFitSlotBooking} objects for the specified gym and date.
-     */
     @Override
     public List<FlipFitSlotBooking> getAllBookingsByGymIdAndDate(String gymId, LocalDate date) {
         return flipFitSchema.execute(conn -> {
