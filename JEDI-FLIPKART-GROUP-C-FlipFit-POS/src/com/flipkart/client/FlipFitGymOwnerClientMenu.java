@@ -8,6 +8,8 @@ import com.flipkart.exception.GymSlotAlreadyExistsException;
 import com.flipkart.exception.InvalidSlotException;
 import com.flipkart.exception.UnauthorizedGymOwnerException;
 import com.flipkart.utils.FlipFitTableUtil;
+import com.flipkart.validators.BookSlotInputValidator;
+import com.flipkart.validators.SlotInputValidator;
 
 import java.util.List;
 import java.util.Scanner;
@@ -109,12 +111,33 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter Gym ID: ");
         String gymId = scanner.nextLine();
 
-        System.out.print("Enter Start Time (HH:MM): ");
-        String startTime = scanner.nextLine();
 
-        System.out.print("Enter Number of Seats: ");
-        int noOfSeats = scanner.nextInt();
+        String startTime;
+        while (true) {
+            try {
+                System.out.print("Enter Start Time (HH:MM): ");
+                startTime = scanner.nextLine();
+                SlotInputValidator.validateTimeFormat(startTime);
+                break;
+            } catch (SlotInputValidator e) {
+                redOutputLn(e.getMessage());
+            }
+        }
+
+
+        int noOfSeats ;
         scanner.nextLine();
+
+        while (true) {
+            try {
+                System.out.print("Enter Number of Seats: ");
+                noOfSeats = scanner.nextInt();
+                SlotInputValidator.validateSeatCapacity(noOfSeats);
+                break;
+            } catch (SlotInputValidator e) {
+                redOutputLn(e.getMessage());
+            }
+        }
 
         try {
             ownerService.addSlot(gymId, parseHourMinute(startTime), noOfSeats);
@@ -140,12 +163,32 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter Slot ID: ");
         String slotId = scanner.nextLine();
 
-        System.out.print("Enter start time: ");
-        String startTime = scanner.nextLine();
+        String startTime;
+        while (true) {
+            try {
+                System.out.print("Enter Start Time (HH:MM): ");
+                startTime = scanner.nextLine();
+                SlotInputValidator.validateTimeFormat(startTime);
+                break;
+            } catch (SlotInputValidator e) {
+                redOutputLn(e.getMessage());
+            }
+        }
 
-        System.out.print("Enter no of seats: ");
-        int noOfSeats = scanner.nextInt();
+        int noOfSeats ;
         scanner.nextLine();
+
+        while (true) {
+            try {
+                System.out.print("Enter Number of Seats: ");
+                noOfSeats = scanner.nextInt();
+                SlotInputValidator.validateSeatCapacity(noOfSeats);
+                break;
+            } catch (SlotInputValidator e) {
+                redOutputLn(e.getMessage());
+            }
+        }
+
         try {
             ownerService.updateSlot(slotId, parseHourMinute(startTime), noOfSeats);
             System.out.println("Slot details updated!");

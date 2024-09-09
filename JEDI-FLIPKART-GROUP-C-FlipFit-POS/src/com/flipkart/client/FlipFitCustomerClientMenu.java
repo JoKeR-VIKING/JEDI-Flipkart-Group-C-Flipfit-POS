@@ -4,6 +4,7 @@ import com.flipkart.bean.*;
 import com.flipkart.business.*;
 import com.flipkart.utils.FlipFitTableUtil;
 import com.flipkart.utils.Helper;
+import com.flipkart.validators.BookSlotInputValidator;
 import com.flipkart.validators.CustomerInputValidator;
 
 import java.time.LocalDate;
@@ -127,8 +128,18 @@ public class FlipFitCustomerClientMenu {
     }
 
     private void bookSlot(String userId) {
-        System.out.print("Enter Booking Date (dd-mm-yyyy): ");
-        String bookingDate = in.nextLine();
+        String bookingDate;
+        while (true) {
+            try {
+                System.out.print("Enter Booking Date (dd-mm-yyyy): ");
+                bookingDate = in.nextLine();
+                BookSlotInputValidator.validateDateFormat(bookingDate);
+                BookSlotInputValidator.validateFutureDate(bookingDate);
+                break;
+            } catch (BookSlotInputValidator e) {
+                redOutputLn(e.getMessage());
+            }
+        }
 
         System.out.print("Enter slot ID: ");
         String slotId = in.nextLine();

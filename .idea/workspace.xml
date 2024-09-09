@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3a2fcac-8338-41fa-8bbb-2956fbd33a3f" name="Changes" comment="" />
+    <list default="true" id="e3a2fcac-8338-41fa-8bbb-2956fbd33a3f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/validator/BookSlotInputValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/validators/BookSlotInputValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/validator/PaymentInputValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/validators/PaymentInputValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/validator/SlotInputValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/validators/SlotInputValidator.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -37,18 +42,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.FlipFitApplicationMainClient.executor&quot;: &quot;Run&quot;,
-    &quot;Application.FlipFitCenterSlotDAOImpl.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.FlipFitApplicationMainClient.executor": "Run",
+    "Application.FlipFitCenterSlotDAOImpl.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "validator-aman",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.FlipFitApplicationMainClient">
     <configuration name="FlipFitApplicationMainClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.flipkart.client.FlipFitApplicationMainClient" />
