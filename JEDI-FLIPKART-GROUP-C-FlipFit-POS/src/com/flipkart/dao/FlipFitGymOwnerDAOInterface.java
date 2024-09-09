@@ -28,4 +28,11 @@ public interface FlipFitGymOwnerDAOInterface {
      * @throws InvalidUserException If the gym owner ID is invalid or the user is not found.
      */
     void editProfile(String gymOwnerId, String address, String gstNumber, String panCardNumber) throws InvalidUserException;
+
+    /**
+     * Checks approval status for gym owner.
+     *
+     * @param userId The ID of the gym owner whose profile is to be checked.
+     */
+    boolean checkApproval(String userId);
 }

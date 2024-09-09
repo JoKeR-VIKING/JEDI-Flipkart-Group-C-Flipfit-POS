@@ -155,4 +155,12 @@ public interface FlipFitGymOwnerInterface {
      * @return a list of gyms located in the specified city and owned by the specified owner
      */
     List<FlipFitCentre> getGymListByCityAndOwner(String city, String ownerId);
+
+    /**
+     * Checks is gym owner is approved or not.
+     *
+     * @param userId The ID of gym owner.
+     * @return Returns true if gym owner is approved, else false.
+     */
+    boolean checkApproval(String userId);
 }

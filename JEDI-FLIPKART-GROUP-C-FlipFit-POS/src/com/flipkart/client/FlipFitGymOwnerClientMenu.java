@@ -477,6 +477,16 @@ public class FlipFitGymOwnerClientMenu {
     }
 
     /**
+     * Checks if gym owner is approved or not.
+     *
+     * @param userId The ID of the gym owner.
+     * @return Returns whether user is approved or not.
+     */
+    private boolean approvedUser(String userId) {
+        return ownerService.checkApproval(userId);
+    }
+
+    /**
      * Logs out the gym owner from the system.
      */
     public void userLogout() {
@@ -489,6 +499,11 @@ public class FlipFitGymOwnerClientMenu {
      * @param userId The ID of the gym owner.
      */
     public void login(String userId) {
+        if (!approvedUser(userId)) {
+            redOutputLn("Your application is not yet approved");
+            return;
+        }
+
         boldOutputLn("\nWelcome to FlipFit Owner Menu Page");
 
         while (true) {

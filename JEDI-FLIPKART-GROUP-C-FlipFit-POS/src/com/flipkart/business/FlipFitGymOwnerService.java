@@ -210,4 +210,9 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     public List<FlipFitCentre> getGymListByCityAndOwner(String city, String ownerId) {
         return FlipFitCentreDAOInst.getGymListByCityAndOwner(city, ownerId);
     }
+
+    @Override
+    public boolean checkApproval(String userId) {
+        return FlipFitGymOwnerDAOInst.checkApproval(userId);
+    }
 }

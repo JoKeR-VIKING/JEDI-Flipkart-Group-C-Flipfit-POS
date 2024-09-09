@@ -112,6 +112,16 @@ public class FlipFitAdminService implements FlipFitAdminInterface {
     }
 
     /**
+     * Retrieves a list of all registered gyms.
+     *
+     * @return A list of all registered gyms.
+     */
+    @Override
+    public List<FlipFitCentre> displayAllRegisteredCentres() {
+        return FlipFitAdminDAOInst.getAllRegisteredCentres();
+    }
+
+    /**
      * Retrieves a list of all gyms.
      *
      * @return A list of all gyms.

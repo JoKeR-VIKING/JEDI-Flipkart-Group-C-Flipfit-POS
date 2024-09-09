@@ -1,5 +1,7 @@
 package com.flipkart.utils;
 
+import com.flipkart.exception.InvalidUserException;
+
 import java.sql.*;
 
 /**
@@ -74,6 +76,6 @@ public class FlipFitMySQL {
          * @return The result of the operation.
          * @throws SQLException If a database access error occurs.
          */
-        T run(Connection connection) throws SQLException;
+        T run(Connection connection) throws SQLException, InvalidUserException;
     }
 }

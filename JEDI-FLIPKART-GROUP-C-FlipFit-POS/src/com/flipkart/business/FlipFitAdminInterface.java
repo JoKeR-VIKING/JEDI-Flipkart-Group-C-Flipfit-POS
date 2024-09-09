@@ -83,6 +83,13 @@ public interface FlipFitAdminInterface {
     List<FlipFitCentre> displayPendingCentres();
 
     /**
+     * Displays a list of all registered gym centres.
+     *
+     * @return a list of all registered gym centres
+     */
+    List<FlipFitCentre> displayAllRegisteredCentres();
+
+    /**
      * Displays a list of all gym centres.
      *
      * @return a list of all gym centres

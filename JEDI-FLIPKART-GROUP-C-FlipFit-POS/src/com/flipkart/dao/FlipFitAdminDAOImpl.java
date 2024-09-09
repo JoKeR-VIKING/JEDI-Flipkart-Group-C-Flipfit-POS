@@ -187,6 +187,30 @@ public class FlipFitAdminDAOImpl implements FlipFitAdminDAOInterface {
     }
 
     @Override
+    public List<FlipFitCentre> getAllRegisteredCentres() {
+        return flipFitSchema.execute(conn -> {
+            PreparedStatement stmt = conn.prepareStatement(SELECT_ALL_REGISTERED_GYMS);
+
+            ResultSet rs = stmt.executeQuery();
+            List<FlipFitCentre> centres = new ArrayList<>();
+
+            while (rs.next()) {
+                FlipFitCentre centre = new FlipFitCentre(
+                        rs.getString("centreId"),
+                        rs.getString("centreName"),
+                        rs.getString("centreAddress"),
+                        rs.getString("gymOwnerId"),
+                        rs.getString("city")
+                );
+
+                centres.add(centre);
+            }
+
+            return centres;
+        });
+    }
+
+    @Override
     public List<FlipFitCentre> getAllCentres() {
         return flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(SELECT_ALL_GYMS);
