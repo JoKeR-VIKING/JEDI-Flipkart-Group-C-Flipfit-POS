@@ -137,6 +137,7 @@ public class FlipFitCustomerClientMenu {
 
     private void bookSlot(String userId) {
         String bookingDate;
+
         while (true) {
             try {
                 System.out.print("Enter Booking Date (dd-mm-yyyy): ");
@@ -152,7 +153,6 @@ public class FlipFitCustomerClientMenu {
         System.out.print("Enter slot ID: ");
         String slotId = in.nextLine();
 
-        // get slot if exists
         FlipFitCenterSlot slot = ownerService.getSlot(slotId);
 
         if (slot == null) {

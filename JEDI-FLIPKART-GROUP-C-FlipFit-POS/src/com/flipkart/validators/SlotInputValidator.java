@@ -4,40 +4,46 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import static com.flipkart.utils.Helper.redOutputLn;
-
+/**
+ * Custom exception class used for validating slot input details.
+ * Extends {@link Exception} to provide specific error messages for validation issues.
+ */
 public class SlotInputValidator extends Exception {
-    public SlotInputValidator(String msg){
+
+    /**
+     * Constructs a new SlotInputValidator with the specified detail message.
+     *
+     * @param msg The detail message which is saved for later retrieval by the {@link #getMessage()} method.
+     */
+    public SlotInputValidator(String msg) {
         super(msg);
-        redOutputLn(msg);
     }
 
-    //seat positive
-    //time is in right format
-
-
-    public static void validateTimeFormat(String slotTime) throws SlotInputValidator  {
+    /**
+     * Validates whether a given slot time is in the correct format ("HH:mm").
+     *
+     * @param slotTime The slot time to be validated.
+     * @throws SlotInputValidator If the slot time is not in the correct format.
+     */
+    public static void validateTimeFormat(String slotTime) throws SlotInputValidator {
         try {
-            // Define the expected time format as HH:mm
-            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:MM");
-
-            // Try to parse the string as a LocalTime
-            LocalTime.parse(slotTime, timeFormatter);
-            return ;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime.parse(slotTime, formatter);
         } catch (DateTimeParseException e) {
-            // If parsing fails, the format is incorrect
-            throw new SlotInputValidator("Incorrect time format (correct format : HH:MM");
+            throw new SlotInputValidator("Invalid slot time format");
         }
     }
 
+    /**
+     * Validates that the seat capacity is greater than zero.
+     *
+     * @param seatCapacity The seat capacity to be validated.
+     * @throws SlotInputValidator If the seat capacity is less than or equal to zero.
+     */
     public static void validateSeatCapacity(int seatCapacity) throws SlotInputValidator {
-
-        if(seatCapacity>0){
+        if (seatCapacity > 0) {
             return;
         }
-        else{
-            throw new SlotInputValidator("Capacity should be greater than 0");
-        }
+        throw new SlotInputValidator("Slot seats should be greater than zero");
     }
-
 }

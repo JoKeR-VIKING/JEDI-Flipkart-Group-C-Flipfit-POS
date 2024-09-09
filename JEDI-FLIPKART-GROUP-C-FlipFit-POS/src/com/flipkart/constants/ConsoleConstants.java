@@ -1,5 +1,7 @@
 package com.flipkart.constants;
 
+import java.time.format.DateTimeFormatter;
+
 public class ConsoleConstants {
     public static final String BOLD = "\033[0;1m";
     public static final String RESET = "\033[0m";
@@ -7,4 +9,5 @@ public class ConsoleConstants {
     public static final String BLUE = "\033[0;34m";
     public static final String RED = "\033[0;31m";
     public static final String YELLOW = "\033[0;33m";
+    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 }
