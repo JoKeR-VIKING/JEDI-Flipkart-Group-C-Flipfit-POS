@@ -168,6 +168,11 @@ public class SQLQueryConstants {
     public static final String DELETE_SLOT_BOOKING = "DELETE FROM FlipFitSlotBooking WHERE bookingId = ?";
 
     /**
+     * SQL Query to delete previous booking by userId and slotDate.
+     */
+    public static final String DELETE_PREVIOUS_SLOT_BOOKING = "DELETE FROM FlipFitSlotBooking WHERE userId = ? AND slotDate = ?";
+
+    /**
      * SQL query to select slot bookings by userId.
      */
     public static final String SELECT_SLOT_BOOKING_BY_USER_ID = "SELECT * FROM FlipFitSlotBooking WHERE userId = ?";

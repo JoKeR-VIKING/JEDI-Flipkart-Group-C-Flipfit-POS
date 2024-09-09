@@ -9,6 +9,7 @@ import com.flipkart.utils.FlipFitTableUtil;
 import com.flipkart.validators.GymOwnerValidator;
 import com.flipkart.validators.SlotInputValidator;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -268,7 +269,7 @@ public class FlipFitGymOwnerClientMenu {
         String date;
         while (true) {
             try {
-                System.out.print("Enter Date: ");
+                System.out.print("Enter Date (dd-mm-yyyy): ");
                 date = scanner.nextLine();
                 SlotInputValidator.validateDateFormat(date);
                 break;
@@ -278,6 +279,8 @@ public class FlipFitGymOwnerClientMenu {
         }
 
         try {
+            if (parseDate(date).isBefore(LocalDate.now()))
+                yellowOutputLn("Note: you are viewing slots for an old date");
             greenOutputLn("Slots available are as follows:");
 
             List<FlipFitCenterSlot> slots = ownerService.viewAvailableSlots(gymId, parseDate(date));

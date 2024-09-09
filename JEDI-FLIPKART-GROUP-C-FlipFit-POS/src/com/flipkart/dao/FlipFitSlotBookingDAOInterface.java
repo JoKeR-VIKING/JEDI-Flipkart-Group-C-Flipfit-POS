@@ -51,6 +51,14 @@ public interface FlipFitSlotBookingDAOInterface {
     void removeBooking(String bookingId) throws InvalidBookingException;
 
     /**
+     * Removes an existing booking for the same date by same user.
+     *
+     * @param userId The ID of the customer.
+     * @param bookingDate The date of booked slot.
+     */
+    void removePreviousBooking(String userId, LocalDate bookingDate);
+
+    /**
      * Lists all bookings made by a specific user.
      *
      * @param userId The ID of the user whose bookings are to be listed.
