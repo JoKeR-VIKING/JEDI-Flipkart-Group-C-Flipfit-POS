@@ -98,7 +98,7 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
      * @throws GymSlotAlreadyExistsException If a slot with the same start time already exists for the gym.
      */
     @Override
-    public void addSlot(String centreId, LocalTime startTime, Integer noOfSeats) throws GymSlotAlreadyExistsException {
+    public void addSlot(String centreId, LocalTime startTime, Integer noOfSeats) throws GymSlotAlreadyExistsException, InvalidGymException {
         FlipFitCenterSlot slot = new FlipFitCenterSlot(Helper.generateId(), centreId, startTime, noOfSeats);
         FlipFitCenterSlotDAOInst.addSlot(slot);
     }
@@ -144,7 +144,7 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
      * @return A list of slots available in the specified gym.
      */
     @Override
-    public List<FlipFitCenterSlot> viewAllSlots(String centreId) {
+    public List<FlipFitCenterSlot> viewAllSlots(String centreId) throws InvalidGymException {
         return FlipFitCenterSlotDAOInst.getSlotsByGymId(centreId);
     }
 
@@ -159,7 +159,7 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
      * @throws UnauthorizedGymOwnerException If the gym owner is not authorized to modify the gym.
      */
     @Override
-    public boolean modifyGym(String ownerId, String gymId, String gymName, String gymAddress) throws UnauthorizedGymOwnerException {
+    public boolean modifyGym(String ownerId, String gymId, String gymName, String gymAddress) throws UnauthorizedGymOwnerException, InvalidGymException {
         return FlipFitCentreDAOInst.modifyGym(ownerId, gymId, gymName, gymAddress);
     }
 
@@ -171,7 +171,7 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
      * @return A list of available slots for the specified gym on the given date.
      */
     @Override
-    public List<FlipFitCenterSlot> viewAvailableSlots(String gymId, LocalDate date) {
+    public List<FlipFitCenterSlot> viewAvailableSlots(String gymId, LocalDate date) throws InvalidGymException {
         return FlipFitCenterSlotDAOInst.getAvailableSlots(gymId, date);
     }
 
@@ -183,7 +183,7 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
      * @return A list of bookings for the specified gym on the given date.
      */
     @Override
-    public List<FlipFitSlotBooking> viewAllBookingsByGymIdAndDate(String gymId, LocalDate date) {
+    public List<FlipFitSlotBooking> viewAllBookingsByGymIdAndDate(String gymId, LocalDate date) throws InvalidGymException {
         return FlipFitSlotBookingDAOInst.getAllBookingsByGymIdAndDate(gymId, date);
     }
 }

@@ -11,20 +11,35 @@ public class FlipFitCenterSlot {
     private String centreId;
     private LocalTime startTime;
     private int seatLimit;
+    private int availableSlots;
 
     /**
      * Constructs a new FlipFitCenterSlot with the specified details.
      *
-     * @param slotId    the unique identifier for the slot
-     * @param centreId  the unique identifier for the center
-     * @param startTime the start time of the slot
-     * @param seatLimit the maximum number of seats available in the slot
+     * @param slotId       the unique identifier for the slot
+     * @param centreId     the unique identifier for the center
+     * @param startTime    the start time of the slot
+     * @param seatLimit    the maximum number of seats available in the slot
      */
     public FlipFitCenterSlot(String slotId, String centreId, LocalTime startTime, int seatLimit) {
         this.slotId = slotId;
         this.centreId = centreId;
         this.startTime = startTime;
         this.seatLimit = seatLimit;
+    }
+
+    /**
+     * Constructs a new FlipFitCenterSlot with the specified details including available slots.
+     *
+     * @param slotId         the unique identifier for the slot
+     * @param centreId       the unique identifier for the center
+     * @param startTime      the start time of the slot
+     * @param seatLimit      the maximum number of seats available in the slot
+     * @param availableSlots the number of seats available for booking
+     */
+    public FlipFitCenterSlot(String slotId, String centreId, LocalTime startTime, int seatLimit, int availableSlots) {
+        this(slotId, centreId, startTime, seatLimit);
+        this.availableSlots = availableSlots;
     }
 
     /**
@@ -66,7 +81,7 @@ public class FlipFitCenterSlot {
     /**
      * Returns the start time of the slot.
      *
-     * @return the start time
+     * @return the start time of the slot
      */
     public LocalTime getStartTime() {
         return startTime;
@@ -75,7 +90,7 @@ public class FlipFitCenterSlot {
     /**
      * Sets the start time of the slot.
      *
-     * @param startTime the new start time
+     * @param startTime the new start time of the slot
      */
     public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
@@ -97,5 +112,23 @@ public class FlipFitCenterSlot {
      */
     public void setSeatLimit(int seatLimit) {
         this.seatLimit = seatLimit;
+    }
+
+    /**
+     * Returns the number of seats currently available for booking in the slot.
+     *
+     * @return the number of available slots
+     */
+    public int getAvailableSlots() {
+        return availableSlots;
+    }
+
+    /**
+     * Sets the number of seats currently available for booking in the slot.
+     *
+     * @param availableSlots the new number of available slots
+     */
+    public void setAvailableSlots(int availableSlots) {
+        this.availableSlots = availableSlots;
     }
 }

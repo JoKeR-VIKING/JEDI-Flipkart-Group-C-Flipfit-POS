@@ -4,12 +4,8 @@ import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.business.FlipFitGymOwnerService;
-import com.flipkart.exception.GymSlotAlreadyExistsException;
-import com.flipkart.exception.InvalidSlotException;
-import com.flipkart.exception.InvalidUserException;
-import com.flipkart.exception.UnauthorizedGymOwnerException;
+import com.flipkart.exception.*;
 import com.flipkart.utils.FlipFitTableUtil;
-import com.flipkart.validators.BookSlotInputValidator;
 import com.flipkart.validators.GymOwnerValidator;
 import com.flipkart.validators.SlotInputValidator;
 
@@ -20,10 +16,10 @@ import static com.flipkart.utils.FlipFitClientUtils.getChoice;
 import static com.flipkart.utils.Helper.*;
 
 /**
- * Provides the menu and functionality for gym owners to manage gyms and slots.
+ * Provides the menu and functionality for gym owners to manage gyms, slots, and profile information.
  */
 public class FlipFitGymOwnerClientMenu {
-    public static int TOTAL_OPTIONS = 12;
+    public static final int TOTAL_OPTIONS = 12;
 
     private Scanner scanner = new Scanner(System.in);
     private FlipFitGymOwnerService ownerService = new FlipFitGymOwnerService();
@@ -52,6 +48,7 @@ public class FlipFitGymOwnerClientMenu {
 
     /**
      * Adds a new gym to the system.
+     *
      * @param userId The ID of the gym owner.
      */
     private void addGym(String userId) {
@@ -67,7 +64,8 @@ public class FlipFitGymOwnerClientMenu {
     }
 
     /**
-     * Modifies an existing gym's details.
+     * Modifies the details of an existing gym.
+     *
      * @param userId The ID of the gym owner.
      */
     private void modifyGym(String userId) {
@@ -87,13 +85,16 @@ public class FlipFitGymOwnerClientMenu {
             } else {
                 System.out.println("Gym not found, enter correct gym id.");
             }
-        } catch (UnauthorizedGymOwnerException e){
+        } catch (UnauthorizedGymOwnerException e) {
             redOutputLn("Unauthorized access to this gym centre for this gym owner");
+        } catch (InvalidGymException e) {
+            redOutputLn("Invalid Gym ID");
         }
     }
 
     /**
-     * Removes a gym from the system.
+     * Removes an existing gym from the system.
+     *
      * @param ownerId The ID of the gym owner.
      */
     private void removeGym(String ownerId) {
@@ -102,13 +103,14 @@ public class FlipFitGymOwnerClientMenu {
 
         try {
             ownerService.removeGym(ownerId, gymId);
-        } catch (UnauthorizedGymOwnerException e){
+        } catch (UnauthorizedGymOwnerException e) {
             redOutputLn("Unauthorized access to this gym centre for this gym owner");
         }
     }
 
     /**
-     * Displays all gyms registered under the gym owner.
+     * Displays all gyms registered under the specified gym owner.
+     *
      * @param userId The ID of the gym owner.
      */
     public void viewGyms(String userId) {
@@ -151,13 +153,11 @@ public class FlipFitGymOwnerClientMenu {
             }
         }
 
-        int noOfSeats ;
-        scanner.nextLine();
-
+        int noOfSeats;
         while (true) {
             try {
                 System.out.print("Enter Number of Seats: ");
-                noOfSeats = scanner.nextInt();
+                noOfSeats = scanner.nextInt(); scanner.nextLine();
                 SlotInputValidator.validateSeatCapacity(noOfSeats);
                 break;
             } catch (SlotInputValidator e) {
@@ -169,6 +169,8 @@ public class FlipFitGymOwnerClientMenu {
             ownerService.addSlot(gymId, parseHourMinute(startTime), noOfSeats);
         } catch (GymSlotAlreadyExistsException e) {
             redOutputLn("Gym Slot Already Exists");
+        } catch (InvalidGymException e) {
+            redOutputLn("Invalid Gym ID");
         }
     }
 
@@ -188,7 +190,7 @@ public class FlipFitGymOwnerClientMenu {
     }
 
     /**
-     * Edits an existing slot's details.
+     * Edits the details of an existing slot.
      */
     public void editSlot() {
         System.out.print("Enter Slot ID: ");
@@ -206,13 +208,13 @@ public class FlipFitGymOwnerClientMenu {
             }
         }
 
-        int noOfSeats ;
+        int noOfSeats;
         scanner.nextLine();
 
         while (true) {
             try {
                 System.out.print("Enter Number of Seats: ");
-                noOfSeats = scanner.nextInt();
+                noOfSeats = scanner.nextInt(); scanner.nextLine();
                 SlotInputValidator.validateSeatCapacity(noOfSeats);
                 break;
             } catch (SlotInputValidator e) {
@@ -235,21 +237,25 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter Gym ID: ");
         String gymId = scanner.nextLine();
 
-        System.out.println("Gym Slots: ");
+        try {
+            System.out.println("Gym Slots: ");
 
-        List<FlipFitCenterSlot> slots = ownerService.viewAllSlots(gymId);
+            List<FlipFitCenterSlot> slots = ownerService.viewAllSlots(gymId);
 
-        FlipFitTableUtil.printTabular(
-                List.of("Slot ID", "Slot Center ID", "Slot Start Time", "Slot Seat Limit"),
-                slots.stream()
-                        .map(slot -> List.of(
-                                slot.getSlotId(),
-                                slot.getCentreId(),
-                                slot.getStartTime().toString(),
-                                String.valueOf(slot.getSeatLimit()))
-                        )
-                        .toList()
-        );
+            FlipFitTableUtil.printTabular(
+                    List.of("Slot ID", "Slot Center ID", "Slot Start Time", "Slot Seat Limit"),
+                    slots.stream()
+                            .map(slot -> List.of(
+                                    slot.getSlotId(),
+                                    slot.getCentreId(),
+                                    slot.getStartTime().toString(),
+                                    String.valueOf(slot.getSeatLimit()))
+                            )
+                            .toList()
+            );
+        } catch (InvalidGymException e) {
+            redOutputLn("Invalid Gym ID");
+        }
     }
 
     /**
@@ -271,21 +277,26 @@ public class FlipFitGymOwnerClientMenu {
             }
         }
 
-        greenOutputLn("Slots available are as follows:");
+        try {
+            greenOutputLn("Slots available are as follows:");
 
-        List<FlipFitCenterSlot> slots = ownerService.viewAvailableSlots(gymId, parseDate(date));
+            List<FlipFitCenterSlot> slots = ownerService.viewAvailableSlots(gymId, parseDate(date));
 
-        FlipFitTableUtil.printTabular(
-                List.of("Slot ID", "Slot Center ID", "Slot Start Time", "Slot Seat Limit"),
-                slots.stream()
-                        .map(slot -> List.of(
-                                slot.getSlotId(),
-                                slot.getCentreId(),
-                                slot.getStartTime().toString(),
-                                String.valueOf(slot.getSeatLimit()))
-                        )
-                        .toList()
-        );
+            FlipFitTableUtil.printTabular(
+                    List.of("Slot ID", "Slot Center ID", "Slot Start Time", "Slot Seat Limit", "Available Seats"),
+                    slots.stream()
+                            .map(slot -> List.of(
+                                    slot.getSlotId(),
+                                    slot.getCentreId(),
+                                    slot.getStartTime().toString(),
+                                    String.valueOf(slot.getSeatLimit()),
+                                    String.valueOf(slot.getAvailableSlots()))
+                            )
+                            .toList()
+            );
+        } catch (InvalidGymException e) {
+            redOutputLn("Invalid Gym ID");
+        }
     }
 
     /**
@@ -307,28 +318,33 @@ public class FlipFitGymOwnerClientMenu {
             }
         }
 
-        greenOutputLn("Slot Bookings are as follows:");
+        try {
+            greenOutputLn("Slot Bookings are as follows:");
 
-        List<FlipFitSlotBooking> bookings = ownerService.viewAllBookingsByGymIdAndDate(gymId, parseDate(date));
+            List<FlipFitSlotBooking> bookings = ownerService.viewAllBookingsByGymIdAndDate(gymId, parseDate(date));
 
-        FlipFitTableUtil.printTabular(
-                List.of("Booking ID", "User ID", "Center Slot ID", "Slot Date", "Booked on", "Payment ID", "Status"),
-                bookings.stream()
-                        .map(booking -> List.of(
-                                booking.getBookingId(),
-                                booking.getUserId(),
-                                booking.getCenterSlot(),
-                                booking.getSlotDate().toString(),
-                                booking.getBookingDate().toString(),
-                                booking.getPaymentId(),
-                                booking.getStatus().name())
-                        )
-                        .toList()
-        );
+            FlipFitTableUtil.printTabular(
+                    List.of("Booking ID", "User ID", "Center Slot ID", "Slot Date", "Booked on", "Payment ID", "Status"),
+                    bookings.stream()
+                            .map(booking -> List.of(
+                                    booking.getBookingId(),
+                                    booking.getUserId(),
+                                    booking.getCenterSlot(),
+                                    booking.getSlotDate().toString(),
+                                    booking.getBookingDate().toString(),
+                                    booking.getPaymentId(),
+                                    booking.getStatus().name())
+                            )
+                            .toList()
+            );
+        } catch (InvalidGymException e) {
+            redOutputLn("Invalid Gym ID");
+        }
     }
 
     /**
      * Edits the profile information of the gym owner.
+     *
      * @param userId The ID of the gym owner.
      */
     public void editProfile(String userId) {
@@ -377,6 +393,7 @@ public class FlipFitGymOwnerClientMenu {
 
     /**
      * Handles the login process and displays the menu options to the gym owner.
+     *
      * @param userId The ID of the gym owner.
      */
     public void login(String userId) {

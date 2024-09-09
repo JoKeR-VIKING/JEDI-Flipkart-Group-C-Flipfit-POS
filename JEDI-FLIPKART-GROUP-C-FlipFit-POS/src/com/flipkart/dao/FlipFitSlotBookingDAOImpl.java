@@ -1,10 +1,12 @@
 package com.flipkart.dao;
 
+import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitPayments;
 import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.enums.SlotBookingStatusEnum;
 import com.flipkart.exception.GymSlotSeatLimitReachedException;
 import com.flipkart.exception.InvalidBookingException;
+import com.flipkart.exception.InvalidGymException;
 import com.flipkart.exception.InvalidSlotException;
 
 import java.sql.Date;
@@ -16,6 +18,7 @@ import java.util.List;
 
 import static com.flipkart.constants.SQLQueryConstants.*;
 import static com.flipkart.dao.FlipFitCenterSlotDAOImpl.FlipFitCenterSlotDAOInst;
+import static com.flipkart.dao.FlipFitCentreDAOImpl.FlipFitCentreDAOInst;
 import static com.flipkart.utils.FlipFitMySQL.flipFitSchema;
 
 /**
@@ -176,7 +179,11 @@ public class FlipFitSlotBookingDAOImpl implements FlipFitSlotBookingDAOInterface
      * @return a list of {@link FlipFitSlotBooking} objects for the specified gym and date.
      */
     @Override
-    public List<FlipFitSlotBooking> getAllBookingsByGymIdAndDate(String gymId, LocalDate date) {
+    public List<FlipFitSlotBooking> getAllBookingsByGymIdAndDate(String gymId, LocalDate date) throws InvalidGymException {
+        if(FlipFitCentreDAOInst.getGymById(gymId) == null) {
+            throw new InvalidGymException();
+        }
+
         return flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(SELECT_SLOT_BOOKINGS_BY_GYM_ID_AND_DATE);
             stmt.setString(1, gymId);

@@ -2,6 +2,7 @@ package com.flipkart.dao;
 
 import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.exception.GymSlotAlreadyExistsException;
+import com.flipkart.exception.InvalidGymException;
 import com.flipkart.exception.InvalidSlotException;
 
 import java.sql.Date;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.flipkart.constants.SQLQueryConstants.*;
+import static com.flipkart.dao.FlipFitCentreDAOImpl.FlipFitCentreDAOInst;
 import static com.flipkart.utils.FlipFitMySQL.flipFitSchema;
 
 public class FlipFitCenterSlotDAOImpl implements FlipFitCenterSlotDAOInterface {
@@ -42,7 +44,11 @@ public class FlipFitCenterSlotDAOImpl implements FlipFitCenterSlotDAOInterface {
     }
 
     @Override
-    public FlipFitCenterSlot findSlotByCentreAndStartTime(String centreId, LocalTime startTime) {
+    public FlipFitCenterSlot findSlotByCentreAndStartTime(String centreId, LocalTime startTime) throws InvalidGymException {
+        if(FlipFitCentreDAOInst.getGymById(centreId) == null) {
+            throw new InvalidGymException();
+        }
+
         return flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(SELECT_SLOT_BY_CENTER_AND_START_TIME);
             stmt.setString(1, centreId);
@@ -64,7 +70,7 @@ public class FlipFitCenterSlotDAOImpl implements FlipFitCenterSlotDAOInterface {
     }
 
     @Override
-    public void addSlot(FlipFitCenterSlot slot) throws GymSlotAlreadyExistsException {
+    public void addSlot(FlipFitCenterSlot slot) throws GymSlotAlreadyExistsException, InvalidGymException {
         if(findSlotByCentreAndStartTime(slot.getCentreId(), slot.getStartTime()) != null) {
             throw new GymSlotAlreadyExistsException();
         }
@@ -97,7 +103,11 @@ public class FlipFitCenterSlotDAOImpl implements FlipFitCenterSlotDAOInterface {
     }
 
     @Override
-    public List<FlipFitCenterSlot> getSlotsByGymId(String gymId) {
+    public List<FlipFitCenterSlot> getSlotsByGymId(String gymId) throws InvalidGymException {
+        if(FlipFitCentreDAOInst.getGymById(gymId) == null) {
+            throw new InvalidGymException();
+        }
+
         return flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(GET_GYM_SLOTS_BY_GYM_ID);
             stmt.setString(1, gymId);
@@ -154,11 +164,15 @@ public class FlipFitCenterSlotDAOImpl implements FlipFitCenterSlotDAOInterface {
     }
 
     @Override
-    public List<FlipFitCenterSlot> getAvailableSlots(String gymId, LocalDate date) {
+    public List<FlipFitCenterSlot> getAvailableSlots(String gymId, LocalDate date) throws InvalidGymException {
+        if(FlipFitCentreDAOInst.getGymById(gymId) == null) {
+            throw new InvalidGymException();
+        }
+
         return flipFitSchema.execute(conn -> {
-            PreparedStatement stmt = conn.prepareStatement(SELECT_AVAILABLE_GYM_SLOTS);
-            stmt.setString(1, gymId);
-            stmt.setDate(2, Date.valueOf(date));
+            PreparedStatement stmt = conn.prepareStatement(SELECT_AVAILABLE_GYM_SLOTS_WITH_AVAIL_SEATS);
+            stmt.setDate(1, Date.valueOf(date));
+            stmt.setString(2, gymId);
 
             ResultSet rs = stmt.executeQuery();
             List<FlipFitCenterSlot> slots = new ArrayList<>();
@@ -168,7 +182,8 @@ public class FlipFitCenterSlotDAOImpl implements FlipFitCenterSlotDAOInterface {
                         rs.getString(1),
                         rs.getString(2),
                         rs.getTime(3).toLocalTime(),
-                        rs.getInt(4)
+                        rs.getInt(4),
+                        rs.getInt(5)
                 ));
             }
 

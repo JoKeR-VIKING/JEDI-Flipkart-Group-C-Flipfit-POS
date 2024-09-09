@@ -4,13 +4,14 @@ import com.flipkart.bean.FlipFitPayments;
 import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.exception.GymSlotSeatLimitReachedException;
 import com.flipkart.exception.InvalidBookingException;
+import com.flipkart.exception.InvalidGymException;
 import com.flipkart.exception.InvalidSlotException;
 
 import java.time.LocalDate;
 import java.util.List;
 
 /**
- * Interface for FlipFit Slot Booking Data Access Object (DAO) operations.
+ * Interface for operations related to slot bookings and payments in the FlipFit system.
  * Provides methods to manage slot bookings and payments for gym centres.
  */
 public interface FlipFitSlotBookingDAOInterface {
@@ -27,7 +28,7 @@ public interface FlipFitSlotBookingDAOInterface {
     /**
      * Adds a new booking to the system.
      *
-     * @param booking The FlipFitSlotBooking object representing the booking to be added.
+     * @param booking The {@link FlipFitSlotBooking} object representing the booking to be added.
      * @throws InvalidSlotException If the slot ID is invalid or not found.
      * @throws GymSlotSeatLimitReachedException If the slot has reached its maximum seat limit.
      */
@@ -36,7 +37,7 @@ public interface FlipFitSlotBookingDAOInterface {
     /**
      * Adds a payment record for a booking.
      *
-     * @param payment The FlipFitPayments object representing the payment to be added.
+     * @param payment The {@link FlipFitPayments} object representing the payment to be added.
      * @return true if the payment is added successfully, false otherwise.
      */
     boolean addPayment(FlipFitPayments payment);
@@ -53,7 +54,7 @@ public interface FlipFitSlotBookingDAOInterface {
      * Lists all bookings made by a specific user.
      *
      * @param userId The ID of the user whose bookings are to be listed.
-     * @return A List of FlipFitSlotBooking objects representing the user's bookings.
+     * @return A List of {@link FlipFitSlotBooking} objects representing the user's bookings.
      */
     List<FlipFitSlotBooking> listBookingsByUserId(String userId);
 
@@ -61,8 +62,9 @@ public interface FlipFitSlotBookingDAOInterface {
      * Retrieves all bookings for a specific gym on a particular date.
      *
      * @param gymId The ID of the gym whose bookings are to be retrieved.
-     * @param date The date on which to retrieve the bookings.
-     * @return A List of FlipFitSlotBooking objects representing the bookings for the gym on the specified date.
+     * @param date  The date on which to retrieve the bookings.
+     * @return A List of {@link FlipFitSlotBooking} objects representing the bookings for the gym on the specified date.
+     * @throws InvalidGymException If the gym ID is invalid or not found.
      */
-    List<FlipFitSlotBooking> getAllBookingsByGymIdAndDate(String gymId, LocalDate date);
+    List<FlipFitSlotBooking> getAllBookingsByGymIdAndDate(String gymId, LocalDate date) throws InvalidGymException;
 }

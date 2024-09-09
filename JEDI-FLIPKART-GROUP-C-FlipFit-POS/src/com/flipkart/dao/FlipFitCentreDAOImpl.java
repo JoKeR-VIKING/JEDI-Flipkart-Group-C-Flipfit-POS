@@ -1,6 +1,7 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.FlipFitCentre;
+import com.flipkart.exception.InvalidGymException;
 import com.flipkart.exception.UnauthorizedGymOwnerException;
 
 import java.sql.PreparedStatement;
@@ -13,6 +14,28 @@ import static com.flipkart.utils.FlipFitMySQL.flipFitSchema;
 
 public class FlipFitCentreDAOImpl implements FlipFitCentreDAOInterface {
     public static FlipFitCentreDAOInterface FlipFitCentreDAOInst = new FlipFitCentreDAOImpl();
+
+    @Override
+    public FlipFitCentre getGymById(String gymId) {
+        return flipFitSchema.execute(conn -> {
+            PreparedStatement stmt = conn.prepareStatement(SELECT_GYM_BY_ID);
+            stmt.setString(1, gymId);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()) {
+                return new FlipFitCentre(
+                        rs.getString("centreId"),
+                        rs.getString("centreName"),
+                        rs.getString("centreAddress"),
+                        rs.getString("gymOwnerId"),
+                        rs.getString("verified")
+                );
+            }
+
+            return null;
+        });
+    }
 
     @Override
     public void addGym(FlipFitCentre centre) {
@@ -43,7 +66,11 @@ public class FlipFitCentreDAOImpl implements FlipFitCentreDAOInterface {
     }
 
     @Override
-    public boolean modifyGym(String ownerId, String gymId, String gymName, String gymAddress) throws UnauthorizedGymOwnerException {
+    public boolean modifyGym(String ownerId, String gymId, String gymName, String gymAddress) throws UnauthorizedGymOwnerException, InvalidGymException {
+        if(FlipFitCentreDAOInst.getGymById(gymId) == null) {
+            throw new InvalidGymException();
+        }
+
         int result = flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(UPDATE_GYM);
             stmt.setString(1, gymName);
