@@ -2,6 +2,7 @@ package com.flipkart.business;
 
 import com.flipkart.bean.FlipFitCustomer;
 import com.flipkart.exception.ExistingUserException;
+import com.flipkart.exception.InvalidUserException;
 import com.flipkart.utils.Helper;
 
 import java.time.LocalDate;
@@ -16,7 +17,7 @@ public class FlipFitCustomerService implements FlipFitCustomerInterface {
     }
 
     @Override
-    public void editProfile(String customerId, String address, Double weight, Integer age, String gender, LocalDate dob) {
+    public void editProfile(String customerId, String address, Double weight, Integer age, String gender, LocalDate dob) throws InvalidUserException {
         FlipFitCustomerDAOInst.editProfile(customerId, address, weight, age, gender, dob);
     }
 }

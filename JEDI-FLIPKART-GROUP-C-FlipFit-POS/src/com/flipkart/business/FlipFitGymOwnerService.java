@@ -4,10 +4,7 @@ import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.bean.FlipFitSlotBooking;
-import com.flipkart.exception.ExistingUserException;
-import com.flipkart.exception.GymSlotAlreadyExistsException;
-import com.flipkart.exception.InvalidSlotException;
-import com.flipkart.exception.UnauthorizedGymOwnerException;
+import com.flipkart.exception.*;
 import com.flipkart.utils.Helper;
 
 import java.time.LocalDate;
@@ -27,7 +24,7 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     }
 
     @Override
-    public void editProfile(String gymOwnerId, String address, String gstNumber, String panCardNumber) {
+    public void editProfile(String gymOwnerId, String address, String gstNumber, String panCardNumber) throws InvalidUserException {
         FlipFitGymOwnerDAOInst.editProfile(gymOwnerId, address, gstNumber, panCardNumber);
     }
 

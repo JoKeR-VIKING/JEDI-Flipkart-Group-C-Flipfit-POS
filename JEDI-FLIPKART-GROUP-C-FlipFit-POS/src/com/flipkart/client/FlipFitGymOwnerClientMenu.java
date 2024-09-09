@@ -6,6 +6,7 @@ import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.business.FlipFitGymOwnerService;
 import com.flipkart.exception.GymSlotAlreadyExistsException;
 import com.flipkart.exception.InvalidSlotException;
+import com.flipkart.exception.InvalidUserException;
 import com.flipkart.exception.UnauthorizedGymOwnerException;
 import com.flipkart.utils.FlipFitTableUtil;
 import com.flipkart.validators.BookSlotInputValidator;
@@ -63,9 +64,9 @@ public class FlipFitGymOwnerClientMenu {
 
         System.out.print("Enter Gym Address: ");
         String gymAddress = scanner.nextLine();
+
         try {
-            boolean isSuccessful = ownerService.
-                    modifyGym(userId, gymId, gymName, gymAddress);
+            boolean isSuccessful = ownerService.modifyGym(userId, gymId, gymName, gymAddress);
             if (isSuccessful) {
                 System.out.println("Gym data modified successfully.");
             } else {
@@ -79,6 +80,7 @@ public class FlipFitGymOwnerClientMenu {
     private void removeGym(String ownerId) {
         System.out.print("Enter ID of Gym to remove: ");
         String gymId = scanner.nextLine();
+
         try {
             ownerService.removeGym(ownerId, gymId);
         } catch (UnauthorizedGymOwnerException e){
@@ -177,7 +179,7 @@ public class FlipFitGymOwnerClientMenu {
 
         int noOfSeats ;
         scanner.nextLine();
-
+      
         while (true) {
             try {
                 System.out.print("Enter Number of Seats: ");
@@ -280,7 +282,11 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter PAN: ");
         String pan = scanner.nextLine();
 
-        ownerService.editProfile(userId, address, gst, pan);
+        try {
+            ownerService.editProfile(userId, address, gst, pan);
+        } catch (InvalidUserException e) {
+            redOutputLn("Invalid user");
+        }
     }
 
     public void userLogout() {

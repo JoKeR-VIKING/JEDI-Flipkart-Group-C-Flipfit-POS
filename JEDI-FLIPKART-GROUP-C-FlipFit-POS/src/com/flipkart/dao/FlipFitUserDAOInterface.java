@@ -9,7 +9,7 @@ public interface FlipFitUserDAOInterface {
 
     void updatePassword(String userId, String password) throws InvalidUserException;
 
-    void updateAddress(String gymOwnerId, String address);
+    void updateAddress(String gymOwnerId, String address) throws InvalidUserException;
 
     FlipFitUser findByUsername(String username);
 }
