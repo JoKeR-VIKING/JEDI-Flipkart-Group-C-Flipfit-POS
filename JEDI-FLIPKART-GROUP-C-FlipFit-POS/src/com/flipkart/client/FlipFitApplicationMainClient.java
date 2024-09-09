@@ -185,9 +185,10 @@ public class FlipFitApplicationMainClient {
                 }
 
                 String gender;
+
                 while (true) {
                     try {
-                        System.out.print("Enter your Gender: ");
+                        System.out.print("Enter your Gender (male, female, others): ");
                         gender = in.nextLine();
                         CustomerInputValidator.validateGender(gender);
                         break;
@@ -246,8 +247,8 @@ public class FlipFitApplicationMainClient {
         FlipFitUser user = authenticateUser(username, oldPassword);
         if (user == null) return;
 
-        boolean flag = true;
         String newPassword;
+
         while (true) {
             System.out.print("Enter new password: ");
             newPassword = in.nextLine();
@@ -257,7 +258,6 @@ public class FlipFitApplicationMainClient {
 
             if (newPassword.equals(confirmNewPassword)) {
                 greenOutputLn("Password matched!");
-                flag = false;
                 break;
             } else {
                 redOutputLn("The passwords did not match. Please check again");
