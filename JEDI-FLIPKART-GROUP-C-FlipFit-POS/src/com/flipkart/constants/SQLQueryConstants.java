@@ -90,7 +90,7 @@ public class SQLQueryConstants {
     /**
      * SQL query to insert a new gym into the FlipFitCentre table.
      */
-    public static final String INSERT_GYM = "INSERT INTO FlipFitCentre VALUES (?, ?, ?, ?, ?)";
+    public static final String INSERT_GYM = "INSERT INTO FlipFitCentre VALUES (?, ?, ?, ?, ?, ?)";
 
     /**
      * SQL query to update a gym's details.
