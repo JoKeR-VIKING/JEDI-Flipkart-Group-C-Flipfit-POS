@@ -1,9 +1,6 @@
 package com.flipkart.client;
 
-import com.flipkart.bean.FlipFitCenterSlot;
-import com.flipkart.bean.FlipFitCentre;
-import com.flipkart.bean.FlipFitPayments;
-import com.flipkart.bean.FlipFitSlotBooking;
+import com.flipkart.bean.*;
 import com.flipkart.business.*;
 import com.flipkart.exception.GymSlotSeatLimitReachedException;
 import com.flipkart.exception.InvalidBookingException;
@@ -11,6 +8,7 @@ import com.flipkart.exception.InvalidSlotException;
 import com.flipkart.exception.InvalidUserException;
 import com.flipkart.utils.FlipFitTableUtil;
 import com.flipkart.utils.Helper;
+import com.flipkart.validators.CustomerInputValidator;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -46,19 +44,63 @@ public class FlipFitCustomerClientMenu {
         System.out.print("Enter your address: ");
         String address = in.nextLine();
 
-        System.out.print("Enter your Age: ");
-        int age = in.nextInt();
-        in.nextLine();
+        int age;
 
-        System.out.print("Enter your Gender: ");
-        String gender = in.nextLine();
+        while (true) {
+            try {
+                System.out.print("Enter your Age: ");
+                age = in.nextInt();
+                in.nextLine();
 
-        System.out.print("Enter your Weight: ");
-        Double weight = in.nextDouble();
-        in.nextLine();
+                CustomerInputValidator.validateAge(age);
+                break;
+            } catch (CustomerInputValidator e) {
+                redOutputLn(e.getMessage());
+            }
+        }
 
-        System.out.print("Enter your DOB (dd-mm-yyyy): ");
-        String dob = in.nextLine();
+        String gender;
+
+        while (true) {
+            try {
+                System.out.print("Enter your Gender: ");
+                gender = in.nextLine();
+
+                CustomerInputValidator.validateGender(gender);
+                break;
+            } catch (CustomerInputValidator e) {
+                redOutputLn(e.getMessage());
+            }
+        }
+
+        double weight;
+
+        while (true) {
+            try {
+                System.out.print("Enter your Weight: ");
+                weight = in.nextDouble();
+                in.nextLine();
+
+                CustomerInputValidator.validateWeight(weight);
+                break;
+            } catch (CustomerInputValidator e) {
+                redOutputLn(e.getMessage());
+            }
+        }
+
+        String dob;
+
+        while (true) {
+            try {
+                System.out.print("Enter your DOB (dd-mm-yyyy): ");
+                dob = in.nextLine();
+
+                CustomerInputValidator.validateDob(dob, age);
+                break;
+            } catch (CustomerInputValidator e) {
+                redOutputLn(e.getMessage());
+            }
+        }
 
         try {
             customerService.editProfile(userId, address, weight, age, gender, parseDate(dob));

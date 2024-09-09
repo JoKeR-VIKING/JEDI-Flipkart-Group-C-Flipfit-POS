@@ -1,4 +1,4 @@
-package com.flipkart.validator;
+package com.flipkart.validators;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;

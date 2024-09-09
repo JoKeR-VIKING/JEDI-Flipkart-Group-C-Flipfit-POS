@@ -2,23 +2,48 @@ package com.flipkart.validators;
 
 import java.time.Period;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
-public class CustomerInputValidator {
-    public static boolean validateWeight(int weight) {
-        return weight > 0;
+public class CustomerInputValidator extends Exception {
+    public CustomerInputValidator(String msg) {
+        super(msg);
     }
 
-    public static boolean validateAge(int age) {
-        return age > 0;
+    public static void validateWeight(double weight) throws CustomerInputValidator {
+        if (weight > 0)
+            return;
+
+        throw new CustomerInputValidator("Invalid weight");
     }
 
-    public static boolean validateGender(String gender) {
-        return gender.equals("male") || gender.equals("female") || gender.equals("others");
+    public static void validateAge(int age) throws CustomerInputValidator {
+        if (age > 0)
+            return;
+
+        throw new CustomerInputValidator("Invalid age");
     }
 
-    public static boolean validateDob(LocalDate dob, int age) {
-        Period period = Period.between(dob, LocalDate.now());
+    public static void validateGender(String gender) throws CustomerInputValidator {
+        if (gender.equals("male") || gender.equals("female") || gender.equals("others"))
+            return;
 
-        return period.getYears() == age;
+        throw new CustomerInputValidator("Invalid gender");
+    }
+
+    public static void validateDob(String dob, int age) throws CustomerInputValidator {
+        LocalDate dateOfBirth;
+
+        try {
+            dateOfBirth = LocalDate.parse(dob);
+        } catch (DateTimeParseException e) {
+            throw new CustomerInputValidator(e.getMessage());
+        }
+
+        Period period = Period.between(dateOfBirth, LocalDate.now());
+
+        if (period.getYears() == age)
+            return;
+
+        throw new CustomerInputValidator("Date of birth does not match age");
     }
 }
