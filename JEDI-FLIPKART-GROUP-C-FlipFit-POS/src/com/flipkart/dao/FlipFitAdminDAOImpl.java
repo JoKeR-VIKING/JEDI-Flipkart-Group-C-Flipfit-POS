@@ -3,6 +3,7 @@ package com.flipkart.dao;
 import com.flipkart.bean.FlipFitAdmin;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitGymOwner;
+import com.flipkart.exception.ExistingUserException;
 import com.flipkart.exception.InvalidGymOwnerException;
 
 import java.sql.PreparedStatement;
@@ -18,7 +19,7 @@ public class FlipFitAdminDAOImpl implements FlipFitAdminDAOInterface {
     public static FlipFitAdminDAOInterface FlipFitAdminDAOInst = new FlipFitAdminDAOImpl();
 
     @Override
-    public void add(FlipFitAdmin admin) {
+    public void add(FlipFitAdmin admin) throws ExistingUserException {
         FlipFitUserDAOInst.add(admin);
     }
 

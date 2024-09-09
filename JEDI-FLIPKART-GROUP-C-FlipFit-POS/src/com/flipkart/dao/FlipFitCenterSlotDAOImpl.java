@@ -1,6 +1,7 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.FlipFitCenterSlot;
+import com.flipkart.exception.GymSlotAlreadyExistsException;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -19,7 +20,33 @@ public class FlipFitCenterSlotDAOImpl implements FlipFitCenterSlotDAOInterface {
     public static final FlipFitCenterSlotDAOInterface FlipFitCenterSlotDAOInst = new FlipFitCenterSlotDAOImpl();
 
     @Override
-    public void addSlot(FlipFitCenterSlot slot) {
+    public FlipFitCenterSlot findSlotByCentreAndStartTime(String centreId, LocalTime startTime) {
+        return flipFitSchema.execute(conn -> {
+            PreparedStatement stmt = conn.prepareStatement(SELECT_SLOT_BY_CENTER_AND_START_TIME);
+            stmt.setString(1, centreId);
+            stmt.setTime(2, Time.valueOf(startTime));
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new FlipFitCenterSlot(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getTime(3).toLocalTime(),
+                        rs.getInt(4)
+                );
+            }
+
+            return null;
+        });
+    }
+
+    @Override
+    public void addSlot(FlipFitCenterSlot slot) throws GymSlotAlreadyExistsException {
+        if(findSlotByCentreAndStartTime(slot.getCentreId(), slot.getStartTime()) != null) {
+            throw new GymSlotAlreadyExistsException();
+        }
+
         flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(INSERT_GYM_SLOT);
             stmt.setString(1, slot.getSlotId());
@@ -108,7 +135,7 @@ public class FlipFitCenterSlotDAOImpl implements FlipFitCenterSlotDAOInterface {
             ResultSet rs = stmt.executeQuery();
             List<FlipFitCenterSlot> slots = new ArrayList<>();
 
-            while(rs.next()) {
+            while (rs.next()) {
                 slots.add(new FlipFitCenterSlot(
                         rs.getString(1),
                         rs.getString(2),

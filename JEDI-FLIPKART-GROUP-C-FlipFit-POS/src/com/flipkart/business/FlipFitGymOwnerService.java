@@ -4,6 +4,8 @@ import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.bean.FlipFitSlotBooking;
+import com.flipkart.exception.ExistingUserException;
+import com.flipkart.exception.GymSlotAlreadyExistsException;
 import com.flipkart.utils.Helper;
 
 import java.time.LocalDate;
@@ -17,7 +19,7 @@ import static com.flipkart.dao.FlipFitSlotBookingDAOImpl.FlipFitSlotBookingDAOIn
 
 public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     @Override
-    public void createProfile(String username, String password, String name, String address, String phoneNumber, String gstNumber, String panCardNumber) {
+    public void createProfile(String username, String password, String name, String address, String phoneNumber, String gstNumber, String panCardNumber) throws ExistingUserException {
         FlipFitGymOwner gymOwner = new FlipFitGymOwner(Helper.generateId(), username, password, name, address, phoneNumber, gstNumber, panCardNumber);
         FlipFitGymOwnerDAOInst.createProfile(gymOwner);
     }
@@ -44,7 +46,7 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     }
 
     @Override
-    public void addSlot(String centreId, LocalTime startTime, Integer noOfSeats) {
+    public void addSlot(String centreId, LocalTime startTime, Integer noOfSeats) throws GymSlotAlreadyExistsException {
         FlipFitCenterSlot slot = new FlipFitCenterSlot(Helper.generateId(), centreId, startTime, noOfSeats);
         FlipFitCenterSlotDAOInst.addSlot(slot);
     }

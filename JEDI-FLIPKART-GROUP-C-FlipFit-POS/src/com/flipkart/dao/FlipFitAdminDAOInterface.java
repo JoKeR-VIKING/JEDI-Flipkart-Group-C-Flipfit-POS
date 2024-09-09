@@ -3,12 +3,13 @@ package com.flipkart.dao;
 import com.flipkart.bean.FlipFitAdmin;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitGymOwner;
+import com.flipkart.exception.ExistingUserException;
 import com.flipkart.exception.InvalidGymOwnerException;
 
 import java.util.List;
 
 public interface FlipFitAdminDAOInterface {
-    void add(FlipFitAdmin admin);
+    void add(FlipFitAdmin admin) throws ExistingUserException;
 
     void approveOwner(String gymOwnerId) throws InvalidGymOwnerException;
 

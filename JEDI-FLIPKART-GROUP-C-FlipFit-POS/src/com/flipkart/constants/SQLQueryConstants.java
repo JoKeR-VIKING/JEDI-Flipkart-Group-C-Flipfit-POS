@@ -32,6 +32,7 @@ public class SQLQueryConstants {
     public static final String GET_GYM_SLOT_BY_ID = "SELECT * FROM FlipFitCenterSlot WHERE slotId = ?";
     public static final String DELETE_GYM_SLOT = "DELETE FROM FlipFitCenterSlot WHERE slotId = ?";
     public static final String SELECT_AVAILABLE_GYM_SLOTS = "SELECT * FROM FlipFitCenterSlot s WHERE s.centreId = ? AND s.seatLimit > (SELECT COUNT(*) FROM FlipFitSlotBooking b WHERE b.centreSlotId = s.slotId AND b.slotDate = ?)";
+    public static final String SELECT_SLOT_BY_CENTER_AND_START_TIME = "SELECT * FROM FlipFitCenterSlot WHERE centreId = ? AND startTime = ?";
 
     public static final String INSERT_SLOT_BOOKING = "INSERT INTO FlipFitSlotBooking VALUES (?, ?, ?, ?, ?, ?, ?)";
     public static final String DELETE_SLOT_BOOKING = "DELETE FROM FlipFitSlotBooking WHERE bookingId = ?";

@@ -1,6 +1,7 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.FlipFitGymOwner;
+import com.flipkart.exception.ExistingUserException;
 
 import java.sql.PreparedStatement;
 
@@ -12,7 +13,7 @@ public class FlipFitGymOwnerDAOImpl implements FlipFitGymOwnerDAOInterface {
     public static FlipFitGymOwnerDAOInterface FlipFitGymOwnerDAOInst = new FlipFitGymOwnerDAOImpl();
 
     @Override
-    public void createProfile(FlipFitGymOwner gymOwner) {
+    public void createProfile(FlipFitGymOwner gymOwner) throws ExistingUserException {
         FlipFitUserDAOInst.add(gymOwner);
 
         flipFitSchema.execute(conn -> {

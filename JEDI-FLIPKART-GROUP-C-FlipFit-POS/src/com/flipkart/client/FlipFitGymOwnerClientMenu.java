@@ -4,6 +4,7 @@ import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.business.FlipFitGymOwnerService;
+import com.flipkart.exception.GymSlotAlreadyExistsException;
 import com.flipkart.utils.FlipFitTableUtil;
 
 import java.util.List;
@@ -106,7 +107,11 @@ public class FlipFitGymOwnerClientMenu {
         int noOfSeats = scanner.nextInt();
         scanner.nextLine();
 
-        ownerService.addSlot(gymId, parseHourMinute(startTime), noOfSeats);
+        try {
+            ownerService.addSlot(gymId, parseHourMinute(startTime), noOfSeats);
+        } catch (GymSlotAlreadyExistsException e) {
+            redOutputLn("Gym Slot Already Exists");
+        }
     }
 
     public void removeSlot() {
