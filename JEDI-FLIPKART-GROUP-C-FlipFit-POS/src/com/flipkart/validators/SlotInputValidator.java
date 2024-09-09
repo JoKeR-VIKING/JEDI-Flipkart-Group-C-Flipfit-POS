@@ -4,70 +4,46 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import static com.flipkart.utils.Helper.parseDate;
-import static com.flipkart.utils.Helper.redOutputLn;
-
 /**
- * Validator class for checking the validity of slot input data, such as time format, date format and seat capacity.
+ * Custom exception class used for validating slot input details.
+ * Extends {@link Exception} to provide specific error messages for validation issues.
  */
 public class SlotInputValidator extends Exception {
 
     /**
-     * Constructs a new {@code SlotInputValidator} with the specified detail message.
-     * Also prints the message in red.
+     * Constructs a new SlotInputValidator with the specified detail message.
      *
-     * @param msg The detail message.
+     * @param msg The detail message which is saved for later retrieval by the {@link #getMessage()} method.
      */
-    public SlotInputValidator(String msg){
+    public SlotInputValidator(String msg) {
         super(msg);
     }
 
     /**
-     * Validates that the provided slot time is in the correct format (HH:mm).
+     * Validates whether a given slot time is in the correct format ("HH:mm").
      *
-     * @param slotTime The slot time to validate.
-     * @throws SlotInputValidator If the time is not in the correct format.
+     * @param slotTime The slot time to be validated.
+     * @throws SlotInputValidator If the slot time is not in the correct format.
      */
-    public static void validateTimeFormat(String slotTime) throws SlotInputValidator  {
+    public static void validateTimeFormat(String slotTime) throws SlotInputValidator {
         try {
-            // Define the expected time format as HH:mm
-            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-
-            // Try to parse the string as a LocalTime
-            LocalTime.parse(slotTime, timeFormatter);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime.parse(slotTime, formatter);
         } catch (DateTimeParseException e) {
-            // If parsing fails, the format is incorrect
-            throw new SlotInputValidator("Incorrect time format (correct format : HH:mm)");
+            throw new SlotInputValidator("Invalid slot time format");
         }
     }
 
     /**
-     * Validates the date format of a given date string.
+     * Validates that the seat capacity is greater than zero.
      *
-     * @param date the date string to validate
-     * @throws SlotInputValidator if the date format is incorrect
-     */
-    public static void validateDateFormat(String date) throws SlotInputValidator {
-        try {
-            // Attempt to parse the date using the defined format
-            parseDate(date);
-        } catch (DateTimeParseException e) {
-            // If parsing fails, the format is incorrect
-            throw new SlotInputValidator("Incorrect date format (correct format : dd-MM-yyyy)");
-        }
-    }
-
-    /**
-     * Validates that the provided seat capacity is a positive number.
-     *
-     * @param seatCapacity The seat capacity to validate.
-     * @throws SlotInputValidator If the seat capacity is not greater than 0.
+     * @param seatCapacity The seat capacity to be validated.
+     * @throws SlotInputValidator If the seat capacity is less than or equal to zero.
      */
     public static void validateSeatCapacity(int seatCapacity) throws SlotInputValidator {
-        if(seatCapacity > 0){
+        if (seatCapacity > 0) {
             return;
-        } else {
-            throw new SlotInputValidator("Capacity should be greater than 0");
         }
+        throw new SlotInputValidator("Slot seats should be greater than zero");
     }
 }

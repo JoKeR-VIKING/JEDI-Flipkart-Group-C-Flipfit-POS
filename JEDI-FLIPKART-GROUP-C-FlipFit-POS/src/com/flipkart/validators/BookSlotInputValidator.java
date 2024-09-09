@@ -3,26 +3,32 @@ package com.flipkart.validators;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+import static com.flipkart.constants.ConsoleConstants.formatter;
+
 /**
- * Validator class for checking the validity of booking slot inputs.
+ * Custom exception class used for validating slot booking inputs.
+ * Extends {@link Exception} to provide specific error messages for validation issues.
  */
 public class BookSlotInputValidator extends Exception {
 
     /**
-     * Constructs a new {@code BookSlotInputValidator} with the specified detail message.
+     * Constructs a new BookSlotInputValidator with the specified detail message.
      *
-     * @param msg The detail message.
+     * @param msg The detail message which is saved for later retrieval by the {@link #getMessage()} method.
      */
     public BookSlotInputValidator(String msg) {
         super(msg);
     }
 
     /**
-     * Validates that the provided date string is in the correct format.
+     * Validates whether a given date string is in the correct format.
      *
-     * @param dateString The date string to validate.
-     * @throws BookSlotInputValidator If the date string is not in a valid format.
+     * @param dateString The date string to be validated.
+     * @throws BookSlotInputValidator If the date string is not in the correct format.
      */
+    public static void validateDateFormat(String dateString) throws BookSlotInputValidator {
+        try {
+            LocalDate.parse(dateString, formatter);
     public static void validateDateFormat(String dateString) throws BookSlotInputValidator {
         try {
             LocalDate.parse(dateString);
@@ -32,15 +38,21 @@ public class BookSlotInputValidator extends Exception {
     }
 
     /**
-     * Validates that the provided date is a future date.
+     * Validates whether a given date string represents a future date.
      *
-     * @param bookingDate The date string to validate.
-     * @throws BookSlotInputValidator If the date is not in the future.
+     * @param bookingDate The date string to be validated.
+     * @throws BookSlotInputValidator If the date is not in the future or is invalid.
      */
     public static void validateFutureDate(String bookingDate) throws BookSlotInputValidator {
-        LocalDate parsedDate = LocalDate.parse(bookingDate);
-        if (!parsedDate.isAfter(LocalDate.now())) {
-            throw new BookSlotInputValidator("Enter date is older");
+        LocalDate parsedDate;
+        try {
+            parsedDate = LocalDate.parse(bookingDate, formatter);
+        } catch (DateTimeParseException e) {
+            throw new BookSlotInputValidator("Invalid date format");
+        }
+
+        if (parsedDate.isBefore(LocalDate.now())) {
+            throw new BookSlotInputValidator("Invalid date entered");
         }
     }
 }

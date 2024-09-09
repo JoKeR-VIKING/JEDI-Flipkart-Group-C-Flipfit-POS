@@ -4,45 +4,65 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import static com.flipkart.utils.Helper.redOutputLn;
+/**
+ * Custom exception class used for validating payment input details.
+ * Extends {@link Exception} to provide specific error messages for validation issues.
+ */
+public class PaymentInputValidator extends Exception {
 
-public class PaymentInputValidator extends Exception{
-    public PaymentInputValidator(String msg){
+    /**
+     * Constructs a new PaymentInputValidator with the specified detail message.
+     *
+     * @param msg The detail message which is saved for later retrieval by the {@link #getMessage()} method.
+     */
+    public PaymentInputValidator(String msg) {
         super(msg);
-        redOutputLn(msg);
     }
 
-    public static void isValidCardNumber(String cardNumber) throws PaymentInputValidator{
-        if(cardNumber != null && cardNumber.matches("\\d{16}")){
+    /**
+     * Validates the format of a card number.
+     *
+     * @param cardNumber The card number to be validated.
+     * @throws PaymentInputValidator If the card number does not match the expected format (16 digits).
+     */
+    public static void validateCardNumber(String cardNumber) throws PaymentInputValidator {
+        if (cardNumber.matches("\\d{16}")) {
             return;
-        }else{
-            throw new PaymentInputValidator("Please check your card number");
         }
+        throw new PaymentInputValidator("Invalid card number");
     }
 
-
-    public static void isValidCVV(String cvv) throws PaymentInputValidator{
-        if(cvv != null && cvv.matches("\\d{3,4}")){
-            return ;
+    /**
+     * Validates the format of a CVV (Card Verification Value).
+     *
+     * @param cvv The CVV to be validated.
+     * @throws PaymentInputValidator If the CVV does not match the expected format (3 or 4 digits).
+     */
+    public static void validateCVV(String cvv) throws PaymentInputValidator {
+        if (cvv.matches("\\d{3,4}")) {
+            return;
         }
-        else{
-            throw new PaymentInputValidator("Please check your CVV");
-        }
+        throw new PaymentInputValidator("Invalid CVV");
     }
 
-    public static boolean isValidExpiryDate(String expiryDate) throws PaymentInputValidator {
+    /**
+     * Validates the expiry date of a card.
+     *
+     * @param expiryDate The expiry date to be validated in the format "MM/yy".
+     * @throws PaymentInputValidator If the expiry date is invalid, not in the future, or in an incorrect format.
+     */
+    public static void isValidExpiryDate(String expiryDate) throws PaymentInputValidator {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
             YearMonth expiry = YearMonth.parse(expiryDate, formatter);
 
-
             if (expiry.isAfter(YearMonth.now())) {
-                return true;
-            } else {
-                throw new PaymentInputValidator("Card expiry date is in the past.");
+                return;
             }
+
+            throw new PaymentInputValidator("Your card is expired");
         } catch (DateTimeParseException e) {
-            throw new PaymentInputValidator("Invalid expiry date format. Please use MM/yy.");
+            throw new PaymentInputValidator("Invalid expiry date format");
         }
     }
 }
