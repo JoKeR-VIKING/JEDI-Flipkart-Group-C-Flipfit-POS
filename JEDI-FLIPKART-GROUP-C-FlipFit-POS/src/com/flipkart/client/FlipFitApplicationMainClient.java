@@ -9,6 +9,7 @@ import com.flipkart.exception.ExistingUserException;
 import com.flipkart.exception.InvalidPasswordException;
 import com.flipkart.exception.InvalidUserException;
 import com.flipkart.validators.CustomerInputValidator;
+import com.flipkart.validators.GymOwnerValidator;
 import com.flipkart.validators.UserInputValidator;
 
 import java.util.Scanner;
@@ -123,11 +124,33 @@ public class FlipFitApplicationMainClient {
 
         switch (roleEnum) {
             case GYM_OWNER -> {
-                System.out.print("Enter your GST Number: ");
-                String ownerGstNum = in.nextLine();
+                String ownerPanNum;
 
-                System.out.print("Enter your PAN Number: ");
-                String ownerPanNum = in.nextLine();
+                while (true) {
+                    try {
+                        System.out.print("Enter your PAN Number: ");
+                        ownerPanNum = in.nextLine();
+
+                        GymOwnerValidator.validatePanCardNumber(ownerPanNum);
+                        break;
+                    } catch (GymOwnerValidator e) {
+                        redOutputLn(e.getMessage());
+                    }
+                }
+
+                String ownerGstNum;
+
+                while (true) {
+                    try {
+                        System.out.print("Enter your GST Number: ");
+                        ownerGstNum = in.nextLine();
+
+                        GymOwnerValidator.validateGstNumber(ownerPanNum, ownerGstNum);
+                        break;
+                    } catch (GymOwnerValidator e) {
+                        redOutputLn(e.getMessage());
+                    }
+                }
 
                 try {
                     ownerService.createProfile(username, password, name, address, phoneNumber, ownerGstNum, ownerPanNum);

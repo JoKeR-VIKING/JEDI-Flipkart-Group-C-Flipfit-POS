@@ -62,9 +62,9 @@ public class FlipFitGymOwnerClientMenu {
 
         System.out.print("Enter Gym Address: ");
         String gymAddress = scanner.nextLine();
+
         try {
-            boolean isSuccessful = ownerService.
-                    modifyGym(userId, gymId, gymName, gymAddress);
+            boolean isSuccessful = ownerService.modifyGym(userId, gymId, gymName, gymAddress);
             if (isSuccessful) {
                 System.out.println("Gym data modified successfully.");
             } else {
@@ -78,6 +78,7 @@ public class FlipFitGymOwnerClientMenu {
     private void removeGym(String ownerId) {
         System.out.print("Enter ID of Gym to remove: ");
         String gymId = scanner.nextLine();
+
         try {
             ownerService.removeGym(ownerId, gymId);
         } catch (UnauthorizedGymOwnerException e){
@@ -147,6 +148,7 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter no of seats: ");
         int noOfSeats = scanner.nextInt();
         scanner.nextLine();
+
         try {
             ownerService.updateSlot(slotId, parseHourMinute(startTime), noOfSeats);
             System.out.println("Slot details updated!");
