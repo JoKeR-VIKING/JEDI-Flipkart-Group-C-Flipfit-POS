@@ -2,36 +2,45 @@ package com.flipkart.validators;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import static com.flipkart.utils.Helper.redOutputLn;
 
-public class BookSlotInputValidator extends Exception{
-    public BookSlotInputValidator(String msg){
+/**
+ * Validator class for checking the validity of booking slot inputs.
+ */
+public class BookSlotInputValidator extends Exception {
+
+    /**
+     * Constructs a new {@code BookSlotInputValidator} with the specified detail message.
+     *
+     * @param msg The detail message.
+     */
+    public BookSlotInputValidator(String msg) {
         super(msg);
-        redOutputLn(msg);
     }
 
+    /**
+     * Validates that the provided date string is in the correct format.
+     *
+     * @param dateString The date string to validate.
+     * @throws BookSlotInputValidator If the date string is not in a valid format.
+     */
     public static void validateDateFormat(String dateString) throws BookSlotInputValidator {
         try {
             LocalDate.parse(dateString);
-//            return true;
-
         } catch (DateTimeParseException e) {
-//            return false;
-
             throw new BookSlotInputValidator("Invalid date format");
         }
     }
 
-    public static void validateFutureDate(String bookingDate) throws BookSlotInputValidator{
-        // Check if bookingDate is after today's date
+    /**
+     * Validates that the provided date is a future date.
+     *
+     * @param bookingDate The date string to validate.
+     * @throws BookSlotInputValidator If the date is not in the future.
+     */
+    public static void validateFutureDate(String bookingDate) throws BookSlotInputValidator {
         LocalDate parsedDate = LocalDate.parse(bookingDate);
-        if(parsedDate.isAfter(LocalDate.now())){
-            return ;
-        }else{
+        if (!parsedDate.isAfter(LocalDate.now())) {
             throw new BookSlotInputValidator("Enter date is older");
         }
-//        return bookingDate != null && bookingDate.isAfter(LocalDate.now());
-
     }
-
 }

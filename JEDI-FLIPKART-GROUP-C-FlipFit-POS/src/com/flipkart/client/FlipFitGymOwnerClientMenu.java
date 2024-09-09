@@ -10,6 +10,7 @@ import com.flipkart.exception.InvalidUserException;
 import com.flipkart.exception.UnauthorizedGymOwnerException;
 import com.flipkart.utils.FlipFitTableUtil;
 import com.flipkart.validators.BookSlotInputValidator;
+import com.flipkart.validators.GymOwnerValidator;
 import com.flipkart.validators.SlotInputValidator;
 
 import java.util.List;
@@ -258,8 +259,17 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter Gym ID: ");
         String gymId = scanner.nextLine();
 
-        System.out.print("Enter Date: ");
-        String date = scanner.nextLine();
+        String date;
+        while (true) {
+            try {
+                System.out.print("Enter Date: ");
+                date = scanner.nextLine();
+                SlotInputValidator.validateDateFormat(date);
+                break;
+            } catch (SlotInputValidator e) {
+                redOutputLn(e.getMessage());
+            }
+        }
 
         greenOutputLn("Slots available are as follows:");
 
@@ -285,8 +295,17 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter Gym ID: ");
         String gymId = scanner.nextLine();
 
-        System.out.print("Enter Date: ");
-        String date = scanner.nextLine();
+        String date;
+        while (true) {
+            try {
+                System.out.print("Enter Date: ");
+                date = scanner.nextLine();
+                SlotInputValidator.validateDateFormat(date);
+                break;
+            } catch (SlotInputValidator e) {
+                redOutputLn(e.getMessage());
+            }
+        }
 
         greenOutputLn("Slot Bookings are as follows:");
 
@@ -316,11 +335,31 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter Address: ");
         String address = scanner.nextLine();
 
-        System.out.print("Enter GST: ");
-        String gst = scanner.nextLine();
+        String pan;
+        while (true) {
+            try {
+                System.out.print("Enter PAN: ");
+                pan = scanner.nextLine();
 
-        System.out.print("Enter PAN: ");
-        String pan = scanner.nextLine();
+                GymOwnerValidator.validatePanCardNumber(pan);
+                break;
+            } catch (GymOwnerValidator e) {
+                redOutputLn(e.getMessage());
+            }
+        }
+
+        String gst;
+        while (true) {
+            try {
+                System.out.print("Enter your GST Number: ");
+                gst = scanner.nextLine();
+
+                GymOwnerValidator.validateGstNumber(pan, gst);
+                break;
+            } catch (GymOwnerValidator e) {
+                redOutputLn(e.getMessage());
+            }
+        }
 
         try {
             ownerService.editProfile(userId, address, gst, pan);
