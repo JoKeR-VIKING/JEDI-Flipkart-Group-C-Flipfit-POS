@@ -1,12 +1,15 @@
 package com.flipkart.business;
 
+import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitCustomer;
 import com.flipkart.exception.ExistingUserException;
 import com.flipkart.exception.InvalidUserException;
 import com.flipkart.utils.Helper;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import static com.flipkart.dao.FlipFitCentreDAOImpl.FlipFitCentreDAOInst;
 import static com.flipkart.dao.FlipFitCustomerDAOImpl.FlipFitCustomerDAOInst;
 
 /**
@@ -51,5 +54,17 @@ public class FlipFitCustomerService implements FlipFitCustomerInterface {
     @Override
     public void editProfile(String customerId, String address, Double weight, Integer age, String gender, LocalDate dob) throws InvalidUserException {
         FlipFitCustomerDAOInst.editProfile(customerId, address, weight, age, gender, dob);
+    }
+
+    /**
+     * Retrieves a list of gym centers located in a specific city.
+     * Delegates the request to the data access object.
+     *
+     * @param city the city for which to retrieve the list of gym centers
+     * @return a List of FlipFitCentre objects representing gym centers in the specified city
+     */
+    @Override
+    public List<FlipFitCentre> getCentreListByCity(String city) {
+        return FlipFitCentreDAOInst.getGymListByCity(city);
     }
 }

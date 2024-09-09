@@ -56,13 +56,14 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     /**
      * Adds a new gym to the system.
      *
-     * @param centreName       The name of the gym.
-     * @param centreAddress    The address of the gym.
+     * @param centreCity       The city where the new gym is located.
+     * @param centreName       The name of the new gym.
+     * @param centreAddress    The address of the new gym.
      * @param gymOwnerId       The ID of the gym owner.
      */
     @Override
-    public void addGym(String centreName, String centreAddress, String gymOwnerId) {
-        FlipFitCentre centre = new FlipFitCentre(Helper.generateId(), centreName, centreAddress, gymOwnerId);
+    public void addGym(String centreCity, String centreName, String centreAddress, String gymOwnerId) {
+        FlipFitCentre centre = new FlipFitCentre(Helper.generateId(), centreName, centreAddress, gymOwnerId, centreCity);
         FlipFitCentreDAOInst.addGym(centre);
     }
 
@@ -96,6 +97,7 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
      * @param startTime        The start time of the slot.
      * @param noOfSeats        The number of seats available in the slot.
      * @throws GymSlotAlreadyExistsException If a slot with the same start time already exists for the gym.
+     * @throws InvalidGymException If the gym ID is invalid.
      */
     @Override
     public void addSlot(String centreId, LocalTime startTime, Integer noOfSeats) throws GymSlotAlreadyExistsException, InvalidGymException {
@@ -142,6 +144,7 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
      *
      * @param centreId The ID of the gym.
      * @return A list of slots available in the specified gym.
+     * @throws InvalidGymException If the gym ID is invalid.
      */
     @Override
     public List<FlipFitCenterSlot> viewAllSlots(String centreId) throws InvalidGymException {
@@ -153,14 +156,16 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
      *
      * @param ownerId      The ID of the gym owner.
      * @param gymId        The ID of the gym to be modified.
+     * @param city         The new city of the gym.
      * @param gymName      The new name of the gym.
      * @param gymAddress   The new address of the gym.
      * @return true if the modification was successful, false otherwise.
      * @throws UnauthorizedGymOwnerException If the gym owner is not authorized to modify the gym.
+     * @throws InvalidGymException If the gym ID is invalid.
      */
     @Override
-    public boolean modifyGym(String ownerId, String gymId, String gymName, String gymAddress) throws UnauthorizedGymOwnerException, InvalidGymException {
-        return FlipFitCentreDAOInst.modifyGym(ownerId, gymId, gymName, gymAddress);
+    public boolean modifyGym(String ownerId, String gymId, String city, String gymName, String gymAddress) throws UnauthorizedGymOwnerException, InvalidGymException {
+        return FlipFitCentreDAOInst.modifyGym(ownerId, gymId, city, gymName, gymAddress);
     }
 
     /**
@@ -169,6 +174,7 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
      * @param gymId The ID of the gym.
      * @param date  The date for which to retrieve available slots.
      * @return A list of available slots for the specified gym on the given date.
+     * @throws InvalidGymException If the gym ID is invalid.
      */
     @Override
     public List<FlipFitCenterSlot> viewAvailableSlots(String gymId, LocalDate date) throws InvalidGymException {
@@ -181,9 +187,22 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
      * @param gymId The ID of the gym.
      * @param date  The date for which to retrieve bookings.
      * @return A list of bookings for the specified gym on the given date.
+     * @throws InvalidGymException If the gym ID is invalid.
      */
     @Override
     public List<FlipFitSlotBooking> viewAllBookingsByGymIdAndDate(String gymId, LocalDate date) throws InvalidGymException {
         return FlipFitSlotBookingDAOInst.getAllBookingsByGymIdAndDate(gymId, date);
+    }
+
+    /**
+     * Retrieves a list of gyms located in a specific city and owned by a specific owner.
+     *
+     * @param city     The city in which to retrieve the gyms.
+     * @param ownerId  The ID of the gym owner.
+     * @return A list of gyms located in the specified city and owned by the specified owner.
+     */
+    @Override
+    public List<FlipFitCentre> getGymListByCityAndOwner(String city, String ownerId) {
+        return FlipFitCentreDAOInst.getGymListByCityAndOwner(city, ownerId);
     }
 }

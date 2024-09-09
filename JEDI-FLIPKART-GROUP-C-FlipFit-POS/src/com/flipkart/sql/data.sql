@@ -41,27 +41,27 @@ INSERT INTO `FlipFitCustomer` (`weight`, `age`, `gender`, `dob`, `customerId`) V
 (55.0, 28, 'Female', '1996-07-22 00:00:00', 'cust4'),
 (90.0, 35, 'Male', '1988-12-12 00:00:00', 'cust5');
 
--- Insert Gym Centers
-INSERT INTO `FlipFitCentre` (`centreId`, `centreName`, `centreAddress`, `gymOwnerId`, `verified`) VALUES
+-- Insert Gym Centers with `city` set to 'Bangalore'
+INSERT INTO `FlipFitCentre` (`centreId`, `centreName`, `centreAddress`, `gymOwnerId`, `verified`, `city`) VALUES
 -- Centers for owner1
-('centre1', 'Fit Gym A', '123 Fit St', 'owner1', 'APPROVED'),
-('centre6', 'Fit Gym F', '103 Fit St', 'owner1', 'APPROVED'),
+('centre1', 'Fit Gym A', '123 Fit St', 'owner1', 'APPROVED', 'Bangalore'),
+('centre6', 'Fit Gym F', '103 Fit St', 'owner1', 'APPROVED', 'Bangalore'),
 
 -- Centers for owner2
-('centre2', 'Fit Gym B', '456 Fit St', 'owner2', 'REJECTED'),
-('centre7', 'Fit Gym G', '104 Fit St', 'owner2', 'REJECTED'),
+('centre2', 'Fit Gym B', '456 Fit St', 'owner2', 'REJECTED', 'Bangalore'),
+('centre7', 'Fit Gym G', '104 Fit St', 'owner2', 'REJECTED', 'Bangalore'),
 
 -- Centers for owner3
-('centre3', 'Fit Gym C', '789 Fit St', 'owner3', 'PENDING'),
-('centre8', 'Fit Gym H', '105 Fit St', 'owner3', 'PENDING'),
+('centre3', 'Fit Gym C', '789 Fit St', 'owner3', 'PENDING', 'Bangalore'),
+('centre8', 'Fit Gym H', '105 Fit St', 'owner3', 'PENDING', 'Bangalore'),
 
 -- Centers for owner4
-('centre4', 'Fit Gym D', '101 Fit St', 'owner4', 'APPROVED'),
-('centre9', 'Fit Gym I', '106 Fit St', 'owner4', 'APPROVED'),
+('centre4', 'Fit Gym D', '101 Fit St', 'owner4', 'APPROVED', 'Bangalore'),
+('centre9', 'Fit Gym I', '106 Fit St', 'owner4', 'APPROVED', 'Bangalore'),
 
 -- Centers for owner5
-('centre5', 'Fit Gym E', '102 Fit St', 'owner5', 'PENDING'),
-('centre10', 'Fit Gym J', '107 Fit St', 'owner5', 'PENDING');
+('centre5', 'Fit Gym E', '102 Fit St', 'owner5', 'PENDING', 'Bangalore'),
+('centre10', 'Fit Gym J', '107 Fit St', 'owner5', 'PENDING', 'Bangalore');
 
 -- Insert Slots
 INSERT INTO `FlipFitCenterSlot` (`slotId`, `centreId`, `startTime`, `seatLimit`) VALUES

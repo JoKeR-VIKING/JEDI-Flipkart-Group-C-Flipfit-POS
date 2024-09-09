@@ -29,11 +29,61 @@ public class FlipFitCentreDAOImpl implements FlipFitCentreDAOInterface {
                         rs.getString("centreName"),
                         rs.getString("centreAddress"),
                         rs.getString("gymOwnerId"),
-                        rs.getString("verified")
+                        rs.getString("verified"),
+                        rs.getString("city")
                 );
             }
 
             return null;
+        });
+    }
+
+    @Override
+    public List<FlipFitCentre> getGymListByCity(String city) {
+        return flipFitSchema.execute(conn -> {
+            PreparedStatement stmt = conn.prepareStatement(SELECT_GYMS_BY_CITY);
+            stmt.setString(1, city);
+
+            ResultSet rs = stmt.executeQuery();
+            List<FlipFitCentre> centreList = new ArrayList<>();
+
+            while(rs.next()) {
+                centreList.add(new FlipFitCentre(
+                        rs.getString("centreId"),
+                        rs.getString("centreName"),
+                        rs.getString("centreAddress"),
+                        rs.getString("gymOwnerId"),
+                        rs.getString("verified"),
+                        rs.getString("city"))
+                );
+            }
+
+            return centreList;
+        });
+    }
+
+    @Override
+    public List<FlipFitCentre> getGymListByCityAndOwner(String city, String ownerId) {
+        return flipFitSchema.execute(conn -> {
+            PreparedStatement stmt = conn.prepareStatement(SELECT_GYMS_BY_CITY_AND_OWNER);
+            stmt.setString(1, city);
+            stmt.setString(2, ownerId);
+
+            ResultSet rs = stmt.executeQuery();
+            List<FlipFitCentre> centreList = new ArrayList<>();
+
+            while(rs.next()) {
+                centreList.add(new FlipFitCentre(
+                        rs.getString("centreId"),
+                        rs.getString("centreName"),
+                        rs.getString("centreAddress"),
+                        rs.getString("gymOwnerId"),
+                        rs.getString("verified"),
+                        rs.getString("city"))
+                );
+            }
+
+            return centreList;
         });
     }
 
@@ -46,6 +96,7 @@ public class FlipFitCentreDAOImpl implements FlipFitCentreDAOInterface {
             stmt.setString(3, centre.getCentreAddress());
             stmt.setString(4, centre.getGymOwnerId());
             stmt.setString(5, centre.getVerified());
+            stmt.setString(6, centre.getCity());
 
             return stmt.executeUpdate();
         });
@@ -66,7 +117,7 @@ public class FlipFitCentreDAOImpl implements FlipFitCentreDAOInterface {
     }
 
     @Override
-    public boolean modifyGym(String ownerId, String gymId, String gymName, String gymAddress) throws UnauthorizedGymOwnerException, InvalidGymException {
+    public boolean modifyGym(String ownerId, String gymId, String gymCity, String gymName, String gymAddress) throws UnauthorizedGymOwnerException, InvalidGymException {
         if(FlipFitCentreDAOInst.getGymById(gymId) == null) {
             throw new InvalidGymException();
         }
@@ -75,8 +126,9 @@ public class FlipFitCentreDAOImpl implements FlipFitCentreDAOInterface {
             PreparedStatement stmt = conn.prepareStatement(UPDATE_GYM);
             stmt.setString(1, gymName);
             stmt.setString(2, gymAddress);
-            stmt.setString(3, ownerId);
-            stmt.setString(4, gymId);
+            stmt.setString(3, gymCity);
+            stmt.setString(4, ownerId);
+            stmt.setString(5, gymId);
 
             return stmt.executeUpdate();
         });
@@ -101,7 +153,8 @@ public class FlipFitCentreDAOImpl implements FlipFitCentreDAOInterface {
                         rs.getString("centreName"),
                         rs.getString("centreAddress"),
                         rs.getString("gymOwnerId"),
-                        rs.getString("verified")
+                        rs.getString("verified"),
+                        rs.getString("city")
                 );
 
                 centres.add(centre);

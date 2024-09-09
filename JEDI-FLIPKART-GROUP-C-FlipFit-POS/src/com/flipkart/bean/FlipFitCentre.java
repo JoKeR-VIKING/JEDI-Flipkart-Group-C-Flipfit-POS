@@ -10,6 +10,7 @@ public class FlipFitCentre {
     private String centreAddress;
     private String gymOwnerId;
     private String verified;
+    private String city;
 
     /**
      * Constructs a new FlipFitCentre with the specified details.
@@ -20,12 +21,13 @@ public class FlipFitCentre {
      * @param centreAddress   the address of the center
      * @param gymOwnerId      the unique identifier for the gym owner
      */
-    public FlipFitCentre(String centreId, String centreName, String centreAddress, String gymOwnerId) {
+    public FlipFitCentre(String centreId, String centreName, String centreAddress, String gymOwnerId, String city) {
         this.centreId = centreId;
         this.centreName = centreName;
         this.centreAddress = centreAddress;
         this.gymOwnerId = gymOwnerId;
         this.verified = "PENDING";
+        this.city = city;
     }
 
     /**
@@ -37,10 +39,11 @@ public class FlipFitCentre {
      * @param gymOwnerId      the unique identifier for the gym owner
      * @param verified        the verification status of the center
      */
-    public FlipFitCentre(String centreId, String centreName, String centreAddress, String gymOwnerId, String verified) {
-        this(centreId, centreName, centreAddress, gymOwnerId);
+    public FlipFitCentre(String centreId, String centreName, String centreAddress, String gymOwnerId, String verified, String city) {
+        this(centreId, centreName, centreAddress, gymOwnerId, city);
         this.verified = verified;
     }
+
 
     /**
      * Returns the unique identifier for the center.
@@ -130,5 +133,13 @@ public class FlipFitCentre {
      */
     public void setVerified(String verified) {
         this.verified = verified;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

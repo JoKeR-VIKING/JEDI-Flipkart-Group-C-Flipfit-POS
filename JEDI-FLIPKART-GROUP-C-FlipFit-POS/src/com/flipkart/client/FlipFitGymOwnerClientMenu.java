@@ -6,6 +6,7 @@ import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.business.FlipFitGymOwnerService;
 import com.flipkart.exception.*;
 import com.flipkart.utils.FlipFitTableUtil;
+import com.flipkart.validators.CityInputValidator;
 import com.flipkart.validators.GymOwnerValidator;
 import com.flipkart.validators.SlotInputValidator;
 
@@ -20,7 +21,7 @@ import static com.flipkart.utils.Helper.*;
  * Provides the menu and functionality for gym owners to manage gyms, slots, and profile information.
  */
 public class FlipFitGymOwnerClientMenu {
-    public static final int TOTAL_OPTIONS = 12;
+    public static final int TOTAL_OPTIONS = 13;
 
     private Scanner scanner = new Scanner(System.in);
     private FlipFitGymOwnerService ownerService = new FlipFitGymOwnerService();
@@ -35,16 +36,17 @@ public class FlipFitGymOwnerClientMenu {
         yellowOutputLn("2. Edit Gym");
         yellowOutputLn("3. Remove Gym");
         yellowOutputLn("4. View Gyms");
+        yellowOutputLn("5. View Gyms by City");
 
-        yellowOutputLn("5. Add new Slot");
-        yellowOutputLn("6. Remove Slot");
-        yellowOutputLn("7. Edit Slot");
-        yellowOutputLn("8. View All Slots");
-        yellowOutputLn("9. View All Available Slots");
-        yellowOutputLn("10. View all Bookings");
+        yellowOutputLn("6. Add new Slot");
+        yellowOutputLn("7. Remove Slot");
+        yellowOutputLn("8. Edit Slot");
+        yellowOutputLn("9. View All Slots");
+        yellowOutputLn("10. View All Available Slots");
+        yellowOutputLn("11. View all Bookings");
 
-        yellowOutputLn("11. Edit Profile");
-        redOutputLn("12. Log Out");
+        yellowOutputLn("12. Edit Profile");
+        redOutputLn("13. Log Out");
     }
 
     /**
@@ -58,10 +60,22 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter Gym Name: ");
         String gymName = scanner.nextLine();
 
+        String gymCity;
+        while (true) {
+            try {
+                System.out.print("Enter Gym City: ");
+                gymCity = scanner.nextLine();
+                CityInputValidator.validateCityName(gymCity);
+                break;
+            } catch (CityInputValidator e) {
+                redOutputLn("Invalid City");
+            }
+        }
+
         System.out.print("Enter Gym Address: ");
         String gymAddress = scanner.nextLine();
 
-        ownerService.addGym(gymName, gymAddress, userId);
+        ownerService.addGym(gymCity, gymName, gymAddress, userId);
     }
 
     /**
@@ -76,11 +90,23 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter Gym Name: ");
         String gymName = scanner.nextLine();
 
+        String gymCity;
+        while (true) {
+            try {
+                System.out.print("Enter Gym City: ");
+                gymCity = scanner.nextLine();
+                CityInputValidator.validateCityName(gymCity);
+                break;
+            } catch (CityInputValidator e) {
+                redOutputLn("Invalid City");
+            }
+        }
+
         System.out.print("Enter Gym Address: ");
         String gymAddress = scanner.nextLine();
 
         try {
-            boolean isSuccessful = ownerService.modifyGym(userId, gymId, gymName, gymAddress);
+            boolean isSuccessful = ownerService.modifyGym(userId, gymId, gymCity, gymName, gymAddress);
             if (isSuccessful) {
                 System.out.println("Gym data modified successfully.");
             } else {
@@ -120,11 +146,47 @@ public class FlipFitGymOwnerClientMenu {
         System.out.println();
 
         FlipFitTableUtil.printTabular(
-                List.of("Gym ID", "Gym Name", "Gym Address", "Gym Owner ID", "Verification Status"),
+                List.of("Gym ID", "Gym Name", "Gym City", "Gym Address", "Gym Owner ID", "Verification Status"),
                 centres.stream()
                         .map(centre -> List.of(
                                 centre.getCentreId(),
                                 centre.getCentreName(),
+                                centre.getCity(),
+                                centre.getCentreAddress(),
+                                centre.getGymOwnerId(),
+                                centre.getVerified())
+                        )
+                        .toList()
+        );
+    }
+
+    /**
+     * Displays all gyms in a specified city registered under the specified gym owner.
+     *
+     * @param userId The ID of the gym owner.
+     */
+    public void viewGymsByCity(String userId) {
+        String gymCity;
+        while (true) {
+            try {
+                System.out.print("Enter Gym City: ");
+                gymCity = scanner.nextLine();
+                CityInputValidator.validateCityName(gymCity);
+                break;
+            } catch (CityInputValidator e) {
+                redOutputLn("Invalid City");
+            }
+        }
+
+        List<FlipFitCentre> centres = ownerService.getGymListByCityAndOwner(gymCity, userId);
+
+        FlipFitTableUtil.printTabular(
+                List.of("Gym ID", "Gym Name", "Gym City", "Gym Address", "Gym Owner ID", "Verification Status"),
+                centres.stream()
+                        .map(centre -> List.of(
+                                centre.getCentreId(),
+                                centre.getCentreName(),
+                                centre.getCity(),
                                 centre.getCentreAddress(),
                                 centre.getGymOwnerId(),
                                 centre.getVerified())
@@ -158,7 +220,8 @@ public class FlipFitGymOwnerClientMenu {
         while (true) {
             try {
                 System.out.print("Enter Number of Seats: ");
-                noOfSeats = scanner.nextInt(); scanner.nextLine();
+                noOfSeats = scanner.nextInt();
+                scanner.nextLine();
                 SlotInputValidator.validateSeatCapacity(noOfSeats);
                 break;
             } catch (SlotInputValidator e) {
@@ -215,7 +278,8 @@ public class FlipFitGymOwnerClientMenu {
         while (true) {
             try {
                 System.out.print("Enter Number of Seats: ");
-                noOfSeats = scanner.nextInt(); scanner.nextLine();
+                noOfSeats = scanner.nextInt();
+                scanner.nextLine();
                 SlotInputValidator.validateSeatCapacity(noOfSeats);
                 break;
             } catch (SlotInputValidator e) {
@@ -312,7 +376,7 @@ public class FlipFitGymOwnerClientMenu {
         String date;
         while (true) {
             try {
-                System.out.print("Enter Date: ");
+                System.out.print("Enter Date (dd-mm-yyyy): ");
                 date = scanner.nextLine();
                 SlotInputValidator.validateDateFormat(date);
                 break;
@@ -411,16 +475,17 @@ public class FlipFitGymOwnerClientMenu {
                 case 2 -> modifyGym(userId);
                 case 3 -> removeGym(userId);
                 case 4 -> viewGyms(userId);
+                case 5 -> viewGymsByCity(userId);
 
-                case 5 -> addSlot();
-                case 6 -> removeSlot();
-                case 7 -> editSlot();
-                case 8 -> viewAllSlots();
-                case 9 -> viewAvailableSlots();
-                case 10 -> viewAllBookings();
+                case 6 -> addSlot();
+                case 7 -> removeSlot();
+                case 8 -> editSlot();
+                case 9 -> viewAllSlots();
+                case 10 -> viewAvailableSlots();
+                case 11 -> viewAllBookings();
 
-                case 11 -> editProfile(userId);
-                case 12 -> {
+                case 12 -> editProfile(userId);
+                case 13 -> {
                     userLogout();
                     return;
                 }

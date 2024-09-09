@@ -21,7 +21,7 @@ import static com.flipkart.utils.Helper.*;
  */
 public class FlipFitAdminClientMenu {
 
-    private static final int OPTIONS_SIZE = 11;
+    private static final int OPTIONS_SIZE = 12; // Updated to reflect the correct number of options
 
     private final Scanner in = new Scanner(System.in);
     private final FlipFitAdminService adminService = new FlipFitAdminService();
@@ -39,9 +39,10 @@ public class FlipFitAdminClientMenu {
         yellowOutputLn("6. Reject Gym Owner request");
         yellowOutputLn("7. View all Gym Owners");
         yellowOutputLn("8. View all Gym Centres");
-        yellowOutputLn("9. Remove Gym Centre");
-        yellowOutputLn("10. Remove Gym Owner");
-        redOutputLn("11. Log Out");
+        yellowOutputLn("9. View all Gym Centres By City");
+        yellowOutputLn("10. Remove Gym Centre");
+        yellowOutputLn("11. Remove Gym Owner");
+        redOutputLn("12. Log Out");
     }
 
     /**
@@ -90,8 +91,9 @@ public class FlipFitAdminClientMenu {
     public void approveCentre(String gymId) {
         try {
             adminService.approveGym(gymId);
+            greenOutputLn("Gym Centre Approved Successfully.");
         } catch (InvalidGymException e) {
-            redOutputLn("Invalid Gym ID");
+            redOutputLn("Error: Invalid Gym Centre ID.");
         }
     }
 
@@ -103,8 +105,9 @@ public class FlipFitAdminClientMenu {
     public void approveOwner(String ownerId) {
         try {
             adminService.approveOwner(ownerId);
+            greenOutputLn("Gym Owner Approved Successfully.");
         } catch (InvalidGymOwnerException e) {
-            redOutputLn("Invalid Gym Owner ID");
+            redOutputLn("Error: Invalid Gym Owner ID.");
         }
     }
 
@@ -116,8 +119,9 @@ public class FlipFitAdminClientMenu {
     public void rejectCentre(String gymId) {
         try {
             adminService.rejectGym(gymId);
+            redOutputLn("Gym Centre Rejected Successfully.");
         } catch (InvalidGymException e) {
-            redOutputLn("Invalid Gym ID");
+            redOutputLn("Error: Invalid Gym Centre ID.");
         }
     }
 
@@ -129,8 +133,9 @@ public class FlipFitAdminClientMenu {
     public void rejectOwner(String ownerId) {
         try {
             adminService.rejectOwner(ownerId);
+            redOutputLn("Gym Owner Rejected Successfully.");
         } catch (InvalidGymOwnerException e) {
-            redOutputLn("Invalid Gym Owner ID");
+            redOutputLn("Error: Invalid Gym Owner ID.");
         }
     }
 
@@ -142,8 +147,9 @@ public class FlipFitAdminClientMenu {
     public void removeCentre(String gymId) {
         try {
             adminService.removeGym(gymId);
+            redOutputLn("Gym Centre Removed Successfully.");
         } catch (InvalidGymException e) {
-            redOutputLn("Invalid Gym ID");
+            redOutputLn("Error: Invalid Gym Centre ID.");
         }
     }
 
@@ -155,8 +161,9 @@ public class FlipFitAdminClientMenu {
     public void removeOwner(String ownerId) {
         try {
             adminService.removeOwner(ownerId);
+            redOutputLn("Gym Owner Removed Successfully.");
         } catch (InvalidGymOwnerException e) {
-            redOutputLn("Invalid Gym Owner ID");
+            redOutputLn("Error: Invalid Gym Owner ID.");
         }
     }
 
@@ -187,6 +194,10 @@ public class FlipFitAdminClientMenu {
         flipFitCustomerClientMenu.viewAllGyms();
     }
 
+    private void viewAllGymsByCity() {
+        flipFitCustomerClientMenu.viewCentresByCity();
+    }
+
     /**
      * Logs out the current user.
      */
@@ -199,19 +210,17 @@ public class FlipFitAdminClientMenu {
      *
      * @return the entered gym centre ID
      */
-    public String takeGymIdInput() {
-        System.out.print("Select Gym Id: ");
+    private String takeInput(String prompt) {
+        System.out.print(prompt);
         return in.nextLine();
     }
 
-    /**
-     * Prompts the user to input a gym owner ID.
-     *
-     * @return the entered gym owner ID
-     */
+    public String takeGymIdInput() {
+        return takeInput("Select Gym Id: ");
+    }
+
     public String takeGymOwnerId() {
-        System.out.print("Select Gym Owner Id: ");
-        return in.nextLine();
+        return takeInput("Select Gym Owner Id: ");
     }
 
     /**
@@ -236,12 +245,14 @@ public class FlipFitAdminClientMenu {
                 case 6 -> rejectOwner(takeGymOwnerId());
                 case 7 -> viewAllGymOwners();
                 case 8 -> viewAllGyms();
-                case 9 -> removeCentre(takeGymIdInput());
-                case 10 -> removeOwner(takeGymOwnerId());
-                case 11 -> {
+                case 9 -> viewAllGymsByCity();
+                case 10 -> removeCentre(takeGymIdInput());
+                case 11 -> removeOwner(takeGymOwnerId());
+                case 12 -> {
                     userLogout();
                     return;
                 }
+                default -> redOutputLn("Invalid choice, please try again.");
             }
         }
     }

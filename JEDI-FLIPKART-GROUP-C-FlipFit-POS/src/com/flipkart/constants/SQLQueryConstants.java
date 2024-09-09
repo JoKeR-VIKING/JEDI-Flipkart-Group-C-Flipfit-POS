@@ -95,7 +95,7 @@ public class SQLQueryConstants {
     /**
      * SQL query to update a gym's details.
      */
-    public static final String UPDATE_GYM = "UPDATE FlipFitCentre SET centreName = ?, centreAddress = ? WHERE gymOwnerId = ? AND centreId = ?";
+    public static final String UPDATE_GYM = "UPDATE FlipFitCentre SET centreName = ?, centreAddress = ?, city = ? WHERE gymOwnerId = ? AND centreId = ?";
 
     /**
      * SQL query to delete a gym by centreId and gymOwnerId.
@@ -111,6 +111,16 @@ public class SQLQueryConstants {
      * SQL query to select a gym by centreId.
      */
     public static final String SELECT_GYM_BY_ID = "SELECT * FROM FlipFitCentre WHERE centreId = ?";
+
+    /**
+     * SQL query to select a gym by centreId.
+     */
+    public static final String SELECT_GYMS_BY_CITY = "SELECT * FROM FlipFitCentre WHERE city = ?";
+
+    /**
+     * SQL query to select a gym by centreId and gymOwnerId
+     */
+    public static final String SELECT_GYMS_BY_CITY_AND_OWNER = "SELECT * FROM FlipFitCentre WHERE city = ? AND gymOwnerId = ?";
 
     /**
      * SQL query to insert a new gym slot into the FlipFitCenterSlot table.

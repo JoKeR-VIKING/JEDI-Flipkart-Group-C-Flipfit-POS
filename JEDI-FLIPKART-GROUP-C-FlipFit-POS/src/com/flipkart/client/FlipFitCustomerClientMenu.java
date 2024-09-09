@@ -6,8 +6,8 @@ import com.flipkart.exception.GymSlotSeatLimitReachedException;
 import com.flipkart.exception.InvalidBookingException;
 import com.flipkart.exception.InvalidSlotException;
 import com.flipkart.exception.InvalidUserException;
-import com.flipkart.utils.FlipFitTableUtil;
 import com.flipkart.validators.BookSlotInputValidator;
+import com.flipkart.validators.CityInputValidator;
 import com.flipkart.validators.CustomerInputValidator;
 import com.flipkart.validators.PaymentInputValidator;
 
@@ -16,7 +16,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import static com.flipkart.client.FlipFitApplicationMainClient.flipFitGymOwnerClientMenu;
+import static com.flipkart.constants.CityConstants.CITY_LIST;
 import static com.flipkart.utils.FlipFitClientUtils.getChoice;
+import static com.flipkart.utils.FlipFitTableUtil.printTabular;
 import static com.flipkart.utils.Helper.*;
 
 /**
@@ -38,13 +40,56 @@ public class FlipFitCustomerClientMenu {
      */
     private static void displayOptions() {
         System.out.println();
-        yellowOutputLn("1. Edit your Profile");
-        yellowOutputLn("2. View all Gyms");
-        yellowOutputLn("3. View available Slots");
-        yellowOutputLn("4. Book your slot");
-        yellowOutputLn("5. View your bookings");
-        yellowOutputLn("6. Cancel your bookings");
-        redOutputLn("7. Exit");
+        yellowOutputLn("1. View City List");
+        yellowOutputLn("2. View Gym Centres by City");
+        yellowOutputLn("3. Edit your Profile");
+        yellowOutputLn("4. View all Gyms");
+        yellowOutputLn("5. View available Slots");
+        yellowOutputLn("6. Book your slot");
+        yellowOutputLn("7. View your bookings");
+        yellowOutputLn("8. Cancel your bookings");
+        redOutputLn("9. Exit");
+    }
+
+    /**
+     * Displays the list of cities.
+     */
+    private void viewCityList() {
+        printTabular(List.of("City"), CITY_LIST.stream().map(List::of).toList());
+    }
+
+    /**
+     * Displays gym centres in a specified city.
+     * Prompts the user to enter a city name and validates it.
+     */
+    public void viewCentresByCity() {
+        String gymCity;
+        while(true) {
+            try {
+                System.out.print("Enter Gym City: ");
+                gymCity = in.nextLine();
+                CityInputValidator.validateCityName(gymCity);
+                break;
+            } catch (CityInputValidator e) {
+                redOutputLn("Invalid City");
+            }
+        }
+
+        List<FlipFitCentre> gyms = customerService.getCentreListByCity(gymCity);
+
+        printTabular(
+                List.of("Gym ID", "Gym Name", "Gym City", "Gym Address", "Gym Owner ID", "Gym Verified Status"),
+                gyms.stream()
+                        .map(gym -> List.of(
+                                gym.getCentreId(),
+                                gym.getCentreName(),
+                                gym.getCity(),
+                                gym.getCentreAddress(),
+                                gym.getGymOwnerId(),
+                                gym.getVerified())
+                        )
+                        .toList()
+        );
     }
 
     /**
@@ -119,12 +164,13 @@ public class FlipFitCustomerClientMenu {
     public void viewAllGyms() {
         List<FlipFitCentre> gyms = adminService.displayAllCentres();
 
-        FlipFitTableUtil.printTabular(
-                List.of("Gym ID", "Gym Name", "Gym Address", "Gym Owner ID", "Gym Verified Status"),
+        printTabular(
+                List.of("Gym ID", "Gym Name", "Gym City", "Gym Address", "Gym Owner ID", "Gym Verified Status"),
                 gyms.stream()
                         .map(gym -> List.of(
                                 gym.getCentreId(),
                                 gym.getCentreName(),
+                                gym.getCity(),
                                 gym.getCentreAddress(),
                                 gym.getGymOwnerId(),
                                 gym.getVerified())
@@ -210,7 +256,7 @@ public class FlipFitCustomerClientMenu {
         String cardExpiry;
         while(true) {
             try {
-                System.out.print("Enter Card Number (MM/yy): ");
+                System.out.print("Enter Card Expiry Date (MM/yy): ");
                 cardExpiry = in.nextLine();
                 PaymentInputValidator.isValidExpiryDate(cardExpiry);
                 break;
@@ -244,7 +290,7 @@ public class FlipFitCustomerClientMenu {
         } else {
             System.out.println("Bookings for userId: " + userId);
 
-            FlipFitTableUtil.printTabular(
+            printTabular(
                     List.of("Booking ID", "Customer ID", "Gym Slot ID", "Booking Date", "Booking TimeSlot", "Payment ID"),
                     bookings.stream()
                             .map(booking -> List.of(
@@ -306,13 +352,15 @@ public class FlipFitCustomerClientMenu {
             int choice = getChoice(OPTIONS_SIZE);
 
             switch (choice) {
-                case 1 -> editProfile(customerId);
-                case 2 -> viewAllGyms();
-                case 3 -> viewAvailableSlots();
-                case 4 -> bookSlot(customerId);
-                case 5 -> viewBookings(customerId);
-                case 6 -> cancelCustomerBooking(customerId);
-                case 7 -> {
+                case 1 -> viewCityList();
+                case 2 -> viewCentresByCity();
+                case 3 -> editProfile(customerId);
+                case 4 -> viewAllGyms();
+                case 5 -> viewAvailableSlots();
+                case 6 -> bookSlot(customerId);
+                case 7 -> viewBookings(customerId);
+                case 8 -> cancelCustomerBooking(customerId);
+                case 9 -> {
                     logoutUser();
                     return;
                 }

@@ -43,11 +43,12 @@ public interface FlipFitGymOwnerInterface {
     /**
      * Adds a new gym to the system.
      *
+     * @param centreCity      the city where the new gym is located
      * @param centreName      the name of the new gym
      * @param centreAddress   the address of the new gym
      * @param gymOwnerId      the ID of the gym owner adding the gym
      */
-    void addGym(String centreName, String centreAddress, String gymOwnerId);
+    void addGym(String centreCity, String centreName, String centreAddress, String gymOwnerId);
 
     /**
      * Removes an existing gym from the system.
@@ -63,13 +64,14 @@ public interface FlipFitGymOwnerInterface {
      *
      * @param gymOwnerId      the ID of the gym owner requesting the modification
      * @param centreId        the ID of the gym to be modified
+     * @param city            the new city for the gym
      * @param gymName         the new name for the gym
      * @param gymAddress      the new address for the gym
      * @return true if the modification is successful, false otherwise
      * @throws UnauthorizedGymOwnerException if the gym owner is not authorized to modify the gym
      * @throws InvalidGymException if the gym ID is invalid
      */
-    boolean modifyGym(String gymOwnerId, String centreId, String gymName, String gymAddress) throws UnauthorizedGymOwnerException, InvalidGymException;
+    boolean modifyGym(String gymOwnerId, String centreId, String city, String gymName, String gymAddress) throws UnauthorizedGymOwnerException, InvalidGymException;
 
     /**
      * Views all registered gym centers for a given user.
@@ -136,4 +138,13 @@ public interface FlipFitGymOwnerInterface {
      * @throws InvalidGymException if the gym ID is invalid
      */
     List<FlipFitSlotBooking> viewAllBookingsByGymIdAndDate(String gymId, LocalDate date) throws InvalidGymException;
+
+    /**
+     * Retrieves a list of gyms located in a specific city and owned by a specific owner.
+     *
+     * @param city     the city in which to retrieve the gyms
+     * @param ownerId  the ID of the gym owner
+     * @return a list of gyms located in the specified city and owned by the specified owner
+     */
+    List<FlipFitCentre> getGymListByCityAndOwner(String city, String ownerId);
 }

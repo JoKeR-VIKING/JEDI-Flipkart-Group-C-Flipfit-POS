@@ -175,7 +175,8 @@ public class FlipFitAdminDAOImpl implements FlipFitAdminDAOInterface {
                         rs.getString("centreId"),
                         rs.getString("centreName"),
                         rs.getString("centreAddress"),
-                        rs.getString("centreId")
+                        rs.getString("gymOwnerId"),
+                        rs.getString("city")
                 );
 
                 centres.add(centre);
@@ -198,8 +199,9 @@ public class FlipFitAdminDAOImpl implements FlipFitAdminDAOInterface {
                         rs.getString("centreId"),
                         rs.getString("centreName"),
                         rs.getString("centreAddress"),
-                        rs.getString("centreId"),
-                        rs.getString("verified")
+                        rs.getString("gymOwnerId"),
+                        rs.getString("verified"),
+                        rs.getString("city")
                 );
 
                 centres.add(centre);

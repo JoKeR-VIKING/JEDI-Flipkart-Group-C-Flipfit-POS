@@ -1,13 +1,15 @@
 package com.flipkart.business;
 
+import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.exception.ExistingUserException;
 import com.flipkart.exception.InvalidUserException;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Interface defining the operations that can be performed by a customer in the FlipFit system.
- * This includes creating and editing customer profiles.
+ * This includes creating and editing customer profiles as well as retrieving a list of gym centers by city.
  */
 public interface FlipFitCustomerInterface {
 
@@ -39,4 +41,12 @@ public interface FlipFitCustomerInterface {
      * @throws InvalidUserException if the customer ID is invalid or if the operation fails
      */
     void editProfile(String customerId, String address, Double weight, Integer age, String gender, LocalDate dob) throws InvalidUserException;
+
+    /**
+     * Retrieves a list of gym centers located in a specific city.
+     *
+     * @param city the city for which to retrieve the list of gym centers
+     * @return a List of FlipFitCentre objects representing gym centers in the specified city
+     */
+    List<FlipFitCentre> getCentreListByCity(String city);
 }
