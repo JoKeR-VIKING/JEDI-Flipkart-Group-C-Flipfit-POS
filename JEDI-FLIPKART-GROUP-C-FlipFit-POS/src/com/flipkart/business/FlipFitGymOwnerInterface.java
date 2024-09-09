@@ -5,6 +5,8 @@ import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.exception.ExistingUserException;
 import com.flipkart.exception.GymSlotAlreadyExistsException;
+import com.flipkart.exception.InvalidSlotException;
+import com.flipkart.exception.UnauthorizedGymOwnerException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -17,17 +19,17 @@ public interface FlipFitGymOwnerInterface {
 
     void addGym(String centreName, String centreAddress, String gymOwnerId);
 
-    void removeGym(String gymOwnerId, String centreId);
+    void removeGym(String gymOwnerId, String centreId) throws UnauthorizedGymOwnerException;
 
-    boolean modifyGym(String gymOwnerId, String centreId, String gymName, String gymAddress);
+    boolean modifyGym(String gymOwnerId, String centreId, String gymName, String gymAddress) throws UnauthorizedGymOwnerException;
 
     List<FlipFitCentre> viewRegisteredGymCenters(String userId);
 
     void addSlot(String centreId, LocalTime startTime, Integer noOfSeats) throws GymSlotAlreadyExistsException;
 
-    void removeSlot(String slotId);
+    void removeSlot(String slotId) throws InvalidSlotException;
 
-    void updateSlot(String centreId, LocalTime startTime, Integer noOfSeats);
+    void updateSlot(String centreId, LocalTime startTime, Integer noOfSeats) throws InvalidSlotException;
 
     List<FlipFitCenterSlot> viewAllSlots(String centreId);
 

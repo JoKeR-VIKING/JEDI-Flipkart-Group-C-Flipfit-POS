@@ -1,6 +1,7 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.FlipFitCentre;
+import com.flipkart.exception.UnauthorizedGymOwnerException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,18 +29,21 @@ public class FlipFitCentreDAOImpl implements FlipFitCentreDAOInterface {
     }
 
     @Override
-    public void removeGym(String ownerId, String centreId) {
-        flipFitSchema.execute(conn -> {
+    public void removeGym(String ownerId, String centreId) throws UnauthorizedGymOwnerException {
+        int rowsAffected = flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(DELETE_GYM_WITH_OWNER);
             stmt.setString(1, centreId);
             stmt.setString(2, ownerId);
 
             return stmt.executeUpdate();
         });
+        if(rowsAffected == 0){
+            throw new UnauthorizedGymOwnerException();
+        }
     }
 
     @Override
-    public boolean modifyGym(String ownerId, String gymId, String gymName, String gymAddress) {
+    public boolean modifyGym(String ownerId, String gymId, String gymName, String gymAddress) throws UnauthorizedGymOwnerException {
         int result = flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(UPDATE_GYM);
             stmt.setString(1, gymName);
@@ -49,7 +53,9 @@ public class FlipFitCentreDAOImpl implements FlipFitCentreDAOInterface {
 
             return stmt.executeUpdate();
         });
-
+        if(result == 0){
+            throw new UnauthorizedGymOwnerException();
+        }
         return result > 0;
     }
 

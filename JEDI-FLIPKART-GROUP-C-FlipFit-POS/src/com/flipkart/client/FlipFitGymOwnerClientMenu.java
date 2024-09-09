@@ -5,6 +5,8 @@ import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.business.FlipFitGymOwnerService;
 import com.flipkart.exception.GymSlotAlreadyExistsException;
+import com.flipkart.exception.InvalidSlotException;
+import com.flipkart.exception.UnauthorizedGymOwnerException;
 import com.flipkart.utils.FlipFitTableUtil;
 
 import java.util.List;
@@ -59,20 +61,27 @@ public class FlipFitGymOwnerClientMenu {
 
         System.out.print("Enter Gym Address: ");
         String gymAddress = scanner.nextLine();
-
-        boolean isSuccessful = ownerService.modifyGym(userId, gymId, gymName, gymAddress);
-        if (isSuccessful) {
-            System.out.println("Gym data modified successfully.");
-        } else {
-            System.out.println("Gym not found, enter correct gym id.");
+        try {
+            boolean isSuccessful = ownerService.
+                    modifyGym(userId, gymId, gymName, gymAddress);
+            if (isSuccessful) {
+                System.out.println("Gym data modified successfully.");
+            } else {
+                System.out.println("Gym not found, enter correct gym id.");
+            }
+        } catch (UnauthorizedGymOwnerException e){
+            redOutputLn("Unauthorized access to this gym centre for this gym owner");
         }
     }
 
     private void removeGym(String ownerId) {
         System.out.print("Enter ID of Gym to remove: ");
         String gymId = scanner.nextLine();
-
-        ownerService.removeGym(ownerId, gymId);
+        try {
+            ownerService.removeGym(ownerId, gymId);
+        } catch (UnauthorizedGymOwnerException e){
+            redOutputLn("Unauthorized access to this gym centre for this gym owner");
+        }
     }
 
     public void viewGyms(String userId) {
@@ -119,8 +128,12 @@ public class FlipFitGymOwnerClientMenu {
 
         System.out.print("Enter Slot ID: ");
         String slotId = scanner.nextLine();
+        try {
+            ownerService.removeSlot(slotId);
+        } catch (InvalidSlotException e) {
+            redOutputLn("Invalid slot");
+        }
 
-        ownerService.removeSlot(slotId);
     }
 
     public void editSlot() {
@@ -133,9 +146,12 @@ public class FlipFitGymOwnerClientMenu {
         System.out.print("Enter no of seats: ");
         int noOfSeats = scanner.nextInt();
         scanner.nextLine();
-
-        ownerService.updateSlot(slotId, parseHourMinute(startTime), noOfSeats);
-        System.out.println("Slot details updated!");
+        try {
+            ownerService.updateSlot(slotId, parseHourMinute(startTime), noOfSeats);
+            System.out.println("Slot details updated!");
+        } catch (InvalidSlotException e) {
+            redOutputLn("Invalid slot Exception");
+        }
     }
 
     public void viewAllSlots() {

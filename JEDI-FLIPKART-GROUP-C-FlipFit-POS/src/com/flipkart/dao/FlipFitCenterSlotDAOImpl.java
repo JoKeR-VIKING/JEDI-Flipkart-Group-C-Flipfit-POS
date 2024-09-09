@@ -2,6 +2,7 @@ package com.flipkart.dao;
 
 import com.flipkart.bean.FlipFitCenterSlot;
 import com.flipkart.exception.GymSlotAlreadyExistsException;
+import com.flipkart.exception.InvalidSlotException;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -59,8 +60,8 @@ public class FlipFitCenterSlotDAOImpl implements FlipFitCenterSlotDAOInterface {
     }
 
     @Override
-    public void updateSlot(String slotId, LocalTime startTime, Integer noOfSeats) {
-        flipFitSchema.execute(conn -> {
+    public void updateSlot(String slotId, LocalTime startTime, Integer noOfSeats) throws InvalidSlotException {
+        int rowsAffected = flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(UPDATE_GYM_SLOT);
             stmt.setObject(1, startTime);
             stmt.setInt(2, noOfSeats);
@@ -69,6 +70,9 @@ public class FlipFitCenterSlotDAOImpl implements FlipFitCenterSlotDAOInterface {
 
             return stmt.executeUpdate();
         });
+        if(rowsAffected == 0){
+            throw new InvalidSlotException();
+        }
     }
 
     @Override
@@ -117,12 +121,15 @@ public class FlipFitCenterSlotDAOImpl implements FlipFitCenterSlotDAOInterface {
     }
 
     @Override
-    public void deleteSlot(String slotId) {
-        flipFitSchema.execute(conn -> {
+    public void deleteSlot(String slotId) throws InvalidSlotException {
+        int rowsAffected = flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(DELETE_GYM_SLOT);
             stmt.setString(1, slotId);
             return stmt.executeUpdate();
         });
+        if(rowsAffected == 0){
+            throw new InvalidSlotException();
+        }
     }
 
     @Override

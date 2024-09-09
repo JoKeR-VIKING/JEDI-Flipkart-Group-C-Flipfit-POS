@@ -6,6 +6,8 @@ import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.exception.ExistingUserException;
 import com.flipkart.exception.GymSlotAlreadyExistsException;
+import com.flipkart.exception.InvalidSlotException;
+import com.flipkart.exception.UnauthorizedGymOwnerException;
 import com.flipkart.utils.Helper;
 
 import java.time.LocalDate;
@@ -36,7 +38,7 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     }
 
     @Override
-    public void removeGym(String gymOwnerId, String centreId) {
+    public void removeGym(String gymOwnerId, String centreId) throws UnauthorizedGymOwnerException {
         FlipFitCentreDAOInst.removeGym(gymOwnerId, centreId);
     }
 
@@ -52,12 +54,12 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     }
 
     @Override
-    public void removeSlot(String slotId) {
+    public void removeSlot(String slotId) throws InvalidSlotException {
         FlipFitCenterSlotDAOInst.deleteSlot(slotId);
     }
 
     @Override
-    public void updateSlot(String slotId, LocalTime startTime, Integer noOfSeats) {
+    public void updateSlot(String slotId, LocalTime startTime, Integer noOfSeats) throws InvalidSlotException {
         FlipFitCenterSlotDAOInst.updateSlot(slotId, startTime, noOfSeats);
     }
 
@@ -71,7 +73,7 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
     }
 
     @Override
-    public boolean modifyGym(String ownerId, String gymId, String gymName, String gymAddress) {
+    public boolean modifyGym(String ownerId, String gymId, String gymName, String gymAddress) throws UnauthorizedGymOwnerException {
         return FlipFitCentreDAOInst.modifyGym(ownerId, gymId, gymName, gymAddress);
     }
 
