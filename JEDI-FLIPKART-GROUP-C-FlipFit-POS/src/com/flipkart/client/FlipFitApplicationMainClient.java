@@ -185,9 +185,6 @@ public class FlipFitApplicationMainClient {
     }
 
     public static void main(String[] args) {
-        // TODO: remove
-//        FlipFitDAOUtils.initMockData();
-
         boldOutputLn("\n-------- Welcome to FlipFit Application --------");
 
         while (true) {
