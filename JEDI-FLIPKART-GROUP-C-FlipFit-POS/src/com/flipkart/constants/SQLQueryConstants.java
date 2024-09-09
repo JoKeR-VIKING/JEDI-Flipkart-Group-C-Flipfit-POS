@@ -90,7 +90,7 @@ public class SQLQueryConstants {
     /**
      * SQL query to insert a new gym into the FlipFitCentre table.
      */
-    public static final String INSERT_GYM = "INSERT INTO FlipFitCentre VALUES (?, ?, ?, ?, ?)";
+    public static final String INSERT_GYM = "INSERT INTO FlipFitCentre VALUES (?, ?, ?, ?, ?, ?)";
 
     /**
      * SQL query to update a gym's details.
@@ -105,7 +105,12 @@ public class SQLQueryConstants {
     /**
      * SQL query to select gyms registered to a specific gym owner.
      */
-    public static final String SELECT_REGISTERED_GYMS = "SELECT * FROM FlipFitCentre WHERE gymOwnerId = ?";
+    public static final String SELECT_ALL_GYMS_WITH_OWNER = "SELECT * FROM FlipFitCentre WHERE gymOwnerId = ?";
+
+    /**
+     * SQL query to select gyms registered to a specific gym owner.
+     */
+    public static final String SELECT_REGISTERED_GYMS = "SELECT * FROM FlipFitCentre WHERE gymOwnerId = ? AND verified = 'APPROVED'";
 
     /**
      * SQL query to select a gym by centreId.
@@ -195,7 +200,7 @@ public class SQLQueryConstants {
     /**
      * SQL query to count slot bookings by slotId.
      */
-    public static final String SELECT_SLOT_BOOKINGS_COUNT_BY_SLOT_ID = "SELECT COUNT(*) FROM FlipFitSlotBooking WHERE centreSlotId = ?";
+    public static final String SELECT_SLOT_BOOKINGS_COUNT_BY_SLOT_ID = "SELECT COUNT(*) FROM FlipFitSlotBooking WHERE centreSlotId = ? AND slotDate = ?";
 
     /**
      * SQL query to count slot bookings by gymId and date.

@@ -79,6 +79,11 @@ public class FlipFitGymOwnerService implements FlipFitGymOwnerInterface {
         FlipFitCentreDAOInst.removeGym(gymOwnerId, centreId);
     }
 
+    @Override
+    public List<FlipFitCentre> viewAllGymCentres(String userId) {
+        return FlipFitCentreDAOInst.getAllGymCentres(userId);
+    }
+
     /**
      * Retrieves all gyms registered under a specific gym owner.
      *
