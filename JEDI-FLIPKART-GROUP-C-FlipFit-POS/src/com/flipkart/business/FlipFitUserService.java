@@ -37,6 +37,10 @@ public class FlipFitUserService implements FlipFitUserInterface {
         return user;
     }
 
+    public boolean userExists(String username) {
+        return FlipFitUserDAOInst.findByUsername(username) != null;
+    }
+
     /**
      * Changes the password for a user.
      *
