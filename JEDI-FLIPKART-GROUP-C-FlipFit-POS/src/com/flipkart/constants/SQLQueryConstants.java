@@ -1,7 +1,9 @@
 package com.flipkart.constants;
 
 /**
- * Contains SQL query constants used throughout the application.
+ * Contains SQL query constants used throughout the FlipFit application.
+ * These queries are used for various operations on the database, such as
+ * retrieving, inserting, updating, and deleting data.
  */
 public class SQLQueryConstants {
 
@@ -106,6 +108,11 @@ public class SQLQueryConstants {
     public static final String SELECT_REGISTERED_GYMS = "SELECT * FROM FlipFitCentre WHERE gymOwnerId = ?";
 
     /**
+     * SQL query to select a gym by centreId.
+     */
+    public static final String SELECT_GYM_BY_ID = "SELECT * FROM FlipFitCentre WHERE centreId = ?";
+
+    /**
      * SQL query to insert a new gym slot into the FlipFitCenterSlot table.
      */
     public static final String INSERT_GYM_SLOT = "INSERT INTO FlipFitCenterSlot VALUES(?, ?, ?, ?)";
@@ -134,6 +141,11 @@ public class SQLQueryConstants {
      * SQL query to select available gym slots based on seat limit and bookings.
      */
     public static final String SELECT_AVAILABLE_GYM_SLOTS = "SELECT * FROM FlipFitCenterSlot s WHERE s.centreId = ? AND s.seatLimit > (SELECT COUNT(*) FROM FlipFitSlotBooking b WHERE b.centreSlotId = s.slotId AND b.slotDate = ?)";
+
+    /**
+     * SQL query to select available gym slots with available seats based on bookings.
+     */
+    public static final String SELECT_AVAILABLE_GYM_SLOTS_WITH_AVAIL_SEATS = "SELECT s.*, s.seatLimit - COALESCE(COUNT(b.bookingId), 0) as availableSeats FROM FlipFitCenterSlot s LEFT JOIN FlipFitSlotBooking b ON b.centreSlotId = s.slotId AND b.slotDate = ? WHERE s.centreId = ? GROUP BY s.slotId HAVING COALESCE(COUNT(b.bookingId), 0) < s.seatLimit";
 
     /**
      * SQL query to select a gym slot by centreId and startTime.
