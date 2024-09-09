@@ -12,6 +12,6 @@ public class CityInputValidator extends Exception {
         CITY_LIST.stream()
                 .filter(_city -> _city.equals(city))
                 .findFirst()
-                .orElseThrow(() -> new CityInputValidator("Invalid date format"));
+                .orElseThrow(() -> new CityInputValidator("Invalid city"));
     }
 }
