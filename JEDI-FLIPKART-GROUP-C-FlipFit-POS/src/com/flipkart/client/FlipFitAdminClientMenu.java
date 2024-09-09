@@ -3,6 +3,7 @@ package com.flipkart.client;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.business.FlipFitAdminService;
+import com.flipkart.exception.InvalidGymException;
 import com.flipkart.exception.InvalidGymOwnerException;
 import com.flipkart.utils.FlipFitTableUtil;
 import com.flipkart.utils.FlipFitClientUtils;
@@ -69,7 +70,11 @@ public class FlipFitAdminClientMenu {
     }
 
     public void approveCentre(String gymId) {
-        adminService.approveGym(gymId);
+        try {
+            adminService.approveGym(gymId);
+        } catch(InvalidGymException e){
+            redOutputLn("Invalid Gym ID");
+        }
     }
 
     public void approveOwner(String ownerId) {
@@ -81,19 +86,35 @@ public class FlipFitAdminClientMenu {
     }
 
     public void rejectCentre(String gymId) {
-        adminService.rejectGym(gymId);
+        try {
+            adminService.rejectGym(gymId);
+        } catch (InvalidGymException e){
+            redOutputLn("Invalid Gym Owner Id");
+        }
     }
 
     public void rejectOwner(String ownerId) {
-        adminService.rejectOwner(ownerId);
+        try {
+            adminService.rejectOwner(ownerId);
+        } catch (InvalidGymOwnerException e) {
+            redOutputLn("Invalid Gym Owner ID");
+        }
     }
 
     public void removeCentre(String GymId) {
-        adminService.removeGym(GymId);
+        try {
+            adminService.removeGym(GymId);
+        } catch (InvalidGymException e) {
+            redOutputLn("Invalid Gym Owner Id");
+        }
     }
 
     public void removeOwner(String ownerId) {
-        adminService.removeOwner(ownerId);
+        try {
+            adminService.removeOwner(ownerId);
+        } catch (InvalidGymOwnerException e){
+            redOutputLn("Invalid gym Owner ID");
+        }
     }
 
     public void viewAllGymOwners() {

@@ -4,6 +4,7 @@ import com.flipkart.bean.FlipFitAdmin;
 import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.exception.ExistingUserException;
+import com.flipkart.exception.InvalidGymException;
 import com.flipkart.exception.InvalidGymOwnerException;
 
 import java.sql.PreparedStatement;
@@ -39,24 +40,30 @@ public class FlipFitAdminDAOImpl implements FlipFitAdminDAOInterface {
     }
 
     @Override
-    public void rejectOwner(String gymOwnerId) {
-        flipFitSchema.execute(conn -> {
+    public void rejectOwner(String gymOwnerId) throws InvalidGymOwnerException {
+        int rowsAffected = flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(UPDATE_OWNER_VERIFICATION);
             stmt.setString(1, "REJECTED");
             stmt.setString(2, gymOwnerId);
 
             return stmt.executeUpdate();
         });
+        if(rowsAffected == 0){
+            throw new InvalidGymOwnerException();
+        }
     }
 
     @Override
-    public void removeOwner(String ownerId) {
-        flipFitSchema.execute(conn -> {
+    public void removeOwner(String ownerId) throws InvalidGymOwnerException {
+       int rowsAffected = flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(DELETE_GYM_OWNER);
             stmt.setString(1, ownerId);
 
             return stmt.executeUpdate();
         });
+        if(rowsAffected == 0){
+            throw new InvalidGymOwnerException();
+        }
     }
 
     @Override
@@ -115,35 +122,44 @@ public class FlipFitAdminDAOImpl implements FlipFitAdminDAOInterface {
     }
 
     @Override
-    public void approveGym(String centreId) {
-        flipFitSchema.execute(conn -> {
+    public void approveGym(String centreId) throws InvalidGymException {
+        int rowsAffected = flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(UPDATE_GYM_VERIFICATION);
             stmt.setString(1, "APPROVED");
             stmt.setString(2, centreId);
 
             return stmt.executeUpdate();
         });
+        if(rowsAffected == 0){
+            throw new InvalidGymException();
+        }
     }
 
     @Override
-    public void rejectGym(String centreId) {
-        flipFitSchema.execute(conn -> {
+    public void rejectGym(String centreId) throws InvalidGymException {
+        int rowsAffected = flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(UPDATE_GYM_VERIFICATION);
             stmt.setString(1, "REJECTED");
             stmt.setString(2, centreId);
 
             return stmt.executeUpdate();
         });
+        if(rowsAffected == 0){
+            throw new InvalidGymException();
+        }
     }
 
     @Override
-    public void removeGym(String centreId) {
-        flipFitSchema.execute(conn -> {
+    public void removeGym(String centreId) throws InvalidGymException {
+      int rowsAffected =  flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(DELETE_GYM);
             stmt.setString(1, centreId);
 
             return stmt.executeUpdate();
         });
+      if(rowsAffected == 0){
+          throw new InvalidGymException();
+      }
     }
 
     @Override

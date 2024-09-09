@@ -3,6 +3,7 @@ package com.flipkart.dao;
 import com.flipkart.bean.FlipFitUser;
 import com.flipkart.enums.RoleEnum;
 import com.flipkart.exception.ExistingUserException;
+import com.flipkart.exception.InvalidUserException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,13 +38,16 @@ public class FlipFitUserDAOImpl implements FlipFitUserDAOInterface {
     }
 
     @Override
-    public void updatePassword(String userId, String password) {
-        flipFitSchema.execute(conn -> {
+    public void updatePassword(String userId, String password) throws InvalidUserException {
+        int rowsAffected = flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(UPDATE_USER_PASSWORD_BY_USERID);
             stmt.setString(1, password);
             stmt.setString(2, userId);
             return stmt.executeUpdate();
         });
+        if (rowsAffected == 0){
+            throw new InvalidUserException();
+        }
     }
 
     @Override
