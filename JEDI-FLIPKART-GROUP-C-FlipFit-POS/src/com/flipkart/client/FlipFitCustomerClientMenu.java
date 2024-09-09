@@ -26,7 +26,7 @@ import static com.flipkart.utils.Helper.*;
  * This class allows customers to edit their profile, view gyms, book slots, view and cancel bookings.
  */
 public class FlipFitCustomerClientMenu {
-    private static final int OPTIONS_SIZE = 7;
+    private static final int OPTIONS_SIZE = 9;
 
     private final Scanner in = new Scanner(System.in);
     private final FlipFitCustomerService customerService = new FlipFitCustomerService();
