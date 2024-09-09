@@ -1,7 +1,6 @@
 package com.flipkart.constants;
 
 public class ConsoleConstants {
-
     public static final String BOLD = "\033[0;1m";
     public static final String RESET = "\033[0m";
     public static final String GREEN = "\033[0;32m";
