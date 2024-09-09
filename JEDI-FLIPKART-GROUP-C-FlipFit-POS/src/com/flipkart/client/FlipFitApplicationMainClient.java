@@ -95,6 +95,11 @@ public class FlipFitApplicationMainClient {
         System.out.print("Enter your Username: ");
         String username = in.nextLine();
 
+        while (userService.userExists(username)) {
+            System.out.print("Username already exists, try again:");
+            username = in.nextLine();
+        }
+
         String password;
         boolean flag = true;
         do {
