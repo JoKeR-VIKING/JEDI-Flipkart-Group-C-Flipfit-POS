@@ -41,6 +41,7 @@ CREATE TABLE `FlipFitCentre` (
                                  `centreAddress` varchar(90) NOT NULL,
                                  `gymOwnerId` varchar(50) NOT NULL,
                                  `verified` varchar(20) NOT NULL,
+                                 `city` varchar(20) NOT NULL,
                                  PRIMARY KEY (`centreId`),
                                  FOREIGN KEY (`gymOwnerId`) REFERENCES `FlipFItGymOwner` (`ownerId`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
