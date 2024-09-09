@@ -8,6 +8,8 @@ import com.flipkart.enums.RoleEnum;
 import com.flipkart.exception.ExistingUserException;
 import com.flipkart.exception.InvalidPasswordException;
 import com.flipkart.exception.InvalidUserException;
+import com.flipkart.validators.CustomerInputValidator;
+import com.flipkart.validators.UserInputValidator;
 
 import java.util.Scanner;
 
@@ -94,8 +96,19 @@ public class FlipFitApplicationMainClient {
         System.out.print("Enter your Name: ");
         String name = in.nextLine();
 
-        System.out.print("Enter your Phone Number: ");
-        String phoneNumber = in.nextLine();
+        String phoneNumber;
+
+        while (true) {
+            try {
+                System.out.print("Enter your Phone Number: ");
+                phoneNumber = in.nextLine();
+
+                UserInputValidator.validatePhoneNumber(phoneNumber);
+                break;
+            } catch (UserInputValidator e) {
+                redOutputLn(e.getMessage());
+            }
+        }
 
         System.out.print("Enter your Address: ");
         String address = in.nextLine();
@@ -125,19 +138,63 @@ public class FlipFitApplicationMainClient {
                 login();
             }
             case CUSTOMER -> {
-                System.out.print("Enter your Age: ");
-                int age = in.nextInt();
-                in.nextLine();
+                int age;
 
-                System.out.print("Enter your Gender: ");
-                String gender = in.nextLine();
+                while (true) {
+                    try {
+                        System.out.print("Enter your Age: ");
+                        age = in.nextInt();
+                        in.nextLine();
 
-                System.out.print("Enter your Weight: ");
-                Double weight = in.nextDouble();
-                in.nextLine();
+                        CustomerInputValidator.validateAge(age);
+                        break;
+                    } catch (CustomerInputValidator e) {
+                        redOutputLn(e.getMessage());
+                    }
+                }
 
-                System.out.print("Enter your DOB: ");
-                String dob = in.nextLine();
+                String gender;
+
+                while (true) {
+                    try {
+                        System.out.print("Enter your Gender: ");
+                        gender = in.nextLine();
+
+                        CustomerInputValidator.validateGender(gender);
+                        break;
+                    } catch (CustomerInputValidator e) {
+                        redOutputLn(e.getMessage());
+                    }
+                }
+
+                double weight;
+
+                while (true) {
+                    try {
+                        System.out.print("Enter your Weight: ");
+                        weight = in.nextDouble();
+                        in.nextLine();
+
+                        CustomerInputValidator.validateWeight(weight);
+                        break;
+                    } catch (CustomerInputValidator e) {
+                        redOutputLn(e.getMessage());
+                    }
+                }
+
+                String dob;
+
+                while (true) {
+                    try {
+                        System.out.print("Enter your DOB (dd-mm-yyyy): ");
+                        dob = in.nextLine();
+
+                        CustomerInputValidator.validateDob(dob, age);
+                        break;
+                    } catch (CustomerInputValidator e) {
+                        redOutputLn(e.getMessage());
+                    }
+                }
 
                 try {
                     customerService.createProfile(username, password, name, address, phoneNumber, weight, age, gender, parseDate(dob));
