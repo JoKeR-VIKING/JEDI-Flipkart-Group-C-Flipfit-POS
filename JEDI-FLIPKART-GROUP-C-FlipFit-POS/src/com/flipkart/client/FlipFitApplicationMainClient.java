@@ -7,6 +7,7 @@ import com.flipkart.business.FlipFitUserService;
 import com.flipkart.enums.RoleEnum;
 import com.flipkart.exception.ExistingUserException;
 import com.flipkart.exception.InvalidPasswordException;
+import com.flipkart.exception.InvalidUserException;
 
 import java.util.Scanner;
 
@@ -35,15 +36,12 @@ public class FlipFitApplicationMainClient {
     public static FlipFitUser authenticateUser(String username, String password) {
         try {
             FlipFitUser user = userService.authenticate(username, password);
-
-            if(user == null) {
-                redOutputLn("Invalid username");
-                return null;
-            }
-
             return user;
         } catch (InvalidPasswordException e) {
             redOutputLn("Invalid password");
+            return null;
+        } catch (InvalidUserException e){
+            redOutputLn("Invalid username");
             return null;
         }
     }
@@ -180,8 +178,14 @@ public class FlipFitApplicationMainClient {
             }
         } while (flag);
 
-        userService.changePassword(user.getUserId(), newPassword);
+        try {
+            userService.changePassword(user.getUserId(), newPassword);
+        } catch(InvalidUserException e) {
+            redOutputLn("Invalid user");
+        }
+
         greenOutputLn("Password changed!");
+
     }
 
     public static void main(String[] args) {
