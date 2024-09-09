@@ -5,6 +5,10 @@ import com.flipkart.bean.FlipFitCentre;
 import com.flipkart.bean.FlipFitPayments;
 import com.flipkart.bean.FlipFitSlotBooking;
 import com.flipkart.business.*;
+import com.flipkart.exception.GymSlotSeatLimitReachedException;
+import com.flipkart.exception.InvalidBookingException;
+import com.flipkart.exception.InvalidSlotException;
+import com.flipkart.exception.InvalidUserException;
 import com.flipkart.utils.FlipFitTableUtil;
 import com.flipkart.utils.Helper;
 
@@ -56,7 +60,11 @@ public class FlipFitCustomerClientMenu {
         System.out.print("Enter your DOB (dd-mm-yyyy): ");
         String dob = in.nextLine();
 
-        customerService.editProfile(userId, address, weight, age, gender, parseDate(dob));
+        try {
+            customerService.editProfile(userId, address, weight, age, gender, parseDate(dob));
+        } catch (InvalidUserException e) {
+            redOutputLn("Invalid User");
+        }
     }
 
     public void viewAllGyms() {
@@ -106,8 +114,14 @@ public class FlipFitCustomerClientMenu {
 
         FlipFitPayments payment = paymentService.makePayment(Helper.generateId(), userId, 500.00, paymentAmount, LocalDate.now());
 
-        bookingService.bookSlot(userId, parseDate(bookingDate), slot, payment.getPaymentId());
-        System.out.println("Payment successful, slot booked!");
+        try {
+            bookingService.bookSlot(userId, parseDate(bookingDate), slot, payment.getPaymentId());
+            System.out.println("Payment successful, slot booked!");
+        } catch (InvalidSlotException e) {
+            redOutputLn("Invalid booking slot");
+        } catch (GymSlotSeatLimitReachedException e) {
+            redOutputLn("Gym Slot Seat Limit reached");
+        }
     }
 
     private void viewBookings(String userId) {
@@ -146,8 +160,12 @@ public class FlipFitCustomerClientMenu {
             String bookingId = in.nextLine();
             if (bookingId.equals("0")) return;
 
-            bookingService.cancelBooking(bookingId);
-            greenOutputLn("Booking with ID: " + bookingId + " cancelled!");
+            try {
+                bookingService.cancelBooking(bookingId);
+                greenOutputLn("Booking with ID: " + bookingId + " cancelled!");
+            } catch (InvalidBookingException e) {
+                redOutputLn("Invalid booking");
+            }
         }
     }
 
