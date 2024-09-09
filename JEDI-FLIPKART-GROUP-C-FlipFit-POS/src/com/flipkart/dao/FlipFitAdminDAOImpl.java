@@ -55,7 +55,7 @@ public class FlipFitAdminDAOImpl implements FlipFitAdminDAOInterface {
 
     @Override
     public void removeOwner(String ownerId) throws InvalidGymOwnerException {
-       int rowsAffected = flipFitSchema.execute(conn -> {
+        int rowsAffected = flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(DELETE_GYM_OWNER);
             stmt.setString(1, ownerId);
 
@@ -151,15 +151,15 @@ public class FlipFitAdminDAOImpl implements FlipFitAdminDAOInterface {
 
     @Override
     public void removeGym(String centreId) throws InvalidGymException {
-      int rowsAffected =  flipFitSchema.execute(conn -> {
+        int rowsAffected =  flipFitSchema.execute(conn -> {
             PreparedStatement stmt = conn.prepareStatement(DELETE_GYM);
             stmt.setString(1, centreId);
 
             return stmt.executeUpdate();
         });
-      if(rowsAffected == 0){
-          throw new InvalidGymException();
-      }
+        if(rowsAffected == 0){
+            throw new InvalidGymException();
+        }
     }
 
     @Override
