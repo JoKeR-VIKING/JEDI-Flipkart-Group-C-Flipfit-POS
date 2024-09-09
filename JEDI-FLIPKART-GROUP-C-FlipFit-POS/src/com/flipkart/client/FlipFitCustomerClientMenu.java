@@ -162,7 +162,7 @@ public class FlipFitCustomerClientMenu {
      * Displays a list of all gyms available in the system.
      */
     public void viewAllGyms() {
-        List<FlipFitCentre> gyms = adminService.displayAllCentres();
+        List<FlipFitCentre> gyms = adminService.displayAllRegisteredCentres();
 
         printTabular(
                 List.of("Gym ID", "Gym Name", "Gym City", "Gym Address", "Gym Owner ID", "Gym Verified Status"),

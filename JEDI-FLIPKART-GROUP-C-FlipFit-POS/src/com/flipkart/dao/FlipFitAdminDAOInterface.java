@@ -93,6 +93,13 @@ public interface FlipFitAdminDAOInterface {
     List<FlipFitCentre> getPendingCentres();
 
     /**
+     * Retrieves a list of gym centres that are registered.
+     *
+     * @return A List of FlipFitCentre objects representing registered gym centres.
+     */
+    List<FlipFitCentre> getAllRegisteredCentres();
+
+    /**
      * Retrieves a list of all gym centres in the system.
      *
      * @return A List of FlipFitCentre objects representing all gym centres.

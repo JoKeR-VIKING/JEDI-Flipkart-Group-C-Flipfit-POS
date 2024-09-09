@@ -58,6 +58,11 @@ public class SQLQueryConstants {
     public static final String SELECT_PENDING_GYMS = "SELECT * FROM FlipFitCentre WHERE verified = 'PENDING'";
 
     /**
+     * SQL query to select all registered gyms.
+     */
+    public static final String SELECT_ALL_REGISTERED_GYMS = "SELECT * FROM FlipFitCentre WHERE verified = 'APPROVED'";
+
+    /**
      * SQL query to select all gyms.
      */
     public static final String SELECT_ALL_GYMS = "SELECT * FROM FlipFitCentre";
@@ -85,7 +90,12 @@ public class SQLQueryConstants {
     /**
      * SQL query to delete a gym owner by ownerId.
      */
-    public static final String DELETE_GYM_OWNER = "DELETE FROM FlipFitGymOwner WHERE ownerId = ?";
+    public static final String DELETE_GYM_OWNER = "DELETE FROM FlipFitUser WHERE userId = ?";
+
+    /**
+     * SQL query to get gym owner by ownerId.
+     */
+    public static final String SELECT_GYM_OWNER_BY_ID = "SELECT * FROM FlipFitGymOwner WHERE ownerId = ?";
 
     /**
      * SQL query to insert a new gym into the FlipFitCentre table.
@@ -120,7 +130,7 @@ public class SQLQueryConstants {
     /**
      * SQL query to select a gym by centreId.
      */
-    public static final String SELECT_GYMS_BY_CITY = "SELECT * FROM FlipFitCentre WHERE city = ?";
+    public static final String SELECT_GYMS_BY_CITY = "SELECT * FROM FlipFitCentre WHERE city = ? AND verified = 'APPROVED'";
 
     /**
      * SQL query to select a gym by centreId and gymOwnerId

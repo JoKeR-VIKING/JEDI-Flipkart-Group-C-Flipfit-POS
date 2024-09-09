@@ -5,6 +5,7 @@ import com.flipkart.exception.ExistingUserException;
 import com.flipkart.exception.InvalidUserException;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import static com.flipkart.constants.SQLQueryConstants.*;
 import static com.flipkart.dao.FlipFitUserDAOImpl.FlipFitUserDAOInst;
@@ -39,6 +40,19 @@ public class FlipFitGymOwnerDAOImpl implements FlipFitGymOwnerDAOInterface {
             stmt.setString(3, gymOwnerId);
 
             return stmt.executeUpdate();
+        });
+    }
+
+    @Override
+    public boolean checkApproval(String userId) {
+        return flipFitSchema.execute(conn -> {
+            PreparedStatement stmt = conn.prepareStatement(SELECT_GYM_OWNER_BY_ID);
+            stmt.setString(1, userId);
+
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+
+            return rs.getString("verified").equals("APPROVED");
         });
     }
 }
