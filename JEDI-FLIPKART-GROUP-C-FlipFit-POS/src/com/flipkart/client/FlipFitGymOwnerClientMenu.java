@@ -265,8 +265,11 @@ public class FlipFitGymOwnerClientMenu {
                 System.out.print("Enter Date: ");
                 date = scanner.nextLine();
                 SlotInputValidator.validateDateFormat(date);
+                BookSlotInputValidator.validateFutureDate(date);
                 break;
             } catch (SlotInputValidator e) {
+                redOutputLn(e.getMessage());
+            } catch (BookSlotInputValidator e) {
                 redOutputLn(e.getMessage());
             }
         }
