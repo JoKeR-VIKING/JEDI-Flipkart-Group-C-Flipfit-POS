@@ -12,6 +12,11 @@ import com.flipkart.validators.CustomerInputValidator;
 import com.flipkart.validators.GymOwnerValidator;
 import com.flipkart.validators.UserInputValidator;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.util.Date;
 import java.util.Scanner;
 
 import static com.flipkart.utils.FlipFitClientUtils.getChoice;
@@ -76,6 +81,13 @@ public class FlipFitApplicationMainClient {
 
         FlipFitUser user = authenticateUser(username, password);
         if (user == null) return;
+
+        System.out.println();
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        boldOutputLn("Date: " + dateFormatter.format(LocalDate.now()));
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        boldOutputLn("Time: " + timeFormatter.format(LocalTime.now()));
 
         switch (user.getRole()) {
             case GYM_OWNER -> flipFitGymOwnerClientMenu.login(user.getUserId());
