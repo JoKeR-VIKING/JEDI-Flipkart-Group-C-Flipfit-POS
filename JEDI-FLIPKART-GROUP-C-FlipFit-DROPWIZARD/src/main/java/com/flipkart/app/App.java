@@ -1,5 +1,6 @@
 package com.flipkart.app;
 
+import com.flipkart.restcontroller.FlipFitCustomerController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +22,7 @@ public class App extends Application<Configuration>
     @Override
     public void run(Configuration c, Environment e) throws Exception {
         e.jersey().register(new FlipFitAdminController());
+        e.jersey().register(new FlipFitCustomerController());
     }
 
     public static void main(String[] args) throws Exception {
