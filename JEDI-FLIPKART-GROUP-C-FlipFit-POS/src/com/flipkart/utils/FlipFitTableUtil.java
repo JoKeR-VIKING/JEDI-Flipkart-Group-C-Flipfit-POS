@@ -50,8 +50,6 @@ public class FlipFitTableUtil {
         System.out.println("-".repeat(totalWidth + columns.size() * 4 - 3));
 
         // Print the rows.
-        for (List<String> row : rows) {
-            System.out.printf(columnFormat, row.toArray(Object[]::new));
-        }
+        rows.forEach(row -> System.out.printf(columnFormat, row.toArray(Object[]::new)));
     }
 }
