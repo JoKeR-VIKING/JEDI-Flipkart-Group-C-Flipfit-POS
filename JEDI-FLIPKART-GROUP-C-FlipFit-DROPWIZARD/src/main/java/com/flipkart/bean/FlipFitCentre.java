@@ -6,15 +6,12 @@ import javax.validation.constraints.NotBlank;
  * Represents a fitness center with details such as its ID, name, address, gym owner ID, and verification status.
  */
 public class FlipFitCentre {
-    @NotBlank
     private String centreId;
     @NotBlank
     private String centreName;
     @NotBlank
     private String centreAddress;
-    @NotBlank
     private String gymOwnerId;
-    @NotBlank
     private String verified;
     @NotBlank
     private String city;
@@ -49,6 +46,9 @@ public class FlipFitCentre {
     public FlipFitCentre(String centreId, String centreName, String centreAddress, String gymOwnerId, String verified, String city) {
         this(centreId, centreName, centreAddress, gymOwnerId, city);
         this.verified = verified;
+    }
+
+    public FlipFitCentre() {
     }
 
 
