@@ -31,6 +31,6 @@ public enum SlotBookingStatusEnum {
         return Arrays.stream(SlotBookingStatusEnum.values())
                 .filter(status -> status.toString().equals(name))
                 .findFirst()
-                .orElse(null);
+                .orElse(CONFIRMED);
     }
 }
