@@ -23,6 +23,11 @@ public class FlipFitAdminController {
     private static final Logger LOGGER = LoggerFactory.getLogger(FlipFitAdminController.class);
     private final FlipFitAdminService adminService = new FlipFitAdminService();
 
+    /**
+     * Retrieves a list of pending gym centres for approval.
+     *
+     * @return A Response containing a list of pending FlipFitCentre objects.
+     */
     @GET
     @Path("/pendingCentres")
     public Response viewPendingCentre() {
@@ -31,6 +36,11 @@ public class FlipFitAdminController {
         return Response.ok(centres).build();
     }
 
+    /**
+     * Retrieves a list of pending gym owners for approval.
+     *
+     * @return A Response containing a list of pending FlipFitGymOwner objects.
+     */
     @GET
     @Path("/pendingOwners")
     public Response viewPendingOwner() {
@@ -38,6 +48,12 @@ public class FlipFitAdminController {
         return Response.ok(owners).build();
     }
 
+    /**
+     * Approves a gym centre identified by the given gymId.
+     *
+     * @param gymId The ID of the gym centre to approve.
+     * @return A Response indicating the result of the approval operation.
+     */
     @POST
     @Path("/approveCentre/{gymId}")
     public Response approveCentre(@PathParam("gymId") String gymId) {
@@ -51,6 +67,12 @@ public class FlipFitAdminController {
         }
     }
 
+    /**
+     * Approves a gym owner identified by the given ownerId.
+     *
+     * @param ownerId The ID of the gym owner to approve.
+     * @return A Response indicating the result of the approval operation.
+     */
     @POST
     @Path("/approveOwner/{ownerId}")
     public Response approveOwner(@PathParam("ownerId") String ownerId) {
@@ -64,6 +86,12 @@ public class FlipFitAdminController {
         }
     }
 
+    /**
+     * Rejects a gym centre identified by the given gymId.
+     *
+     * @param gymId The ID of the gym centre to reject.
+     * @return A Response indicating the result of the rejection operation.
+     */
     @POST
     @Path("/rejectCentre/{gymId}")
     public Response rejectCentre(@PathParam("gymId") String gymId) {
@@ -77,6 +105,12 @@ public class FlipFitAdminController {
         }
     }
 
+    /**
+     * Rejects a gym owner identified by the given ownerId.
+     *
+     * @param ownerId The ID of the gym owner to reject.
+     * @return A Response indicating the result of the rejection operation.
+     */
     @POST
     @Path("/rejectOwner/{ownerId}")
     public Response rejectOwner(@PathParam("ownerId") String ownerId) {
@@ -90,6 +124,12 @@ public class FlipFitAdminController {
         }
     }
 
+    /**
+     * Removes a gym centre identified by the given gymId.
+     *
+     * @param gymId The ID of the gym centre to remove.
+     * @return A Response indicating the result of the removal operation.
+     */
     @DELETE
     @Path("/removeCentre/{gymId}")
     public Response removeCentre(@PathParam("gymId") String gymId) {
@@ -103,6 +143,12 @@ public class FlipFitAdminController {
         }
     }
 
+    /**
+     * Removes a gym owner identified by the given ownerId.
+     *
+     * @param ownerId The ID of the gym owner to remove.
+     * @return A Response indicating the result of the removal operation.
+     */
     @DELETE
     @Path("/removeOwner/{ownerId}")
     public Response removeOwner(@PathParam("ownerId") String ownerId) {
