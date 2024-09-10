@@ -24,17 +24,17 @@ public class FlipFitMySQL {
     /**
      * Database connection URL.
      */
-    public static final String CONNECTION_URL = FlipFitProperties.getProperty("db.url");
+    public static final String CONNECTION_URL = "jdbc:mysql://localhost:3306/flipfit";
 
     /**
      * Database username.
      */
-    public static final String USERNAME = FlipFitProperties.getProperty("db.user");
+    public static final String USERNAME = "root";
 
     /**
      * Database password.
      */
-    public static final String PASSWORD = FlipFitProperties.getProperty("db.password");
+    public static final String PASSWORD = "password";
 
     /**
      * Private constructor to initialize the MySQL driver.
