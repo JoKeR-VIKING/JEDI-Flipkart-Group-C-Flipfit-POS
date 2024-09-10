@@ -314,9 +314,19 @@ public class FlipFitCustomerClientMenu {
     private void cancelCustomerBooking(String userId) {
         List<FlipFitSlotBooking> bookedSlots = bookingService.listBookings(userId);
 
-        for (FlipFitSlotBooking bookedSlot : bookedSlots) {
-            System.out.println(bookedSlot.getBookingId());
-        }
+        printTabular(
+                List.of("Booking ID", "Customer ID", "Gym Slot ID", "Booking Date", "Booking TimeSlot", "Payment ID"),
+                bookedSlots.stream()
+                        .map(booking -> List.of(
+                                booking.getBookingId(),
+                                booking.getUserId(),
+                                booking.getCenterSlot(),
+                                booking.getBookingDate().toString(),
+                                booking.getSlotDate().toString(),
+                                booking.getPaymentId())
+                        )
+                        .toList()
+        );
 
         while (true) {
             System.out.print("Choose slot to delete, or 0 to go back: ");
