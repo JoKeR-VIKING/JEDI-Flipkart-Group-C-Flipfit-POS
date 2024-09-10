@@ -13,7 +13,7 @@ import java.util.List;
  * Interface for FlipFit Admin Data Access Object (DAO) operations.
  * Provides methods to handle admin functionalities related to gym owners and centres.
  */
-public interface GFlipFitAdminDAOInterface {
+public interface FlipFitAdminDAOInterface {
 
     /**
      * Adds a new FlipFit admin to the system.
