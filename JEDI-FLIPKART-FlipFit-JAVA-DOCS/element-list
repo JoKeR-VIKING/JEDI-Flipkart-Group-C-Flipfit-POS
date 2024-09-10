@@ -1,3 +1,5 @@
+com.flipkart
+com.flipkart.app
 com.flipkart.bean
 com.flipkart.business
 com.flipkart.client
@@ -5,5 +7,6 @@ com.flipkart.constants
 com.flipkart.dao
 com.flipkart.enums
 com.flipkart.exception
+com.flipkart.restcontroller
 com.flipkart.utils
 com.flipkart.validators

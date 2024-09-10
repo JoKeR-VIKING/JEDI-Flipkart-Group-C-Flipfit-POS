@@ -4,114 +4,176 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3a2fcac-8338-41fa-8bbb-2956fbd33a3f" name="Changes" comment="">
+    <list default="true" id="733da3ee-5c05-4a79-a75f-64211b80d8fd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/allclasses-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/allclasses-index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/allpackages-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/allpackages-index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitAdmin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitCenterSlot.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitCenterSlot.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitCentre.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitCentre.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitCustomer.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitCustomer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitGymOwner.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitGymOwner.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitNotification.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitNotification.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitPayments.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitPayments.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitSlotBooking.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitSlotBooking.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/FlipFitUser.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/bean/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitAdminInterface.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitAdminInterface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitAdminService.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitAdminService.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitCustomerInterface.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitCustomerInterface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitCustomerService.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitCustomerService.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitGymOwnerInterface.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitGymOwnerInterface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitGymOwnerService.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitGymOwnerService.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitPaymentsInterface.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitPaymentsInterface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitPaymentsService.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitPaymentsService.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitSlotBookingInterface.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitSlotBookingInterface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitSlotBookingService.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitSlotBookingService.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitUserInterface.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitUserInterface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitUserService.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/FlipFitUserService.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/business/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/constants/CityConstants.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/constants/CityConstants.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/constants/ConsoleConstants.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/constants/ConsoleConstants.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/constants/SQLQueryConstants.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/constants/SQLQueryConstants.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/constants/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/constants/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/constants/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/constants/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitAdminDAOImpl.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitAdminDAOImpl.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitAdminDAOInterface.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitAdminDAOInterface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitCenterSlotDAOImpl.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitCenterSlotDAOImpl.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitCenterSlotDAOInterface.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitCenterSlotDAOInterface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitCentreDAOImpl.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitCentreDAOImpl.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitCentreDAOInterface.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitCentreDAOInterface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitCustomerDAOImpl.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitCustomerDAOImpl.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitCustomerDAOInterface.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitCustomerDAOInterface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitGymOwnerDAOImpl.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitGymOwnerDAOImpl.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitGymOwnerDAOInterface.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitGymOwnerDAOInterface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitSlotBookingDAOImpl.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitSlotBookingDAOImpl.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitSlotBookingDAOInterface.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitSlotBookingDAOInterface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitUserDAOImpl.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitUserDAOImpl.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitUserDAOInterface.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/FlipFitUserDAOInterface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/dao/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/enums/RoleEnum.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/enums/RoleEnum.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/enums/SlotBookingStatusEnum.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/enums/SlotBookingStatusEnum.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/enums/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/enums/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/enums/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/enums/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/ExistingUserException.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/ExistingUserException.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/GymSlotAlreadyExistsException.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/GymSlotAlreadyExistsException.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/GymSlotSeatLimitReachedException.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/GymSlotSeatLimitReachedException.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/InvalidBookingException.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/InvalidBookingException.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/InvalidGymException.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/InvalidGymException.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/InvalidGymOwnerException.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/InvalidGymOwnerException.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/InvalidPasswordException.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/InvalidPasswordException.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/InvalidSlotException.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/InvalidSlotException.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/InvalidUserException.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/InvalidUserException.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/UnauthorizedGymOwnerException.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/UnauthorizedGymOwnerException.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/exception/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/FlipFitClientUtils.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/FlipFitClientUtils.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/FlipFitDAOUtils.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/FlipFitDAOUtils.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/FlipFitMySQL.ConnectionHandler.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/FlipFitMySQL.ConnectionHandler.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/FlipFitMySQL.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/FlipFitMySQL.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/FlipFitProperties.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/FlipFitProperties.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/FlipFitTableUtil.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/FlipFitTableUtil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/Helper.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/Helper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/utils/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/BookSlotInputValidator.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/BookSlotInputValidator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/CityInputValidator.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/CityInputValidator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/CustomerInputValidator.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/CustomerInputValidator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/GymOwnerValidator.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/GymOwnerValidator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/PaymentInputValidator.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/PaymentInputValidator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/SlotInputValidator.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/SlotInputValidator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/UserInputValidator.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/UserInputValidator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/com/flipkart/validators/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/constant-values.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/constant-values.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/element-list" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/element-list" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/help-doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/help-doc.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-10.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-10.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-11.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-11.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-12.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-12.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-13.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-13.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-14.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-14.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-15.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-15.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-16.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-16.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-17.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-17.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-18.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-18.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-19.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-19.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-5.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-6.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-6.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-7.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-7.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-8.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-8.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-9.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index-files/index-9.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/member-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/member-search-index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/overview-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/overview-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/overview-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/package-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/package-search-index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/serialized-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/serialized-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/type-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-FlipFit-JAVA-DOCS/type-search-index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-DROPWIZARD/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-DROPWIZARD/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Exception" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="sql-implementation-pratham" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Corbe30&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/JoKeR-VIKING/JEDI-Flipkart-Flipfit-Repo.git&quot;,
+    &quot;accountId&quot;: &quot;de643f51-b40f-4e22-b84a-31c9e7a5a288&quot;
+  }
+}</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 6
 }</component>
-  <component name="ProjectId" id="2lmrF14YENFKequXiDSa1tNynOh" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectId" id="2ltJdJu7NXmU83fZ53lE9WC0Wk9" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.FlipFitApplicationMainClient.executor": "Run",
-    "Application.FlipFitCenterSlotDAOImpl.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "validator-aman",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "settings.qodana"
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.FlipFitApplicationMainClient">
-    <configuration name="FlipFitApplicationMainClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.flipkart.client.FlipFitApplicationMainClient" />
-      <module name="JEDI-FLIPKART-GROUP-C-FlipFit-POS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.flipkart.client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FlipFitCenterSlotDAOImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.flipkart.dao.FlipFitCenterSlotDAOImpl" />
-      <module name="JEDI-FLIPKART-GROUP-C-FlipFit-POS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.flipkart.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.FlipFitApplicationMainClient" />
-        <item itemvalue="Application.FlipFitCenterSlotDAOImpl" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e3a2fcac-8338-41fa-8bbb-2956fbd33a3f" name="Changes" comment="" />
-      <created>1725795985981</created>
+      <changelist id="733da3ee-5c05-4a79-a75f-64211b80d8fd" name="Changes" comment="" />
+      <created>1725993525884</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1725795985981</updated>
+      <updated>1725993525884</updated>
     </task>
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>
