@@ -4,6 +4,7 @@ import com.flipkart.bean.*;
 import com.flipkart.business.*;
 import com.flipkart.exception.*;
 import com.flipkart.validators.*;
+
 import javax.validation.constraints.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -72,7 +73,7 @@ public class FlipFitCustomerController {
      * @param dob the new date of birth of the user, in the format "yyyy-MM-dd"
      * @return a {@link Response} indicating the result of the profile update
      */
-    @POST
+    @PUT
     @Path("/profile")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response editProfile(
@@ -90,8 +91,10 @@ public class FlipFitCustomerController {
             CustomerInputValidator.validateDob(dob, age);
 
             customerService.editProfile(userId, address, weight, age, gender, parseDate(dob));
-            return Response.ok().build();
-        } catch (CustomerInputValidator | InvalidUserException e) {
+            return Response.ok("User edited successfully").build();
+        } catch (InvalidUserException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("Invalid User").build();
+        } catch (CustomerInputValidator e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
@@ -116,10 +119,17 @@ public class FlipFitCustomerController {
      * @return a {@link Response} containing a list of slots or a null response
      */
     @GET
-    @Path("/slots")
-    public Response viewAvailableSlots() {
-//        List<FlipFitCenterSlot> slots = ownerService.viewAvailableSlots();
-        return Response.ok(null).build();
+    @Path("/slots/available")
+    public Response viewAvailableSlots(@QueryParam("gymId") @NotBlank String gymId, @QueryParam("date") @NotBlank String date) {
+        try {
+            SlotInputValidator.validateDateFormat(date);
+            List<FlipFitCenterSlot> slots = ownerService.viewAvailableSlots(gymId, parseDate(date));
+            return Response.ok(slots).build();
+        } catch (InvalidGymException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("Invalid Gym ID.").build();
+        } catch (SlotInputValidator e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+        }
     }
 
     /**
@@ -143,7 +153,7 @@ public class FlipFitCustomerController {
             @QueryParam("bookingDate") @NotNull @Size(min = 10, max = 10) String bookingDate,
             @QueryParam("cardNumber") @NotNull @Size(min = 16, max = 16) String cardNumber,
             @QueryParam("cvv") @NotNull @Size(min = 3, max = 3) String cvv,
-            @QueryParam("cardExpiry") @NotNull @Size(min = 7, max = 7) String cardExpiry
+            @QueryParam("cardExpiry") @NotNull @Size(min = 5, max = 5) String cardExpiry
     ) {
         try {
             BookSlotInputValidator.validateDateFormat(bookingDate);

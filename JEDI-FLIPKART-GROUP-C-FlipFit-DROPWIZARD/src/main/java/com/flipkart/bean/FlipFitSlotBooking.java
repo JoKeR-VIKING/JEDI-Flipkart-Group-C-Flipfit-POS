@@ -1,5 +1,6 @@
 package com.flipkart.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.flipkart.enums.SlotBookingStatusEnum;
 
 import javax.validation.constraints.NotBlank;
@@ -17,8 +18,10 @@ public class FlipFitSlotBooking {
     @NotBlank
     private String centerSlotId;
     @NotBlank
+    @JsonFormat(pattern="dd-MM-yyyy")
     private LocalDate slotDate;
     @NotBlank
+    @JsonFormat(pattern="dd-MM-yyyy")
     private LocalDate bookingDate;
     @NotBlank
     private SlotBookingStatusEnum status;

@@ -1,5 +1,7 @@
 package com.flipkart.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalTime;
@@ -13,6 +15,7 @@ public class FlipFitCenterSlot {
     @NotBlank
     private String centreId;
     @NotBlank
+    @JsonFormat(pattern="HH:mm")
     private LocalTime startTime;
     @NotNull
     private int seatLimit;

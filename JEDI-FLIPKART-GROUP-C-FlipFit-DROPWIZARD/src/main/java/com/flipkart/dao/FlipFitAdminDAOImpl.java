@@ -200,6 +200,7 @@ public class FlipFitAdminDAOImpl implements FlipFitAdminDAOInterface {
                         rs.getString("centreName"),
                         rs.getString("centreAddress"),
                         rs.getString("gymOwnerId"),
+                        rs.getString("verified"),
                         rs.getString("city")
                 );
 
