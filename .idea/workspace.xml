@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3a2fcac-8338-41fa-8bbb-2956fbd33a3f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/dao/FlipFitAdminDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI-FLIPKART-GROUP-C-FlipFit-POS/src/com/flipkart/dao/FlipFitAdminDAOImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +28,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "JoKeR-VIKING"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/JoKeR-VIKING/JEDI-Flipkart-Flipfit-Repo",
+    "accountId": "23f9b089-70e2-4bee-ba6e-953590719afb"
+  }
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
   </component>
@@ -47,7 +59,7 @@
     "Application.FlipFitApplicationMainClient.executor": "Run",
     "Application.FlipFitCenterSlotDAOImpl.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "validator-aman",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
